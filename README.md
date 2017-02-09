@@ -1,11 +1,26 @@
 # Kotlin bindings for electron (generator)
 
 ## Example for app.md
-1. generate docbook.xml: 
+1. fix list indentation:
 
  ```
- cat app.md | sed 's/^    \\*/        */g' | sed 's/^  \\*/     */g' | pandoc -t docbook > app.xml
+ cat app.md | sed 's/^    \\*/        */g' | sed 's/^  \\*/     */g' > app.fixed.md
  ```
-  
-2. normalize: `saxon app.xml step1normalize.xsl > app.normalized.xsl`
-3. generate kotlin:  `saxon app.normalized.xml step2KotlinOutput.xsl > app.kt`
+
+2. generate docbook.xml: 
+
+ ```
+ cat app.fixed.md | pandoc -t docbook > app.xml
+ ```
+
+3 normalize: 
+
+ ```
+ saxon app.xml step1normalize.xsl > app.normalized.xsl
+ ```
+
+4. generate kotlin: 
+
+ ```
+ saxon app.normalized.xml step2KotlinOutput.xsl > app.kt`
+ ```
