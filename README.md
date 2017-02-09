@@ -4,9 +4,9 @@
 
 1. fix list indentation:
 
-```
-cat app.md | sed 's/^    \\*/        */g' | sed 's/^  \\*/     */g' > app.fixed.md
-```
+ ```
+ cat app.md | sed 's/^    \\*/        */g' | sed 's/^  \\*/     */g' > app.fixed.md
+ ```
 
 2. generate docbook.xml: 
 
