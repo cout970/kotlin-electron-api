@@ -10,9 +10,9 @@
 
 2. generate docbook.xml: 
 
-```
-cat app.fixed.md | pandoc -t docbook > app.xml
-```
+ ```
+ cat app.fixed.md | pandoc -t docbook > app.xml
+ ```
 
 3. normalize: 
 
