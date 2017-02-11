@@ -1,27 +1,14 @@
-# Kotlin bindings for electron (generator)
+# Kotlin bindings for electron
 
-## Example for app.md
+### Usage
+* pandoc must be installed
+* put electron api docs somewhere and change path in `gradle.properties`
+* ```./gradlew electronAPI```
 
-1. fix list indentation:
 
- ```
- cat app.md | sed 's/^    \\*/        */g' | sed 's/^  \\*/     */g' > app.fixed.md
- ```
+### Steps taken internally:
 
-2. generate docbook.xml: 
-
- ```
- cat app.fixed.md | pandoc -t docbook > app.xml
- ```
-
-3. normalize: 
-
- ```
- saxon app.xml step1normalize.xsl > app.normalized.xsl
- ```
-
-4. generate kotlin: 
-
- ```
- saxon app.normalized.xml step2KotlinOutput.xsl > app.kt`
- ```
+1. fix list indentation in markdown
+2. use pandoc to create docbook from markdown, output: `build/api_docbook/*.source.xml`
+3. use `saxon`/xsl to normalize xml, output: `build/api_docbook/*.normalized.xml`
+4. use `saxon`/xsl to generate kotlin, output: `generated-api/jsapi/electron/*.kt`

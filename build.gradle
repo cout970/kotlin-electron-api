@@ -1,0 +1,34 @@
+task clean {
+    file(outDir).deleteDir()
+}
+
+task electronAPIdocbook(type: IncrementalTransformTask) {
+    inputFiles fileTree(dir: "$electronDocs", includes: ["**/*.md"], excludes: ["webview-tag.md"])
+    outputDir file("$buildDir/api_docbook/")
+    getTransformedName { sourceFile ->
+        def baseName = sourceFile.name.take(sourceFile.name.lastIndexOf('.'))
+        "${baseName}.source.xml"
+    }
+    getCommandLine { [
+        "bash", "-c", "cat ${it.path} |sed 's/^        \\*/                */g'|sed 's/^      \\*/              */g'|sed 's/^    \\*/        */g'|sed 's/^  \\*/    */g'|pandoc -t docbook"] }
+}
+
+task electronAPInormalize(type: IncrementalXSLTTask, dependsOn: ["electronAPIdocbook"]) {
+    inputFiles fileTree(dir: "$buildDir/api_docbook/", include: "*.source.xml")
+    outputDir file("$buildDir/api_docbook/")
+    getTransformedName { sourceFile ->
+        def baseName = sourceFile.name.take(sourceFile.name.lastIndexOf('.'))
+        "${baseName}.normalized.xml"
+    }
+    xsltFile new File(rootDir, "step1Normalize.xsl")
+}
+
+task electronAPI(type: IncrementalXSLTTask, dependsOn: ["electronAPInormalize"]) {
+    inputFiles fileTree(dir: "$buildDir/api_docbook/", include: "*.normalized.xml")
+    outputDir file("$outDir")
+    getTransformedName { sourceFile ->
+        def baseName = sourceFile.name.take(sourceFile.name.indexOf('.'))
+        "${baseName}.kt"
+    }
+    xsltFile new File(rootDir, "step2KotlinOutput.xsl")
+}

@@ -58,8 +58,7 @@
             <xsl:apply-templates mode="pass6" select="$pass5output" />
         </xsl:variable>
         <file>
-            <xsl:copy-of select="$pass6output//class" />
-            <xsl:copy-of select="$pass6output//object" />
+            <xsl:copy-of select="$pass6output//*[self::class|self::object|self::struct]" />
         </file>
     </xsl:template>
 
@@ -84,6 +83,12 @@
         <class title="{substring(@title, 8)}">
             <xsl:apply-templates mode="pass2" />
         </class>
+    </xsl:template>
+
+    <xsl:template match="section[ends-with(@title, ' Object')]" mode="pass2">
+        <struct title="{substring-before(@title, ' Object')}">
+            <xsl:apply-templates mode="pass2" />
+        </struct>
     </xsl:template>
 
     <xsl:template match="section[count(*[@id='events' or @id='methods']) > 0]" mode="pass2">
@@ -143,15 +148,11 @@
     </xsl:template>
 
     <xsl:template match="section/node()[1][self::itemizedlist]" mode="pass2">
-        <parameters>
-            <xsl:apply-templates mode="pass2" />
-        </parameters>
+        <xsl:apply-templates mode="pass2" />
     </xsl:template>
 
     <xsl:template match="listitem/itemizedlist" mode="pass2">
-        <parameters>
-            <xsl:apply-templates mode="pass2" />
-        </parameters>
+        <xsl:apply-templates mode="pass2" />
     </xsl:template>
 
     <xsl:template match="listitem" mode="pass2">
@@ -168,22 +169,19 @@
 
     <xsl:template match="section/para[1][node()[1][self::text()][matches(., '\s*Returns')]]" mode="pass2">
         <returns>
-            <param>
-                <info>
-                    <xsl:apply-templates mode="pass2" />
-                </info>
-            </param>
+            <info>
+                <xsl:apply-templates mode="pass2" />
+            </info>
         </returns>
     </xsl:template>
 
-
     <!--Pass 3: parameters -->
-
+    <xsl:template match="struct/*[not(self::param)]" mode="pass3" />
     <xsl:template match="class/*[not(self::constructor|self::methods)]" mode="pass3" />
-    <xsl:template match="object/*[not(self::constructor|self::methods)]" mode="pass3" />
-    <xsl:template match="constructor/*[not(self::parameters)]" mode="pass3" />
+    <xsl:template match="object/*[not(self::class|self::constructor|self::methods)]" mode="pass3" />
+    <xsl:template match="constructor/*[not(self::param)]" mode="pass3" />
     <xsl:template match="methods/*[not(self::method)]" mode="pass3" />
-    <xsl:template match="method/*[not(self::parameters or self::returns)]" mode="pass3" />
+    <xsl:template match="method/*[not(self::param or self::returns)]" mode="pass3" />
     <xsl:template match="events" mode="pass3" />
     <xsl:template match="properties" mode="pass3" />
 
@@ -215,7 +213,7 @@
     </xsl:template>
 
     <!-- Remove returns -->
-    <xsl:template match="returns/param/info/node()[position() = 1][self::text()]" mode="pass3">
+    <xsl:template match="returns/info/node()[position() = 1][self::text()]" mode="pass3">
         <xsl:value-of select="substring(normalize-space(.), 8)" />
     </xsl:template>
 
@@ -226,7 +224,8 @@
 
     <!-- Pass 5: parameters -->
 
-    <xsl:template match="info[matches(text(), '^\([a-zA-Z \|\[\]]+\)')]" mode="pass5">
+    <!-- Union (..|..) -->
+    <xsl:template match="info[matches(text(), '^\([a-zA-Z\s\|\[\]]+\)')]" mode="pass5">
         <xsl:attribute name="type">union</xsl:attribute>
 
         <xsl:if test="substring(substring-after(text(), ')'), 0, 3) = '[]'">
@@ -235,10 +234,11 @@
         <xsl:variable name="types" select="substring(substring-before(text(), ')'), 2)" />
         <xsl:variable name="tokens" select="tokenize($types, '\|')" />
         <xsl:for-each select="$tokens">
-            <type name="{normalize-space(.)}" />
+            <option type="{normalize-space(.)}" />
         </xsl:for-each>
     </xsl:template>
 
+    <!-- Type -->
     <xsl:template match="info[matches(text(), '^[a-zA-Z]+[^\[]')]" mode="pass5">
         <xsl:variable name="type" select="tokenize(., '[^a-zA-Z]')[1]" />
         <xsl:attribute name="type">
@@ -256,6 +256,31 @@
         </xsl:copy>
     </xsl:template>
 
+    <!-- throw out Info -->
     <xsl:template match="info" mode="pass5" />
 
+    <!-- generate empty constructor -->
+    <xsl:template match="class[not(count(constructor))]" mode="pass5">
+        <xsl:copy>
+            <xsl:apply-templates mode="pass5" select="@*" />
+            <constructor />
+            <xsl:apply-templates mode="pass5" />
+        </xsl:copy>
+    </xsl:template>
+
+    <!-- rename object param to properties -->
+    <xsl:template match="param[@type = 'Object']/param" mode="pass6">
+        <property>
+            <xsl:apply-templates mode="pass6" select="@*" />
+            <xsl:apply-templates mode="pass6" />
+        </property>
+    </xsl:template>
+
+    <!-- rename struct param to properties -->
+    <xsl:template match="struct/param" mode="pass6">
+        <property>
+            <xsl:apply-templates mode="pass6" select="@*" />
+            <xsl:apply-templates mode="pass6" />
+        </property>
+    </xsl:template>
 </xsl:stylesheet>
