@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<file>
+   <object title="screen">
+      <methods>
+         <method name="getCursorScreenPoint">
+            <returns type="Object"/>
+         </method>
+         <method name="getPrimaryDisplay">
+            <returns type="Display"/>
+         </method>
+         <method name="getAllDisplays">
+            <returns type="Display" isArray="true"/>
+         </method>
+         <method name="getDisplayNearestPoint">
+            <param name="point" type="Object">
+               <property name="x" type="Integer"/>
+               <property name="y" type="Integer"/>
+            </param>
+            <returns type="Display"/>
+         </method>
+         <method name="getDisplayMatching">
+            <param name="rect" type="Rectangle"/>
+            <returns type="Display"/>
+         </method>
+      </methods>
+   </object>
+</file>

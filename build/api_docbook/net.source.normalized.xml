@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<file>
+   <object title="net">
+      <methods>
+         <method name="request">
+            <param name="options" type="union">
+               <option type="Object"/>
+               <option type="String"/>
+            </param>
+            <returns type="ClientRequest"/>
+         </method>
+      </methods>
+   </object>
+</file>

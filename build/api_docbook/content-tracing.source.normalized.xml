@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<file>
+   <object title="contentTracing">
+      <methods>
+         <method name="getCategories">
+            <param name="callback" type="Function">
+               <param name="categories" type="String" isArray="true"/>
+            </param>
+         </method>
+         <method name="startRecording">
+            <param name="options" type="Object">
+               <property name="categoryFilter" type="String"/>
+               <property name="traceOptions" type="String"/>
+            </param>
+            <param name="callback" type="Function"/>
+         </method>
+         <method name="stopRecording">
+            <param name="resultFilePath" type="String"/>
+            <param name="callback" type="Function">
+               <param name="resultFilePath" type="String"/>
+            </param>
+         </method>
+         <method name="startMonitoring">
+            <param name="options" type="Object">
+               <property name="categoryFilter" type="String"/>
+               <property name="traceOptions" type="String"/>
+            </param>
+            <param name="callback" type="Function"/>
+         </method>
+         <method name="stopMonitoring">
+            <param name="callback" type="Function"/>
+         </method>
+         <method name="captureMonitoringSnapshot">
+            <param name="resultFilePath" type="String"/>
+            <param name="callback" type="Function">
+               <param name="resultFilePath" type="String"/>
+            </param>
+         </method>
+         <method name="getTraceBufferUsage">
+            <param name="callback" type="Function">
+               <param name="value" type="Number"/>
+               <param name="percentage" type="Number"/>
+            </param>
+         </method>
+      </methods>
+   </object>
+</file>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<file>
+   <class title="BrowserWindowProxy">
+      <constructor/>
+      <methods type="instance">
+         <method name="blur"/>
+         <method name="close"/>
+         <method name="eval">
+            <param name="code" type="String"/>
+         </method>
+         <method name="focus"/>
+         <method name="print"/>
+         <method name="postMessage">
+            <param name="message" type="String"/>
+            <param name="targetOrigin" type="String"/>
+         </method>
+      </methods>
+   </class>
+</file>

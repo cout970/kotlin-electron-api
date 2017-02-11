@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<file>
+   <object title="powerSaveBlocker">
+      <methods>
+         <method name="start">
+            <param name="type" type="String">
+               <param name="prevent-app-suspension"/>
+               <param name="prevent-display-sleep"/>
+            </param>
+            <returns type="Integer"/>
+         </method>
+         <method name="stop">
+            <param name="id" type="Integer"/>
+         </method>
+         <method name="isStarted">
+            <param name="id" type="Integer"/>
+            <returns type="Boolean"/>
+         </method>
+      </methods>
+   </object>
+</file>

@@ -1,2 +1,6 @@
 .gradle
-build/
+buildSrc/build
+build/*
+!build/api_docbook
+build/api_docbook/*
+!build/api_docbook/*.normalized.xml

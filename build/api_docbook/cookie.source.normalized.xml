@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<file>
+   <struct title="Cookie">
+      <property name="name" type="String"/>
+      <property name="value" type="String"/>
+      <property optional="true" name="domain" type="String"/>
+      <property optional="true" name="hostOnly" type="Boolean"/>
+      <property optional="true" name="path" type="String"/>
+      <property optional="true" name="secure" type="Boolean"/>
+      <property optional="true" name="httpOnly" type="Boolean"/>
+      <property optional="true" name="session" type="Boolean"/>
+      <property optional="true" name="expirationDate" type="Double"/>
+   </struct>
+</file>

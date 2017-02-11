@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<file>
+   <object title="ipcMain">
+      <methods>
+         <method name="on">
+            <param name="channel" type="String"/>
+            <param name="listener" type="Function"/>
+         </method>
+         <method name="once">
+            <param name="channel" type="String"/>
+            <param name="listener" type="Function"/>
+         </method>
+         <method name="removeListener">
+            <param name="channel" type="String"/>
+            <param name="listener" type="Function"/>
+         </method>
+         <method name="removeAllListeners">
+            <param optional="true" name="channel" type="String"/>
+         </method>
+      </methods>
+   </object>
+</file>

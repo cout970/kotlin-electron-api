@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<file>
+   <class title="ClientRequest">
+      <constructor>
+         <param name="options" type="union">
+            <option type="Object"/>
+            <option type="String"/>
+            <param optional="true" name="method" type="String"/>
+            <param optional="true" name="url" type="String"/>
+            <param optional="true" name="session" type="Object"/>
+            <param optional="true" name="partition" type="String"/>
+            <param optional="true" name="protocol" type="String"/>
+            <param optional="true" name="host" type="String"/>
+            <param optional="true" name="hostname" type="String"/>
+            <param optional="true" name="port" type="Integer"/>
+            <param optional="true" name="path" type="String"/>
+         </param>
+      </constructor>
+      <methods type="instance">
+         <method name="setHeader">
+            <param name="name" type="String"/>
+            <param name="value" type="String"/>
+         </method>
+         <method name="getHeader">
+            <param name="name" type="String"/>
+            <returns type="String"/>
+         </method>
+         <method name="removeHeader">
+            <param name="name" type="String"/>
+         </method>
+         <method name="write">
+            <param name="chunk" type="union">
+               <option type="String"/>
+               <option type="Buffer"/>
+            </param>
+            <param optional="true" name="encoding" type="String"/>
+            <param optional="true" name="callback" type="Function"/>
+         </method>
+         <method name="end">
+            <param optional="true" name="chunk" type="union">
+               <option type="String"/>
+               <option type="Buffer"/>
+            </param>
+            <param optional="true" name="encoding" type="String"/>
+            <param optional="true" name="callback" type="Function"/>
+         </method>
+         <method name="abort"/>
+      </methods>
+   </class>
+</file>

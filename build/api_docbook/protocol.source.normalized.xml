@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<file>
+   <object title="protocol">
+      <methods>
+         <method name="registerStandardSchemes">
+            <param name="schemes" type="String" isArray="true"/>
+            <param optional="true" name="options" type="Object">
+               <property optional="true" name="secure" type="Boolean"/>
+            </param>
+         </method>
+         <method name="registerServiceWorkerSchemes">
+            <param name="schemes" type="String" isArray="true"/>
+         </method>
+         <method name="registerFileProtocol">
+            <param name="scheme" type="String"/>
+            <param name="handler" type="Function">
+               <param name="request" type="Object">
+                  <property name="url" type="String"/>
+                  <property name="referrer" type="String"/>
+                  <property name="method" type="String"/>
+                  <property name="uploadData" type="UploadData" isArray="true"/>
+               </param>
+               <param name="callback" type="Function">
+                  <param optional="true" name="filePath" type="String"/>
+               </param>
+            </param>
+            <param optional="true" name="completion" type="Function">
+               <param name="error" type="Error"/>
+            </param>
+         </method>
+         <method name="registerBufferProtocol">
+            <param name="scheme" type="String"/>
+            <param name="handler" type="Function">
+               <param name="request" type="Object">
+                  <property name="url" type="String"/>
+                  <property name="referrer" type="String"/>
+                  <property name="method" type="String"/>
+                  <property name="uploadData" type="UploadData" isArray="true"/>
+               </param>
+               <param name="callback" type="Function">
+                  <param optional="true" name="buffer" type="union">
+                     <option type="Buffer"/>
+                     <option type="MimeTypedBuffer"/>
+                  </param>
+               </param>
+            </param>
+            <param optional="true" name="completion" type="Function">
+               <param name="error" type="Error"/>
+            </param>
+         </method>
+         <method name="registerStringProtocol">
+            <param name="scheme" type="String"/>
+            <param name="handler" type="Function">
+               <param name="request" type="Object">
+                  <property name="url" type="String"/>
+                  <property name="referrer" type="String"/>
+                  <property name="method" type="String"/>
+                  <property name="uploadData" type="UploadData" isArray="true"/>
+               </param>
+               <param name="callback" type="Function">
+                  <param optional="true" name="data" type="String"/>
+               </param>
+            </param>
+            <param optional="true" name="completion" type="Function">
+               <param name="error" type="Error"/>
+            </param>
+         </method>
+         <method name="registerHttpProtocol">
+            <param name="scheme" type="String"/>
+            <param name="handler" type="Function">
+               <param name="request" type="Object">
+                  <property name="url" type="String"/>
+                  <property name="referrer" type="String"/>
+                  <property name="method" type="String"/>
+                  <property name="uploadData" type="UploadData" isArray="true"/>
+               </param>
+               <param name="callback" type="Function">
+                  <param name="redirectRequest" type="Object">
+                     <property name="url" type="String"/>
+                     <property name="method" type="String"/>
+                     <property optional="true" name="session" type="Object"/>
+                     <property optional="true" name="uploadData" type="Object">
+                        <property name="contentType" type="String"/>
+                        <property name="data" type="String"/>
+                     </property>
+                  </param>
+               </param>
+            </param>
+            <param optional="true" name="completion" type="Function">
+               <param name="error" type="Error"/>
+            </param>
+         </method>
+         <method name="unregisterProtocol">
+            <param name="scheme" type="String"/>
+            <param optional="true" name="completion" type="Function">
+               <param name="error" type="Error"/>
+            </param>
+         </method>
+         <method name="isProtocolHandled">
+            <param name="scheme" type="String"/>
+            <param name="callback" type="Function">
+               <param name="error" type="Error"/>
+            </param>
+         </method>
+         <method name="interceptFileProtocol">
+            <param name="scheme" type="String"/>
+            <param name="handler" type="Function">
+               <param name="request" type="Object">
+                  <property name="url" type="String"/>
+                  <property name="referrer" type="String"/>
+                  <property name="method" type="String"/>
+                  <property name="uploadData" type="UploadData" isArray="true"/>
+               </param>
+               <param name="callback" type="Function">
+                  <param name="filePath" type="String"/>
+               </param>
+            </param>
+            <param optional="true" name="completion" type="Function">
+               <param name="error" type="Error"/>
+            </param>
+         </method>
+         <method name="interceptStringProtocol">
+            <param name="scheme" type="String"/>
+            <param name="handler" type="Function">
+               <param name="request" type="Object">
+                  <property name="url" type="String"/>
+                  <property name="referrer" type="String"/>
+                  <property name="method" type="String"/>
+                  <property name="uploadData" type="UploadData" isArray="true"/>
+               </param>
+               <param name="callback" type="Function">
+                  <param optional="true" name="data" type="String"/>
+               </param>
+            </param>
+            <param optional="true" name="completion" type="Function">
+               <param name="error" type="Error"/>
+            </param>
+         </method>
+         <method name="interceptBufferProtocol">
+            <param name="scheme" type="String"/>
+            <param name="handler" type="Function">
+               <param name="request" type="Object">
+                  <property name="url" type="String"/>
+                  <property name="referrer" type="String"/>
+                  <property name="method" type="String"/>
+                  <property name="uploadData" type="UploadData" isArray="true"/>
+               </param>
+               <param name="callback" type="Function">
+                  <param optional="true" name="buffer" type="Buffer"/>
+               </param>
+            </param>
+            <param optional="true" name="completion" type="Function">
+               <param name="error" type="Error"/>
+            </param>
+         </method>
+         <method name="interceptHttpProtocol">
+            <param name="scheme" type="String"/>
+            <param name="handler" type="Function">
+               <param name="request" type="Object">
+                  <property name="url" type="String"/>
+                  <property name="referrer" type="String"/>
+                  <property name="method" type="String"/>
+                  <property name="uploadData" type="UploadData" isArray="true"/>
+               </param>
+               <param name="callback" type="Function">
+                  <param name="redirectRequest" type="Object">
+                     <property name="url" type="String"/>
+                     <property name="method" type="String"/>
+                     <property optional="true" name="session" type="Object"/>
+                     <property optional="true" name="uploadData" type="Object">
+                        <property name="contentType" type="String"/>
+                        <property name="data" type="String"/>
+                     </property>
+                  </param>
+               </param>
+            </param>
+            <param optional="true" name="completion" type="Function">
+               <param name="error" type="Error"/>
+            </param>
+         </method>
+         <method name="uninterceptProtocol">
+            <param name="scheme" type="String"/>
+            <param optional="true" name="completion" type="Function">
+               <param name="error" type="Error"/>
+            </param>
+         </method>
+      </methods>
+   </object>
+</file>

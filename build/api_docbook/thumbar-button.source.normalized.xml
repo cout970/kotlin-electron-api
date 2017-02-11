@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<file>
+   <struct title="ThumbarButton">
+      <property name="icon" type="NativeImage"/>
+      <property name="click" type="Function"/>
+      <property optional="true" name="tooltip" type="String"/>
+      <property optional="true" name="flags" type="String" isArray="true"/>
+   </struct>
+</file>

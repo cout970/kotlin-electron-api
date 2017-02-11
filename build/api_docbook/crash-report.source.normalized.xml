@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<file>
+   <struct title="CrashReport">
+      <property name="date" type="String"/>
+      <property name="ID" type="Integer"/>
+   </struct>
+</file>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<file>
+   <object title="process">
+      <methods>
+         <method name="crash"/>
+         <method name="hang"/>
+         <method name="setFdLimit">
+            <param name="maxDescriptors" type="Integer"/>
+         </method>
+         <method name="getProcessMemoryInfo">
+            <returns type="Object"/>
+         </method>
+         <method name="getSystemMemoryInfo">
+            <returns type="Object"/>
+         </method>
+      </methods>
+   </object>
+</file>

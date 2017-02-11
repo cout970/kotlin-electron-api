@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<file>
+   <class title="DownloadItem">
+      <constructor/>
+      <methods type="instance">
+         <method name="setSavePath">
+            <param name="path" type="String"/>
+         </method>
+         <method name="getSavePath">
+            <returns type="String"/>
+         </method>
+         <method name="pause"/>
+         <method name="isPaused">
+            <returns type="Boolean"/>
+         </method>
+         <method name="resume"/>
+         <method name="canResume"/>
+         <method name="cancel"/>
+         <method name="getURL">
+            <returns type="String"/>
+         </method>
+         <method name="getMimeType">
+            <returns type="String"/>
+         </method>
+         <method name="hasUserGesture">
+            <returns type="Boolean"/>
+         </method>
+         <method name="getFilename">
+            <returns type="String"/>
+         </method>
+         <method name="getTotalBytes">
+            <returns type="Integer"/>
+         </method>
+         <method name="getReceivedBytes">
+            <returns type="Integer"/>
+         </method>
+         <method name="getContentDisposition">
+            <returns type="String"/>
+         </method>
+         <method name="getState">
+            <returns type="String"/>
+         </method>
+         <method name="getURLChain">
+            <returns type="String" isArray="true"/>
+         </method>
+         <method name="getLastModifiedTime">
+            <returns type="String"/>
+         </method>
+         <method name="getETag">
+            <returns type="String"/>
+         </method>
+         <method name="getStartTime">
+            <returns type="Double"/>
+         </method>
+      </methods>
+   </class>
+</file>

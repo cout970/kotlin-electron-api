@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<file>
+   <object title="desktopCapturer">
+      <methods>
+         <method name="getSources">
+            <param name="options" type="Object">
+               <property name="types" type="String" isArray="true"/>
+               <property optional="true" name="thumbnailSize" type="Object"/>
+            </param>
+            <param name="callback" type="Function">
+               <param name="error" type="Error"/>
+               <param name="sources" type="DesktopCapturerSource" isArray="true"/>
+            </param>
+         </method>
+      </methods>
+   </object>
+</file>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<file>
+   <struct title="BluetoothDevice">
+      <property name="deviceName" type="String"/>
+      <property name="deviceId" type="String"/>
+   </struct>
+</file>

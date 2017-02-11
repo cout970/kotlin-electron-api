@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<file>
+   <class title="WebRequest">
+      <constructor/>
+      <methods type="instance">
+         <method name="onBeforeRequest">
+            <param name="filter" type="Object"/>
+            <param name="listener" type="Function">
+               <param name="details" type="Object">
+                  <property name="id" type="Integer"/>
+                  <property name="url" type="String"/>
+                  <property name="method" type="String"/>
+                  <property name="resourceType" type="String"/>
+                  <property name="timestamp" type="Double"/>
+                  <property name="uploadData" type="UploadData" isArray="true"/>
+               </param>
+               <param name="callback" type="Function">
+                  <param name="response" type="Object">
+                     <property optional="true" name="cancel" type="Boolean"/>
+                     <property optional="true" name="redirectURL" type="String"/>
+                  </param>
+               </param>
+            </param>
+         </method>
+         <method name="onBeforeSendHeaders">
+            <param name="filter" type="Object"/>
+            <param name="listener" type="Function"/>
+         </method>
+         <method name="onSendHeaders">
+            <param name="filter" type="Object"/>
+            <param name="listener" type="Function">
+               <param name="details" type="Object">
+                  <property name="id" type="Integer"/>
+                  <property name="url" type="String"/>
+                  <property name="method" type="String"/>
+                  <property name="resourceType" type="String"/>
+                  <property name="timestamp" type="Double"/>
+                  <property name="requestHeaders" type="Object"/>
+               </param>
+            </param>
+         </method>
+         <method name="onHeadersReceived">
+            <param name="filter" type="Object"/>
+            <param name="listener" type="Function"/>
+         </method>
+         <method name="onResponseStarted">
+            <param name="filter" type="Object"/>
+            <param name="listener" type="Function">
+               <param name="details" type="Object">
+                  <property name="id" type="Integer"/>
+                  <property name="url" type="String"/>
+                  <property name="method" type="String"/>
+                  <property name="resourceType" type="String"/>
+                  <property name="timestamp" type="Double"/>
+                  <property name="responseHeaders" type="Object"/>
+                  <property name="fromCache" type="Boolean"/>
+                  <property name="statusCode" type="Integer"/>
+                  <property name="statusLine" type="String"/>
+               </param>
+            </param>
+         </method>
+         <method name="onBeforeRedirect">
+            <param name="filter" type="Object"/>
+            <param name="listener" type="Function">
+               <param name="details" type="Object">
+                  <property name="id" type="String"/>
+                  <property name="url" type="String"/>
+                  <property name="method" type="String"/>
+                  <property name="resourceType" type="String"/>
+                  <property name="timestamp" type="Double"/>
+                  <property name="redirectURL" type="String"/>
+                  <property name="statusCode" type="Integer"/>
+                  <property optional="true" name="ip" type="String"/>
+                  <property name="fromCache" type="Boolean"/>
+                  <property name="responseHeaders" type="Object"/>
+               </param>
+            </param>
+         </method>
+         <method name="onCompleted">
+            <param name="filter" type="Object"/>
+            <param name="listener" type="Function">
+               <param name="details" type="Object">
+                  <property name="id" type="Integer"/>
+                  <property name="url" type="String"/>
+                  <property name="method" type="String"/>
+                  <property name="resourceType" type="String"/>
+                  <property name="timestamp" type="Double"/>
+                  <property name="responseHeaders" type="Object"/>
+                  <property name="fromCache" type="Boolean"/>
+                  <property name="statusCode" type="Integer"/>
+                  <property name="statusLine" type="String"/>
+               </param>
+            </param>
+         </method>
+         <method name="onErrorOccurred">
+            <param name="filter" type="Object"/>
+            <param name="listener" type="Function">
+               <param name="details" type="Object">
+                  <property name="id" type="Integer"/>
+                  <property name="url" type="String"/>
+                  <property name="method" type="String"/>
+                  <property name="resourceType" type="String"/>
+                  <property name="timestamp" type="Double"/>
+                  <property name="fromCache" type="Boolean"/>
+                  <property name="error" type="String"/>
+               </param>
+            </param>
+         </method>
+      </methods>
+   </class>
+</file>

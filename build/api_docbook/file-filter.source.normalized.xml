@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<file>
+   <struct title="FileFilter">
+      <property name="name" type="String"/>
+      <property name="extensions" type="String" isArray="true"/>
+   </struct>
+</file>

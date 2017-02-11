@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<file>
+   <struct title="Task">
+      <property name="program" type="String"/>
+      <property name="arguments" type="String"/>
+      <property name="title" type="String"/>
+      <property name="description" type="String"/>
+      <property name="iconPath" type="String"/>
+      <property name="iconIndex" type="Number"/>
+   </struct>
+</file>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<file>
+   <struct title="JumpListCategory">
+      <property optional="true" name="type" type="String">
+         <param name="tasks"/>
+         <param name="frequent"/>
+         <param name="recent"/>
+         <param name="custom"/>
+      </property>
+      <property optional="true" name="name" type="String"/>
+      <property optional="true" name="items" type="JumpListItem" isArray="true"/>
+   </struct>
+</file>

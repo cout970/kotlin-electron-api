@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<file>
+   <struct title="ShortcutDetails">
+      <property name="target" type="String"/>
+      <property optional="true" name="cwd" type="String"/>
+      <property optional="true" name="args" type="String"/>
+      <property optional="true" name="description" type="String"/>
+      <property optional="true" name="icon" type="String"/>
+      <property optional="true" name="iconIndex" type="Number"/>
+      <property optional="true" name="appUserModelId" type="String"/>
+   </struct>
+</file>

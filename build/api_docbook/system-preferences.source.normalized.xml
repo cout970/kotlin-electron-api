@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<file>
+   <object title="systemPreferences">
+      <methods>
+         <method name="isDarkMode">
+            <returns type="Boolean"/>
+         </method>
+         <method name="isSwipeTrackingFromScrollEventsEnabled">
+            <returns type="Boolean"/>
+         </method>
+         <method name="postNotification">
+            <param name="event" type="String"/>
+            <param name="userInfo" type="Object"/>
+         </method>
+         <method name="postLocalNotification">
+            <param name="event" type="String"/>
+            <param name="userInfo" type="Object"/>
+         </method>
+         <method name="subscribeNotification">
+            <param name="event" type="String"/>
+            <param name="callback" type="Function">
+               <param name="event" type="String"/>
+               <param name="userInfo" type="Object"/>
+            </param>
+         </method>
+         <method name="unsubscribeNotification">
+            <param name="id" type="Integer"/>
+         </method>
+         <method name="subscribeLocalNotification">
+            <param name="event" type="String"/>
+            <param name="callback" type="Function">
+               <param name="event" type="String"/>
+               <param name="userInfo" type="Object"/>
+            </param>
+         </method>
+         <method name="unsubscribeLocalNotification">
+            <param name="id" type="Integer"/>
+         </method>
+         <method name="getUserDefault">
+            <param name="key" type="String"/>
+            <param name="type" type="String"/>
+         </method>
+         <method name="setUserDefault">
+            <param name="key" type="String"/>
+            <param name="type" type="String"/>
+            <param name="value" type="String"/>
+         </method>
+         <method name="isAeroGlassEnabled"/>
+         <method name="getAccentColor">
+            <returns type="String"/>
+         </method>
+         <method name="getColor">
+            <param name="color" type="String">
+               <param name="3d-dark-shadow"/>
+               <param name="3d-face"/>
+               <param name="3d-highlight"/>
+               <param name="3d-light"/>
+               <param name="3d-shadow"/>
+               <param name="active-border"/>
+               <param name="active-caption"/>
+               <param name="active-caption-gradient"/>
+               <param name="app-workspace"/>
+               <param name="button-text"/>
+               <param name="caption-text"/>
+               <param name="desktop"/>
+               <param name="disabled-text"/>
+               <param name="highlight"/>
+               <param name="highlight-text"/>
+               <param name="hotlight"/>
+               <param name="inactive-border"/>
+               <param name="inactive-caption"/>
+               <param name="inactive-caption-gradient"/>
+               <param name="inactive-caption-text"/>
+               <param name="info-background"/>
+               <param name="info-text"/>
+               <param name="menu"/>
+               <param name="menu-highlight"/>
+               <param name="menubar"/>
+               <param name="menu-text"/>
+               <param name="scrollbar"/>
+               <param name="window"/>
+               <param name="window-frame"/>
+               <param name="window-text"/>
+            </param>
+            <returns type="String"/>
+         </method>
+         <method name="isInvertedColorScheme">
+            <returns type="Boolean"/>
+         </method>
+      </methods>
+   </object>
+</file>

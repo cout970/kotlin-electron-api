@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<file>
+   <object title="nativeImage">
+      <methods>
+         <method name="createEmpty">
+            <returns type="NativeImage"/>
+         </method>
+         <method name="createFromPath">
+            <param name="path" type="String"/>
+            <returns type="NativeImage"/>
+         </method>
+         <method name="createFromBuffer">
+            <param name="buffer" type="Buffer"/>
+            <param optional="true" name="options" type="Object">
+               <property optional="true" name="width" type="Integer"/>
+               <property optional="true" name="height" type="Integer"/>
+               <property optional="true" name="scaleFactor" type="Double"/>
+            </param>
+            <returns type="NativeImage"/>
+         </method>
+         <method name="createFromDataURL">
+            <param name="dataURL" type="String"/>
+         </method>
+      </methods>
+      <class title="NativeImage">
+         <constructor/>
+         <methods type="instance">
+            <method name="toPNG">
+               <returns type="Buffer"/>
+            </method>
+            <method name="toJPEG">
+               <param name="quality" type="Integer"/>
+               <returns type="Buffer"/>
+            </method>
+            <method name="toBitmap">
+               <returns type="Buffer"/>
+            </method>
+            <method name="toDataURL">
+               <returns type="String"/>
+            </method>
+            <method name="getBitmap">
+               <returns type="Buffer"/>
+            </method>
+            <method name="getNativeHandle">
+               <returns type="Buffer"/>
+            </method>
+            <method name="isEmpty">
+               <returns type="Boolean"/>
+            </method>
+            <method name="getSize">
+               <returns type="Object"/>
+            </method>
+            <method name="setTemplateImage">
+               <param name="option" type="Boolean"/>
+            </method>
+            <method name="isTemplateImage">
+               <returns type="Boolean"/>
+            </method>
+            <method name="crop">
+               <param name="rect" type="Object">
+                  <property name="x" type="Integer"/>
+                  <property name="y" type="Integer"/>
+                  <property name="width" type="Integer"/>
+                  <property name="height" type="Integer"/>
+               </param>
+               <returns type="NativeImage"/>
+            </method>
+            <method name="resize">
+               <param name="options" type="Object">
+                  <property optional="true" name="width" type="Integer"/>
+                  <property optional="true" name="height" type="Integer"/>
+                  <property optional="true" name="quality" type="String"/>
+               </param>
+               <returns type="NativeImage"/>
+            </method>
+            <method name="getAspectRatio">
+               <returns type="Float"/>
+            </method>
+         </methods>
+      </class>
+   </object>
+   <class title="NativeImage">
+      <constructor/>
+      <methods type="instance">
+         <method name="toPNG">
+            <returns type="Buffer"/>
+         </method>
+         <method name="toJPEG">
+            <param name="quality" type="Integer"/>
+            <returns type="Buffer"/>
+         </method>
+         <method name="toBitmap">
+            <returns type="Buffer"/>
+         </method>
+         <method name="toDataURL">
+            <returns type="String"/>
+         </method>
+         <method name="getBitmap">
+            <returns type="Buffer"/>
+         </method>
+         <method name="getNativeHandle">
+            <returns type="Buffer"/>
+         </method>
+         <method name="isEmpty">
+            <returns type="Boolean"/>
+         </method>
+         <method name="getSize">
+            <returns type="Object"/>
+         </method>
+         <method name="setTemplateImage">
+            <param name="option" type="Boolean"/>
+         </method>
+         <method name="isTemplateImage">
+            <returns type="Boolean"/>
+         </method>
+         <method name="crop">
+            <param name="rect" type="Object">
+               <property name="x" type="Integer"/>
+               <property name="y" type="Integer"/>
+               <property name="width" type="Integer"/>
+               <property name="height" type="Integer"/>
+            </param>
+            <returns type="NativeImage"/>
+         </method>
+         <method name="resize">
+            <param name="options" type="Object">
+               <property optional="true" name="width" type="Integer"/>
+               <property optional="true" name="height" type="Integer"/>
+               <property optional="true" name="quality" type="String"/>
+            </param>
+            <returns type="NativeImage"/>
+         </method>
+         <method name="getAspectRatio">
+            <returns type="Float"/>
+         </method>
+      </methods>
+   </class>
+</file>

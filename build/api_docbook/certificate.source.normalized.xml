@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<file>
+   <struct title="Certificate">
+      <property name="data" type="String"/>
+      <property name="issuer" type="CertificatePrincipal"/>
+      <property name="issuerName" type="String"/>
+      <property name="issuerCert" type="Certificate"/>
+      <property name="subject" type="CertificatePrincipal"/>
+      <property name="subjectName" type="String"/>
+      <property name="serialNumber" type="String"/>
+      <property name="validStart" type="Number"/>
+      <property name="validExpiry" type="Number"/>
+      <property name="fingerprint" type="String"/>
+   </struct>
+</file>

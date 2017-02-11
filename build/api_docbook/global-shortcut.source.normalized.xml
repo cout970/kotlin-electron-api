@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<file>
+   <object title="globalShortcut">
+      <methods>
+         <method name="register">
+            <param name="accelerator" type="Accelerator"/>
+            <param name="callback" type="Function"/>
+         </method>
+         <method name="isRegistered">
+            <param name="accelerator" type="Accelerator"/>
+            <returns type="Boolean"/>
+         </method>
+         <method name="unregister">
+            <param name="accelerator" type="Accelerator"/>
+         </method>
+         <method name="unregisterAll"/>
+      </methods>
+   </object>
+</file>

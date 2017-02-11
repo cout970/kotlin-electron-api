@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<file>
+   <class title="MenuItem">
+      <constructor>
+         <param name="options" type="Object">
+            <property optional="true" name="click" type="Function">
+               <param name="menuItem" type="MenuItem"/>
+               <param name="browserWindow" type="BrowserWindow"/>
+               <param name="event" type="Event"/>
+            </property>
+            <property optional="true" name="role" type="String"/>
+            <property optional="true" name="type" type="String"/>
+            <property optional="true" name="label" type="String"/>
+            <property optional="true" name="sublabel" type="String"/>
+            <property optional="true" name="accelerator" type="Accelerator"/>
+            <property optional="true" name="icon" type="union">
+               <option type="NativeImage"/>
+               <option type="String"/>
+            </property>
+            <property optional="true" name="enabled" type="Boolean"/>
+            <property optional="true" name="visible" type="Boolean"/>
+            <property optional="true" name="checked" type="Boolean"/>
+            <property optional="true" name="submenu" type="union">
+               <option type="MenuItemConstructorOptions[]"/>
+               <option type="Menu"/>
+            </property>
+            <property optional="true" name="id" type="String"/>
+            <property optional="true" name="position" type="String"/>
+         </param>
+      </constructor>
+   </class>
+</file>

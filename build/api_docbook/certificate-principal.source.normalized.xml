@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<file>
+   <struct title="CertificatePrincipal">
+      <property name="commonName" type="String"/>
+      <property name="organizations" type="String" isArray="true"/>
+      <property name="organizationUnits" type="String" isArray="true"/>
+      <property name="locality" type="String"/>
+      <property name="state" type="String"/>
+      <property name="country" type="String"/>
+   </struct>
+</file>

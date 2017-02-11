@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<file>
+   <class title="Tray">
+      <constructor>
+         <param name="image" type="union">
+            <option type="NativeImage"/>
+            <option type="String"/>
+         </param>
+      </constructor>
+      <methods type="instance">
+         <method name="destroy"/>
+         <method name="setImage">
+            <param name="image" type="union">
+               <option type="NativeImage"/>
+               <option type="String"/>
+            </param>
+         </method>
+         <method name="setPressedImage">
+            <param name="image" type="NativeImage"/>
+         </method>
+         <method name="setToolTip">
+            <param name="toolTip" type="String"/>
+         </method>
+         <method name="setTitle">
+            <param name="title" type="String"/>
+         </method>
+         <method name="setHighlightMode">
+            <param name="mode" type="String">
+               <param name="selection"/>
+               <param name="always"/>
+               <param name="never"/>
+            </param>
+         </method>
+         <method name="displayBalloon">
+            <param name="options" type="Object">
+               <property optional="true" name="icon" type="union">
+                  <option type="NativeImage"/>
+                  <option type="String"/>
+               </property>
+               <property optional="true" name="title" type="String"/>
+               <property optional="true" name="content" type="String"/>
+            </param>
+         </method>
+         <method name="popUpContextMenu">
+            <param optional="true" name="menu" type="Menu"/>
+            <param optional="true" name="position" type="Object">
+               <property name="x" type="Integer"/>
+               <property name="y" type="Integer"/>
+            </param>
+         </method>
+         <method name="setContextMenu">
+            <param name="menu" type="Menu"/>
+         </method>
+         <method name="getBounds">
+            <returns type="Rectangle"/>
+         </method>
+         <method name="isDestroyed">
+            <returns type="Boolean"/>
+         </method>
+      </methods>
+   </class>
+</file>

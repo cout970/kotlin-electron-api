@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<file>
+   <struct title="JumpListItem">
+      <property optional="true" name="type" type="String">
+         <param name="task"/>
+         <param name="separator"/>
+         <param name="file"/>
+      </property>
+      <property optional="true" name="path" type="String"/>
+      <property optional="true" name="program" type="String"/>
+      <property optional="true" name="args" type="String"/>
+      <property optional="true" name="title" type="String"/>
+      <property optional="true" name="description" type="String"/>
+      <property optional="true" name="iconPath" type="String"/>
+      <property optional="true" name="iconIndex" type="Number"/>
+   </struct>
+</file>

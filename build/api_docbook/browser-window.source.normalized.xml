@@ -1,0 +1,420 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<file>
+   <class title="BrowserWindow">
+      <constructor>
+         <param optional="true" name="options" type="Object">
+            <property optional="true" name="width" type="Integer"/>
+            <property optional="true" name="height" type="Integer"/>
+            <property optional="true" name="x" type="Integer"/>
+            <property optional="true" name="y" type="Integer"/>
+            <property optional="true" name="useContentSize" type="Boolean"/>
+            <property optional="true" name="center" type="Boolean"/>
+            <property optional="true" name="minWidth" type="Integer"/>
+            <property optional="true" name="minHeight" type="Integer"/>
+            <property optional="true" name="maxWidth" type="Integer"/>
+            <property optional="true" name="maxHeight" type="Integer"/>
+            <property optional="true" name="resizable" type="Boolean"/>
+            <property optional="true" name="movable" type="Boolean"/>
+            <property optional="true" name="minimizable" type="Boolean"/>
+            <property optional="true" name="maximizable" type="Boolean"/>
+            <property optional="true" name="closable" type="Boolean"/>
+            <property optional="true" name="focusable" type="Boolean"/>
+            <property optional="true" name="alwaysOnTop" type="Boolean"/>
+            <property optional="true" name="fullscreen" type="Boolean"/>
+            <property optional="true" name="fullscreenable" type="Boolean"/>
+            <property optional="true" name="skipTaskbar" type="Boolean"/>
+            <property optional="true" name="kiosk" type="Boolean"/>
+            <property optional="true" name="title" type="String"/>
+            <property optional="true" name="icon" type="union">
+               <option type="NativeImage"/>
+               <option type="String"/>
+            </property>
+            <property optional="true" name="show" type="Boolean"/>
+            <property optional="true" name="frame" type="Boolean"/>
+            <property optional="true" name="parent" type="BrowserWindow"/>
+            <property optional="true" name="modal" type="Boolean"/>
+            <property optional="true" name="acceptFirstMouse" type="Boolean"/>
+            <property optional="true" name="disableAutoHideCursor" type="Boolean"/>
+            <property optional="true" name="autoHideMenuBar" type="Boolean"/>
+            <property optional="true" name="enableLargerThanScreen" type="Boolean"/>
+            <property optional="true" name="backgroundColor" type="String"/>
+            <property optional="true" name="hasShadow" type="Boolean"/>
+            <property optional="true" name="darkTheme" type="Boolean"/>
+            <property optional="true" name="transparent" type="Boolean"/>
+            <property optional="true" name="type" type="String"/>
+            <property optional="true" name="titleBarStyle" type="String">
+               <param name="default"/>
+               <param name="hidden"/>
+               <param name="hidden-inset"/>
+            </property>
+            <property optional="true" name="thickFrame" type="Boolean"/>
+            <property optional="true" name="vibrancy" type="String"/>
+            <property optional="true" name="zoomToPageWidth" type="Boolean"/>
+            <property optional="true" name="webPreferences" type="Object">
+               <property optional="true" name="devTools" type="Boolean"/>
+               <property optional="true" name="nodeIntegration" type="Boolean"/>
+               <property optional="true" name="preload" type="String"/>
+               <property optional="true" name="session" type="Session"/>
+               <property optional="true" name="partition" type="String"/>
+               <property optional="true" name="zoomFactor" type="Number"/>
+               <property optional="true" name="javascript" type="Boolean"/>
+               <property optional="true" name="webSecurity" type="Boolean"/>
+               <property optional="true" name="allowRunningInsecureContent" type="Boolean"/>
+               <property optional="true" name="images" type="Boolean"/>
+               <property optional="true" name="textAreasAreResizable" type="Boolean"/>
+               <property optional="true" name="webgl" type="Boolean"/>
+               <property optional="true" name="webaudio" type="Boolean"/>
+               <property optional="true" name="plugins" type="Boolean"/>
+               <property optional="true" name="experimentalFeatures" type="Boolean"/>
+               <property optional="true" name="experimentalCanvasFeatures" type="Boolean"/>
+               <property optional="true" name="scrollBounce" type="Boolean"/>
+               <property optional="true" name="blinkFeatures" type="String"/>
+               <property optional="true" name="disableBlinkFeatures" type="String"/>
+               <property optional="true" name="defaultFontFamily" type="Object">
+                  <property optional="true" name="standard" type="String"/>
+                  <property optional="true" name="serif" type="String"/>
+                  <property optional="true" name="sansSerif" type="String"/>
+                  <property optional="true" name="monospace" type="String"/>
+                  <property optional="true" name="cursive" type="String"/>
+                  <property optional="true" name="fantasy" type="String"/>
+               </property>
+               <property optional="true" name="defaultFontSize" type="Integer"/>
+               <property optional="true" name="defaultMonospaceFontSize" type="Integer"/>
+               <property optional="true" name="minimumFontSize" type="Integer"/>
+               <property optional="true" name="defaultEncoding" type="String"/>
+               <property optional="true" name="backgroundThrottling" type="Boolean"/>
+               <property optional="true" name="offscreen" type="Boolean"/>
+               <property optional="true" name="sandbox" type="Boolean"/>
+               <property optional="true" name="contextIsolation" type="Boolean"/>
+            </property>
+         </param>
+      </constructor>
+      <methods type="static">
+         <method name="getAllWindows">
+            <returns type="BrowserWindow" isArray="true"/>
+         </method>
+         <method name="getFocusedWindow">
+            <returns type="BrowserWindow"/>
+         </method>
+         <method name="fromWebContents">
+            <param name="webContents" type="WebContents"/>
+            <returns type="BrowserWindow"/>
+         </method>
+         <method name="fromId">
+            <param name="id" type="Integer"/>
+            <returns type="BrowserWindow"/>
+         </method>
+         <method name="addDevToolsExtension">
+            <param name="path" type="String"/>
+         </method>
+         <method name="removeDevToolsExtension">
+            <param name="name" type="String"/>
+         </method>
+         <method name="getDevToolsExtensions">
+            <returns type="Object"/>
+         </method>
+      </methods>
+      <methods type="instance">
+         <method name="destroy"/>
+         <method name="close"/>
+         <method name="focus"/>
+         <method name="blur"/>
+         <method name="isFocused">
+            <returns type="Boolean"/>
+         </method>
+         <method name="isDestroyed">
+            <returns type="Boolean"/>
+         </method>
+         <method name="show"/>
+         <method name="showInactive"/>
+         <method name="hide"/>
+         <method name="isVisible">
+            <returns type="Boolean"/>
+         </method>
+         <method name="isModal">
+            <returns type="Boolean"/>
+         </method>
+         <method name="maximize"/>
+         <method name="unmaximize"/>
+         <method name="isMaximized">
+            <returns type="Boolean"/>
+         </method>
+         <method name="minimize"/>
+         <method name="restore"/>
+         <method name="isMinimized">
+            <returns type="Boolean"/>
+         </method>
+         <method name="setFullScreen">
+            <param name="flag" type="Boolean"/>
+         </method>
+         <method name="isFullScreen">
+            <returns type="Boolean"/>
+         </method>
+         <method name="setAspectRatio">
+            <param name="aspectRatio" type="Float"/>
+            <param optional="true" name="extraSize" type="Object">
+               <property name="width" type="Integer"/>
+               <property name="height" type="Integer"/>
+            </param>
+         </method>
+         <method name="previewFile">
+            <param name="path" type="String"/>
+            <param optional="true" name="displayName" type="String"/>
+         </method>
+         <method name="closeFilePreview"/>
+         <method name="setBounds">
+            <param name="bounds" type="Rectangle"/>
+            <param optional="true" name="animate" type="Boolean"/>
+         </method>
+         <method name="getBounds">
+            <returns type="Rectangle"/>
+         </method>
+         <method name="setContentBounds">
+            <param name="bounds" type="Rectangle"/>
+            <param optional="true" name="animate" type="Boolean"/>
+         </method>
+         <method name="getContentBounds">
+            <returns type="Rectangle"/>
+         </method>
+         <method name="setSize">
+            <param name="width" type="Integer"/>
+            <param name="height" type="Integer"/>
+            <param optional="true" name="animate" type="Boolean"/>
+         </method>
+         <method name="getSize">
+            <returns type="Integer" isArray="true"/>
+         </method>
+         <method name="setContentSize">
+            <param name="width" type="Integer"/>
+            <param name="height" type="Integer"/>
+            <param optional="true" name="animate" type="Boolean"/>
+         </method>
+         <method name="getContentSize">
+            <returns type="Integer" isArray="true"/>
+         </method>
+         <method name="setMinimumSize">
+            <param name="width" type="Integer"/>
+            <param name="height" type="Integer"/>
+         </method>
+         <method name="getMinimumSize">
+            <returns type="Integer" isArray="true"/>
+         </method>
+         <method name="setMaximumSize">
+            <param name="width" type="Integer"/>
+            <param name="height" type="Integer"/>
+         </method>
+         <method name="getMaximumSize">
+            <returns type="Integer" isArray="true"/>
+         </method>
+         <method name="setResizable">
+            <param name="resizable" type="Boolean"/>
+         </method>
+         <method name="isResizable">
+            <returns type="Boolean"/>
+         </method>
+         <method name="setMovable">
+            <param name="movable" type="Boolean"/>
+         </method>
+         <method name="isMovable">
+            <returns type="Boolean"/>
+         </method>
+         <method name="setMinimizable">
+            <param name="minimizable" type="Boolean"/>
+         </method>
+         <method name="isMinimizable">
+            <returns type="Boolean"/>
+         </method>
+         <method name="setMaximizable">
+            <param name="maximizable" type="Boolean"/>
+         </method>
+         <method name="isMaximizable">
+            <returns type="Boolean"/>
+         </method>
+         <method name="setFullScreenable">
+            <param name="fullscreenable" type="Boolean"/>
+         </method>
+         <method name="isFullScreenable">
+            <returns type="Boolean"/>
+         </method>
+         <method name="setClosable">
+            <param name="closable" type="Boolean"/>
+         </method>
+         <method name="isClosable">
+            <returns type="Boolean"/>
+         </method>
+         <method name="setAlwaysOnTop">
+            <param name="flag" type="Boolean"/>
+            <param optional="true" name="level" type="String"/>
+            <param optional="true" name="relativeLevel" type="Integer"/>
+         </method>
+         <method name="isAlwaysOnTop">
+            <returns type="Boolean"/>
+         </method>
+         <method name="center"/>
+         <method name="setPosition">
+            <param name="x" type="Integer"/>
+            <param name="y" type="Integer"/>
+            <param optional="true" name="animate" type="Boolean"/>
+         </method>
+         <method name="getPosition">
+            <returns type="Integer" isArray="true"/>
+         </method>
+         <method name="setTitle">
+            <param name="title" type="String"/>
+         </method>
+         <method name="getTitle">
+            <returns type="String"/>
+         </method>
+         <method name="setSheetOffset">
+            <param name="offsetY" type="Float"/>
+            <param optional="true" name="offsetX" type="Float"/>
+         </method>
+         <method name="flashFrame">
+            <param name="flag" type="Boolean"/>
+         </method>
+         <method name="setSkipTaskbar">
+            <param name="skip" type="Boolean"/>
+         </method>
+         <method name="setKiosk">
+            <param name="flag" type="Boolean"/>
+         </method>
+         <method name="isKiosk">
+            <returns type="Boolean"/>
+         </method>
+         <method name="getNativeWindowHandle">
+            <returns type="Buffer"/>
+         </method>
+         <method name="hookWindowMessage">
+            <param name="message" type="Integer"/>
+            <param name="callback" type="Function"/>
+         </method>
+         <method name="isWindowMessageHooked">
+            <param name="message" type="Integer"/>
+            <returns type="Boolean"/>
+         </method>
+         <method name="unhookWindowMessage">
+            <param name="message" type="Integer"/>
+         </method>
+         <method name="unhookAllWindowMessages"/>
+         <method name="setRepresentedFilename">
+            <param name="filename" type="String"/>
+         </method>
+         <method name="getRepresentedFilename">
+            <returns type="String"/>
+         </method>
+         <method name="setDocumentEdited">
+            <param name="edited" type="Boolean"/>
+         </method>
+         <method name="isDocumentEdited">
+            <returns type="Boolean"/>
+         </method>
+         <method name="focusOnWebView"/>
+         <method name="blurWebView"/>
+         <method name="capturePage">
+            <param optional="true" name="rect" type="Rectangle"/>
+            <param name="callback" type="Function">
+               <param name="image" type="NativeImage"/>
+            </param>
+         </method>
+         <method name="loadURL">
+            <param name="url" type="String"/>
+            <param optional="true" name="options" type="Object">
+               <property optional="true" name="httpReferrer" type="String"/>
+               <property optional="true" name="userAgent" type="String"/>
+               <property optional="true" name="extraHeaders" type="String"/>
+               <property optional="true" name="postData" type="union" isArray="true">
+                  <option type="UploadRawData"/>
+                  <option type="UploadFile"/>
+                  <option type="UploadFileSystem"/>
+                  <option type="UploadBlob"/>
+               </property>
+            </param>
+         </method>
+         <method name="reload"/>
+         <method name="setMenu">
+            <param name="menu" type="Menu"/>
+         </method>
+         <method name="setProgressBar">
+            <param name="progress" type="Double"/>
+            <param optional="true" name="options" type="Object">
+               <property name="mode" type="String"/>
+            </param>
+         </method>
+         <method name="setOverlayIcon">
+            <param name="overlay" type="NativeImage"/>
+            <param name="description" type="String"/>
+         </method>
+         <method name="setHasShadow">
+            <param name="hasShadow" type="Boolean"/>
+         </method>
+         <method name="hasShadow">
+            <returns type="Boolean"/>
+         </method>
+         <method name="setThumbarButtons">
+            <param name="buttons" type="ThumbarButton" isArray="true"/>
+            <returns type="Boolean"/>
+         </method>
+         <method name="setThumbnailClip">
+            <param name="region" type="Rectangle"/>
+         </method>
+         <method name="setThumbnailToolTip">
+            <param name="toolTip" type="String"/>
+         </method>
+         <method name="setAppDetails">
+            <param name="options" type="Object">
+               <property optional="true" name="appId" type="String"/>
+               <property optional="true" name="appIconPath" type="String"/>
+               <property optional="true" name="appIconIndex" type="Integer"/>
+               <property optional="true" name="relaunchCommand" type="String"/>
+               <property optional="true" name="relaunchDisplayName" type="String"/>
+            </param>
+         </method>
+         <method name="showDefinitionForSelection"/>
+         <method name="setIcon">
+            <param name="icon" type="NativeImage"/>
+         </method>
+         <method name="setAutoHideMenuBar">
+            <param name="hide" type="Boolean"/>
+         </method>
+         <method name="isMenuBarAutoHide">
+            <returns type="Boolean"/>
+         </method>
+         <method name="setMenuBarVisibility">
+            <param name="visible" type="Boolean"/>
+         </method>
+         <method name="isMenuBarVisible">
+            <returns type="Boolean"/>
+         </method>
+         <method name="setVisibleOnAllWorkspaces">
+            <param name="visible" type="Boolean"/>
+         </method>
+         <method name="isVisibleOnAllWorkspaces">
+            <returns type="Boolean"/>
+         </method>
+         <method name="setIgnoreMouseEvents">
+            <param name="ignore" type="Boolean"/>
+         </method>
+         <method name="setContentProtection">
+            <param name="enable" type="Boolean"/>
+         </method>
+         <method name="setFocusable">
+            <param name="focusable" type="Boolean"/>
+         </method>
+         <method name="setParentWindow">
+            <param name="parent" type="BrowserWindow"/>
+         </method>
+         <method name="getParentWindow">
+            <returns type="BrowserWindow"/>
+         </method>
+         <method name="getChildWindows">
+            <returns type="BrowserWindow" isArray="true"/>
+         </method>
+         <method name="setAutoHideCursor">
+            <param name="autoHide" type="Boolean"/>
+         </method>
+         <method name="setVibrancy">
+            <param name="type" type="String"/>
+         </method>
+      </methods>
+   </class>
+</file>

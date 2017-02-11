@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<file>
+   <class title="Debugger">
+      <constructor/>
+      <methods type="instance">
+         <method name="attach">
+            <param optional="true" name="protocolVersion" type="String"/>
+         </method>
+         <method name="isAttached">
+            <returns type="Boolean"/>
+         </method>
+         <method name="detach"/>
+         <method name="sendCommand">
+            <param name="method" type="String"/>
+            <param optional="true" name="commandParams" type="Object"/>
+            <param optional="true" name="callback" type="Function">
+               <param name="error" type="Object"/>
+               <param name="result" type="Any"/>
+            </param>
+         </method>
+      </methods>
+   </class>
+</file>

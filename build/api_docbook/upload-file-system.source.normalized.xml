@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<file>
+   <struct title="UploadFileSystem">
+      <property name="type" type="String"/>
+      <property name="filsSystemURL" type="String"/>
+      <property name="offset" type="Integer"/>
+      <property name="length" type="Integer"/>
+      <property name="modificationTime" type="Double"/>
+   </struct>
+</file>

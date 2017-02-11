@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<file>
+   <object title="webFrame">
+      <methods>
+         <method name="setZoomFactor">
+            <param name="factor" type="Number"/>
+         </method>
+         <method name="getZoomFactor">
+            <returns type="Number"/>
+         </method>
+         <method name="setZoomLevel">
+            <param name="level" type="Number"/>
+         </method>
+         <method name="getZoomLevel">
+            <returns type="Number"/>
+         </method>
+         <method name="setZoomLevelLimits">
+            <param name="minimumLevel" type="Number"/>
+            <param name="maximumLevel" type="Number"/>
+         </method>
+         <method name="setVisualZoomLevelLimits">
+            <param name="minimumLevel" type="Number"/>
+            <param name="maximumLevel" type="Number"/>
+         </method>
+         <method name="setLayoutZoomLevelLimits">
+            <param name="minimumLevel" type="Number"/>
+            <param name="maximumLevel" type="Number"/>
+         </method>
+         <method name="setSpellCheckProvider">
+            <param name="language" type="String"/>
+            <param name="autoCorrectWord" type="Boolean"/>
+            <param name="provider" type="Object">
+               <property name="spellCheck" type="Function">
+                  <param name="text" type="String"/>
+               </property>
+            </param>
+         </method>
+         <method name="registerURLSchemeAsSecure">
+            <param name="scheme" type="String"/>
+         </method>
+         <method name="registerURLSchemeAsBypassingCSP">
+            <param name="scheme" type="String"/>
+         </method>
+         <method name="registerURLSchemeAsPrivileged">
+            <param name="scheme" type="String"/>
+            <param optional="true" name="options" type="Object">
+               <property optional="true" name="secure" type="Boolean"/>
+               <property optional="true" name="bypassCSP" type="Boolean"/>
+               <property optional="true" name="allowServiceWorkers" type="Boolean"/>
+               <property optional="true" name="supportFetchAPI" type="Boolean"/>
+               <property optional="true" name="corsEnabled" type="Boolean"/>
+            </param>
+         </method>
+         <method name="insertText">
+            <param name="text" type="String"/>
+         </method>
+         <method name="executeJavaScript">
+            <param name="code" type="String"/>
+            <param optional="true" name="userGesture" type="Boolean"/>
+            <param optional="true" name="callback" type="Function">
+               <param name="result" type="Any"/>
+            </param>
+         </method>
+         <method name="getResourceUsage">
+            <returns type="Object"/>
+         </method>
+         <method name="clearCache"/>
+      </methods>
+   </object>
+</file>

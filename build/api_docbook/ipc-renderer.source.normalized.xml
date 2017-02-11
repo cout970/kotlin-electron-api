@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<file>
+   <object title="ipcRenderer">
+      <methods>
+         <method name="on">
+            <param name="channel" type="String"/>
+            <param name="listener" type="Function"/>
+         </method>
+         <method name="once">
+            <param name="channel" type="String"/>
+            <param name="listener" type="Function"/>
+         </method>
+         <method name="removeListener">
+            <param name="channel" type="String"/>
+            <param name="listener" type="Function"/>
+         </method>
+         <method name="removeAllListeners">
+            <param optional="true" name="channel" type="String"/>
+         </method>
+         <method name="send">
+            <param name="channel" type="String"/>
+            <param name="args" vararg="true" type="any" isArray="true"/>
+         </method>
+         <method name="sendSync">
+            <param name="channel" type="String"/>
+            <param name="args" vararg="true" type="any" isArray="true"/>
+         </method>
+         <method name="sendToHost">
+            <param name="channel" type="String"/>
+            <param name="args" vararg="true" type="any" isArray="true"/>
+         </method>
+      </methods>
+   </object>
+</file>

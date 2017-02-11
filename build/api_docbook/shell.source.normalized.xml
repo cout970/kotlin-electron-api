@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<file>
+   <object title="shell">
+      <methods>
+         <method name="showItemInFolder">
+            <param name="fullPath" type="String"/>
+            <returns type="Boolean"/>
+         </method>
+         <method name="openItem">
+            <param name="fullPath" type="String"/>
+            <returns type="Boolean"/>
+         </method>
+         <method name="openExternal">
+            <param name="url" type="String"/>
+            <param optional="true" name="options" type="Object">
+               <property name="activate" type="Boolean"/>
+            </param>
+            <param optional="true" name="callback" type="Function">
+               <param name="error" type="Error"/>
+            </param>
+            <returns type="Boolean"/>
+         </method>
+         <method name="moveItemToTrash">
+            <param name="fullPath" type="String"/>
+            <returns type="Boolean"/>
+         </method>
+         <method name="beep"/>
+         <method name="writeShortcutLink">
+            <param name="shortcutPath" type="String"/>
+            <param optional="true" name="operation" type="String">
+               <param name="create"/>
+               <param name="update"/>
+               <param name="replace"/>
+            </param>
+            <param name="options" type="ShortcutDetails"/>
+            <returns type="Boolean"/>
+         </method>
+         <method name="readShortcutLink">
+            <param name="shortcutPath" type="String"/>
+            <returns type="ShortcutDetails"/>
+         </method>
+      </methods>
+   </object>
+</file>

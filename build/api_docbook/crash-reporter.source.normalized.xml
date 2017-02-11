@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<file>
+   <object title="crashReporter">
+      <methods>
+         <method name="start">
+            <param name="options" type="Object">
+               <property optional="true" name="companyName" type="String"/>
+               <property name="submitURL" type="String"/>
+               <property optional="true" name="productName" type="String"/>
+               <property optional="true" name="uploadToServer" type="Boolean"/>
+               <property optional="true" name="ignoreSystemCrashHandler" type="Boolean"/>
+               <property optional="true" name="extra" type="Object"/>
+            </param>
+         </method>
+         <method name="getLastCrashReport">
+            <returns type="CrashReport"/>
+         </method>
+         <method name="getUploadedReports">
+            <returns type="CrashReport" isArray="true"/>
+         </method>
+         <method name="getUploadToServer">
+            <returns type="Boolean"/>
+         </method>
+         <method name="setUploadToServer">
+            <param name="uploadToServer" type="Boolean"/>
+         </method>
+      </methods>
+   </object>
+</file>

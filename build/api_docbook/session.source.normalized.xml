@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<file>
+   <object title="session">
+      <methods>
+         <method name="fromPartition">
+            <param name="partition" type="String"/>
+            <param name="options" type="Object">
+               <property name="cache" type="Boolean"/>
+            </param>
+            <returns type="Session"/>
+         </method>
+      </methods>
+      <class title="Session">
+         <constructor/>
+         <methods type="instance">
+            <method name="getCacheSize">
+               <param name="callback" type="Function">
+                  <param name="size" type="Integer"/>
+               </param>
+               <returns type="the"/>
+            </method>
+            <method name="clearCache">
+               <param name="callback" type="Function"/>
+            </method>
+            <method name="clearStorageData">
+               <param optional="true" name="options" type="Object">
+                  <property name="origin" type="String"/>
+                  <property name="storages" type="String" isArray="true"/>
+                  <property name="quotas" type="String" isArray="true"/>
+               </param>
+               <param optional="true" name="callback" type="Function"/>
+            </method>
+            <method name="flushStorageData"/>
+            <method name="setProxy">
+               <param name="config" type="Object">
+                  <property name="pacScript" type="String"/>
+                  <property name="proxyRules" type="String"/>
+                  <property name="proxyBypassRules" type="String"/>
+               </param>
+               <param name="callback" type="Function"/>
+            </method>
+            <method name="resolveProxy">
+               <param name="url" type="URL"/>
+               <param name="callback" type="Function">
+                  <param name="proxy" type="Object"/>
+               </param>
+            </method>
+            <method name="setDownloadPath">
+               <param name="path" type="String"/>
+            </method>
+            <method name="enableNetworkEmulation">
+               <param name="options" type="Object">
+                  <property optional="true" name="offline" type="Boolean"/>
+                  <property optional="true" name="latency" type="Double"/>
+                  <property optional="true" name="downloadThroughput" type="Double"/>
+                  <property optional="true" name="uploadThroughput" type="Double"/>
+               </param>
+            </method>
+            <method name="disableNetworkEmulation"/>
+            <method name="setCertificateVerifyProc">
+               <param name="proc" type="Function">
+                  <param name="hostname" type="String"/>
+                  <param name="certificate" type="Certificate"/>
+                  <param name="callback" type="Function">
+                     <param name="isTrusted" type="Boolean"/>
+                  </param>
+               </param>
+            </method>
+            <method name="setPermissionRequestHandler">
+               <param name="handler" type="Function">
+                  <param name="webContents" type="Object"/>
+                  <param name="permission" type="String"/>
+                  <param name="callback" type="Function">
+                     <param name="permissionGranted" type="Boolean"/>
+                  </param>
+               </param>
+            </method>
+            <method name="clearHostResolverCache">
+               <param optional="true" name="callback" type="Function"/>
+            </method>
+            <method name="allowNTLMCredentialsForDomains">
+               <param name="domains" type="String"/>
+            </method>
+            <method name="setUserAgent">
+               <param name="userAgent" type="String"/>
+               <param optional="true" name="acceptLanguages" type="String"/>
+            </method>
+            <method name="getUserAgent">
+               <returns type="String"/>
+            </method>
+            <method name="getBlobData">
+               <param name="identifier" type="String"/>
+               <param name="callback" type="Function">
+                  <param name="result" type="Buffer"/>
+               </param>
+               <returns type="Blob"/>
+            </method>
+            <method name="createInterruptedDownload">
+               <param name="options" type="Object">
+                  <property name="path" type="String"/>
+                  <property name="urlChain" type="String" isArray="true"/>
+                  <property optional="true" name="mimeType" type="String"/>
+                  <property name="offset" type="Integer"/>
+                  <property name="length" type="Integer"/>
+                  <property name="lastModified" type="String"/>
+                  <property name="eTag" type="String"/>
+                  <property optional="true" name="startTime" type="Double"/>
+               </param>
+            </method>
+            <method name="clearAuthCache">
+               <param name="options" type="union">
+                  <option type="RemovePassword"/>
+                  <option type="RemoveClientCertificate"/>
+               </param>
+               <param optional="true" name="callback" type="Function"/>
+            </method>
+         </methods>
+      </class>
+   </object>
+   <class title="Session">
+      <constructor/>
+      <methods type="instance">
+         <method name="getCacheSize">
+            <param name="callback" type="Function">
+               <param name="size" type="Integer"/>
+            </param>
+            <returns type="the"/>
+         </method>
+         <method name="clearCache">
+            <param name="callback" type="Function"/>
+         </method>
+         <method name="clearStorageData">
+            <param optional="true" name="options" type="Object">
+               <property name="origin" type="String"/>
+               <property name="storages" type="String" isArray="true"/>
+               <property name="quotas" type="String" isArray="true"/>
+            </param>
+            <param optional="true" name="callback" type="Function"/>
+         </method>
+         <method name="flushStorageData"/>
+         <method name="setProxy">
+            <param name="config" type="Object">
+               <property name="pacScript" type="String"/>
+               <property name="proxyRules" type="String"/>
+               <property name="proxyBypassRules" type="String"/>
+            </param>
+            <param name="callback" type="Function"/>
+         </method>
+         <method name="resolveProxy">
+            <param name="url" type="URL"/>
+            <param name="callback" type="Function">
+               <param name="proxy" type="Object"/>
+            </param>
+         </method>
+         <method name="setDownloadPath">
+            <param name="path" type="String"/>
+         </method>
+         <method name="enableNetworkEmulation">
+            <param name="options" type="Object">
+               <property optional="true" name="offline" type="Boolean"/>
+               <property optional="true" name="latency" type="Double"/>
+               <property optional="true" name="downloadThroughput" type="Double"/>
+               <property optional="true" name="uploadThroughput" type="Double"/>
+            </param>
+         </method>
+         <method name="disableNetworkEmulation"/>
+         <method name="setCertificateVerifyProc">
+            <param name="proc" type="Function">
+               <param name="hostname" type="String"/>
+               <param name="certificate" type="Certificate"/>
+               <param name="callback" type="Function">
+                  <param name="isTrusted" type="Boolean"/>
+               </param>
+            </param>
+         </method>
+         <method name="setPermissionRequestHandler">
+            <param name="handler" type="Function">
+               <param name="webContents" type="Object"/>
+               <param name="permission" type="String"/>
+               <param name="callback" type="Function">
+                  <param name="permissionGranted" type="Boolean"/>
+               </param>
+            </param>
+         </method>
+         <method name="clearHostResolverCache">
+            <param optional="true" name="callback" type="Function"/>
+         </method>
+         <method name="allowNTLMCredentialsForDomains">
+            <param name="domains" type="String"/>
+         </method>
+         <method name="setUserAgent">
+            <param name="userAgent" type="String"/>
+            <param optional="true" name="acceptLanguages" type="String"/>
+         </method>
+         <method name="getUserAgent">
+            <returns type="String"/>
+         </method>
+         <method name="getBlobData">
+            <param name="identifier" type="String"/>
+            <param name="callback" type="Function">
+               <param name="result" type="Buffer"/>
+            </param>
+            <returns type="Blob"/>
+         </method>
+         <method name="createInterruptedDownload">
+            <param name="options" type="Object">
+               <property name="path" type="String"/>
+               <property name="urlChain" type="String" isArray="true"/>
+               <property optional="true" name="mimeType" type="String"/>
+               <property name="offset" type="Integer"/>
+               <property name="length" type="Integer"/>
+               <property name="lastModified" type="String"/>
+               <property name="eTag" type="String"/>
+               <property optional="true" name="startTime" type="Double"/>
+            </param>
+         </method>
+         <method name="clearAuthCache">
+            <param name="options" type="union">
+               <option type="RemovePassword"/>
+               <option type="RemoveClientCertificate"/>
+            </param>
+            <param optional="true" name="callback" type="Function"/>
+         </method>
+      </methods>
+   </class>
+</file>

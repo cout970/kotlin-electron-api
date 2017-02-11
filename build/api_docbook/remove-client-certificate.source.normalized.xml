@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<file>
+   <struct title="RemoveClientCertificate">
+      <property name="type" type="String"/>
+      <property name="origin" type="String"/>
+   </struct>
+</file>

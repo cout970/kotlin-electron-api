@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<file>
+   <struct title="DesktopCapturerSource">
+      <property name="id" type="String"/>
+      <property name="name" type="String"/>
+      <property name="thumbnail" type="NativeImage"/>
+   </struct>
+</file>

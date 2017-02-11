@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<file>
+   <object title="app">
+      <methods>
+         <method name="quit"/>
+         <method name="exit">
+            <param optional="true" name="exitCode" type="Integer"/>
+         </method>
+         <method name="relaunch">
+            <param optional="true" name="options" type="Object">
+               <property optional="true" name="args" type="String" isArray="true"/>
+               <property optional="true" name="execPath" type="String"/>
+            </param>
+         </method>
+         <method name="isReady">
+            <returns type="Boolean"/>
+         </method>
+         <method name="focus"/>
+         <method name="hide"/>
+         <method name="show"/>
+         <method name="getAppPath">
+            <returns type="String"/>
+         </method>
+         <method name="getPath">
+            <param name="name" type="String"/>
+            <returns type="String"/>
+         </method>
+         <method name="getFileIcon">
+            <param name="path" type="String"/>
+            <param optional="true" name="options" type="Object">
+               <property name="size" type="String">
+                  <param name="small"/>
+                  <param name="normal"/>
+                  <param name="large"/>
+               </property>
+            </param>
+            <param name="callback" type="Function">
+               <param name="error" type="Error"/>
+               <param name="icon" type="NativeImage"/>
+            </param>
+         </method>
+         <method name="setPath">
+            <param name="name" type="String"/>
+            <param name="path" type="String"/>
+         </method>
+         <method name="getVersion">
+            <returns type="String"/>
+         </method>
+         <method name="getName">
+            <returns type="String"/>
+         </method>
+         <method name="setName">
+            <param name="name" type="String"/>
+         </method>
+         <method name="getLocale">
+            <returns type="String"/>
+         </method>
+         <method name="addRecentDocument">
+            <param name="path" type="String"/>
+         </method>
+         <method name="clearRecentDocuments"/>
+         <method name="setAsDefaultProtocolClient">
+            <param name="protocol" type="String"/>
+            <param optional="true" name="path" type="String"/>
+            <param optional="true" name="args" type="String" isArray="true"/>
+            <returns type="Boolean"/>
+         </method>
+         <method name="removeAsDefaultProtocolClient">
+            <param name="protocol" type="String"/>
+            <param optional="true" name="path" type="String"/>
+            <param optional="true" name="args" type="String" isArray="true"/>
+            <returns type="Boolean"/>
+         </method>
+         <method name="isDefaultProtocolClient">
+            <param name="protocol" type="String"/>
+            <param optional="true" name="path" type="String"/>
+            <param optional="true" name="args" type="String" isArray="true"/>
+            <returns type="Boolean"/>
+         </method>
+         <method name="setUserTasks">
+            <param name="tasks" type="Task" isArray="true"/>
+         </method>
+         <method name="getJumpListSettings">
+            <returns type="Object"/>
+         </method>
+         <method name="setJumpList">
+            <param name="categories" type="JumpListCategory" isArray="true"/>
+         </method>
+         <method name="makeSingleInstance">
+            <param name="callback" type="Function">
+               <param name="argv" type="String" isArray="true"/>
+               <param name="workingDirectory" type="String"/>
+            </param>
+         </method>
+         <method name="releaseSingleInstance"/>
+         <method name="setUserActivity">
+            <param name="type" type="String"/>
+            <param name="userInfo" type="Object"/>
+            <param optional="true" name="webpageURL" type="String"/>
+         </method>
+         <method name="getCurrentActivityType">
+            <returns type="String"/>
+         </method>
+         <method name="setAppUserModelId">
+            <param name="id" type="String"/>
+         </method>
+         <method name="importCertificate">
+            <param name="options" type="Object">
+               <property name="certificate" type="String"/>
+               <property name="password" type="String"/>
+            </param>
+            <param name="callback" type="Function">
+               <param name="result" type="Integer"/>
+            </param>
+         </method>
+         <method name="disableHardwareAcceleration"/>
+         <method name="setBadgeCount">
+            <param name="count" type="Integer"/>
+            <returns type="Boolean"/>
+         </method>
+         <method name="getBadgeCount">
+            <returns type="Integer"/>
+         </method>
+         <method name="isUnityRunning">
+            <returns type="Boolean"/>
+         </method>
+         <method name="getLoginItemSettings">
+            <param optional="true" name="options" type="Object">
+               <property optional="true" name="path" type="String"/>
+               <property optional="true" name="args" type="String" isArray="true"/>
+            </param>
+         </method>
+         <method name="setLoginItemSettings">
+            <param name="settings" type="Object">
+               <property optional="true" name="openAtLogin" type="Boolean"/>
+               <property optional="true" name="openAsHidden" type="Boolean"/>
+               <property optional="true" name="path" type="String"/>
+               <property optional="true" name="args" type="String" isArray="true"/>
+            </param>
+         </method>
+         <method name="isAccessibilitySupportEnabled">
+            <returns type="Boolean"/>
+         </method>
+         <method name="setAboutPanelOptions">
+            <param name="options" type="Object">
+               <property optional="true" name="applicationName" type="String"/>
+               <property optional="true" name="applicationVersion" type="String"/>
+               <property optional="true" name="copyright" type="String"/>
+               <property optional="true" name="credits" type="String"/>
+               <property optional="true" name="version" type="String"/>
+            </param>
+         </method>
+         <method name="commandLine.appendSwitch">
+            <param name="switch" type="String"/>
+            <param optional="true" name="value" type="String"/>
+         </method>
+         <method name="commandLine.appendArgument">
+            <param name="value" type="String"/>
+         </method>
+         <method name="dock.bounce">
+            <param optional="true" name="type" type="String"/>
+         </method>
+         <method name="dock.cancelBounce">
+            <param name="id" type="Integer"/>
+         </method>
+         <method name="dock.downloadFinished">
+            <param name="filePath" type="String"/>
+         </method>
+         <method name="dock.setBadge">
+            <param name="text" type="String"/>
+         </method>
+         <method name="dock.getBadge">
+            <returns type="String"/>
+         </method>
+         <method name="dock.hide"/>
+         <method name="dock.show"/>
+         <method name="dock.isVisible">
+            <returns type="Boolean"/>
+         </method>
+         <method name="dock.setMenu">
+            <param name="menu" type="Menu"/>
+         </method>
+         <method name="dock.setIcon">
+            <param name="image" type="union">
+               <option type="NativeImage"/>
+               <option type="String"/>
+            </param>
+         </method>
+      </methods>
+   </object>
+</file>

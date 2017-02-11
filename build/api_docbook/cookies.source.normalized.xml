@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<file>
+   <class title="Cookies">
+      <constructor/>
+      <methods type="instance">
+         <method name="get">
+            <param name="filter" type="Object">
+               <property optional="true" name="url" type="String"/>
+               <property optional="true" name="name" type="String"/>
+               <property optional="true" name="domain" type="String"/>
+               <property optional="true" name="path" type="String"/>
+               <property optional="true" name="secure" type="Boolean"/>
+               <property optional="true" name="session" type="Boolean"/>
+            </param>
+            <param name="callback" type="Function">
+               <param name="error" type="Error"/>
+               <param name="cookies" type="Cookies" isArray="true"/>
+            </param>
+         </method>
+         <method name="set">
+            <param name="details" type="Object">
+               <property name="url" type="String"/>
+               <property optional="true" name="name" type="String"/>
+               <property optional="true" name="value" type="String"/>
+               <property optional="true" name="domain" type="String"/>
+               <property optional="true" name="path" type="String"/>
+               <property optional="true" name="secure" type="Boolean"/>
+               <property optional="true" name="httpOnly" type="Boolean"/>
+               <property optional="true" name="expirationDate" type="Double"/>
+            </param>
+            <param name="callback" type="Function">
+               <param name="error" type="Error"/>
+            </param>
+         </method>
+         <method name="remove">
+            <param name="url" type="String"/>
+            <param name="name" type="String"/>
+            <param name="callback" type="Function"/>
+         </method>
+      </methods>
+   </class>
+</file>

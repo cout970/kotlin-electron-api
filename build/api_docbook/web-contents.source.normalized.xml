@@ -1,0 +1,613 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<file>
+   <object title="webContents">
+      <methods>
+         <method name="getAllWebContents">
+            <returns type="WebContents" isArray="true"/>
+         </method>
+         <method name="getFocusedWebContents">
+            <returns type="WebContents"/>
+         </method>
+         <method name="fromId">
+            <param name="id" type="Integer"/>
+            <returns type="WebContents"/>
+         </method>
+      </methods>
+      <class title="WebContents">
+         <constructor/>
+         <methods type="instance">
+            <method name="loadURL">
+               <param name="url" type="String"/>
+               <param optional="true" name="options" type="Object">
+                  <property optional="true" name="httpReferrer" type="String"/>
+                  <property optional="true" name="userAgent" type="String"/>
+                  <property optional="true" name="extraHeaders" type="String"/>
+                  <property optional="true" name="postData" type="union" isArray="true">
+                     <option type="UploadRawData"/>
+                     <option type="UploadFile"/>
+                     <option type="UploadFileSystem"/>
+                     <option type="UploadBlob"/>
+                  </property>
+               </param>
+            </method>
+            <method name="downloadURL">
+               <param name="url" type="String"/>
+            </method>
+            <method name="getURL">
+               <returns type="String"/>
+            </method>
+            <method name="getTitle">
+               <returns type="String"/>
+            </method>
+            <method name="isDestroyed">
+               <returns type="Boolean"/>
+            </method>
+            <method name="isFocused">
+               <returns type="Boolean"/>
+            </method>
+            <method name="isLoading">
+               <returns type="Boolean"/>
+            </method>
+            <method name="isLoadingMainFrame">
+               <returns type="Boolean"/>
+            </method>
+            <method name="isWaitingForResponse">
+               <returns type="Boolean"/>
+            </method>
+            <method name="stop"/>
+            <method name="reload"/>
+            <method name="reloadIgnoringCache"/>
+            <method name="canGoBack">
+               <returns type="Boolean"/>
+            </method>
+            <method name="canGoForward">
+               <returns type="Boolean"/>
+            </method>
+            <method name="canGoToOffset">
+               <param name="offset" type="Integer"/>
+               <returns type="Boolean"/>
+            </method>
+            <method name="clearHistory"/>
+            <method name="goBack"/>
+            <method name="goForward"/>
+            <method name="goToIndex">
+               <param name="index" type="Integer"/>
+            </method>
+            <method name="goToOffset">
+               <param name="offset" type="Integer"/>
+            </method>
+            <method name="isCrashed">
+               <returns type="Boolean"/>
+            </method>
+            <method name="setUserAgent">
+               <param name="userAgent" type="String"/>
+            </method>
+            <method name="getUserAgent">
+               <returns type="String"/>
+            </method>
+            <method name="insertCSS">
+               <param name="css" type="String"/>
+            </method>
+            <method name="executeJavaScript">
+               <param name="code" type="String"/>
+               <param optional="true" name="userGesture" type="Boolean"/>
+               <param optional="true" name="callback" type="Function">
+                  <param name="result" type="Any"/>
+               </param>
+               <returns type="Promise"/>
+            </method>
+            <method name="setAudioMuted">
+               <param name="muted" type="Boolean"/>
+            </method>
+            <method name="isAudioMuted">
+               <returns type="Boolean"/>
+            </method>
+            <method name="setZoomFactor">
+               <param name="factor" type="Number"/>
+            </method>
+            <method name="getZoomFactor">
+               <param name="callback" type="Function">
+                  <param name="zoomFactor" type="Number"/>
+               </param>
+            </method>
+            <method name="setZoomLevel">
+               <param name="level" type="Number"/>
+            </method>
+            <method name="getZoomLevel">
+               <param name="callback" type="Function">
+                  <param name="zoomLevel" type="Number"/>
+               </param>
+            </method>
+            <method name="setZoomLevelLimits">
+               <param name="minimumLevel" type="Number"/>
+               <param name="maximumLevel" type="Number"/>
+            </method>
+            <method name="setVisualZoomLevelLimits">
+               <param name="minimumLevel" type="Number"/>
+               <param name="maximumLevel" type="Number"/>
+            </method>
+            <method name="setLayoutZoomLevelLimits">
+               <param name="minimumLevel" type="Number"/>
+               <param name="maximumLevel" type="Number"/>
+            </method>
+            <method name="undo"/>
+            <method name="redo"/>
+            <method name="cut"/>
+            <method name="copy"/>
+            <method name="copyImageAt">
+               <param name="x" type="Integer"/>
+               <param name="y" type="Integer"/>
+            </method>
+            <method name="paste"/>
+            <method name="pasteAndMatchStyle"/>
+            <method name="delete"/>
+            <method name="selectAll"/>
+            <method name="unselect"/>
+            <method name="replace">
+               <param name="text" type="String"/>
+            </method>
+            <method name="replaceMisspelling">
+               <param name="text" type="String"/>
+            </method>
+            <method name="insertText">
+               <param name="text" type="String"/>
+            </method>
+            <method name="findInPage">
+               <param name="text" type="String"/>
+               <param optional="true" name="options" type="Object">
+                  <property optional="true" name="forward" type="Boolean"/>
+                  <property optional="true" name="findNext" type="Boolean"/>
+                  <property optional="true" name="matchCase" type="Boolean"/>
+                  <property optional="true" name="wordStart" type="Boolean"/>
+                  <property optional="true" name="medialCapitalAsWordStart" type="Boolean"/>
+               </param>
+            </method>
+            <method name="stopFindInPage">
+               <param name="action" type="String">
+                  <param name="clearSelection"/>
+                  <param name="keepSelection"/>
+                  <param name="activateSelection"/>
+               </param>
+            </method>
+            <method name="capturePage">
+               <param optional="true" name="rect" type="Rectangle"/>
+               <param name="callback" type="Function">
+                  <param name="image" type="NativeImage"/>
+               </param>
+            </method>
+            <method name="hasServiceWorker">
+               <param name="callback" type="Function">
+                  <param name="hasWorker" type="Boolean"/>
+               </param>
+            </method>
+            <method name="unregisterServiceWorker">
+               <param name="callback" type="Function">
+                  <param name="success" type="Boolean"/>
+               </param>
+            </method>
+            <method name="print">
+               <param optional="true" name="options" type="Object">
+                  <property name="silent" type="Boolean"/>
+                  <property name="printBackground" type="Boolean"/>
+               </param>
+            </method>
+            <method name="printToPDF">
+               <param name="options" type="Object">
+                  <property optional="true" name="marginsType" type="Integer"/>
+                  <property optional="true" name="pageSize" type="String"/>
+                  <property optional="true" name="printBackground" type="Boolean"/>
+                  <property optional="true" name="printSelectionOnly" type="Boolean"/>
+                  <property optional="true" name="landscape" type="Boolean"/>
+               </param>
+               <param name="callback" type="Function">
+                  <param name="error" type="Error"/>
+                  <param name="data" type="Buffer"/>
+               </param>
+            </method>
+            <method name="addWorkSpace">
+               <param name="path" type="String"/>
+            </method>
+            <method name="removeWorkSpace">
+               <param name="path" type="String"/>
+            </method>
+            <method name="openDevTools">
+               <param optional="true" name="options" type="Object">
+                  <property name="mode" type="String"/>
+               </param>
+            </method>
+            <method name="closeDevTools"/>
+            <method name="isDevToolsOpened">
+               <returns type="Boolean"/>
+            </method>
+            <method name="isDevToolsFocused">
+               <returns type="Boolean"/>
+            </method>
+            <method name="toggleDevTools"/>
+            <method name="inspectElement">
+               <param name="x" type="Integer"/>
+               <param name="y" type="Integer"/>
+            </method>
+            <method name="inspectServiceWorker"/>
+            <method name="send">
+               <param name="channel" type="String"/>
+               <param name="args" vararg="true" type="any" isArray="true"/>
+            </method>
+            <method name="enableDeviceEmulation">
+               <param name="parameters" type="Object">
+                  <property name="screenPosition" type="String">
+                     <param name="desktop"/>
+                     <param name="mobile"/>
+                  </property>
+                  <property name="screenSize" type="Object">
+                     <property name="width" type="Integer"/>
+                     <property name="height" type="Integer"/>
+                  </property>
+                  <property name="viewPosition" type="Object">
+                     <property name="x" type="Integer"/>
+                     <property name="y" type="Integer"/>
+                  </property>
+                  <property name="deviceScaleFactor" type="Integer"/>
+                  <property name="viewSize" type="Object">
+                     <property name="width" type="Integer"/>
+                     <property name="height" type="Integer"/>
+                  </property>
+                  <property name="fitToView" type="Boolean"/>
+                  <property name="offset" type="Object">
+                     <property name="x" type="Float"/>
+                     <property name="y" type="Float"/>
+                  </property>
+                  <property name="scale" type="Float"/>
+               </param>
+            </method>
+            <method name="disableDeviceEmulation"/>
+            <method name="sendInputEvent">
+               <param name="event" type="Object">
+                  <property name="type" type="String"/>
+                  <property name="modifiers" type="String" isArray="true"/>
+               </param>
+            </method>
+            <method name="beginFrameSubscription">
+               <param optional="true" name="onlyDirty" type="Boolean"/>
+               <param name="callback" type="Function">
+                  <param name="frameBuffer" type="Buffer"/>
+                  <param name="dirtyRect" type="Rectangle"/>
+               </param>
+            </method>
+            <method name="endFrameSubscription"/>
+            <method name="startDrag">
+               <param name="item" type="Object">
+                  <property name="file" type="String"/>
+                  <property name="icon" type="NativeImage"/>
+               </param>
+            </method>
+            <method name="savePage">
+               <param name="fullPath" type="String"/>
+               <param name="saveType" type="String">
+                  <param name="HTMLOnly"/>
+                  <param name="HTMLComplete"/>
+                  <param name="MHTML"/>
+               </param>
+               <param name="callback" type="Function">
+                  <param name="error" type="Error"/>
+               </param>
+               <returns type="true"/>
+            </method>
+            <method name="showDefinitionForSelection"/>
+            <method name="setSize"/>
+            <method name="isOffscreen">
+               <returns type="Boolean"/>
+            </method>
+            <method name="startPainting"/>
+            <method name="stopPainting"/>
+            <method name="isPainting">
+               <returns type="Boolean"/>
+            </method>
+            <method name="setFrameRate">
+               <param name="fps" type="Integer"/>
+            </method>
+            <method name="getFrameRate">
+               <returns type="Integer"/>
+            </method>
+            <method name="invalidate"/>
+         </methods>
+      </class>
+   </object>
+   <class title="WebContents">
+      <constructor/>
+      <methods type="instance">
+         <method name="loadURL">
+            <param name="url" type="String"/>
+            <param optional="true" name="options" type="Object">
+               <property optional="true" name="httpReferrer" type="String"/>
+               <property optional="true" name="userAgent" type="String"/>
+               <property optional="true" name="extraHeaders" type="String"/>
+               <property optional="true" name="postData" type="union" isArray="true">
+                  <option type="UploadRawData"/>
+                  <option type="UploadFile"/>
+                  <option type="UploadFileSystem"/>
+                  <option type="UploadBlob"/>
+               </property>
+            </param>
+         </method>
+         <method name="downloadURL">
+            <param name="url" type="String"/>
+         </method>
+         <method name="getURL">
+            <returns type="String"/>
+         </method>
+         <method name="getTitle">
+            <returns type="String"/>
+         </method>
+         <method name="isDestroyed">
+            <returns type="Boolean"/>
+         </method>
+         <method name="isFocused">
+            <returns type="Boolean"/>
+         </method>
+         <method name="isLoading">
+            <returns type="Boolean"/>
+         </method>
+         <method name="isLoadingMainFrame">
+            <returns type="Boolean"/>
+         </method>
+         <method name="isWaitingForResponse">
+            <returns type="Boolean"/>
+         </method>
+         <method name="stop"/>
+         <method name="reload"/>
+         <method name="reloadIgnoringCache"/>
+         <method name="canGoBack">
+            <returns type="Boolean"/>
+         </method>
+         <method name="canGoForward">
+            <returns type="Boolean"/>
+         </method>
+         <method name="canGoToOffset">
+            <param name="offset" type="Integer"/>
+            <returns type="Boolean"/>
+         </method>
+         <method name="clearHistory"/>
+         <method name="goBack"/>
+         <method name="goForward"/>
+         <method name="goToIndex">
+            <param name="index" type="Integer"/>
+         </method>
+         <method name="goToOffset">
+            <param name="offset" type="Integer"/>
+         </method>
+         <method name="isCrashed">
+            <returns type="Boolean"/>
+         </method>
+         <method name="setUserAgent">
+            <param name="userAgent" type="String"/>
+         </method>
+         <method name="getUserAgent">
+            <returns type="String"/>
+         </method>
+         <method name="insertCSS">
+            <param name="css" type="String"/>
+         </method>
+         <method name="executeJavaScript">
+            <param name="code" type="String"/>
+            <param optional="true" name="userGesture" type="Boolean"/>
+            <param optional="true" name="callback" type="Function">
+               <param name="result" type="Any"/>
+            </param>
+            <returns type="Promise"/>
+         </method>
+         <method name="setAudioMuted">
+            <param name="muted" type="Boolean"/>
+         </method>
+         <method name="isAudioMuted">
+            <returns type="Boolean"/>
+         </method>
+         <method name="setZoomFactor">
+            <param name="factor" type="Number"/>
+         </method>
+         <method name="getZoomFactor">
+            <param name="callback" type="Function">
+               <param name="zoomFactor" type="Number"/>
+            </param>
+         </method>
+         <method name="setZoomLevel">
+            <param name="level" type="Number"/>
+         </method>
+         <method name="getZoomLevel">
+            <param name="callback" type="Function">
+               <param name="zoomLevel" type="Number"/>
+            </param>
+         </method>
+         <method name="setZoomLevelLimits">
+            <param name="minimumLevel" type="Number"/>
+            <param name="maximumLevel" type="Number"/>
+         </method>
+         <method name="setVisualZoomLevelLimits">
+            <param name="minimumLevel" type="Number"/>
+            <param name="maximumLevel" type="Number"/>
+         </method>
+         <method name="setLayoutZoomLevelLimits">
+            <param name="minimumLevel" type="Number"/>
+            <param name="maximumLevel" type="Number"/>
+         </method>
+         <method name="undo"/>
+         <method name="redo"/>
+         <method name="cut"/>
+         <method name="copy"/>
+         <method name="copyImageAt">
+            <param name="x" type="Integer"/>
+            <param name="y" type="Integer"/>
+         </method>
+         <method name="paste"/>
+         <method name="pasteAndMatchStyle"/>
+         <method name="delete"/>
+         <method name="selectAll"/>
+         <method name="unselect"/>
+         <method name="replace">
+            <param name="text" type="String"/>
+         </method>
+         <method name="replaceMisspelling">
+            <param name="text" type="String"/>
+         </method>
+         <method name="insertText">
+            <param name="text" type="String"/>
+         </method>
+         <method name="findInPage">
+            <param name="text" type="String"/>
+            <param optional="true" name="options" type="Object">
+               <property optional="true" name="forward" type="Boolean"/>
+               <property optional="true" name="findNext" type="Boolean"/>
+               <property optional="true" name="matchCase" type="Boolean"/>
+               <property optional="true" name="wordStart" type="Boolean"/>
+               <property optional="true" name="medialCapitalAsWordStart" type="Boolean"/>
+            </param>
+         </method>
+         <method name="stopFindInPage">
+            <param name="action" type="String">
+               <param name="clearSelection"/>
+               <param name="keepSelection"/>
+               <param name="activateSelection"/>
+            </param>
+         </method>
+         <method name="capturePage">
+            <param optional="true" name="rect" type="Rectangle"/>
+            <param name="callback" type="Function">
+               <param name="image" type="NativeImage"/>
+            </param>
+         </method>
+         <method name="hasServiceWorker">
+            <param name="callback" type="Function">
+               <param name="hasWorker" type="Boolean"/>
+            </param>
+         </method>
+         <method name="unregisterServiceWorker">
+            <param name="callback" type="Function">
+               <param name="success" type="Boolean"/>
+            </param>
+         </method>
+         <method name="print">
+            <param optional="true" name="options" type="Object">
+               <property name="silent" type="Boolean"/>
+               <property name="printBackground" type="Boolean"/>
+            </param>
+         </method>
+         <method name="printToPDF">
+            <param name="options" type="Object">
+               <property optional="true" name="marginsType" type="Integer"/>
+               <property optional="true" name="pageSize" type="String"/>
+               <property optional="true" name="printBackground" type="Boolean"/>
+               <property optional="true" name="printSelectionOnly" type="Boolean"/>
+               <property optional="true" name="landscape" type="Boolean"/>
+            </param>
+            <param name="callback" type="Function">
+               <param name="error" type="Error"/>
+               <param name="data" type="Buffer"/>
+            </param>
+         </method>
+         <method name="addWorkSpace">
+            <param name="path" type="String"/>
+         </method>
+         <method name="removeWorkSpace">
+            <param name="path" type="String"/>
+         </method>
+         <method name="openDevTools">
+            <param optional="true" name="options" type="Object">
+               <property name="mode" type="String"/>
+            </param>
+         </method>
+         <method name="closeDevTools"/>
+         <method name="isDevToolsOpened">
+            <returns type="Boolean"/>
+         </method>
+         <method name="isDevToolsFocused">
+            <returns type="Boolean"/>
+         </method>
+         <method name="toggleDevTools"/>
+         <method name="inspectElement">
+            <param name="x" type="Integer"/>
+            <param name="y" type="Integer"/>
+         </method>
+         <method name="inspectServiceWorker"/>
+         <method name="send">
+            <param name="channel" type="String"/>
+            <param name="args" vararg="true" type="any" isArray="true"/>
+         </method>
+         <method name="enableDeviceEmulation">
+            <param name="parameters" type="Object">
+               <property name="screenPosition" type="String">
+                  <param name="desktop"/>
+                  <param name="mobile"/>
+               </property>
+               <property name="screenSize" type="Object">
+                  <property name="width" type="Integer"/>
+                  <property name="height" type="Integer"/>
+               </property>
+               <property name="viewPosition" type="Object">
+                  <property name="x" type="Integer"/>
+                  <property name="y" type="Integer"/>
+               </property>
+               <property name="deviceScaleFactor" type="Integer"/>
+               <property name="viewSize" type="Object">
+                  <property name="width" type="Integer"/>
+                  <property name="height" type="Integer"/>
+               </property>
+               <property name="fitToView" type="Boolean"/>
+               <property name="offset" type="Object">
+                  <property name="x" type="Float"/>
+                  <property name="y" type="Float"/>
+               </property>
+               <property name="scale" type="Float"/>
+            </param>
+         </method>
+         <method name="disableDeviceEmulation"/>
+         <method name="sendInputEvent">
+            <param name="event" type="Object">
+               <property name="type" type="String"/>
+               <property name="modifiers" type="String" isArray="true"/>
+            </param>
+         </method>
+         <method name="beginFrameSubscription">
+            <param optional="true" name="onlyDirty" type="Boolean"/>
+            <param name="callback" type="Function">
+               <param name="frameBuffer" type="Buffer"/>
+               <param name="dirtyRect" type="Rectangle"/>
+            </param>
+         </method>
+         <method name="endFrameSubscription"/>
+         <method name="startDrag">
+            <param name="item" type="Object">
+               <property name="file" type="String"/>
+               <property name="icon" type="NativeImage"/>
+            </param>
+         </method>
+         <method name="savePage">
+            <param name="fullPath" type="String"/>
+            <param name="saveType" type="String">
+               <param name="HTMLOnly"/>
+               <param name="HTMLComplete"/>
+               <param name="MHTML"/>
+            </param>
+            <param name="callback" type="Function">
+               <param name="error" type="Error"/>
+            </param>
+            <returns type="true"/>
+         </method>
+         <method name="showDefinitionForSelection"/>
+         <method name="setSize"/>
+         <method name="isOffscreen">
+            <returns type="Boolean"/>
+         </method>
+         <method name="startPainting"/>
+         <method name="stopPainting"/>
+         <method name="isPainting">
+            <returns type="Boolean"/>
+         </method>
+         <method name="setFrameRate">
+            <param name="fps" type="Integer"/>
+         </method>
+         <method name="getFrameRate">
+            <returns type="Integer"/>
+         </method>
+         <method name="invalidate"/>
+      </methods>
+   </class>
+</file>

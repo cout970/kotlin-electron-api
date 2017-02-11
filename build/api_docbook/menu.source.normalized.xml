@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<file>
+   <class title="Menu">
+      <constructor/>
+      <methods type="static">
+         <method name="setApplicationMenu">
+            <param name="menu" type="Menu"/>
+         </method>
+         <method name="getApplicationMenu">
+            <returns type="Menu"/>
+         </method>
+         <method name="sendActionToFirstResponder">
+            <param name="action" type="String"/>
+         </method>
+         <method name="buildFromTemplate">
+            <param name="template" type="MenuItemConstructorOptions" isArray="true"/>
+            <returns type="Menu"/>
+         </method>
+      </methods>
+      <methods type="instance">
+         <method name="popup">
+            <param optional="true" name="browserWindow" type="BrowserWindow"/>
+            <param optional="true" name="x" type="Number"/>
+            <param name="y" type="Number"/>
+            <param optional="true" name="positioningItem" type="Number"/>
+         </method>
+         <method name="append">
+            <param name="menuItem" type="MenuItem"/>
+         </method>
+         <method name="insert">
+            <param name="pos" type="Integer"/>
+            <param name="menuItem" type="MenuItem"/>
+         </method>
+      </methods>
+   </class>
+</file>

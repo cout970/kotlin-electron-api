@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<file>
+   <object title="clipboard">
+      <methods>
+         <method name="readText">
+            <param optional="true" name="type" type="String"/>
+            <returns type="String"/>
+         </method>
+         <method name="writeText">
+            <param name="text" type="String"/>
+            <param optional="true" name="type" type="String"/>
+         </method>
+         <method name="readHTML">
+            <param optional="true" name="type" type="String"/>
+            <returns type="String"/>
+         </method>
+         <method name="writeHTML">
+            <param name="markup" type="String"/>
+            <param optional="true" name="type" type="String"/>
+         </method>
+         <method name="readImage">
+            <param optional="true" name="type" type="String"/>
+            <returns type="NativeImage"/>
+         </method>
+         <method name="writeImage">
+            <param name="image" type="NativeImage"/>
+            <param optional="true" name="type" type="String"/>
+         </method>
+         <method name="readRTF">
+            <param optional="true" name="type" type="String"/>
+            <returns type="String"/>
+         </method>
+         <method name="writeRTF">
+            <param name="text" type="String"/>
+            <param optional="true" name="type" type="String"/>
+         </method>
+         <method name="readBookmark">
+            <returns type="Object"/>
+         </method>
+         <method name="writeBookmark">
+            <param name="title" type="String"/>
+            <param name="url" type="String"/>
+            <param optional="true" name="type" type="String"/>
+         </method>
+         <method name="readFindText">
+            <returns type="String"/>
+         </method>
+         <method name="writeFindText">
+            <param name="text" type="String"/>
+         </method>
+         <method name="clear">
+            <param optional="true" name="type" type="String"/>
+         </method>
+         <method name="availableFormats">
+            <param optional="true" name="type" type="String"/>
+            <returns type="String" isArray="true"/>
+         </method>
+         <method name="has">
+            <param name="data" type="String"/>
+            <param optional="true" name="type" type="String"/>
+            <returns type="Boolean"/>
+         </method>
+         <method name="read">
+            <param name="data" type="String"/>
+            <param optional="true" name="type" type="String"/>
+            <returns type="String"/>
+         </method>
+         <method name="write">
+            <param name="data" type="Object">
+               <property optional="true" name="text" type="String"/>
+               <property optional="true" name="html" type="String"/>
+               <property optional="true" name="image" type="NativeImage"/>
+               <property optional="true" name="rtf" type="String"/>
+               <property optional="true" name="bookmark" type="String"/>
+            </param>
+            <param optional="true" name="type" type="String"/>
+         </method>
+      </methods>
+   </object>
+</file>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<file>
+   <struct title="UploadData">
+      <property name="bytes" type="Buffer"/>
+      <property name="file" type="String"/>
+      <property name="blobUUID" type="String"/>
+   </struct>
+</file>

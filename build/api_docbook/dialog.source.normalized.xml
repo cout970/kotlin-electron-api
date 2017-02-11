@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<file>
+   <object title="dialog">
+      <methods>
+         <method name="showOpenDialog">
+            <param optional="true" name="browserWindow" type="BrowserWindow"/>
+            <param name="options" type="Object">
+               <property optional="true" name="title" type="String"/>
+               <property optional="true" name="defaultPath" type="String"/>
+               <property optional="true" name="buttonLabel" type="String"/>
+               <property optional="true" name="filters" type="FileFilter" isArray="true"/>
+               <property optional="true" name="properties" type="String" isArray="true">
+                  <param name="openFile"/>
+                  <param name="openDirectory"/>
+                  <param name="multiSelections"/>
+                  <param name="showHiddenFiles"/>
+                  <param name="createDirectory" type="macOS"/>
+                  <param name="promptToCreate" type="Windows"/>
+               </property>
+               <property optional="true" name="normalizeAccessKeys" type="Boolean"/>
+            </param>
+            <param optional="true" name="callback" type="Function">
+               <param name="filePaths" type="String" isArray="true"/>
+            </param>
+            <returns type="String" isArray="true"/>
+         </method>
+         <method name="showSaveDialog">
+            <param optional="true" name="browserWindow" type="BrowserWindow"/>
+            <param name="options" type="Object">
+               <property optional="true" name="title" type="String"/>
+               <property optional="true" name="defaultPath" type="String"/>
+               <property optional="true" name="buttonLabel" type="String"/>
+               <property optional="true" name="filters" type="FileFilter" isArray="true"/>
+            </param>
+            <param optional="true" name="callback" type="Function">
+               <param name="filename" type="String"/>
+            </param>
+            <returns type="String"/>
+         </method>
+         <method name="showMessageBox">
+            <param optional="true" name="browserWindow" type="BrowserWindow"/>
+            <param name="options" type="Object">
+               <property optional="true" name="type" type="String"/>
+               <property optional="true" name="buttons" type="String" isArray="true"/>
+               <property optional="true" name="defaultId" type="Integer"/>
+               <property optional="true" name="title" type="String"/>
+               <property name="message" type="String"/>
+               <property optional="true" name="detail" type="String"/>
+               <property optional="true" name="icon" type="NativeImage"/>
+               <property optional="true" name="cancelId" type="Integer"/>
+               <property optional="true" name="noLink" type="Boolean"/>
+            </param>
+            <param optional="true" name="callback" type="Function">
+               <param name="response" type="Number"/>
+            </param>
+            <returns type="Integer"/>
+         </method>
+         <method name="showErrorBox">
+            <param name="title" type="String"/>
+            <param name="content" type="String"/>
+         </method>
+      </methods>
+   </object>
+</file>

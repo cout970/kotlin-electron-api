@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<file>
+   <object title="remote">
+      <methods>
+         <method name="require">
+            <param name="module" type="String"/>
+            <returns type="any"/>
+         </method>
+         <method name="getCurrentWindow">
+            <returns type="BrowserWindow"/>
+         </method>
+         <method name="getCurrentWebContents">
+            <returns type="WebContents"/>
+         </method>
+         <method name="getGlobal">
+            <param name="name" type="String"/>
+            <returns type="any"/>
+         </method>
+      </methods>
+   </object>
+</file>
