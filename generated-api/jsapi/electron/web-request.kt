@@ -16,27 +16,92 @@ class WebRequest() {
 
     // ~ Methods -------------------------------------------------------------------------------
 
+    /**
+     * The listener will be called with listener(details, callback) when a request is about to occur.
+     *
+     * The uploadData is an array of UploadData objects.
+     *
+     * The callback has to be called with an response object.
+     */
     fun onBeforeRequest(filter: OnBeforeRequestFilter.() -> Unit, listener: (details: OnBeforeRequestDetails, callback: (response: OnBeforeRequestResponse.() -> Unit) -> Unit) -> Unit): Unit = 
         instance.onBeforeRequest(filter.let { OnBeforeRequestFilter().apply(it) }, listener)
 
+    /**
+     * The listener will be called with listener(details, callback) before sending an HTTP request, once the request headers are available. This may occur after a TCP connection is made to the server, but before any http data is sent.
+     *
+     *  . details Object
+     *     . id Integer
+     *     . url String
+     *     . method String
+     *     . resourceType String
+     *     . timestamp Double
+     *     . requestHeaders Object
+     *
+     *  . callback Function
+     *     . response Object
+     *        . cancel Boolean (optional)
+     *        . requestHeaders Object (optional) - When provided, request will be made with these headers.
+     *
+     *
+     *
+     * The callback has to be called with an response object.
+     */
     fun onBeforeSendHeaders(filter: OnBeforeSendHeadersFilter.() -> Unit, listener: () -> Unit): Unit = 
         instance.onBeforeSendHeaders(filter.let { OnBeforeSendHeadersFilter().apply(it) }, listener)
 
+    /**
+     * The listener will be called with listener(details) just before a request is going to be sent to the server, modifications of previous onBeforeSendHeaders response are visible by the time this listener is fired.
+     */
     fun onSendHeaders(filter: OnSendHeadersFilter.() -> Unit, listener: (details: OnSendHeadersDetails) -> Unit): Unit = 
         instance.onSendHeaders(filter.let { OnSendHeadersFilter().apply(it) }, listener)
 
+    /**
+     * The listener will be called with listener(details, callback) when HTTP response headers of a request have been received.
+     *
+     *  . details Object
+     *     . id String
+     *     . url String
+     *     . method String
+     *     . resourceType String
+     *     . timestamp Double
+     *     . statusLine String
+     *     . statusCode Integer
+     *     . responseHeaders Object
+     *
+     *  . callback Function
+     *     . response Object
+     *        . cancel Boolean
+     *        . responseHeaders Object (optional) - When provided, the server is assumed to have responded with these headers.
+     *        . statusLine String (optional) - Should be provided when overriding responseHeaders to change header status otherwise original response header's status will be used.
+     *
+     *
+     *
+     * The callback has to be called with an response object.
+     */
     fun onHeadersReceived(filter: OnHeadersReceivedFilter.() -> Unit, listener: () -> Unit): Unit = 
         instance.onHeadersReceived(filter.let { OnHeadersReceivedFilter().apply(it) }, listener)
 
+    /**
+     * The listener will be called with listener(details) when first byte of the response body is received. For HTTP requests, this means that the status line and response headers are available.
+     */
     fun onResponseStarted(filter: OnResponseStartedFilter.() -> Unit, listener: (details: OnResponseStartedDetails) -> Unit): Unit = 
         instance.onResponseStarted(filter.let { OnResponseStartedFilter().apply(it) }, listener)
 
+    /**
+     * The listener will be called with listener(details) when a server initiated redirect is about to occur.
+     */
     fun onBeforeRedirect(filter: OnBeforeRedirectFilter.() -> Unit, listener: (details: OnBeforeRedirectDetails) -> Unit): Unit = 
         instance.onBeforeRedirect(filter.let { OnBeforeRedirectFilter().apply(it) }, listener)
 
+    /**
+     * The listener will be called with listener(details) when a request is completed.
+     */
     fun onCompleted(filter: OnCompletedFilter.() -> Unit, listener: (details: OnCompletedDetails) -> Unit): Unit = 
         instance.onCompleted(filter.let { OnCompletedFilter().apply(it) }, listener)
 
+    /**
+     * The listener will be called with listener(details) when an error occurs.
+     */
     fun onErrorOccurred(filter: OnErrorOccurredFilter.() -> Unit, listener: (details: OnErrorOccurredDetails) -> Unit): Unit = 
         instance.onErrorOccurred(filter.let { OnErrorOccurredFilter().apply(it) }, listener)
 

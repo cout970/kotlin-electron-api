@@ -4,66 +4,149 @@
       <methods>
          <method name="readText">
             <param optional="true" name="type" type="String"/>
-            <returns type="String"/>
+            <returns type="String">
+               <description>
+                  <para>- The content in the clipboard as plain text.</para>
+               </description>
+            </returns>
+            <description/>
          </method>
          <method name="writeText">
             <param name="text" type="String"/>
             <param optional="true" name="type" type="String"/>
+            <description>
+               <para>Writes the text into the clipboard as plain text.</para>
+            </description>
          </method>
          <method name="readHTML">
             <param optional="true" name="type" type="String"/>
-            <returns type="String"/>
+            <returns type="String">
+               <description>
+                  <para>- The content in the clipboard as markup.</para>
+               </description>
+            </returns>
+            <description/>
          </method>
          <method name="writeHTML">
             <param name="markup" type="String"/>
             <param optional="true" name="type" type="String"/>
+            <description>
+               <para>Writes markup to the clipboard.</para>
+            </description>
          </method>
          <method name="readImage">
             <param optional="true" name="type" type="String"/>
-            <returns type="NativeImage"/>
+            <returns type="NativeImage">
+               <description>
+                  <para/>
+               </description>
+            </returns>
+            <description/>
          </method>
          <method name="writeImage">
             <param name="image" type="NativeImage"/>
             <param optional="true" name="type" type="String"/>
+            <description>
+               <para>Writes image to the clipboard.</para>
+            </description>
          </method>
          <method name="readRTF">
             <param optional="true" name="type" type="String"/>
-            <returns type="String"/>
+            <returns type="String">
+               <description>
+                  <para>- The content in the clipboard as RTF.</para>
+               </description>
+            </returns>
+            <description/>
          </method>
          <method name="writeRTF">
             <param name="text" type="String"/>
             <param optional="true" name="type" type="String"/>
+            <description>
+               <para>Writes the text into the clipboard in RTF.</para>
+            </description>
          </method>
          <method name="readBookmark">
-            <returns type="Object"/>
+            <returns type="Object">
+               <param name="title" type="String"/>
+               <param name="url" type="String"/>
+               <description>
+                  <para>:</para>
+               </description>
+            </returns>
+            <param name="title" type="String"/>
+            <param name="url" type="String"/>
+            <description>
+               <list>
+                  <item>
+                     <para>title String</para>
+                  </item>
+                  <item>
+                     <para>url String</para>
+                  </item>
+               </list>
+            </description>
          </method>
          <method name="writeBookmark">
             <param name="title" type="String"/>
             <param name="url" type="String"/>
             <param optional="true" name="type" type="String"/>
+            <description>
+               <para>Writes the title and url into the clipboard as a bookmark.</para>
+               <para>Note: Most apps on Windows don't support pasting bookmarks into them so you can use clipboard.write to write both a bookmark and fallback text to the clipboard.</para>
+               <programlisting>...omitted...</programlisting>
+            </description>
          </method>
          <method name="readFindText">
-            <returns type="String"/>
+            <returns type="String">
+               <description>
+                  <para>- The text on the find pasteboard. This method uses synchronous IPC when called from the renderer process. The cached value is reread from the find pasteboard whenever the application is activated.</para>
+               </description>
+            </returns>
+            <description/>
          </method>
          <method name="writeFindText">
             <param name="text" type="String"/>
+            <description>
+               <para>Writes the text into the find pasteboard as plain text. This method uses synchronous IPC when called from the renderer process.</para>
+            </description>
          </method>
          <method name="clear">
             <param optional="true" name="type" type="String"/>
+            <description>
+               <para>Clears the clipboard content.</para>
+            </description>
          </method>
          <method name="availableFormats">
             <param optional="true" name="type" type="String"/>
-            <returns type="String" isArray="true"/>
+            <returns type="String" isArray="true">
+               <description>
+                  <para>- An array of supported formats for the clipboard type.</para>
+               </description>
+            </returns>
+            <description/>
          </method>
          <method name="has">
             <param name="data" type="String"/>
             <param optional="true" name="type" type="String"/>
-            <returns type="Boolean"/>
+            <returns type="Boolean">
+               <description>
+                  <para>- Whether the clipboard supports the format of specified data.</para>
+               </description>
+            </returns>
+            <description>
+               <programlisting>...omitted...</programlisting>
+            </description>
          </method>
          <method name="read">
             <param name="data" type="String"/>
             <param optional="true" name="type" type="String"/>
-            <returns type="String"/>
+            <returns type="String">
+               <description>
+                  <para>- Reads data from the clipboard.</para>
+               </description>
+            </returns>
+            <description/>
          </method>
          <method name="write">
             <param name="data" type="Object">
@@ -74,6 +157,10 @@
                <property optional="true" name="bookmark" type="String"/>
             </param>
             <param optional="true" name="type" type="String"/>
+            <description>
+               <programlisting>...omitted...</programlisting>
+               <para>Writes data to the clipboard.</para>
+            </description>
          </method>
       </methods>
    </object>

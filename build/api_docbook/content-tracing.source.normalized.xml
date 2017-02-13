@@ -6,6 +6,10 @@
             <param name="callback" type="Function">
                <param name="categories" type="String" isArray="true"/>
             </param>
+            <description>
+               <para>Get a set of category groups. The category groups can change as new code paths are reached.</para>
+               <para>Once all child processes have acknowledged the getCategories request the callback is invoked with an array of category groups.</para>
+            </description>
          </method>
          <method name="startRecording">
             <param name="options" type="Object">
@@ -13,12 +17,55 @@
                <property name="traceOptions" type="String"/>
             </param>
             <param name="callback" type="Function"/>
+            <description>
+               <para>Start recording on all processes.</para>
+               <para>Recording begins immediately locally and asynchronously on child processes as soon as they receive the EnableRecording request. The callback will be called once all child processes have acknowledged the startRecording request.</para>
+               <para>categoryFilter is a filter to control what category groups should be traced. A filter can have an optional - prefix to exclude category groups that contain a matching category. Having both included and excluded category patterns in the same list is not supported.</para>
+               <para>Examples:</para>
+               <list>
+                  <item>
+                     <para>test_MyTest*,</para>
+                  </item>
+                  <item>
+                     <para>test_MyTest*,test_OtherStuff,</para>
+                  </item>
+                  <item>
+                     <para>"-excluded_category1,-excluded_category2</para>
+                  </item>
+               </list>
+               <para>traceOptions controls what kind of tracing is enabled, it is a comma-delimited list. Possible options are:</para>
+               <list>
+                  <item>
+                     <para>record-until-full</para>
+                  </item>
+                  <item>
+                     <para>record-continuously</para>
+                  </item>
+                  <item>
+                     <para>trace-to-console</para>
+                  </item>
+                  <item>
+                     <para>enable-sampling</para>
+                  </item>
+                  <item>
+                     <para>enable-systrace</para>
+                  </item>
+               </list>
+               <para>The first 3 options are trace recording modes and hence mutually exclusive. If more than one trace recording modes appear in the traceOptions string, the last one takes precedence. If none of the trace recording modes are specified, recording mode is record-until-full.</para>
+               <para>The trace option will first be reset to the default option (record_mode set to record-until-full, enable_sampling and enable_systrace set to false) before options parsed from traceOptions are applied on it.</para>
+            </description>
          </method>
          <method name="stopRecording">
             <param name="resultFilePath" type="String"/>
             <param name="callback" type="Function">
                <param name="resultFilePath" type="String"/>
             </param>
+            <description>
+               <para>Stop recording on all processes.</para>
+               <para>Child processes typically cache trace data and only rarely flush and send trace data back to the main process. This helps to minimize the runtime overhead of tracing since sending trace data over IPC can be an expensive operation. So, to end tracing, we must asynchronously ask all child processes to flush any pending trace data.</para>
+               <para>Once all child processes have acknowledged the stopRecording request, callback will be called with a file that contains the traced data.</para>
+               <para>Trace data will be written into resultFilePath if it is not empty or into a temporary file. The actual file path will be passed to callback if it's not null.</para>
+            </description>
          </method>
          <method name="startMonitoring">
             <param name="options" type="Object">
@@ -26,21 +73,38 @@
                <property name="traceOptions" type="String"/>
             </param>
             <param name="callback" type="Function"/>
+            <description>
+               <para>Start monitoring on all processes.</para>
+               <para>Monitoring begins immediately locally and asynchronously on child processes as soon as they receive the startMonitoring request.</para>
+               <para>Once all child processes have acknowledged the startMonitoring request the callback will be called.</para>
+            </description>
          </method>
          <method name="stopMonitoring">
             <param name="callback" type="Function"/>
+            <description>
+               <para>Stop monitoring on all processes.</para>
+               <para>Once all child processes have acknowledged the stopMonitoring request the callback is called.</para>
+            </description>
          </method>
          <method name="captureMonitoringSnapshot">
             <param name="resultFilePath" type="String"/>
             <param name="callback" type="Function">
                <param name="resultFilePath" type="String"/>
             </param>
+            <description>
+               <para>Get the current monitoring traced data.</para>
+               <para>Child processes typically cache trace data and only rarely flush and send trace data back to the main process. This is because it may be an expensive operation to send the trace data over IPC and we would like to avoid unneeded runtime overhead from tracing. So, to end tracing, we must asynchronously ask all child processes to flush any pending trace data.</para>
+               <para>Once all child processes have acknowledged the captureMonitoringSnapshot request the callback will be called with a file that contains the traced data.</para>
+            </description>
          </method>
          <method name="getTraceBufferUsage">
             <param name="callback" type="Function">
                <param name="value" type="Number"/>
                <param name="percentage" type="Number"/>
             </param>
+            <description>
+               <para>Get the maximum usage across processes of trace buffer as a percentage of the full state. When the TraceBufferUsage value is determined the callback is called.</para>
+            </description>
          </method>
       </methods>
    </object>

@@ -11,18 +11,46 @@
                <property optional="true" name="ignoreSystemCrashHandler" type="Boolean"/>
                <property optional="true" name="extra" type="Object"/>
             </param>
+            <description>
+               <para>You are required to call this method before using any other crashReporter APIs and in each process (main/renderer) from which you want to collect crash reports. You can pass different options to crashReporter.start when calling from different processes.</para>
+               <para>Note Child processes created via the child_process module will not have access to the Electron modules. Therefore, to collect crash reports from them, use process.crashReporter.start instead. Pass the same options as above along with an additional one called crashesDirectory that should point to a directory to store the crash reports temporarily. You can test this out by calling process.crash() to crash the child process.</para>
+               <para>Note: To collect crash reports from child process in Windows, you need to add this extra code as well. This will start the process that will monitor and send the crash reports. Replace submitURL, productName and crashesDirectory with appropriate values.</para>
+               <programlisting>...omitted...</programlisting>
+               <para>Note: On macOS, Electron uses a new crashpad client for crash collection and reporting. If you want to enable crash reporting, initializing crashpad from the main process using crashReporter.start is required regardless of which process you want to collect crashes from. Once initialized this way, the crashpad handler collects crashes from all processes. You still have to call crashReporter.start from the renderer or child process, otherwise crashes from them will get reported without companyName, productName or any of the extra information.</para>
+            </description>
          </method>
          <method name="getLastCrashReport">
-            <returns type="CrashReport"/>
+            <returns type="CrashReport">
+               <description>
+                  <para/>
+               </description>
+            </returns>
+            <description/>
          </method>
          <method name="getUploadedReports">
-            <returns type="CrashReport" isArray="true"/>
+            <returns type="CrashReport" isArray="true">
+               <description>
+                  <para/>
+               </description>
+            </returns>
+            <description/>
          </method>
          <method name="getUploadToServer">
-            <returns type="Boolean"/>
+            <returns type="Boolean">
+               <description>
+                  <para>- Whether reports should be submitted to the server. Set through the start method or setUploadToServer.</para>
+               </description>
+            </returns>
+            <description>
+               <para>Note: This API can only be called from the main process.</para>
+            </description>
          </method>
          <method name="setUploadToServer">
             <param name="uploadToServer" type="Boolean"/>
+            <description>
+               <para>This would normally be controlled by user preferences. This has no effect if called before start is called.</para>
+               <para>Note: This API can only be called from the main process.</para>
+            </description>
          </method>
       </methods>
    </object>

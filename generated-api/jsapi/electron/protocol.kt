@@ -11,42 +11,109 @@ object protocol {
 
     // ~ Methods -------------------------------------------------------------------------------
 
+    /**
+     * A standard scheme adheres to what RFC 3986 calls generic URI syntax. For example http and https are standard schemes, while file is not.
+     *
+     * Registering a scheme as standard, will allow relative and absolute resources to be resolved correctly when served. Otherwise the scheme will behave like the file protocol, but without the ability to resolve relative URLs.
+     *
+     * For example when you load following page with custom protocol without registering it as standard scheme, the image will not be loaded because non-standard schemes can not recognize relative URLs:
+     *
+     * Registering a scheme as standard will allow access to files through the FileSystem API. Otherwise the renderer will throw a security error for the scheme.
+     *
+     * By default web storage apis (localStorage, sessionStorage, webSQL, indexedDB, cookies) are disabled for non standard schemes. So in general if you want to register a custom protocol to replace the http protocol, you have to register it as a standard scheme:
+     *
+     * Note: This method can only be used before the ready event of the app module gets emitted.
+     */
     fun registerStandardSchemes(schemes: Array<String>, options: (RegisterStandardSchemesOptions.() -> Unit)?): Unit = 
         module.registerStandardSchemes(schemes, options?.let { RegisterStandardSchemesOptions().apply(it) })
 
+    /**
+     */
     fun registerServiceWorkerSchemes(schemes: Array<String>): Unit = 
         module.registerServiceWorkerSchemes(schemes)
 
+    /**
+     * Registers a protocol of scheme that will send the file as a response. The handler will be called with handler(request, callback) when a request is going to be created with scheme. completion will be called with completion(null) when scheme is successfully registered or completion(error) when failed.
+     *
+     * To handle the request, the callback should be called with either the file's path or an object that has a path property, e.g. callback(filePath) or callback({path: filePath}).
+     *
+     * When callback is called with nothing, a number, or an object that has an error property, the request will fail with the error number you specified. For the available error numbers you can use, please see the net error list.
+     *
+     * By default the scheme is treated like http:, which is parsed differently than protocols that follow the "generic URI syntax" like file:, so you probably want to call protocol.registerStandardSchemes to have your scheme treated as a standard scheme.
+     */
     fun registerFileProtocol(scheme: String, handler: (request: RegisterFileProtocolRequest, callback: (filePath: String?) -> Unit) -> Unit, completion: ((error: Error) -> Unit)?): Unit = 
         module.registerFileProtocol(scheme, handler, completion)
 
+    /**
+     * Registers a protocol of scheme that will send a Buffer as a response.
+     *
+     * The usage is the same with registerFileProtocol, except that the callback should be called with either a Buffer object or an object that has the data, mimeType, and charset properties.
+     *
+     * Example:
+     *
+     */
     fun registerBufferProtocol(scheme: String, handler: (request: RegisterBufferProtocolRequest, callback: (buffer: dynamic?) -> Unit) -> Unit, completion: ((error: Error) -> Unit)?): Unit = 
         module.registerBufferProtocol(scheme, handler, completion)
 
+    /**
+     * Registers a protocol of scheme that will send a String as a response.
+     *
+     * The usage is the same with registerFileProtocol, except that the callback should be called with either a String or an object that has the data, mimeType, and charset properties.
+     */
     fun registerStringProtocol(scheme: String, handler: (request: RegisterStringProtocolRequest, callback: (data: String?) -> Unit) -> Unit, completion: ((error: Error) -> Unit)?): Unit = 
         module.registerStringProtocol(scheme, handler, completion)
 
+    /**
+     * Registers a protocol of scheme that will send an HTTP request as a response.
+     *
+     * The usage is the same with registerFileProtocol, except that the callback should be called with a redirectRequest object that has the url, method, referrer, uploadData and session properties.
+     *
+     * By default the HTTP request will reuse the current session. If you want the request to have a different session you should set session to null.
+     *
+     * For POST requests the uploadData object must be provided.
+     */
     fun registerHttpProtocol(scheme: String, handler: (request: RegisterHttpProtocolRequest, callback: (redirectRequest: RegisterHttpProtocolRedirectRequest) -> Unit) -> Unit, completion: ((error: Error) -> Unit)?): Unit = 
         module.registerHttpProtocol(scheme, handler, completion)
 
+    /**
+     * Unregisters the custom protocol of scheme.
+     */
     fun unregisterProtocol(scheme: String, completion: ((error: Error) -> Unit)?): Unit = 
         module.unregisterProtocol(scheme, completion)
 
+    /**
+     * The callback will be called with a boolean that indicates whether there is already a handler for scheme.
+     */
     fun isProtocolHandled(scheme: String, callback: (error: Error) -> Unit): Unit = 
         module.isProtocolHandled(scheme, callback)
 
+    /**
+     * Intercepts scheme protocol and uses handler as the protocol's new handler which sends a file as a response.
+     */
     fun interceptFileProtocol(scheme: String, handler: (request: InterceptFileProtocolRequest, callback: (filePath: String) -> Unit) -> Unit, completion: ((error: Error) -> Unit)?): Unit = 
         module.interceptFileProtocol(scheme, handler, completion)
 
+    /**
+     * Intercepts scheme protocol and uses handler as the protocol's new handler which sends a String as a response.
+     */
     fun interceptStringProtocol(scheme: String, handler: (request: InterceptStringProtocolRequest, callback: (data: String?) -> Unit) -> Unit, completion: ((error: Error) -> Unit)?): Unit = 
         module.interceptStringProtocol(scheme, handler, completion)
 
+    /**
+     * Intercepts scheme protocol and uses handler as the protocol's new handler which sends a Buffer as a response.
+     */
     fun interceptBufferProtocol(scheme: String, handler: (request: InterceptBufferProtocolRequest, callback: (buffer: dynamic?) -> Unit) -> Unit, completion: ((error: Error) -> Unit)?): Unit = 
         module.interceptBufferProtocol(scheme, handler, completion)
 
+    /**
+     * Intercepts scheme protocol and uses handler as the protocol's new handler which sends a new HTTP request as a response.
+     */
     fun interceptHttpProtocol(scheme: String, handler: (request: InterceptHttpProtocolRequest, callback: (redirectRequest: InterceptHttpProtocolRedirectRequest) -> Unit) -> Unit, completion: ((error: Error) -> Unit)?): Unit = 
         module.interceptHttpProtocol(scheme, handler, completion)
 
+    /**
+     * Remove the interceptor installed for scheme and restore its original handler.
+     */
     fun uninterceptProtocol(scheme: String, completion: ((error: Error) -> Unit)?): Unit = 
         module.uninterceptProtocol(scheme, completion)
 

@@ -7,7 +7,14 @@
                <option type="Object"/>
                <option type="String"/>
             </param>
-            <returns type="ClientRequest"/>
+            <returns type="ClientRequest">
+               <description>
+                  <para/>
+               </description>
+            </returns>
+            <description>
+               <para>Creates a ClientRequest instance using the provided options which are directly forwarded to the ClientRequest constructor. The net.request method would be used to issue both secure and insecure HTTP requests according to the specified protocol scheme in the options object.</para>
+            </description>
          </method>
       </methods>
    </object>

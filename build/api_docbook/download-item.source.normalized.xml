@@ -5,52 +5,147 @@
       <methods type="instance">
          <method name="setSavePath">
             <param name="path" type="String"/>
+            <description>
+               <para>The API is only available in session's will-download callback function. If user doesn't set the save path via the API, Electron will use the original routine to determine the save path(Usually prompts a save dialog).</para>
+            </description>
          </method>
          <method name="getSavePath">
-            <returns type="String"/>
+            <returns type="String">
+               <description>
+                  <para>- The save path of the download item. This will be either the path set via downloadItem.setSavePath(path) or the path selected from the shown save dialog.</para>
+               </description>
+            </returns>
+            <description/>
          </method>
-         <method name="pause"/>
+         <method name="pause">
+            <description>
+               <para>Pauses the download.</para>
+            </description>
+         </method>
          <method name="isPaused">
-            <returns type="Boolean"/>
+            <returns type="Boolean">
+               <description>
+                  <para>- Whether the download is paused.</para>
+               </description>
+            </returns>
+            <description/>
          </method>
-         <method name="resume"/>
-         <method name="canResume"/>
-         <method name="cancel"/>
+         <method name="resume">
+            <description>
+               <para>Resumes the download that has been paused.</para>
+            </description>
+         </method>
+         <method name="canResume">
+            <description>
+               <para>Resumes Boolean - Whether the download can resume.</para>
+            </description>
+         </method>
+         <method name="cancel">
+            <description>
+               <para>Cancels the download operation.</para>
+            </description>
+         </method>
          <method name="getURL">
-            <returns type="String"/>
+            <returns type="String">
+               <description>
+                  <para>- The origin url where the item is downloaded from.</para>
+               </description>
+            </returns>
+            <description/>
          </method>
          <method name="getMimeType">
-            <returns type="String"/>
+            <returns type="String">
+               <description>
+                  <para>- The files mime type.</para>
+               </description>
+            </returns>
+            <description/>
          </method>
          <method name="hasUserGesture">
-            <returns type="Boolean"/>
+            <returns type="Boolean">
+               <description>
+                  <para>- Whether the download has user gesture.</para>
+               </description>
+            </returns>
+            <description/>
          </method>
          <method name="getFilename">
-            <returns type="String"/>
+            <returns type="String">
+               <description>
+                  <para>- The file name of the download item.</para>
+               </description>
+            </returns>
+            <description>
+               <para>Note: The file name is not always the same as the actual one saved in local disk. If user changes the file name in a prompted download saving dialog, the actual name of saved file will be different.</para>
+            </description>
          </method>
          <method name="getTotalBytes">
-            <returns type="Integer"/>
+            <returns type="Integer">
+               <description>
+                  <para>- The total size in bytes of the download item.</para>
+               </description>
+            </returns>
+            <description>
+               <para>If the size is unknown, it returns 0.</para>
+            </description>
          </method>
          <method name="getReceivedBytes">
-            <returns type="Integer"/>
+            <returns type="Integer">
+               <description>
+                  <para>- The received bytes of the download item.</para>
+               </description>
+            </returns>
+            <description/>
          </method>
          <method name="getContentDisposition">
-            <returns type="String"/>
+            <returns type="String">
+               <description>
+                  <para>- The Content-Disposition field from the response header.</para>
+               </description>
+            </returns>
+            <description/>
          </method>
          <method name="getState">
-            <returns type="String"/>
+            <returns type="String">
+               <description>
+                  <para>- The current state. Can be progressing, completed, cancelled or interrupted.</para>
+               </description>
+            </returns>
+            <description>
+               <para>Note: The following methods are useful specifically to resume a cancelled item when session is restarted.</para>
+            </description>
          </method>
          <method name="getURLChain">
-            <returns type="String" isArray="true"/>
+            <returns type="String" isArray="true">
+               <description>
+                  <para>- The complete url chain of the item including any redirects.</para>
+               </description>
+            </returns>
+            <description/>
          </method>
          <method name="getLastModifiedTime">
-            <returns type="String"/>
+            <returns type="String">
+               <description>
+                  <para>- Last-Modified header value.</para>
+               </description>
+            </returns>
+            <description/>
          </method>
          <method name="getETag">
-            <returns type="String"/>
+            <returns type="String">
+               <description>
+                  <para>- ETag header value.</para>
+               </description>
+            </returns>
+            <description/>
          </method>
          <method name="getStartTime">
-            <returns type="Double"/>
+            <returns type="Double">
+               <description>
+                  <para>- Number of seconds since the UNIX epoch when the download was started.</para>
+               </description>
+            </returns>
+            <description/>
          </method>
       </methods>
    </class>

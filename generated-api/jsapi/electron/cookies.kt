@@ -16,12 +16,23 @@ class Cookies() {
 
     // ~ Methods -------------------------------------------------------------------------------
 
+    /**
+     * Sends a request to get all cookies matching details, callback will be called with callback(error, cookies) on complete.
+     *
+     * cookies is an Array of cookie objects.
+     */
     fun get(filter: GetFilter.() -> Unit, callback: (error: Error, cookies: Array<Cookies>) -> Unit): Unit = 
         instance.get(filter.let { GetFilter().apply(it) }, callback)
 
+    /**
+     * Sets a cookie with details, callback will be called with callback(error) on complete.
+     */
     fun set(details: SetDetails, callback: (error: Error) -> Unit): Unit = 
         instance.set(details, callback)
 
+    /**
+     * Removes the cookies matching url and name, callback will called with callback() on complete.
+     */
     fun remove(url: String, name: String, callback: () -> Unit): Unit = 
         instance.remove(url, name, callback)
 

@@ -2,16 +2,83 @@
 <file>
    <object title="process">
       <methods>
-         <method name="crash"/>
-         <method name="hang"/>
+         <method name="crash">
+            <description>
+               <para>Causes the main thread of the current process crash.</para>
+            </description>
+         </method>
+         <method name="hang">
+            <description>
+               <para>Causes the main thread of the current process hang.</para>
+            </description>
+         </method>
          <method name="setFdLimit">
             <param name="maxDescriptors" type="Integer"/>
+            <description>
+               <para>Sets the file descriptor soft limit to maxDescriptors or the OS hard limit, whichever is lower for the current process.</para>
+            </description>
          </method>
          <method name="getProcessMemoryInfo">
-            <returns type="Object"/>
+            <returns type="Object">
+               <param name="workingSetSize" type="Integer"/>
+               <param name="peakWorkingSetSize" type="Integer"/>
+               <param name="privateBytes" type="Integer"/>
+               <param name="sharedBytes" type="Integer"/>
+               <description>
+                  <para>:</para>
+               </description>
+            </returns>
+            <param name="workingSetSize" type="Integer"/>
+            <param name="peakWorkingSetSize" type="Integer"/>
+            <param name="privateBytes" type="Integer"/>
+            <param name="sharedBytes" type="Integer"/>
+            <description>
+               <list>
+                  <item>
+                     <para>workingSetSize Integer - The amount of memory currently pinned to actual physical RAM.</para>
+                  </item>
+                  <item>
+                     <para>peakWorkingSetSize Integer - The maximum amount of memory that has ever been pinned to actual physical RAM.</para>
+                  </item>
+                  <item>
+                     <para>privateBytes Integer - The amount of memory not shared by other processes, such as JS heap or HTML content.</para>
+                  </item>
+                  <item>
+                     <para>sharedBytes Integer - The amount of memory shared between processes, typically memory consumed by the Electron code itself</para>
+                  </item>
+               </list>
+            </description>
          </method>
          <method name="getSystemMemoryInfo">
-            <returns type="Object"/>
+            <returns type="Object">
+               <param name="total" type="Integer"/>
+               <param name="free" type="Integer"/>
+               <param name="swapTotal" type="Integer"/>
+               <param name="swapFree" type="Integer"/>
+               <description>
+                  <para>:</para>
+               </description>
+            </returns>
+            <param name="total" type="Integer"/>
+            <param name="free" type="Integer"/>
+            <param name="swapTotal" type="Integer"/>
+            <param name="swapFree" type="Integer"/>
+            <description>
+               <list>
+                  <item>
+                     <para>total Integer - The total amount of physical memory in Kilobytes available to the system.</para>
+                  </item>
+                  <item>
+                     <para>free Integer - The total amount of memory not being used by applications or disk cache.</para>
+                  </item>
+                  <item>
+                     <para>swapTotal Integer - The total amount of swap memory in Kilobytes available to the system. WindowsLinux</para>
+                  </item>
+                  <item>
+                     <para>swapFree Integer - The free amount of swap memory in Kilobytes available to the system. WindowsLinux</para>
+                  </item>
+               </list>
+            </description>
          </method>
       </methods>
    </object>

@@ -16,15 +16,26 @@ class Debugger() {
 
     // ~ Methods -------------------------------------------------------------------------------
 
+    /**
+     * Attaches the debugger to the webContents.
+     */
     fun attach(protocolVersion: String?): Unit = 
         instance.attach(protocolVersion)
 
+    /**
+     */
     fun isAttached(): Boolean = 
         instance.isAttached()
 
+    /**
+     * Detaches the debugger from the webContents.
+     */
     fun detach(): Unit = 
         instance.detach()
 
+    /**
+     * Send given command to the debugging target.
+     */
     fun sendCommand(method: String, commandParams: (SendCommandCommandParams.() -> Unit)?, callback: ((error: SendCommandError.() -> Unit, result: Any) -> Unit)?): Unit = 
         instance.sendCommand(method, commandParams?.let { SendCommandCommandParams().apply(it) }, callback)
 

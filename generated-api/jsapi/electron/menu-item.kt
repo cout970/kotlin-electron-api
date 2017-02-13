@@ -15,6 +15,14 @@ class MenuItem(options: Options.() -> Unit) {
     fun onEvent(event: String, callback: () -> Unit) = 
         module.on(event, callback)
 
+    // ~ Properties ----------------------------------------------------------------------------
+
+    val enabled: dynamic get() = instance.enabled
+    val visible: dynamic get() = instance.visible
+    val checked: dynamic get() = instance.checked
+    val label: dynamic get() = instance.label
+    val click: dynamic get() = instance.click
+
 
     // ~ Companion -----------------------------------------------------------------------------
 

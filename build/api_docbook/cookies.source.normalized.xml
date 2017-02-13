@@ -16,6 +16,10 @@
                <param name="error" type="Error"/>
                <param name="cookies" type="Cookies" isArray="true"/>
             </param>
+            <description>
+               <para>Sends a request to get all cookies matching details, callback will be called with callback(error, cookies) on complete.</para>
+               <para>cookies is an Array of cookie objects.</para>
+            </description>
          </method>
          <method name="set">
             <param name="details" type="Object">
@@ -31,11 +35,17 @@
             <param name="callback" type="Function">
                <param name="error" type="Error"/>
             </param>
+            <description>
+               <para>Sets a cookie with details, callback will be called with callback(error) on complete.</para>
+            </description>
          </method>
          <method name="remove">
             <param name="url" type="String"/>
             <param name="name" type="String"/>
             <param name="callback" type="Function"/>
+            <description>
+               <para>Removes the cookies matching url and name, callback will called with callback() on complete.</para>
+            </description>
          </method>
       </methods>
    </class>

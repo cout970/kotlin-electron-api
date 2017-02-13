@@ -4,11 +4,25 @@
       <methods>
          <method name="showItemInFolder">
             <param name="fullPath" type="String"/>
-            <returns type="Boolean"/>
+            <returns type="Boolean">
+               <description>
+                  <para>- Whether the item was successfully shown</para>
+               </description>
+            </returns>
+            <description>
+               <para>Show the given file in a file manager. If possible, select the file.</para>
+            </description>
          </method>
          <method name="openItem">
             <param name="fullPath" type="String"/>
-            <returns type="Boolean"/>
+            <returns type="Boolean">
+               <description>
+                  <para>- Whether the item was successfully opened.</para>
+               </description>
+            </returns>
+            <description>
+               <para>Open the given file in the desktop's default manner.</para>
+            </description>
          </method>
          <method name="openExternal">
             <param name="url" type="String"/>
@@ -18,13 +32,31 @@
             <param optional="true" name="callback" type="Function">
                <param name="error" type="Error"/>
             </param>
-            <returns type="Boolean"/>
+            <returns type="Boolean">
+               <description>
+                  <para>- Whether an application was available to open the URL. If callback is specified, always returns true.</para>
+               </description>
+            </returns>
+            <description>
+               <para>Open the given external protocol URL in the desktop's default manner. (For example, mailto: URLs in the user's default mail agent).</para>
+            </description>
          </method>
          <method name="moveItemToTrash">
             <param name="fullPath" type="String"/>
-            <returns type="Boolean"/>
+            <returns type="Boolean">
+               <description>
+                  <para>- Whether the item was successfully moved to the trash</para>
+               </description>
+            </returns>
+            <description>
+               <para>Move the given file to trash and returns a boolean status for the operation.</para>
+            </description>
          </method>
-         <method name="beep"/>
+         <method name="beep">
+            <description>
+               <para>Play the beep sound.</para>
+            </description>
+         </method>
          <method name="writeShortcutLink">
             <param name="shortcutPath" type="String"/>
             <param optional="true" name="operation" type="String">
@@ -33,11 +65,26 @@
                <param name="replace"/>
             </param>
             <param name="options" type="ShortcutDetails"/>
-            <returns type="Boolean"/>
+            <returns type="Boolean">
+               <description>
+                  <para>- Whether the shortcut was created successfully</para>
+               </description>
+            </returns>
+            <description>
+               <para>Creates or updates a shortcut link at shortcutPath.</para>
+            </description>
          </method>
          <method name="readShortcutLink">
             <param name="shortcutPath" type="String"/>
-            <returns type="ShortcutDetails"/>
+            <returns type="ShortcutDetails">
+               <description>
+                  <para/>
+               </description>
+            </returns>
+            <description>
+               <para>Resolves the shortcut link at shortcutPath.</para>
+               <para>An exception will be thrown when any error happens.</para>
+            </description>
          </method>
       </methods>
    </object>

@@ -11,12 +11,18 @@ object remote {
 
     // ~ Methods -------------------------------------------------------------------------------
 
+    /**
+     */
     fun getCurrentWindow(): BrowserWindow = 
         module.getCurrentWindow()
 
+    /**
+     */
     fun getCurrentWebContents(): WebContents = 
         module.getCurrentWebContents()
 
+    /**
+     */
     fun getGlobal(name: String): dynamic = 
         module.getGlobal(name)
 

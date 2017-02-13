@@ -5,12 +5,29 @@
          <method name="setFeedURL">
             <param name="url" type="String"/>
             <param optional="true" name="requestHeaders" type="Object"/>
+            <description>
+               <para>Sets the url and initialize the auto updater.</para>
+            </description>
          </method>
          <method name="getFeedURL">
-            <returns type="String"/>
+            <returns type="String">
+               <description>
+                  <para>- The current update feed URL.</para>
+               </description>
+            </returns>
+            <description/>
          </method>
-         <method name="checkForUpdates"/>
-         <method name="quitAndInstall"/>
+         <method name="checkForUpdates">
+            <description>
+               <para>Asks the server whether there is an update. You must call setFeedURL before using this API.</para>
+            </description>
+         </method>
+         <method name="quitAndInstall">
+            <description>
+               <para>Restarts the app and installs the update after it has been downloaded. It should only be called after update-downloaded has been emitted.</para>
+               <para>Note:autoUpdater.quitAndInstall() will close all application windows first and only emit before-quit event on app after that. This is different from the normal quit event sequence.</para>
+            </description>
+         </method>
       </methods>
    </object>
 </file>

@@ -4,17 +4,37 @@
       <methods>
          <method name="require">
             <param name="module" type="String"/>
-            <returns type="any"/>
+            <returns type="any">
+               <description>
+                  <para>- The object returned by require(module) in the main process.</para>
+               </description>
+            </returns>
+            <description/>
          </method>
          <method name="getCurrentWindow">
-            <returns type="BrowserWindow"/>
+            <returns type="BrowserWindow">
+               <description>
+                  <para/>
+               </description>
+            </returns>
+            <description/>
          </method>
          <method name="getCurrentWebContents">
-            <returns type="WebContents"/>
+            <returns type="WebContents">
+               <description>
+                  <para/>
+               </description>
+            </returns>
+            <description/>
          </method>
          <method name="getGlobal">
             <param name="name" type="String"/>
-            <returns type="any"/>
+            <returns type="any">
+               <description>
+                  <para>- The global variable of name (e.g. global[name]) in the main process.</para>
+               </description>
+            </returns>
+            <description/>
          </method>
       </methods>
    </object>

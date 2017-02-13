@@ -3,17 +3,47 @@
    <class title="BrowserWindowProxy">
       <constructor/>
       <methods type="instance">
-         <method name="blur"/>
-         <method name="close"/>
+         <method name="blur">
+            <description>
+               <para>Removes focus from the child window.</para>
+            </description>
+         </method>
+         <method name="close">
+            <description>
+               <para>Forcefully closes the child window without calling its unload event.</para>
+            </description>
+         </method>
          <method name="eval">
             <param name="code" type="String"/>
+            <description>
+               <para>Evaluates the code in the child window.</para>
+            </description>
          </method>
-         <method name="focus"/>
-         <method name="print"/>
+         <method name="focus">
+            <description>
+               <para>Focuses the child window (brings the window to front).</para>
+            </description>
+         </method>
+         <method name="print">
+            <description>
+               <para>Invokes the print dialog on the child window.</para>
+            </description>
+         </method>
          <method name="postMessage">
             <param name="message" type="String"/>
             <param name="targetOrigin" type="String"/>
+            <description>
+               <para>Sends a message to the child window with the specified origin or * for no origin preference.</para>
+               <para>In addition to these methods, the child window implements window.opener object with no properties and a single method.</para>
+            </description>
          </method>
       </methods>
+      <properties type="instance">
+         <property name="closed">
+            <description>
+               <para>A Boolean that is set to true after the child window gets closed.</para>
+            </description>
+         </property>
+      </properties>
    </class>
 </file>

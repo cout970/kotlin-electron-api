@@ -91,64 +91,198 @@
       </constructor>
       <methods type="static">
          <method name="getAllWindows">
-            <returns type="BrowserWindow" isArray="true"/>
+            <returns type="BrowserWindow" isArray="true">
+               <description>
+                  <para>- An array of all opened browser windows.</para>
+               </description>
+            </returns>
+            <description/>
          </method>
          <method name="getFocusedWindow">
-            <returns type="BrowserWindow"/>
+            <returns type="BrowserWindow">
+               <description>
+                  <para>- The window that is focused in this application, otherwise returns null.</para>
+               </description>
+            </returns>
+            <description/>
          </method>
          <method name="fromWebContents">
             <param name="webContents" type="WebContents"/>
-            <returns type="BrowserWindow"/>
+            <returns type="BrowserWindow">
+               <description>
+                  <para>- The window that owns the given webContents.</para>
+               </description>
+            </returns>
+            <description/>
          </method>
          <method name="fromId">
             <param name="id" type="Integer"/>
-            <returns type="BrowserWindow"/>
+            <returns type="BrowserWindow">
+               <description>
+                  <para>- The window with the given id.</para>
+               </description>
+            </returns>
+            <description/>
          </method>
          <method name="addDevToolsExtension">
             <param name="path" type="String"/>
+            <description>
+               <para>Adds DevTools extension located at path, and returns extension's name.</para>
+               <para>The extension will be remembered so you only need to call this API once, this API is not for programming use. If you try to add an extension that has already been loaded, this method will not return and instead log a warning to the console.</para>
+               <para>The method will also not return if the extension's manifest is missing or incomplete.</para>
+               <para>Note: This API cannot be called before the ready event of the app module is emitted.</para>
+            </description>
          </method>
          <method name="removeDevToolsExtension">
             <param name="name" type="String"/>
+            <description>
+               <para>Remove a DevTools extension by name.</para>
+               <para>Note: This API cannot be called before the ready event of the app module is emitted.</para>
+            </description>
          </method>
          <method name="getDevToolsExtensions">
-            <returns type="Object"/>
+            <returns type="Object">
+               <description>
+                  <para>- The keys are the extension names and each value is an Object containing name and version properties.</para>
+               </description>
+            </returns>
+            <description>
+               <para>To check if a DevTools extension is installed you can run the following:</para>
+               <programlisting>...omitted...</programlisting>
+               <para>Note: This API cannot be called before the ready event of the app module is emitted.</para>
+            </description>
          </method>
       </methods>
+      <properties type="instance">
+         <property name="webContents" type="WebContents">
+            <description>
+               <para>A WebContents object this window owns. All web page related events and operations will be done via it.</para>
+               <para>See the webContents documentation for its methods and events.</para>
+            </description>
+         </property>
+         <property name="id" type="Integer">
+            <description>
+               <para>A Integer representing the unique ID of the window.</para>
+            </description>
+         </property>
+      </properties>
       <methods type="instance">
-         <method name="destroy"/>
-         <method name="close"/>
-         <method name="focus"/>
-         <method name="blur"/>
+         <method name="destroy">
+            <description>
+               <para>Force closing the window, the unload and beforeunload event won't be emitted for the web page, and close event will also not be emitted for this window, but it guarantees the closed event will be emitted.</para>
+            </description>
+         </method>
+         <method name="close">
+            <description>
+               <para>Try to close the window. This has the same effect as a user manually clicking the close button of the window. The web page may cancel the close though. See the close event.</para>
+            </description>
+         </method>
+         <method name="focus">
+            <description>
+               <para>Focuses on the window.</para>
+            </description>
+         </method>
+         <method name="blur">
+            <description>
+               <para>Removes focus from the window.</para>
+            </description>
+         </method>
          <method name="isFocused">
-            <returns type="Boolean"/>
+            <returns type="Boolean">
+               <description>
+                  <para>- Whether the window is focused.</para>
+               </description>
+            </returns>
+            <description/>
          </method>
          <method name="isDestroyed">
-            <returns type="Boolean"/>
+            <returns type="Boolean">
+               <description>
+                  <para>- Whether the window is destroyed.</para>
+               </description>
+            </returns>
+            <description/>
          </method>
-         <method name="show"/>
-         <method name="showInactive"/>
-         <method name="hide"/>
+         <method name="show">
+            <description>
+               <para>Shows and gives focus to the window.</para>
+            </description>
+         </method>
+         <method name="showInactive">
+            <description>
+               <para>Shows the window but doesn't focus on it.</para>
+            </description>
+         </method>
+         <method name="hide">
+            <description>
+               <para>Hides the window.</para>
+            </description>
+         </method>
          <method name="isVisible">
-            <returns type="Boolean"/>
+            <returns type="Boolean">
+               <description>
+                  <para>- Whether the window is visible to the user.</para>
+               </description>
+            </returns>
+            <description/>
          </method>
          <method name="isModal">
-            <returns type="Boolean"/>
+            <returns type="Boolean">
+               <description>
+                  <para>- Whether current window is a modal window.</para>
+               </description>
+            </returns>
+            <description/>
          </method>
-         <method name="maximize"/>
-         <method name="unmaximize"/>
+         <method name="maximize">
+            <description>
+               <para>Maximizes the window.</para>
+            </description>
+         </method>
+         <method name="unmaximize">
+            <description>
+               <para>Unmaximizes the window.</para>
+            </description>
+         </method>
          <method name="isMaximized">
-            <returns type="Boolean"/>
+            <returns type="Boolean">
+               <description>
+                  <para>- Whether the window is maximized.</para>
+               </description>
+            </returns>
+            <description/>
          </method>
-         <method name="minimize"/>
-         <method name="restore"/>
+         <method name="minimize">
+            <description>
+               <para>Minimizes the window. On some platforms the minimized window will be shown in the Dock.</para>
+            </description>
+         </method>
+         <method name="restore">
+            <description>
+               <para>Restores the window from minimized state to its previous state.</para>
+            </description>
+         </method>
          <method name="isMinimized">
-            <returns type="Boolean"/>
+            <returns type="Boolean">
+               <description>
+                  <para>- Whether the window is minimized.</para>
+               </description>
+            </returns>
+            <description/>
          </method>
          <method name="setFullScreen">
             <param name="flag" type="Boolean"/>
+            <description>
+               <para>Sets whether the window should be in fullscreen mode.</para>
+            </description>
          </method>
          <method name="isFullScreen">
-            <returns type="Boolean"/>
+            <returns type="Boolean">
+               <description>
+                  <para>- Whether the window is in fullscreen mode.</para>
+               </description>
+            </returns>
+            <description/>
          </method>
          <method name="setAspectRatio">
             <param name="aspectRatio" type="Float"/>
@@ -156,165 +290,377 @@
                <property name="width" type="Integer"/>
                <property name="height" type="Integer"/>
             </param>
+            <description>
+               <para>This will make a window maintain an aspect ratio. The extra size allows a developer to have space, specified in pixels, not included within the aspect ratio calculations. This API already takes into account the difference between a window's size and its content size.</para>
+               <para>Consider a normal window with an HD video player and associated controls. Perhaps there are 15 pixels of controls on the left edge, 25 pixels of controls on the right edge and 50 pixels of controls below the player. In order to maintain a 16:9 aspect ratio (standard aspect ratio for HD @1920x1080) within the player itself we would call this function with arguments of 16/9 and [ 40, 50 ]. The second argument doesn't care where the extra width and height are within the content view--only that they exist. Just sum any extra width and height areas you have within the overall content view.</para>
+            </description>
          </method>
          <method name="previewFile">
             <param name="path" type="String"/>
             <param optional="true" name="displayName" type="String"/>
+            <description>
+               <para>Uses Quick Look to preview a file at a given path.</para>
+            </description>
          </method>
-         <method name="closeFilePreview"/>
+         <method name="closeFilePreview">
+            <description>
+               <para>Closes the currently open Quick Look panel.</para>
+            </description>
+         </method>
          <method name="setBounds">
             <param name="bounds" type="Rectangle"/>
             <param optional="true" name="animate" type="Boolean"/>
+            <description>
+               <para>Resizes and moves the window to the supplied bounds</para>
+            </description>
          </method>
          <method name="getBounds">
-            <returns type="Rectangle"/>
+            <returns type="Rectangle">
+               <description>
+                  <para/>
+               </description>
+            </returns>
+            <description/>
          </method>
          <method name="setContentBounds">
             <param name="bounds" type="Rectangle"/>
             <param optional="true" name="animate" type="Boolean"/>
+            <description>
+               <para>Resizes and moves the window's client area (e.g. the web page) to the supplied bounds.</para>
+            </description>
          </method>
          <method name="getContentBounds">
-            <returns type="Rectangle"/>
+            <returns type="Rectangle">
+               <description>
+                  <para/>
+               </description>
+            </returns>
+            <description/>
          </method>
          <method name="setSize">
             <param name="width" type="Integer"/>
             <param name="height" type="Integer"/>
             <param optional="true" name="animate" type="Boolean"/>
+            <description>
+               <para>Resizes the window to width and height.</para>
+            </description>
          </method>
          <method name="getSize">
-            <returns type="Integer" isArray="true"/>
+            <returns type="Integer" isArray="true">
+               <description>
+                  <para>- Contains the window's width and height.</para>
+               </description>
+            </returns>
+            <description/>
          </method>
          <method name="setContentSize">
             <param name="width" type="Integer"/>
             <param name="height" type="Integer"/>
             <param optional="true" name="animate" type="Boolean"/>
+            <description>
+               <para>Resizes the window's client area (e.g. the web page) to width and height.</para>
+            </description>
          </method>
          <method name="getContentSize">
-            <returns type="Integer" isArray="true"/>
+            <returns type="Integer" isArray="true">
+               <description>
+                  <para>- Contains the window's client area's width and height.</para>
+               </description>
+            </returns>
+            <description/>
          </method>
          <method name="setMinimumSize">
             <param name="width" type="Integer"/>
             <param name="height" type="Integer"/>
+            <description>
+               <para>Sets the minimum size of window to width and height.</para>
+            </description>
          </method>
          <method name="getMinimumSize">
-            <returns type="Integer" isArray="true"/>
+            <returns type="Integer" isArray="true">
+               <description>
+                  <para>- Contains the window's minimum width and height.</para>
+               </description>
+            </returns>
+            <description/>
          </method>
          <method name="setMaximumSize">
             <param name="width" type="Integer"/>
             <param name="height" type="Integer"/>
+            <description>
+               <para>Sets the maximum size of window to width and height.</para>
+            </description>
          </method>
          <method name="getMaximumSize">
-            <returns type="Integer" isArray="true"/>
+            <returns type="Integer" isArray="true">
+               <description>
+                  <para>- Contains the window's maximum width and height.</para>
+               </description>
+            </returns>
+            <description/>
          </method>
          <method name="setResizable">
             <param name="resizable" type="Boolean"/>
+            <description>
+               <para>Sets whether the window can be manually resized by user.</para>
+            </description>
          </method>
          <method name="isResizable">
-            <returns type="Boolean"/>
+            <returns type="Boolean">
+               <description>
+                  <para>- Whether the window can be manually resized by user.</para>
+               </description>
+            </returns>
+            <description/>
          </method>
          <method name="setMovable">
             <param name="movable" type="Boolean"/>
+            <description>
+               <para>Sets whether the window can be moved by user. On Linux does nothing.</para>
+            </description>
          </method>
          <method name="isMovable">
-            <returns type="Boolean"/>
+            <returns type="Boolean">
+               <description>
+                  <para>- Whether the window can be moved by user.</para>
+               </description>
+            </returns>
+            <description>
+               <para>On Linux always returns true.</para>
+            </description>
          </method>
          <method name="setMinimizable">
             <param name="minimizable" type="Boolean"/>
+            <description>
+               <para>Sets whether the window can be manually minimized by user. On Linux does nothing.</para>
+            </description>
          </method>
          <method name="isMinimizable">
-            <returns type="Boolean"/>
+            <returns type="Boolean">
+               <description>
+                  <para>- Whether the window can be manually minimized by user</para>
+               </description>
+            </returns>
+            <description>
+               <para>On Linux always returns true.</para>
+            </description>
          </method>
          <method name="setMaximizable">
             <param name="maximizable" type="Boolean"/>
+            <description>
+               <para>Sets whether the window can be manually maximized by user. On Linux does nothing.</para>
+            </description>
          </method>
          <method name="isMaximizable">
-            <returns type="Boolean"/>
+            <returns type="Boolean">
+               <description>
+                  <para>- Whether the window can be manually maximized by user.</para>
+               </description>
+            </returns>
+            <description>
+               <para>On Linux always returns true.</para>
+            </description>
          </method>
          <method name="setFullScreenable">
             <param name="fullscreenable" type="Boolean"/>
+            <description>
+               <para>Sets whether the maximize/zoom window button toggles fullscreen mode or maximizes the window.</para>
+            </description>
          </method>
          <method name="isFullScreenable">
-            <returns type="Boolean"/>
+            <returns type="Boolean">
+               <description>
+                  <para>- Whether the maximize/zoom window button toggles fullscreen mode or maximizes the window.</para>
+               </description>
+            </returns>
+            <description/>
          </method>
          <method name="setClosable">
             <param name="closable" type="Boolean"/>
+            <description>
+               <para>Sets whether the window can be manually closed by user. On Linux does nothing.</para>
+            </description>
          </method>
          <method name="isClosable">
-            <returns type="Boolean"/>
+            <returns type="Boolean">
+               <description>
+                  <para>- Whether the window can be manually closed by user.</para>
+               </description>
+            </returns>
+            <description>
+               <para>On Linux always returns true.</para>
+            </description>
          </method>
          <method name="setAlwaysOnTop">
             <param name="flag" type="Boolean"/>
             <param optional="true" name="level" type="String"/>
             <param optional="true" name="relativeLevel" type="Integer"/>
+            <description>
+               <para>Sets whether the window should show always on top of other windows. After setting this, the window is still a normal window, not a toolbox window which can not be focused on.</para>
+            </description>
          </method>
          <method name="isAlwaysOnTop">
-            <returns type="Boolean"/>
+            <returns type="Boolean">
+               <description>
+                  <para>- Whether the window is always on top of other windows.</para>
+               </description>
+            </returns>
+            <description/>
          </method>
-         <method name="center"/>
+         <method name="center">
+            <description>
+               <para>Moves window to the center of the screen.</para>
+            </description>
+         </method>
          <method name="setPosition">
             <param name="x" type="Integer"/>
             <param name="y" type="Integer"/>
             <param optional="true" name="animate" type="Boolean"/>
+            <description>
+               <para>Moves window to x and y.</para>
+            </description>
          </method>
          <method name="getPosition">
-            <returns type="Integer" isArray="true"/>
+            <returns type="Integer" isArray="true">
+               <description>
+                  <para>- Contains the window's current position.</para>
+               </description>
+            </returns>
+            <description/>
          </method>
          <method name="setTitle">
             <param name="title" type="String"/>
+            <description>
+               <para>Changes the title of native window to title.</para>
+            </description>
          </method>
          <method name="getTitle">
-            <returns type="String"/>
+            <returns type="String">
+               <description>
+                  <para>- The title of the native window.</para>
+               </description>
+            </returns>
+            <description>
+               <para>Note: The title of web page can be different from the title of the native window.</para>
+            </description>
          </method>
          <method name="setSheetOffset">
             <param name="offsetY" type="Float"/>
             <param optional="true" name="offsetX" type="Float"/>
+            <description>
+               <para>Changes the attachment point for sheets on macOS. By default, sheets are attached just below the window frame, but you may want to display them beneath a HTML-rendered toolbar. For example:</para>
+               <programlisting>...omitted...</programlisting>
+            </description>
          </method>
          <method name="flashFrame">
             <param name="flag" type="Boolean"/>
+            <description>
+               <para>Starts or stops flashing the window to attract user's attention.</para>
+            </description>
          </method>
          <method name="setSkipTaskbar">
             <param name="skip" type="Boolean"/>
+            <description>
+               <para>Makes the window not show in the taskbar.</para>
+            </description>
          </method>
          <method name="setKiosk">
             <param name="flag" type="Boolean"/>
+            <description>
+               <para>Enters or leaves the kiosk mode.</para>
+            </description>
          </method>
          <method name="isKiosk">
-            <returns type="Boolean"/>
+            <returns type="Boolean">
+               <description>
+                  <para>- Whether the window is in kiosk mode.</para>
+               </description>
+            </returns>
+            <description/>
          </method>
          <method name="getNativeWindowHandle">
-            <returns type="Buffer"/>
+            <returns type="Buffer">
+               <description>
+                  <para>- The platform-specific handle of the window.</para>
+               </description>
+            </returns>
+            <description>
+               <para>The native type of the handle is HWND on Windows, NSView* on macOS, and Window (unsigned long) on Linux.</para>
+            </description>
          </method>
          <method name="hookWindowMessage">
             <param name="message" type="Integer"/>
             <param name="callback" type="Function"/>
+            <description>
+               <para>Hooks a windows message. The callback is called when the message is received in the WndProc.</para>
+            </description>
          </method>
          <method name="isWindowMessageHooked">
             <param name="message" type="Integer"/>
-            <returns type="Boolean"/>
+            <returns type="Boolean">
+               <description>
+                  <para>- true or false depending on whether the message is hooked.</para>
+               </description>
+            </returns>
+            <description/>
          </method>
          <method name="unhookWindowMessage">
             <param name="message" type="Integer"/>
+            <description>
+               <para>Unhook the window message.</para>
+            </description>
          </method>
-         <method name="unhookAllWindowMessages"/>
+         <method name="unhookAllWindowMessages">
+            <description>
+               <para>Unhooks all of the window messages.</para>
+            </description>
+         </method>
          <method name="setRepresentedFilename">
             <param name="filename" type="String"/>
+            <description>
+               <para>Sets the pathname of the file the window represents, and the icon of the file will show in window's title bar.</para>
+            </description>
          </method>
          <method name="getRepresentedFilename">
-            <returns type="String"/>
+            <returns type="String">
+               <description>
+                  <para>- The pathname of the file the window represents.</para>
+               </description>
+            </returns>
+            <description/>
          </method>
          <method name="setDocumentEdited">
             <param name="edited" type="Boolean"/>
+            <description>
+               <para>Specifies whether the window’s document has been edited, and the icon in title bar will become gray when set to true.</para>
+            </description>
          </method>
          <method name="isDocumentEdited">
-            <returns type="Boolean"/>
+            <returns type="Boolean">
+               <description>
+                  <para>- Whether the window's document has been edited.</para>
+               </description>
+            </returns>
+            <description/>
          </method>
-         <method name="focusOnWebView"/>
-         <method name="blurWebView"/>
+         <method name="focusOnWebView">
+            <description>
+               <para/>
+            </description>
+         </method>
+         <method name="blurWebView">
+            <description>
+               <para/>
+            </description>
+         </method>
          <method name="capturePage">
             <param optional="true" name="rect" type="Rectangle"/>
             <param name="callback" type="Function">
                <param name="image" type="NativeImage"/>
             </param>
+            <description>
+               <para>Same as webContents.capturePage([rect, ]callback).</para>
+            </description>
          </method>
          <method name="loadURL">
             <param name="url" type="String"/>
@@ -329,36 +675,125 @@
                   <option type="UploadBlob"/>
                </property>
             </param>
+            <description>
+               <para>Same as webContents.loadURL(url[, options]).</para>
+               <para>The url can be a remote address (e.g. http://) or a path to a local HTML file using the file:// protocol.</para>
+               <para>To ensure that file URLs are properly formatted, it is recommended to use Node's url.format method:</para>
+               <programlisting>...omitted...</programlisting>
+               <para>You can load a URL using a POST request with URL-encoded data by doing the following:</para>
+               <programlisting>...omitted...</programlisting>
+            </description>
          </method>
-         <method name="reload"/>
+         <method name="reload">
+            <description>
+               <para>Same as webContents.reload.</para>
+            </description>
+         </method>
          <method name="setMenu">
             <param name="menu" type="Menu"/>
+            <description>
+               <para>Sets the menu as the window's menu bar, setting it to null will remove the menu bar.</para>
+            </description>
          </method>
          <method name="setProgressBar">
             <param name="progress" type="Double"/>
             <param optional="true" name="options" type="Object">
                <property name="mode" type="String"/>
             </param>
+            <description>
+               <para>Sets progress value in progress bar. Valid range is [0, 1.0].</para>
+               <para>Remove progress bar when progress &lt; 0; Change to indeterminate mode when progress &gt; 1.</para>
+               <para>On Linux platform, only supports Unity desktop environment, you need to specify the *.desktop file name to desktopName field in package.json. By default, it will assume app.getName().desktop.</para>
+               <para>On Windows, a mode can be passed. Accepted values are none, normal, indeterminate, error, and paused. If you call setProgressBar without a mode set (but with a value within the valid range), normal will be assumed.</para>
+            </description>
          </method>
          <method name="setOverlayIcon">
             <param name="overlay" type="NativeImage"/>
             <param name="description" type="String"/>
+            <description>
+               <para>Sets a 16 x 16 pixel overlay onto the current taskbar icon, usually used to convey some sort of application status or to passively notify the user.</para>
+            </description>
          </method>
          <method name="setHasShadow">
             <param name="hasShadow" type="Boolean"/>
+            <description>
+               <para>Sets whether the window should have a shadow. On Windows and Linux does nothing.</para>
+            </description>
          </method>
          <method name="hasShadow">
-            <returns type="Boolean"/>
+            <returns type="Boolean">
+               <description>
+                  <para>- Whether the window has a shadow.</para>
+               </description>
+            </returns>
+            <description>
+               <para>On Windows and Linux always returns true.</para>
+            </description>
          </method>
          <method name="setThumbarButtons">
             <param name="buttons" type="ThumbarButton" isArray="true"/>
-            <returns type="Boolean"/>
+            <returns type="Boolean">
+               <description>
+                  <para>- Whether the buttons were added successfully</para>
+               </description>
+            </returns>
+            <description>
+               <para>Add a thumbnail toolbar with a specified set of buttons to the thumbnail image of a window in a taskbar button layout. Returns a Boolean object indicates whether the thumbnail has been added successfully.</para>
+               <para>The number of buttons in thumbnail toolbar should be no greater than 7 due to the limited room. Once you setup the thumbnail toolbar, the toolbar cannot be removed due to the platform's limitation. But you can call the API with an empty array to clean the buttons.</para>
+               <para>The buttons is an array of Button objects:</para>
+               <list>
+                  <item>
+                     <para>Button Object</para>
+                     <list>
+                        <item>
+                           <para>iconNativeImage - The icon showing in thumbnail toolbar.</para>
+                        </item>
+                        <item>
+                           <para>click Function</para>
+                        </item>
+                        <item>
+                           <para>tooltip String (optional) - The text of the button's tooltip.</para>
+                        </item>
+                        <item>
+                           <para>flags String[] (optional) - Control specific states and behaviors of the button. By default, it is ['enabled'].</para>
+                        </item>
+                     </list>
+                  </item>
+               </list>
+               <para>The flags is an array that can include following Strings:</para>
+               <list>
+                  <item>
+                     <para>enabled - The button is active and available to the user.</para>
+                  </item>
+                  <item>
+                     <para>disabled - The button is disabled. It is present, but has a visual state indicating it will not respond to user action.</para>
+                  </item>
+                  <item>
+                     <para>dismissonclick - When the button is clicked, the thumbnail window closes immediately.</para>
+                  </item>
+                  <item>
+                     <para>nobackground - Do not draw a button border, use only the image.</para>
+                  </item>
+                  <item>
+                     <para>hidden - The button is not shown to the user.</para>
+                  </item>
+                  <item>
+                     <para>noninteractive - The button is enabled but not interactive; no pressed button state is drawn. This value is intended for instances where the button is used in a notification.</para>
+                  </item>
+               </list>
+            </description>
          </method>
          <method name="setThumbnailClip">
             <param name="region" type="Rectangle"/>
+            <description>
+               <para>Sets the region of the window to show as the thumbnail image displayed when hovering over the window in the taskbar. You can reset the thumbnail to be the entire window by specifying an empty region: {x: 0, y: 0, width: 0, height: 0}.</para>
+            </description>
          </method>
          <method name="setThumbnailToolTip">
             <param name="toolTip" type="String"/>
+            <description>
+               <para>Sets the toolTip that is displayed when hovering over the window thumbnail in the taskbar.</para>
+            </description>
          </method>
          <method name="setAppDetails">
             <param name="options" type="Object">
@@ -368,52 +803,121 @@
                <property optional="true" name="relaunchCommand" type="String"/>
                <property optional="true" name="relaunchDisplayName" type="String"/>
             </param>
+            <description>
+               <para>Sets the properties for the window's taskbar button.</para>
+               <para>Note:relaunchCommand and relaunchDisplayName must always be set together. If one of those properties is not set, then neither will be used.</para>
+            </description>
          </method>
-         <method name="showDefinitionForSelection"/>
+         <method name="showDefinitionForSelection">
+            <description>
+               <para>Same as webContents.showDefinitionForSelection().</para>
+            </description>
+         </method>
          <method name="setIcon">
             <param name="icon" type="NativeImage"/>
+            <description>
+               <para>Changes window icon.</para>
+            </description>
          </method>
          <method name="setAutoHideMenuBar">
             <param name="hide" type="Boolean"/>
+            <description>
+               <para>Sets whether the window menu bar should hide itself automatically. Once set the menu bar will only show when users press the single Alt key.</para>
+               <para>If the menu bar is already visible, calling setAutoHideMenuBar(true) won't hide it immediately.</para>
+            </description>
          </method>
          <method name="isMenuBarAutoHide">
-            <returns type="Boolean"/>
+            <returns type="Boolean">
+               <description>
+                  <para>- Whether menu bar automatically hides itself.</para>
+               </description>
+            </returns>
+            <description/>
          </method>
          <method name="setMenuBarVisibility">
             <param name="visible" type="Boolean"/>
+            <description>
+               <para>Sets whether the menu bar should be visible. If the menu bar is auto-hide, users can still bring up the menu bar by pressing the single Alt key.</para>
+            </description>
          </method>
          <method name="isMenuBarVisible">
-            <returns type="Boolean"/>
+            <returns type="Boolean">
+               <description>
+                  <para>- Whether the menu bar is visible.</para>
+               </description>
+            </returns>
+            <description/>
          </method>
          <method name="setVisibleOnAllWorkspaces">
             <param name="visible" type="Boolean"/>
+            <description>
+               <para>Sets whether the window should be visible on all workspaces.</para>
+               <para>Note: This API does nothing on Windows.</para>
+            </description>
          </method>
          <method name="isVisibleOnAllWorkspaces">
-            <returns type="Boolean"/>
+            <returns type="Boolean">
+               <description>
+                  <para>- Whether the window is visible on all workspaces.</para>
+               </description>
+            </returns>
+            <description>
+               <para>Note: This API always returns false on Windows.</para>
+            </description>
          </method>
          <method name="setIgnoreMouseEvents">
             <param name="ignore" type="Boolean"/>
+            <description>
+               <para>Makes the window ignore all mouse events.</para>
+               <para>All mouse events happened in this window will be passed to the window below this window, but if this window has focus, it will still receive keyboard events.</para>
+            </description>
          </method>
          <method name="setContentProtection">
             <param name="enable" type="Boolean"/>
+            <description>
+               <para>Prevents the window contents from being captured by other apps.</para>
+               <para>On macOS it sets the NSWindow's sharingType to NSWindowSharingNone. On Windows it calls SetWindowDisplayAffinity with WDA_MONITOR.</para>
+            </description>
          </method>
          <method name="setFocusable">
             <param name="focusable" type="Boolean"/>
+            <description>
+               <para>Changes whether the window can be focused.</para>
+            </description>
          </method>
          <method name="setParentWindow">
             <param name="parent" type="BrowserWindow"/>
+            <description>
+               <para>Sets parent as current window's parent window, passing null will turn current window into a top-level window.</para>
+            </description>
          </method>
          <method name="getParentWindow">
-            <returns type="BrowserWindow"/>
+            <returns type="BrowserWindow">
+               <description>
+                  <para>- The parent window.</para>
+               </description>
+            </returns>
+            <description/>
          </method>
          <method name="getChildWindows">
-            <returns type="BrowserWindow" isArray="true"/>
+            <returns type="BrowserWindow" isArray="true">
+               <description>
+                  <para>- All child windows.</para>
+               </description>
+            </returns>
+            <description/>
          </method>
          <method name="setAutoHideCursor">
             <param name="autoHide" type="Boolean"/>
+            <description>
+               <para>Controls whether to hide cursor when typing.</para>
+            </description>
          </method>
          <method name="setVibrancy">
             <param name="type" type="String"/>
+            <description>
+               <para>Adds a vibrancy effect to the browser window. Passing null or an empty string will remove the vibrancy effect on the window.</para>
+            </description>
          </method>
       </methods>
    </class>

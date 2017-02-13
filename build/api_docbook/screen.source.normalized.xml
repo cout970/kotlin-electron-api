@@ -3,24 +3,63 @@
    <object title="screen">
       <methods>
          <method name="getCursorScreenPoint">
-            <returns type="Object"/>
+            <returns type="Object">
+               <param name="x" type="Integer"/>
+               <param name="y" type="Integer"/>
+               <description>
+                  <para>:</para>
+               </description>
+            </returns>
+            <param name="x" type="Integer"/>
+            <param name="y" type="Integer"/>
+            <description>
+               <list>
+                  <item>
+                     <para>x Integer</para>
+                  </item>
+                  <item>
+                     <para>y Integer</para>
+                  </item>
+               </list>
+               <para>The current absolute position of the mouse pointer.</para>
+            </description>
          </method>
          <method name="getPrimaryDisplay">
-            <returns type="Display"/>
+            <returns type="Display">
+               <description>
+                  <para/>
+               </description>
+            </returns>
+            <description/>
          </method>
          <method name="getAllDisplays">
-            <returns type="Display" isArray="true"/>
+            <returns type="Display" isArray="true">
+               <description>
+                  <para/>
+               </description>
+            </returns>
+            <description/>
          </method>
          <method name="getDisplayNearestPoint">
             <param name="point" type="Object">
                <property name="x" type="Integer"/>
                <property name="y" type="Integer"/>
             </param>
-            <returns type="Display"/>
+            <returns type="Display">
+               <description>
+                  <para/>
+               </description>
+            </returns>
+            <description/>
          </method>
          <method name="getDisplayMatching">
             <param name="rect" type="Rectangle"/>
-            <returns type="Display"/>
+            <returns type="Display">
+               <description>
+                  <para/>
+               </description>
+            </returns>
+            <description/>
          </method>
       </methods>
    </object>

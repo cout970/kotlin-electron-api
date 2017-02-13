@@ -3,11 +3,26 @@
    <object title="nativeImage">
       <methods>
          <method name="createEmpty">
-            <returns type="NativeImage"/>
+            <returns type="NativeImage">
+               <description>
+                  <para/>
+               </description>
+            </returns>
+            <description>
+               <para>Creates an empty NativeImage instance.</para>
+            </description>
          </method>
          <method name="createFromPath">
             <param name="path" type="String"/>
-            <returns type="NativeImage"/>
+            <returns type="NativeImage">
+               <description>
+                  <para/>
+               </description>
+            </returns>
+            <description>
+               <para>Creates a new NativeImage instance from a file located at path. This method returns an empty image if the path does not exist, cannot be read, or is not a valid image.</para>
+               <programlisting>...omitted...</programlisting>
+            </description>
          </method>
          <method name="createFromBuffer">
             <param name="buffer" type="Buffer"/>
@@ -16,45 +31,120 @@
                <property optional="true" name="height" type="Integer"/>
                <property optional="true" name="scaleFactor" type="Double"/>
             </param>
-            <returns type="NativeImage"/>
+            <returns type="NativeImage">
+               <description>
+                  <para/>
+               </description>
+            </returns>
+            <description>
+               <para>Creates a new NativeImage instance from buffer.</para>
+            </description>
          </method>
          <method name="createFromDataURL">
             <param name="dataURL" type="String"/>
+            <description>
+               <para>Creates a new NativeImage instance from dataURL.</para>
+            </description>
          </method>
       </methods>
       <class title="NativeImage">
          <constructor/>
          <methods type="instance">
             <method name="toPNG">
-               <returns type="Buffer"/>
+               <returns type="Buffer">
+                  <description>
+                     <para>- A Buffer that contains the image's PNG encoded data.</para>
+                  </description>
+               </returns>
+               <description/>
             </method>
             <method name="toJPEG">
                <param name="quality" type="Integer"/>
-               <returns type="Buffer"/>
+               <returns type="Buffer">
+                  <description>
+                     <para>- A Buffer that contains the image's JPEG encoded data.</para>
+                  </description>
+               </returns>
+               <description/>
             </method>
             <method name="toBitmap">
-               <returns type="Buffer"/>
+               <returns type="Buffer">
+                  <description>
+                     <para>- A Buffer that contains a copy of the image's raw bitmap pixel data.</para>
+                  </description>
+               </returns>
+               <description/>
             </method>
             <method name="toDataURL">
-               <returns type="String"/>
+               <returns type="String">
+                  <description>
+                     <para>- The data URL of the image.</para>
+                  </description>
+               </returns>
+               <description/>
             </method>
             <method name="getBitmap">
-               <returns type="Buffer"/>
+               <returns type="Buffer">
+                  <description>
+                     <para>- A Buffer that contains the image's raw bitmap pixel data.</para>
+                  </description>
+               </returns>
+               <description>
+                  <para>The difference between getBitmap() and toBitmap() is, getBitmap() does not copy the bitmap data, so you have to use the returned Buffer immediately in current event loop tick, otherwise the data might be changed or destroyed.</para>
+               </description>
             </method>
             <method name="getNativeHandle">
-               <returns type="Buffer"/>
+               <returns type="Buffer">
+                  <description>
+                     <para>- A Buffer that stores C pointer to underlying native handle of the image. On macOS, a pointer to NSImage instance would be returned.</para>
+                  </description>
+               </returns>
+               <description>
+                  <para>Notice that the returned pointer is a weak pointer to the underlying native image instead of a copy, so you must ensure that the associated nativeImage instance is kept around.</para>
+               </description>
             </method>
             <method name="isEmpty">
-               <returns type="Boolean"/>
+               <returns type="Boolean">
+                  <description>
+                     <para>- Whether the image is empty.</para>
+                  </description>
+               </returns>
+               <description/>
             </method>
             <method name="getSize">
-               <returns type="Object"/>
+               <returns type="Object">
+                  <param name="width" type="Integer"/>
+                  <param name="height" type="Integer"/>
+                  <description>
+                     <para>:</para>
+                  </description>
+               </returns>
+               <param name="width" type="Integer"/>
+               <param name="height" type="Integer"/>
+               <description>
+                  <list>
+                     <item>
+                        <para>width Integer</para>
+                     </item>
+                     <item>
+                        <para>height Integer</para>
+                     </item>
+                  </list>
+               </description>
             </method>
             <method name="setTemplateImage">
                <param name="option" type="Boolean"/>
+               <description>
+                  <para>Marks the image as a template image.</para>
+               </description>
             </method>
             <method name="isTemplateImage">
-               <returns type="Boolean"/>
+               <returns type="Boolean">
+                  <description>
+                     <para>- Whether the image is a template image.</para>
+                  </description>
+               </returns>
+               <description/>
             </method>
             <method name="crop">
                <param name="rect" type="Object">
@@ -63,7 +153,12 @@
                   <property name="width" type="Integer"/>
                   <property name="height" type="Integer"/>
                </param>
-               <returns type="NativeImage"/>
+               <returns type="NativeImage">
+                  <description>
+                     <para>- The cropped image.</para>
+                  </description>
+               </returns>
+               <description/>
             </method>
             <method name="resize">
                <param name="options" type="Object">
@@ -71,10 +166,22 @@
                   <property optional="true" name="height" type="Integer"/>
                   <property optional="true" name="quality" type="String"/>
                </param>
-               <returns type="NativeImage"/>
+               <returns type="NativeImage">
+                  <description>
+                     <para>- The resized image.</para>
+                  </description>
+               </returns>
+               <description>
+                  <para>If only the height or the width are specified then the current aspect ratio will be preserved in the resized image.</para>
+               </description>
             </method>
             <method name="getAspectRatio">
-               <returns type="Float"/>
+               <returns type="Float">
+                  <description>
+                     <para>- The image's aspect ratio.</para>
+                  </description>
+               </returns>
+               <description/>
             </method>
          </methods>
       </class>
@@ -83,35 +190,100 @@
       <constructor/>
       <methods type="instance">
          <method name="toPNG">
-            <returns type="Buffer"/>
+            <returns type="Buffer">
+               <description>
+                  <para>- A Buffer that contains the image's PNG encoded data.</para>
+               </description>
+            </returns>
+            <description/>
          </method>
          <method name="toJPEG">
             <param name="quality" type="Integer"/>
-            <returns type="Buffer"/>
+            <returns type="Buffer">
+               <description>
+                  <para>- A Buffer that contains the image's JPEG encoded data.</para>
+               </description>
+            </returns>
+            <description/>
          </method>
          <method name="toBitmap">
-            <returns type="Buffer"/>
+            <returns type="Buffer">
+               <description>
+                  <para>- A Buffer that contains a copy of the image's raw bitmap pixel data.</para>
+               </description>
+            </returns>
+            <description/>
          </method>
          <method name="toDataURL">
-            <returns type="String"/>
+            <returns type="String">
+               <description>
+                  <para>- The data URL of the image.</para>
+               </description>
+            </returns>
+            <description/>
          </method>
          <method name="getBitmap">
-            <returns type="Buffer"/>
+            <returns type="Buffer">
+               <description>
+                  <para>- A Buffer that contains the image's raw bitmap pixel data.</para>
+               </description>
+            </returns>
+            <description>
+               <para>The difference between getBitmap() and toBitmap() is, getBitmap() does not copy the bitmap data, so you have to use the returned Buffer immediately in current event loop tick, otherwise the data might be changed or destroyed.</para>
+            </description>
          </method>
          <method name="getNativeHandle">
-            <returns type="Buffer"/>
+            <returns type="Buffer">
+               <description>
+                  <para>- A Buffer that stores C pointer to underlying native handle of the image. On macOS, a pointer to NSImage instance would be returned.</para>
+               </description>
+            </returns>
+            <description>
+               <para>Notice that the returned pointer is a weak pointer to the underlying native image instead of a copy, so you must ensure that the associated nativeImage instance is kept around.</para>
+            </description>
          </method>
          <method name="isEmpty">
-            <returns type="Boolean"/>
+            <returns type="Boolean">
+               <description>
+                  <para>- Whether the image is empty.</para>
+               </description>
+            </returns>
+            <description/>
          </method>
          <method name="getSize">
-            <returns type="Object"/>
+            <returns type="Object">
+               <param name="width" type="Integer"/>
+               <param name="height" type="Integer"/>
+               <description>
+                  <para>:</para>
+               </description>
+            </returns>
+            <param name="width" type="Integer"/>
+            <param name="height" type="Integer"/>
+            <description>
+               <list>
+                  <item>
+                     <para>width Integer</para>
+                  </item>
+                  <item>
+                     <para>height Integer</para>
+                  </item>
+               </list>
+            </description>
          </method>
          <method name="setTemplateImage">
             <param name="option" type="Boolean"/>
+            <description>
+               <para>Marks the image as a template image.</para>
+            </description>
          </method>
          <method name="isTemplateImage">
-            <returns type="Boolean"/>
+            <returns type="Boolean">
+               <description>
+                  <para>- Whether the image is a template image.</para>
+               </description>
+            </returns>
+            <description/>
          </method>
          <method name="crop">
             <param name="rect" type="Object">
@@ -120,7 +292,12 @@
                <property name="width" type="Integer"/>
                <property name="height" type="Integer"/>
             </param>
-            <returns type="NativeImage"/>
+            <returns type="NativeImage">
+               <description>
+                  <para>- The cropped image.</para>
+               </description>
+            </returns>
+            <description/>
          </method>
          <method name="resize">
             <param name="options" type="Object">
@@ -128,10 +305,22 @@
                <property optional="true" name="height" type="Integer"/>
                <property optional="true" name="quality" type="String"/>
             </param>
-            <returns type="NativeImage"/>
+            <returns type="NativeImage">
+               <description>
+                  <para>- The resized image.</para>
+               </description>
+            </returns>
+            <description>
+               <para>If only the height or the width are specified then the current aspect ratio will be preserved in the resized image.</para>
+            </description>
          </method>
          <method name="getAspectRatio">
-            <returns type="Float"/>
+            <returns type="Float">
+               <description>
+                  <para>- The image's aspect ratio.</para>
+               </description>
+            </returns>
+            <description/>
          </method>
       </methods>
    </class>

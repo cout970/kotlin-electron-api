@@ -21,12 +21,42 @@
             <property optional="true" name="visible" type="Boolean"/>
             <property optional="true" name="checked" type="Boolean"/>
             <property optional="true" name="submenu" type="union">
-               <option type="MenuItemConstructorOptions[]"/>
+               <option type="MenuItemConstructorOptions" isArray="true"/>
                <option type="Menu"/>
             </property>
             <property optional="true" name="id" type="String"/>
             <property optional="true" name="position" type="String"/>
          </param>
       </constructor>
+      <properties type="instance">
+         <property name="enabled">
+            <description>
+               <para>A Boolean indicating whether the item is enabled, this property can be dynamically changed.</para>
+            </description>
+         </property>
+         <property name="visible">
+            <description>
+               <para>A Boolean indicating whether the item is visible, this property can be dynamically changed.</para>
+            </description>
+         </property>
+         <property name="checked">
+            <description>
+               <para>A Boolean indicating whether the item is checked, this property can be dynamically changed.</para>
+               <para>A checkbox menu item will toggle the checked property on and off when selected.</para>
+               <para>A radio menu item will turn on its checked property when clicked, and will turn off that property for all adjacent items in the same menu.</para>
+               <para>You can add a click function for additional behavior.</para>
+            </description>
+         </property>
+         <property name="label">
+            <description>
+               <para>A String representing the menu items visible label</para>
+            </description>
+         </property>
+         <property name="click">
+            <description>
+               <para>A Function that is fired when the MenuItem recieves a click event</para>
+            </description>
+         </property>
+      </properties>
    </class>
 </file>

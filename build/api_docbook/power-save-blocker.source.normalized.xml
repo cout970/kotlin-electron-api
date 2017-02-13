@@ -7,14 +7,31 @@
                <param name="prevent-app-suspension"/>
                <param name="prevent-display-sleep"/>
             </param>
-            <returns type="Integer"/>
+            <returns type="Integer">
+               <description>
+                  <para>- The blocker ID that is assigned to this power blocker</para>
+               </description>
+            </returns>
+            <description>
+               <para>Starts preventing the system from entering lower-power mode. Returns an integer identifying the power save blocker.</para>
+               <para>Note:prevent-display-sleep has higher precedence over prevent-app-suspension. Only the highest precedence type takes effect. In other words, prevent-display-sleep always takes precedence over prevent-app-suspension.</para>
+               <para>For example, an API calling A requests for prevent-app-suspension, and another calling B requests for prevent-display-sleep. prevent-display-sleep will be used until B stops its request. After that, prevent-app-suspension is used.</para>
+            </description>
          </method>
          <method name="stop">
             <param name="id" type="Integer"/>
+            <description>
+               <para>Stops the specified power save blocker.</para>
+            </description>
          </method>
          <method name="isStarted">
             <param name="id" type="Integer"/>
-            <returns type="Boolean"/>
+            <returns type="Boolean">
+               <description>
+                  <para>- Whether the corresponding powerSaveBlocker has started.</para>
+               </description>
+            </returns>
+            <description/>
          </method>
       </methods>
    </object>

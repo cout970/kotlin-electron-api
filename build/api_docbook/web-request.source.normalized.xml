@@ -21,10 +21,60 @@
                   </param>
                </param>
             </param>
+            <description>
+               <para>The listener will be called with listener(details, callback) when a request is about to occur.</para>
+               <para>The uploadData is an array of UploadData objects.</para>
+               <para>The callback has to be called with an response object.</para>
+            </description>
          </method>
          <method name="onBeforeSendHeaders">
             <param name="filter" type="Object"/>
             <param name="listener" type="Function"/>
+            <description>
+               <para>The listener will be called with listener(details, callback) before sending an HTTP request, once the request headers are available. This may occur after a TCP connection is made to the server, but before any http data is sent.</para>
+               <list>
+                  <item>
+                     <para>details Object</para>
+                     <list>
+                        <item>
+                           <para>id Integer</para>
+                        </item>
+                        <item>
+                           <para>url String</para>
+                        </item>
+                        <item>
+                           <para>method String</para>
+                        </item>
+                        <item>
+                           <para>resourceType String</para>
+                        </item>
+                        <item>
+                           <para>timestamp Double</para>
+                        </item>
+                        <item>
+                           <para>requestHeaders Object</para>
+                        </item>
+                     </list>
+                  </item>
+                  <item>
+                     <para>callback Function</para>
+                     <list>
+                        <item>
+                           <para>response Object</para>
+                           <list>
+                              <item>
+                                 <para>cancel Boolean (optional)</para>
+                              </item>
+                              <item>
+                                 <para>requestHeaders Object (optional) - When provided, request will be made with these headers.</para>
+                              </item>
+                           </list>
+                        </item>
+                     </list>
+                  </item>
+               </list>
+               <para>The callback has to be called with an response object.</para>
+            </description>
          </method>
          <method name="onSendHeaders">
             <param name="filter" type="Object"/>
@@ -38,10 +88,67 @@
                   <property name="requestHeaders" type="Object"/>
                </param>
             </param>
+            <description>
+               <para>The listener will be called with listener(details) just before a request is going to be sent to the server, modifications of previous onBeforeSendHeaders response are visible by the time this listener is fired.</para>
+            </description>
          </method>
          <method name="onHeadersReceived">
             <param name="filter" type="Object"/>
             <param name="listener" type="Function"/>
+            <description>
+               <para>The listener will be called with listener(details, callback) when HTTP response headers of a request have been received.</para>
+               <list>
+                  <item>
+                     <para>details Object</para>
+                     <list>
+                        <item>
+                           <para>id String</para>
+                        </item>
+                        <item>
+                           <para>url String</para>
+                        </item>
+                        <item>
+                           <para>method String</para>
+                        </item>
+                        <item>
+                           <para>resourceType String</para>
+                        </item>
+                        <item>
+                           <para>timestamp Double</para>
+                        </item>
+                        <item>
+                           <para>statusLine String</para>
+                        </item>
+                        <item>
+                           <para>statusCode Integer</para>
+                        </item>
+                        <item>
+                           <para>responseHeaders Object</para>
+                        </item>
+                     </list>
+                  </item>
+                  <item>
+                     <para>callback Function</para>
+                     <list>
+                        <item>
+                           <para>response Object</para>
+                           <list>
+                              <item>
+                                 <para>cancel Boolean</para>
+                              </item>
+                              <item>
+                                 <para>responseHeaders Object (optional) - When provided, the server is assumed to have responded with these headers.</para>
+                              </item>
+                              <item>
+                                 <para>statusLine String (optional) - Should be provided when overriding responseHeaders to change header status otherwise original response header's status will be used.</para>
+                              </item>
+                           </list>
+                        </item>
+                     </list>
+                  </item>
+               </list>
+               <para>The callback has to be called with an response object.</para>
+            </description>
          </method>
          <method name="onResponseStarted">
             <param name="filter" type="Object"/>
@@ -58,6 +165,9 @@
                   <property name="statusLine" type="String"/>
                </param>
             </param>
+            <description>
+               <para>The listener will be called with listener(details) when first byte of the response body is received. For HTTP requests, this means that the status line and response headers are available.</para>
+            </description>
          </method>
          <method name="onBeforeRedirect">
             <param name="filter" type="Object"/>
@@ -75,6 +185,9 @@
                   <property name="responseHeaders" type="Object"/>
                </param>
             </param>
+            <description>
+               <para>The listener will be called with listener(details) when a server initiated redirect is about to occur.</para>
+            </description>
          </method>
          <method name="onCompleted">
             <param name="filter" type="Object"/>
@@ -91,6 +204,9 @@
                   <property name="statusLine" type="String"/>
                </param>
             </param>
+            <description>
+               <para>The listener will be called with listener(details) when a request is completed.</para>
+            </description>
          </method>
          <method name="onErrorOccurred">
             <param name="filter" type="Object"/>
@@ -105,6 +221,9 @@
                   <property name="error" type="String"/>
                </param>
             </param>
+            <description>
+               <para>The listener will be called with listener(details) when an error occurs.</para>
+            </description>
          </method>
       </methods>
    </class>

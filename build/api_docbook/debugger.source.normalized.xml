@@ -5,11 +5,23 @@
       <methods type="instance">
          <method name="attach">
             <param optional="true" name="protocolVersion" type="String"/>
+            <description>
+               <para>Attaches the debugger to the webContents.</para>
+            </description>
          </method>
          <method name="isAttached">
-            <returns type="Boolean"/>
+            <returns type="Boolean">
+               <description>
+                  <para>- Whether a debugger is attached to the webContents.</para>
+               </description>
+            </returns>
+            <description/>
          </method>
-         <method name="detach"/>
+         <method name="detach">
+            <description>
+               <para>Detaches the debugger from the webContents.</para>
+            </description>
+         </method>
          <method name="sendCommand">
             <param name="method" type="String"/>
             <param optional="true" name="commandParams" type="Object"/>
@@ -17,6 +29,9 @@
                <param name="error" type="Object"/>
                <param name="result" type="Any"/>
             </param>
+            <description>
+               <para>Send given command to the debugging target.</para>
+            </description>
          </method>
       </methods>
    </class>

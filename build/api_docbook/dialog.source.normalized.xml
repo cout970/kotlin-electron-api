@@ -22,7 +22,19 @@
             <param optional="true" name="callback" type="Function">
                <param name="filePaths" type="String" isArray="true"/>
             </param>
-            <returns type="String" isArray="true"/>
+            <returns type="String" isArray="true">
+               <description>
+                  <para>, an array of file paths chosen by the user, if the callback is provided it returns undefined.</para>
+               </description>
+            </returns>
+            <description>
+               <para>The browserWindow argument allows the dialog to attach itself to a parent window, making it modal.</para>
+               <para>The filters specifies an array of file types that can be displayed or selected when you want to limit the user to a specific type. For example:</para>
+               <programlisting>...omitted...</programlisting>
+               <para>The extensions array should contain extensions without wildcards or dots (e.g. 'png' is good but '.png' and '*.png' are bad). To show all files, use the '*' wildcard (no other wildcard is supported).</para>
+               <para>If a callback is passed, the API call will be asynchronous and the result will be passed via callback(filenames)</para>
+               <para>Note: On Windows and Linux an open dialog can not be both a file selector and a directory selector, so if you set properties to ['openFile', 'openDirectory'] on these platforms, a directory selector will be shown.</para>
+            </description>
          </method>
          <method name="showSaveDialog">
             <param optional="true" name="browserWindow" type="BrowserWindow"/>
@@ -35,7 +47,16 @@
             <param optional="true" name="callback" type="Function">
                <param name="filename" type="String"/>
             </param>
-            <returns type="String"/>
+            <returns type="String">
+               <description>
+                  <para>, the path of the file chosen by the user, if a callback is provided it returns undefined.</para>
+               </description>
+            </returns>
+            <description>
+               <para>The browserWindow argument allows the dialog to attach itself to a parent window, making it modal.</para>
+               <para>The filters specifies an array of file types that can be displayed, see dialog.showOpenDialog for an example.</para>
+               <para>If a callback is passed, the API call will be asynchronous and the result will be passed via callback(filename)</para>
+            </description>
          </method>
          <method name="showMessageBox">
             <param optional="true" name="browserWindow" type="BrowserWindow"/>
@@ -53,11 +74,24 @@
             <param optional="true" name="callback" type="Function">
                <param name="response" type="Number"/>
             </param>
-            <returns type="Integer"/>
+            <returns type="Integer">
+               <description>
+                  <para>, the index of the clicked button, if a callback is provided it returns undefined.</para>
+               </description>
+            </returns>
+            <description>
+               <para>Shows a message box, it will block the process until the message box is closed. It returns the index of the clicked button.</para>
+               <para>The browserWindow argument allows the dialog to attach itself to a parent window, making it modal.</para>
+               <para>If a callback is passed, the API call will be asynchronous and the result will be passed via callback(response).</para>
+            </description>
          </method>
          <method name="showErrorBox">
             <param name="title" type="String"/>
             <param name="content" type="String"/>
+            <description>
+               <para>Displays a modal dialog that shows an error message.</para>
+               <para>This API can be called safely before the ready event the app module emits, it is usually used to report errors in early stage of startup. If called before the app readyevent on Linux, the message will be emitted to stderr, and no GUI dialog will appear.</para>
+            </description>
          </method>
       </methods>
    </object>

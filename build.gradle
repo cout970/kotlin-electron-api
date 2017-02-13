@@ -1,4 +1,6 @@
-task clean {
+apply plugin: 'base'
+
+clean.doFirst {
     file(outDir).deleteDir()
 }
 

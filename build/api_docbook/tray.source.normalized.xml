@@ -8,21 +8,37 @@
          </param>
       </constructor>
       <methods type="instance">
-         <method name="destroy"/>
+         <method name="destroy">
+            <description>
+               <para>Destroys the tray icon immediately.</para>
+            </description>
+         </method>
          <method name="setImage">
             <param name="image" type="union">
                <option type="NativeImage"/>
                <option type="String"/>
             </param>
+            <description>
+               <para>Sets the image associated with this tray icon.</para>
+            </description>
          </method>
          <method name="setPressedImage">
             <param name="image" type="NativeImage"/>
+            <description>
+               <para>Sets the image associated with this tray icon when pressed on macOS.</para>
+            </description>
          </method>
          <method name="setToolTip">
             <param name="toolTip" type="String"/>
+            <description>
+               <para>Sets the hover text for this tray icon.</para>
+            </description>
          </method>
          <method name="setTitle">
             <param name="title" type="String"/>
+            <description>
+               <para>Sets the title displayed aside of the tray icon in the status bar.</para>
+            </description>
          </method>
          <method name="setHighlightMode">
             <param name="mode" type="String">
@@ -30,6 +46,11 @@
                <param name="always"/>
                <param name="never"/>
             </param>
+            <description>
+               <para>Sets when the tray's icon background becomes highlighted (in blue).</para>
+               <para>Note: You can use highlightMode with a BrowserWindow by toggling between 'never' and 'always' modes when the window visibility changes.</para>
+               <programlisting>...omitted...</programlisting>
+            </description>
          </method>
          <method name="displayBalloon">
             <param name="options" type="Object">
@@ -40,6 +61,9 @@
                <property optional="true" name="title" type="String"/>
                <property optional="true" name="content" type="String"/>
             </param>
+            <description>
+               <para>Displays a tray balloon.</para>
+            </description>
          </method>
          <method name="popUpContextMenu">
             <param optional="true" name="menu" type="Menu"/>
@@ -47,15 +71,34 @@
                <property name="x" type="Integer"/>
                <property name="y" type="Integer"/>
             </param>
+            <description>
+               <para>Pops up the context menu of the tray icon. When menu is passed, the menu will be shown instead of the tray icon's context menu.</para>
+               <para>The position is only available on Windows, and it is (0, 0) by default.</para>
+            </description>
          </method>
          <method name="setContextMenu">
             <param name="menu" type="Menu"/>
+            <description>
+               <para>Sets the context menu for this icon.</para>
+            </description>
          </method>
          <method name="getBounds">
-            <returns type="Rectangle"/>
+            <returns type="Rectangle">
+               <description>
+                  <para/>
+               </description>
+            </returns>
+            <description>
+               <para>The bounds of this tray icon as Object.</para>
+            </description>
          </method>
          <method name="isDestroyed">
-            <returns type="Boolean"/>
+            <returns type="Boolean">
+               <description>
+                  <para>- Whether the tray icon is destroyed.</para>
+               </description>
+            </returns>
+            <description/>
          </method>
       </methods>
    </class>
