@@ -1,15 +1,14 @@
 package jsapi.electron
 
 class Rectangle(
-        var x: Float, 
-        var y: Float, 
-        var width: Float, 
-        var height: Float
+        var x: Number,
+        var y: Number,
+        var width: Number,
+        var height: Number
 ) {
 
     val instance: dynamic = this
 
-    // ~ Builders -------------------------------------------------------------------------------
-
+    // ~ Builders ------------------------------------------------------------------------------
 }
 

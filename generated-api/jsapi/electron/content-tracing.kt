@@ -4,6 +4,8 @@ object contentTracing {
 
     private val module: dynamic = js("require('electron').contentTracing")
 
+    // ~ Events --------------------------------------------------------------------------------
+
     fun onEvent(event: String, callback: () -> Unit) = 
         module.on(event, callback)
 
@@ -27,20 +29,19 @@ object contentTracing {
     fun captureMonitoringSnapshot(resultFilePath: String, callback: (resultFilePath: String) -> Unit): Unit = 
         module.captureMonitoringSnapshot(resultFilePath, callback)
 
-    fun getTraceBufferUsage(callback: (value: Float, percentage: Float) -> Unit): Unit = 
+    fun getTraceBufferUsage(callback: (value: Number, percentage: Number) -> Unit): Unit = 
         module.getTraceBufferUsage(callback)
 
-    // ~ Builders -------------------------------------------------------------------------------
+    // ~ Builders ------------------------------------------------------------------------------
 
     class StartRecordingOptions(
-        var categoryFilter: String, 
+        var categoryFilter: String,
         var traceOptions: String
     )
 
     class StartMonitoringOptions(
-        var categoryFilter: String, 
+        var categoryFilter: String,
         var traceOptions: String
     )
-
 }
 

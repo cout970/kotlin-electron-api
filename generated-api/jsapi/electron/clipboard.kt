@@ -4,6 +4,8 @@ object clipboard {
 
     private val module: dynamic = js("require('electron').clipboard")
 
+    // ~ Events --------------------------------------------------------------------------------
+
     fun onEvent(event: String, callback: () -> Unit) = 
         module.on(event, callback)
 
@@ -60,15 +62,14 @@ object clipboard {
     fun write(data: WriteData.() -> Unit, type: String?): Unit = 
         module.write(data.let { WriteData().apply(it) }, type)
 
-    // ~ Builders -------------------------------------------------------------------------------
+    // ~ Builders ------------------------------------------------------------------------------
 
     class WriteData(
-        var text: String? = null, 
-        var html: String? = null, 
-        var image: NativeImage? = null, 
-        var rtf: String? = null, 
+        var text: String? = null,
+        var html: String? = null,
+        var image: NativeImage? = null,
+        var rtf: String? = null,
         var bookmark: String? = null
     )
-
 }
 

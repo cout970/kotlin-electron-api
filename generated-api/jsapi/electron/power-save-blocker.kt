@@ -4,6 +4,8 @@ object powerSaveBlocker {
 
     private val module: dynamic = js("require('electron').powerSaveBlocker")
 
+    // ~ Events --------------------------------------------------------------------------------
+
     fun onEvent(event: String, callback: () -> Unit) = 
         module.on(event, callback)
 
@@ -18,7 +20,6 @@ object powerSaveBlocker {
     fun isStarted(id: Int): Boolean = 
         module.isStarted(id)
 
-    // ~ Builders -------------------------------------------------------------------------------
-
+    // ~ Builders ------------------------------------------------------------------------------
 }
 

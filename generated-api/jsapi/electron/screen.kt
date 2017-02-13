@@ -4,6 +4,8 @@ object screen {
 
     private val module: dynamic = js("require('electron').screen")
 
+    // ~ Events --------------------------------------------------------------------------------
+
     fun onEvent(event: String, callback: () -> Unit) = 
         module.on(event, callback)
 
@@ -24,12 +26,11 @@ object screen {
     fun getDisplayMatching(rect: Rectangle): Display = 
         module.getDisplayMatching(rect.instance)
 
-    // ~ Builders -------------------------------------------------------------------------------
+    // ~ Builders ------------------------------------------------------------------------------
 
     class GetDisplayNearestPointPoint(
-        var x: Int, 
+        var x: Int,
         var y: Int
     )
-
 }
 

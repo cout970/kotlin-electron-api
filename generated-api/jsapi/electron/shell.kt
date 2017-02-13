@@ -4,6 +4,8 @@ object shell {
 
     private val module: dynamic = js("require('electron').shell")
 
+    // ~ Events --------------------------------------------------------------------------------
+
     fun onEvent(event: String, callback: () -> Unit) = 
         module.on(event, callback)
 
@@ -30,11 +32,10 @@ object shell {
     fun readShortcutLink(shortcutPath: String): ShortcutDetails = 
         module.readShortcutLink(shortcutPath)
 
-    // ~ Builders -------------------------------------------------------------------------------
+    // ~ Builders ------------------------------------------------------------------------------
 
     class OpenExternalOptions(
         var activate: Boolean
     )
-
 }
 

@@ -4,6 +4,8 @@ object protocol {
 
     private val module: dynamic = js("require('electron').protocol")
 
+    // ~ Events --------------------------------------------------------------------------------
+
     fun onEvent(event: String, callback: () -> Unit) = 
         module.on(event, callback)
 
@@ -48,95 +50,94 @@ object protocol {
     fun uninterceptProtocol(scheme: String, completion: ((error: Error) -> Unit)?): Unit = 
         module.uninterceptProtocol(scheme, completion)
 
-    // ~ Builders -------------------------------------------------------------------------------
+    // ~ Builders ------------------------------------------------------------------------------
 
     class RegisterStandardSchemesOptions(
         var secure: Boolean? = null
     )
 
     class RegisterFileProtocolRequest(
-        var url: String, 
-        var referrer: String, 
-        var method: String, 
+        var url: String,
+        var referrer: String,
+        var method: String,
         var uploadData: Array<UploadData>
     )
 
     class RegisterBufferProtocolRequest(
-        var url: String, 
-        var referrer: String, 
-        var method: String, 
+        var url: String,
+        var referrer: String,
+        var method: String,
         var uploadData: Array<UploadData>
     )
 
     class RegisterStringProtocolRequest(
-        var url: String, 
-        var referrer: String, 
-        var method: String, 
+        var url: String,
+        var referrer: String,
+        var method: String,
         var uploadData: Array<UploadData>
     )
 
     class RegisterHttpProtocolRequest(
-        var url: String, 
-        var referrer: String, 
-        var method: String, 
+        var url: String,
+        var referrer: String,
+        var method: String,
         var uploadData: Array<UploadData>
     )
 
     class RegisterHttpProtocolRedirectRequest(
-        var url: String, 
-        var method: String, 
-        var session: RegisterHttpProtocolSession? = null, 
+        var url: String,
+        var method: String,
+        var session: (RegisterHttpProtocolSession.() -> Unit)? = null,
         var uploadData: RegisterHttpProtocolUploadData? = null
     )
-
     class RegisterHttpProtocolSession(
     )
 
     class RegisterHttpProtocolUploadData(
-        var contentType: String, 
+        var contentType: String,
         var data: String
     )
 
+
     class InterceptFileProtocolRequest(
-        var url: String, 
-        var referrer: String, 
-        var method: String, 
+        var url: String,
+        var referrer: String,
+        var method: String,
         var uploadData: Array<UploadData>
     )
 
     class InterceptStringProtocolRequest(
-        var url: String, 
-        var referrer: String, 
-        var method: String, 
+        var url: String,
+        var referrer: String,
+        var method: String,
         var uploadData: Array<UploadData>
     )
 
     class InterceptBufferProtocolRequest(
-        var url: String, 
-        var referrer: String, 
-        var method: String, 
+        var url: String,
+        var referrer: String,
+        var method: String,
         var uploadData: Array<UploadData>
     )
 
     class InterceptHttpProtocolRequest(
-        var url: String, 
-        var referrer: String, 
-        var method: String, 
+        var url: String,
+        var referrer: String,
+        var method: String,
         var uploadData: Array<UploadData>
     )
 
     class InterceptHttpProtocolRedirectRequest(
-        var url: String, 
-        var method: String, 
-        var session: InterceptHttpProtocolSession? = null, 
+        var url: String,
+        var method: String,
+        var session: (InterceptHttpProtocolSession.() -> Unit)? = null,
         var uploadData: InterceptHttpProtocolUploadData? = null
     )
-
     class InterceptHttpProtocolSession(
     )
 
     class InterceptHttpProtocolUploadData(
-        var contentType: String, 
+        var contentType: String,
         var data: String
     )
 

@@ -2,14 +2,14 @@ package jsapi.electron
 
 class Debugger() {
 
-    private val module: dynamic = js("require('electron').Debugger")
-
     val instance: dynamic
 
     init {
         val _constructor = js("require('electron').Debugger")
         instance = js("new _constructor(_)")
     }
+
+    // ~ Events --------------------------------------------------------------------------------
 
     fun onEvent(event: String, callback: () -> Unit) = 
         module.on(event, callback)
@@ -28,13 +28,20 @@ class Debugger() {
     fun sendCommand(method: String, commandParams: (SendCommandCommandParams.() -> Unit)?, callback: ((error: SendCommandError.() -> Unit, result: Any) -> Unit)?): Unit = 
         instance.sendCommand(method, commandParams?.let { SendCommandCommandParams().apply(it) }, callback)
 
-    // ~ Builders -------------------------------------------------------------------------------
+    // ~ Companion -----------------------------------------------------------------------------
+
+    companion object { 
+
+        private val module: dynamic = js("require('electron').Debugger")
+
+    }
+
+    // ~ Builders ------------------------------------------------------------------------------
 
     class SendCommandCommandParams(
     )
 
     class SendCommandError(
     )
-
 }
 

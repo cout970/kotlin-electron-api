@@ -2,14 +2,14 @@ package jsapi.electron
 
 class DownloadItem() {
 
-    private val module: dynamic = js("require('electron').DownloadItem")
-
     val instance: dynamic
 
     init {
         val _constructor = js("require('electron').DownloadItem")
         instance = js("new _constructor(_)")
     }
+
+    // ~ Events --------------------------------------------------------------------------------
 
     fun onEvent(event: String, callback: () -> Unit) = 
         module.on(event, callback)
@@ -73,7 +73,14 @@ class DownloadItem() {
     fun getStartTime(): Double = 
         instance.getStartTime()
 
-    // ~ Builders -------------------------------------------------------------------------------
+    // ~ Companion -----------------------------------------------------------------------------
 
+    companion object { 
+
+        private val module: dynamic = js("require('electron').DownloadItem")
+
+    }
+
+    // ~ Builders ------------------------------------------------------------------------------
 }
 

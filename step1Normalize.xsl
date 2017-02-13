@@ -132,6 +132,9 @@
         <xsl:variable name="nameTokens" select="tokenize($nameWithoutParen, '\.')[position() != 1]" />
         <method name="{string-join($nameTokens, '.')}">
             <xsl:apply-templates mode="pass2" />
+            <description>
+                <xsl:copy-of select="node()" />
+            </description>
         </method>
     </xsl:template>
 
@@ -141,17 +144,26 @@
         </properties>
     </xsl:template>
 
+    <xsl:template match="section[ends-with(@id, 'properties')]/section" mode="pass2">
+        <xsl:variable name="nameWithoutParen" select="tokenize(@title, '\(')[1]" />
+        <xsl:variable name="nameTokens" select="tokenize($nameWithoutParen, '\.')[position() != 1]" />
+        <property name="{string-join($nameTokens, '.')}">
+            <info>
+                <xsl:value-of select="para[1]/literal[1]"/>
+            </info>
+            <description>
+                <xsl:copy-of select="node()" />
+            </description>
+        </property>
+    </xsl:template>
+
     <xsl:template match="section[starts-with(@id, 'new-')]" mode="pass2">
         <constructor>
             <xsl:apply-templates mode="pass2" />
         </constructor>
     </xsl:template>
 
-    <xsl:template match="section/node()[1][self::itemizedlist]" mode="pass2">
-        <xsl:apply-templates mode="pass2" />
-    </xsl:template>
-
-    <xsl:template match="listitem/itemizedlist" mode="pass2">
+    <xsl:template match="itemizedlist[1]" mode="pass2">
         <xsl:apply-templates mode="pass2" />
     </xsl:template>
 
@@ -167,23 +179,60 @@
         </info>
     </xsl:template>
 
-    <xsl:template match="section/para[1][node()[1][self::text()][matches(., '\s*Returns')]]" mode="pass2">
+    <xsl:template match="section/para[node()[1][self::text()][matches(., '^\s*Returns')]][1]" mode="pass2">
         <returns>
             <info>
-                <xsl:apply-templates mode="pass2" />
+                <xsl:value-of select="substring(normalize-space(.), 8)" />
             </info>
+            <xsl:apply-templates mode="pass2" select="following-sibling::*[1][self::itemizedlist]"/>
+            <description>
+                <para>
+                    <xsl:copy-of select="literal[1]/following-sibling::node()"/>
+                </para>
+            </description>
         </returns>
     </xsl:template>
 
     <!--Pass 3: parameters -->
     <xsl:template match="struct/*[not(self::param)]" mode="pass3" />
-    <xsl:template match="class/*[not(self::constructor|self::methods)]" mode="pass3" />
-    <xsl:template match="object/*[not(self::class|self::constructor|self::methods)]" mode="pass3" />
+    <xsl:template match="class/*[not(self::constructor|self::methods|self::properties)]" mode="pass3" />
+    <xsl:template match="object/*[not(self::class|self::constructor|self::methods|self::properties)]" mode="pass3" />
     <xsl:template match="constructor/*[not(self::param)]" mode="pass3" />
     <xsl:template match="methods/*[not(self::method)]" mode="pass3" />
-    <xsl:template match="method/*[not(self::param or self::returns)]" mode="pass3" />
+    <xsl:template match="method/*[not(self::param or self::returns or self::description)]" mode="pass3" />
+    <xsl:template match="properties/*[not(self::property)]" mode="pass3" />
     <xsl:template match="events" mode="pass3" />
-    <xsl:template match="properties" mode="pass3" />
+
+    <!-- delete return info and list out of description -->
+    <xsl:template match="method/description/para[matches(text()[1], '^\s*Returns')]" mode="pass3" priority="1"/>
+    <xsl:template match="method/description/itemizedlist[preceding-sibling::*[1][self::para][matches(text()[1], '^\s*Returns')]]" mode="pass3" priority="1"/>
+
+    <xsl:template match="//description//para" mode="pass3">
+        <para>
+            <xsl:value-of select="normalize-space(.)"/>
+        </para>
+    </xsl:template>
+
+    <xsl:template match="//description//programlisting" mode="pass3">
+        <programlisting>...omitted...</programlisting>
+    </xsl:template>
+
+    <xsl:template match="//description//itemizedlist/@spacing" mode="pass3"/>
+
+    <!-- delete parameters out of description -->
+    <xsl:template match="method/description/node()[1][self::itemizedlist]" mode="pass3" priority="3"/>
+
+    <xsl:template match="//description//itemizedlist" mode="pass3" priority="2">
+        <list>
+            <xsl:apply-templates mode="pass3"/>
+        </list>
+    </xsl:template>
+
+    <xsl:template match="//description//listitem" mode="pass3">
+        <item>
+            <xsl:apply-templates mode="pass3"/>
+        </item>
+    </xsl:template>
 
     <!-- get name -->
     <xsl:template match="param[info[node()[1][self::literal]]]" mode="pass3">
@@ -212,11 +261,6 @@
         <xsl:value-of select="." />
     </xsl:template>
 
-    <!-- Remove returns -->
-    <xsl:template match="returns/info/node()[position() = 1][self::text()]" mode="pass3">
-        <xsl:value-of select="substring(normalize-space(.), 8)" />
-    </xsl:template>
-
     <!-- Pass 4: NORMALIZE SPACES -->
     <xsl:template match="info/text()" mode="pass4">
         <xsl:value-of select="normalize-space(.)" />
@@ -234,7 +278,13 @@
         <xsl:variable name="types" select="substring(substring-before(text(), ')'), 2)" />
         <xsl:variable name="tokens" select="tokenize($types, '\|')" />
         <xsl:for-each select="$tokens">
-            <option type="{normalize-space(.)}" />
+
+            <option type="{tokenize(normalize-space(.), '[^a-zA-Z]')[1]}">
+                <xsl:if test="ends-with(normalize-space(.), '[]')">
+                    <xsl:attribute name="isArray">true</xsl:attribute>
+                </xsl:if>
+            </option>
+
         </xsl:for-each>
     </xsl:template>
 
@@ -256,7 +306,7 @@
         </xsl:copy>
     </xsl:template>
 
-    <!-- throw out Info -->
+    <!-- throw out unparsed Info -->
     <xsl:template match="info" mode="pass5" />
 
     <!-- generate empty constructor -->

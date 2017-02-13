@@ -4,6 +4,8 @@ object ipcRenderer {
 
     private val module: dynamic = js("require('electron').ipcRenderer")
 
+    // ~ Events --------------------------------------------------------------------------------
+
     fun onEvent(event: String, callback: () -> Unit) = 
         module.on(event, callback)
 
@@ -30,7 +32,6 @@ object ipcRenderer {
     fun sendToHost(channel: String, args: Array<dynamic>): Unit = 
         module.sendToHost(channel, args)
 
-    // ~ Builders -------------------------------------------------------------------------------
-
+    // ~ Builders ------------------------------------------------------------------------------
 }
 

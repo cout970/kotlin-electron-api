@@ -1,29 +1,28 @@
 package jsapi.electron
 
 class Display(
-        var id: Float, 
-        var rotation: Float, 
-        var scaleFactor: Float, 
-        var touchSupport: String, 
-        var bounds: Rectangle, 
-        var size: Size, 
-        var workArea: Rectangle, 
+        var id: Number,
+        var rotation: Number,
+        var scaleFactor: Number,
+        var touchSupport: String,
+        var bounds: Rectangle,
+        var size: Size,
+        var workArea: Rectangle,
         var workAreaSize: WorkAreaSize
 ) {
 
     val instance: dynamic = this
 
-    // ~ Builders -------------------------------------------------------------------------------
+    // ~ Builders ------------------------------------------------------------------------------
 
     class Size(
-        var height: Float, 
-        var width: Float
+        var height: Number,
+        var width: Number
     )
 
     class WorkAreaSize(
-        var height: Float, 
-        var width: Float
+        var height: Number,
+        var width: Number
     )
-
 }
 

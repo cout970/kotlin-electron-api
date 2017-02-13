@@ -2,8 +2,6 @@ package jsapi.electron
 
 class IncomingMessage() {
 
-    private val module: dynamic = js("require('electron').IncomingMessage")
-
     val instance: dynamic
 
     init {
@@ -11,10 +9,20 @@ class IncomingMessage() {
         instance = js("new _constructor(_)")
     }
 
+    // ~ Events --------------------------------------------------------------------------------
+
     fun onEvent(event: String, callback: () -> Unit) = 
         module.on(event, callback)
 
-    // ~ Builders -------------------------------------------------------------------------------
 
+    // ~ Companion -----------------------------------------------------------------------------
+
+    companion object { 
+
+        private val module: dynamic = js("require('electron').IncomingMessage")
+
+    }
+
+    // ~ Builders ------------------------------------------------------------------------------
 }
 

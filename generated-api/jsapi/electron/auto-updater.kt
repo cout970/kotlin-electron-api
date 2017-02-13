@@ -4,6 +4,8 @@ object autoUpdater {
 
     private val module: dynamic = js("require('electron').autoUpdater")
 
+    // ~ Events --------------------------------------------------------------------------------
+
     fun onEvent(event: String, callback: () -> Unit) = 
         module.on(event, callback)
 
@@ -21,10 +23,9 @@ object autoUpdater {
     fun quitAndInstall(): Unit = 
         module.quitAndInstall()
 
-    // ~ Builders -------------------------------------------------------------------------------
+    // ~ Builders ------------------------------------------------------------------------------
 
     class SetFeedURLRequestHeaders(
     )
-
 }
 

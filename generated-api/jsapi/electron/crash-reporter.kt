@@ -4,6 +4,8 @@ object crashReporter {
 
     private val module: dynamic = js("require('electron').crashReporter")
 
+    // ~ Events --------------------------------------------------------------------------------
+
     fun onEvent(event: String, callback: () -> Unit) = 
         module.on(event, callback)
 
@@ -24,17 +26,16 @@ object crashReporter {
     fun setUploadToServer(uploadToServer: Boolean): Unit = 
         module.setUploadToServer(uploadToServer)
 
-    // ~ Builders -------------------------------------------------------------------------------
+    // ~ Builders ------------------------------------------------------------------------------
 
     class StartOptions(
-        var companyName: String? = null, 
-        var submitURL: String, 
-        var productName: String? = null, 
-        var uploadToServer: Boolean? = null, 
-        var ignoreSystemCrashHandler: Boolean? = null, 
-        var extra: StartExtra? = null
+        var companyName: String? = null,
+        var submitURL: String,
+        var productName: String? = null,
+        var uploadToServer: Boolean? = null,
+        var ignoreSystemCrashHandler: Boolean? = null,
+        var extra: (StartExtra.() -> Unit)? = null
     )
-
     class StartExtra(
     )
 

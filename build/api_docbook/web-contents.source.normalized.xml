@@ -3,14 +3,29 @@
    <object title="webContents">
       <methods>
          <method name="getAllWebContents">
-            <returns type="WebContents" isArray="true"/>
+            <returns type="WebContents" isArray="true">
+               <description>
+                  <para>- An array of all WebContents instances. This will contain web contents for all windows, webviews, opened devtools, and devtools extension background pages.</para>
+               </description>
+            </returns>
+            <description/>
          </method>
          <method name="getFocusedWebContents">
-            <returns type="WebContents"/>
+            <returns type="WebContents">
+               <description>
+                  <para>- The web contents that is focused in this application, otherwise returns null.</para>
+               </description>
+            </returns>
+            <description/>
          </method>
          <method name="fromId">
             <param name="id" type="Integer"/>
-            <returns type="WebContents"/>
+            <returns type="WebContents">
+               <description>
+                  <para>- A WebContents instance with the given ID.</para>
+               </description>
+            </returns>
+            <description/>
          </method>
       </methods>
       <class title="WebContents">
@@ -29,64 +44,169 @@
                      <option type="UploadBlob"/>
                   </property>
                </param>
+               <description>
+                  <para>Loads the url in the window. The url must contain the protocol prefix, e.g. the http:// or file://. If the load should bypass http cache then use the pragma header to achieve it.</para>
+                  <programlisting>...omitted...</programlisting>
+               </description>
             </method>
             <method name="downloadURL">
                <param name="url" type="String"/>
+               <description>
+                  <para>Initiates a download of the resource at url without navigating. The will-download event of session will be triggered.</para>
+               </description>
             </method>
             <method name="getURL">
-               <returns type="String"/>
+               <returns type="String">
+                  <description>
+                     <para>- The URL of the current web page.</para>
+                  </description>
+               </returns>
+               <description>
+                  <programlisting>...omitted...</programlisting>
+               </description>
             </method>
             <method name="getTitle">
-               <returns type="String"/>
+               <returns type="String">
+                  <description>
+                     <para>- The title of the current web page.</para>
+                  </description>
+               </returns>
+               <description/>
             </method>
             <method name="isDestroyed">
-               <returns type="Boolean"/>
+               <returns type="Boolean">
+                  <description>
+                     <para>- Whether the web page is destroyed.</para>
+                  </description>
+               </returns>
+               <description/>
             </method>
             <method name="isFocused">
-               <returns type="Boolean"/>
+               <returns type="Boolean">
+                  <description>
+                     <para>- Whether the web page is focused.</para>
+                  </description>
+               </returns>
+               <description/>
             </method>
             <method name="isLoading">
-               <returns type="Boolean"/>
+               <returns type="Boolean">
+                  <description>
+                     <para>- Whether web page is still loading resources.</para>
+                  </description>
+               </returns>
+               <description/>
             </method>
             <method name="isLoadingMainFrame">
-               <returns type="Boolean"/>
+               <returns type="Boolean">
+                  <description>
+                     <para>- Whether the main frame (and not just iframes or frames within it) is still loading.</para>
+                  </description>
+               </returns>
+               <description/>
             </method>
             <method name="isWaitingForResponse">
-               <returns type="Boolean"/>
+               <returns type="Boolean">
+                  <description>
+                     <para>- Whether the web page is waiting for a first-response from the main resource of the page.</para>
+                  </description>
+               </returns>
+               <description/>
             </method>
-            <method name="stop"/>
-            <method name="reload"/>
-            <method name="reloadIgnoringCache"/>
+            <method name="stop">
+               <description>
+                  <para>Stops any pending navigation.</para>
+               </description>
+            </method>
+            <method name="reload">
+               <description>
+                  <para>Reloads the current web page.</para>
+               </description>
+            </method>
+            <method name="reloadIgnoringCache">
+               <description>
+                  <para>Reloads current page and ignores cache.</para>
+               </description>
+            </method>
             <method name="canGoBack">
-               <returns type="Boolean"/>
+               <returns type="Boolean">
+                  <description>
+                     <para>- Whether the browser can go back to previous web page.</para>
+                  </description>
+               </returns>
+               <description/>
             </method>
             <method name="canGoForward">
-               <returns type="Boolean"/>
+               <returns type="Boolean">
+                  <description>
+                     <para>- Whether the browser can go forward to next web page.</para>
+                  </description>
+               </returns>
+               <description/>
             </method>
             <method name="canGoToOffset">
                <param name="offset" type="Integer"/>
-               <returns type="Boolean"/>
+               <returns type="Boolean">
+                  <description>
+                     <para>- Whether the web page can go to offset.</para>
+                  </description>
+               </returns>
+               <description/>
             </method>
-            <method name="clearHistory"/>
-            <method name="goBack"/>
-            <method name="goForward"/>
+            <method name="clearHistory">
+               <description>
+                  <para>Clears the navigation history.</para>
+               </description>
+            </method>
+            <method name="goBack">
+               <description>
+                  <para>Makes the browser go back a web page.</para>
+               </description>
+            </method>
+            <method name="goForward">
+               <description>
+                  <para>Makes the browser go forward a web page.</para>
+               </description>
+            </method>
             <method name="goToIndex">
                <param name="index" type="Integer"/>
+               <description>
+                  <para>Navigates browser to the specified absolute web page index.</para>
+               </description>
             </method>
             <method name="goToOffset">
                <param name="offset" type="Integer"/>
+               <description>
+                  <para>Navigates to the specified offset from the "current entry".</para>
+               </description>
             </method>
             <method name="isCrashed">
-               <returns type="Boolean"/>
+               <returns type="Boolean">
+                  <description>
+                     <para>- Whether the renderer process has crashed.</para>
+                  </description>
+               </returns>
+               <description/>
             </method>
             <method name="setUserAgent">
                <param name="userAgent" type="String"/>
+               <description>
+                  <para>Overrides the user agent for this web page.</para>
+               </description>
             </method>
             <method name="getUserAgent">
-               <returns type="String"/>
+               <returns type="String">
+                  <description>
+                     <para>- The user agent for this web page.</para>
+                  </description>
+               </returns>
+               <description/>
             </method>
             <method name="insertCSS">
                <param name="css" type="String"/>
+               <description>
+                  <para>Injects CSS into the current web page.</para>
+               </description>
             </method>
             <method name="executeJavaScript">
                <param name="code" type="String"/>
@@ -94,63 +214,150 @@
                <param optional="true" name="callback" type="Function">
                   <param name="result" type="Any"/>
                </param>
-               <returns type="Promise"/>
+               <returns type="Promise">
+                  <description>
+                     <para>- A promise that resolves with the result of the executed code or is rejected if the result of the code is a rejected promise.</para>
+                  </description>
+               </returns>
+               <description>
+                  <para>Evaluates code in page.</para>
+                  <para>In the browser window some HTML APIs like requestFullScreen can only be invoked by a gesture from the user. Setting userGesture to true will remove this limitation.</para>
+                  <para>If the result of the executed code is a promise the callback result will be the resolved value of the promise. We recommend that you use the returned Promise to handle code that results in a Promise.</para>
+                  <programlisting>...omitted...</programlisting>
+               </description>
             </method>
             <method name="setAudioMuted">
                <param name="muted" type="Boolean"/>
+               <description>
+                  <para>Mute the audio on the current web page.</para>
+               </description>
             </method>
             <method name="isAudioMuted">
-               <returns type="Boolean"/>
+               <returns type="Boolean">
+                  <description>
+                     <para>- Whether this page has been muted.</para>
+                  </description>
+               </returns>
+               <description/>
             </method>
             <method name="setZoomFactor">
                <param name="factor" type="Number"/>
+               <description>
+                  <para>Changes the zoom factor to the specified factor. Zoom factor is zoom percent divided by 100, so 300% = 3.0.</para>
+               </description>
             </method>
             <method name="getZoomFactor">
                <param name="callback" type="Function">
                   <param name="zoomFactor" type="Number"/>
                </param>
+               <description>
+                  <para>Sends a request to get current zoom factor, the callback will be called with callback(zoomFactor).</para>
+               </description>
             </method>
             <method name="setZoomLevel">
                <param name="level" type="Number"/>
+               <description>
+                  <para>Changes the zoom level to the specified level. The original size is 0 and each increment above or below represents zooming 20% larger or smaller to default limits of 300% and 50% of original size, respectively.</para>
+               </description>
             </method>
             <method name="getZoomLevel">
                <param name="callback" type="Function">
                   <param name="zoomLevel" type="Number"/>
                </param>
+               <description>
+                  <para>Sends a request to get current zoom level, the callback will be called with callback(zoomLevel).</para>
+               </description>
             </method>
             <method name="setZoomLevelLimits">
                <param name="minimumLevel" type="Number"/>
                <param name="maximumLevel" type="Number"/>
+               <description>
+                  <para>Deprecated: Call setVisualZoomLevelLimits instead to set the visual zoom level limits. This method will be removed in Electron 2.0.</para>
+               </description>
             </method>
             <method name="setVisualZoomLevelLimits">
                <param name="minimumLevel" type="Number"/>
                <param name="maximumLevel" type="Number"/>
+               <description>
+                  <para>Sets the maximum and minimum pinch-to-zoom level.</para>
+               </description>
             </method>
             <method name="setLayoutZoomLevelLimits">
                <param name="minimumLevel" type="Number"/>
                <param name="maximumLevel" type="Number"/>
+               <description>
+                  <para>Sets the maximum and minimum layout-based (i.e. non-visual) zoom level.</para>
+               </description>
             </method>
-            <method name="undo"/>
-            <method name="redo"/>
-            <method name="cut"/>
-            <method name="copy"/>
+            <method name="undo">
+               <description>
+                  <para>Executes the editing command undo in web page.</para>
+               </description>
+            </method>
+            <method name="redo">
+               <description>
+                  <para>Executes the editing command redo in web page.</para>
+               </description>
+            </method>
+            <method name="cut">
+               <description>
+                  <para>Executes the editing command cut in web page.</para>
+               </description>
+            </method>
+            <method name="copy">
+               <description>
+                  <para>Executes the editing command copy in web page.</para>
+               </description>
+            </method>
             <method name="copyImageAt">
                <param name="x" type="Integer"/>
                <param name="y" type="Integer"/>
+               <description>
+                  <para>Copy the image at the given position to the clipboard.</para>
+               </description>
             </method>
-            <method name="paste"/>
-            <method name="pasteAndMatchStyle"/>
-            <method name="delete"/>
-            <method name="selectAll"/>
-            <method name="unselect"/>
+            <method name="paste">
+               <description>
+                  <para>Executes the editing command paste in web page.</para>
+               </description>
+            </method>
+            <method name="pasteAndMatchStyle">
+               <description>
+                  <para>Executes the editing command pasteAndMatchStyle in web page.</para>
+               </description>
+            </method>
+            <method name="delete">
+               <description>
+                  <para>Executes the editing command delete in web page.</para>
+               </description>
+            </method>
+            <method name="selectAll">
+               <description>
+                  <para>Executes the editing command selectAll in web page.</para>
+               </description>
+            </method>
+            <method name="unselect">
+               <description>
+                  <para>Executes the editing command unselect in web page.</para>
+               </description>
+            </method>
             <method name="replace">
                <param name="text" type="String"/>
+               <description>
+                  <para>Executes the editing command replace in web page.</para>
+               </description>
             </method>
             <method name="replaceMisspelling">
                <param name="text" type="String"/>
+               <description>
+                  <para>Executes the editing command replaceMisspelling in web page.</para>
+               </description>
             </method>
             <method name="insertText">
                <param name="text" type="String"/>
+               <description>
+                  <para>Inserts text to the focused element.</para>
+               </description>
             </method>
             <method name="findInPage">
                <param name="text" type="String"/>
@@ -161,6 +368,9 @@
                   <property optional="true" name="wordStart" type="Boolean"/>
                   <property optional="true" name="medialCapitalAsWordStart" type="Boolean"/>
                </param>
+               <description>
+                  <para>Starts a request to find all matches for the text in the web page and returns an Integer representing the request id used for the request. The result of the request can be obtained by subscribing to found-in-page event.</para>
+               </description>
             </method>
             <method name="stopFindInPage">
                <param name="action" type="String">
@@ -168,28 +378,46 @@
                   <param name="keepSelection"/>
                   <param name="activateSelection"/>
                </param>
+               <description>
+                  <para>Stops any findInPage request for the webContents with the provided action.</para>
+                  <programlisting>...omitted...</programlisting>
+               </description>
             </method>
             <method name="capturePage">
                <param optional="true" name="rect" type="Rectangle"/>
                <param name="callback" type="Function">
                   <param name="image" type="NativeImage"/>
                </param>
+               <description>
+                  <para>Captures a snapshot of the page within rect. Upon completion callback will be called with callback(image). The image is an instance of NativeImage that stores data of the snapshot. Omitting rect will capture the whole visible page.</para>
+               </description>
             </method>
             <method name="hasServiceWorker">
                <param name="callback" type="Function">
                   <param name="hasWorker" type="Boolean"/>
                </param>
+               <description>
+                  <para>Checks if any ServiceWorker is registered and returns a boolean as response to callback.</para>
+               </description>
             </method>
             <method name="unregisterServiceWorker">
                <param name="callback" type="Function">
                   <param name="success" type="Boolean"/>
                </param>
+               <description>
+                  <para>Unregisters any ServiceWorker if present and returns a boolean as response to callback when the JS promise is fulfilled or false when the JS promise is rejected.</para>
+               </description>
             </method>
             <method name="print">
                <param optional="true" name="options" type="Object">
                   <property name="silent" type="Boolean"/>
                   <property name="printBackground" type="Boolean"/>
                </param>
+               <description>
+                  <para>Prints window's web page. When silent is set to true, Electron will pick up system's default printer and default settings for printing.</para>
+                  <para>Calling window.print() in web page is equivalent to calling webContents.print({silent: false, printBackground: false}).</para>
+                  <para>Use page-break-before: always; CSS style to force to print to a new page.</para>
+               </description>
             </method>
             <method name="printToPDF">
                <param name="options" type="Object">
@@ -203,34 +431,86 @@
                   <param name="error" type="Error"/>
                   <param name="data" type="Buffer"/>
                </param>
+               <description>
+                  <para>Prints window's web page as PDF with Chromium's preview printing custom settings.</para>
+                  <para>The callback will be called with callback(error, data) on completion. The data is a Buffer that contains the generated PDF data.</para>
+                  <para>The landscape will be ignored if @page CSS at-rule is used in the web page.</para>
+                  <para>By default, an empty options will be regarded as:</para>
+                  <programlisting>...omitted...</programlisting>
+                  <para>Use page-break-before: always; CSS style to force to print to a new page.</para>
+                  <para>An example of webContents.printToPDF:</para>
+                  <programlisting>...omitted...</programlisting>
+               </description>
             </method>
             <method name="addWorkSpace">
                <param name="path" type="String"/>
+               <description>
+                  <para>Adds the specified path to DevTools workspace. Must be used after DevTools creation:</para>
+                  <programlisting>...omitted...</programlisting>
+               </description>
             </method>
             <method name="removeWorkSpace">
                <param name="path" type="String"/>
+               <description>
+                  <para>Removes the specified path from DevTools workspace.</para>
+               </description>
             </method>
             <method name="openDevTools">
                <param optional="true" name="options" type="Object">
                   <property name="mode" type="String"/>
                </param>
+               <description>
+                  <para>Opens the devtools.</para>
+               </description>
             </method>
-            <method name="closeDevTools"/>
+            <method name="closeDevTools">
+               <description>
+                  <para>Closes the devtools.</para>
+               </description>
+            </method>
             <method name="isDevToolsOpened">
-               <returns type="Boolean"/>
+               <returns type="Boolean">
+                  <description>
+                     <para>- Whether the devtools is opened.</para>
+                  </description>
+               </returns>
+               <description/>
             </method>
             <method name="isDevToolsFocused">
-               <returns type="Boolean"/>
+               <returns type="Boolean">
+                  <description>
+                     <para>- Whether the devtools view is focused .</para>
+                  </description>
+               </returns>
+               <description/>
             </method>
-            <method name="toggleDevTools"/>
+            <method name="toggleDevTools">
+               <description>
+                  <para>Toggles the developer tools.</para>
+               </description>
+            </method>
             <method name="inspectElement">
                <param name="x" type="Integer"/>
                <param name="y" type="Integer"/>
+               <description>
+                  <para>Starts inspecting element at position (x, y).</para>
+               </description>
             </method>
-            <method name="inspectServiceWorker"/>
+            <method name="inspectServiceWorker">
+               <description>
+                  <para>Opens the developer tools for the service worker context.</para>
+               </description>
+            </method>
             <method name="send">
                <param name="channel" type="String"/>
                <param name="args" vararg="true" type="any" isArray="true"/>
+               <description>
+                  <para>Send an asynchronous message to renderer process via channel, you can also send arbitrary arguments. Arguments will be serialized in JSON internally and hence no functions or prototype chain will be included.</para>
+                  <para>The renderer process can handle the message by listening to channel with the ipcRenderer module.</para>
+                  <para>An example of sending messages from the main process to the renderer process:</para>
+                  <programlisting>...omitted...</programlisting>
+                  <programlisting>...omitted...</programlisting>
+               </description>
             </method>
             <method name="enableDeviceEmulation">
                <param name="parameters" type="Object">
@@ -258,13 +538,83 @@
                   </property>
                   <property name="scale" type="Float"/>
                </param>
+               <description>
+                  <para>Enable device emulation with the given parameters.</para>
+               </description>
             </method>
-            <method name="disableDeviceEmulation"/>
+            <method name="disableDeviceEmulation">
+               <description>
+                  <para>Disable device emulation enabled by webContents.enableDeviceEmulation.</para>
+               </description>
+            </method>
             <method name="sendInputEvent">
                <param name="event" type="Object">
                   <property name="type" type="String"/>
                   <property name="modifiers" type="String" isArray="true"/>
                </param>
+               <description>
+                  <para>Sends an input event to the page.</para>
+                  <para>For keyboard events, the event object also have following properties:</para>
+                  <list>
+                     <item>
+                        <para>keyCode String (required) - The character that will be sent as the keyboard event. Should only use the valid key codes in Accelerator.</para>
+                     </item>
+                  </list>
+                  <para>For mouse events, the event object also have following properties:</para>
+                  <list>
+                     <item>
+                        <para>x Integer (required)</para>
+                     </item>
+                     <item>
+                        <para>y Integer (required)</para>
+                     </item>
+                     <item>
+                        <para>button String - The button pressed, can be left, middle, right</para>
+                     </item>
+                     <item>
+                        <para>globalX Integer</para>
+                     </item>
+                     <item>
+                        <para>globalY Integer</para>
+                     </item>
+                     <item>
+                        <para>movementX Integer</para>
+                     </item>
+                     <item>
+                        <para>movementY Integer</para>
+                     </item>
+                     <item>
+                        <para>clickCount Integer</para>
+                     </item>
+                  </list>
+                  <para>For the mouseWheel event, the event object also have following properties:</para>
+                  <list>
+                     <item>
+                        <para>deltaX Integer</para>
+                     </item>
+                     <item>
+                        <para>deltaY Integer</para>
+                     </item>
+                     <item>
+                        <para>wheelTicksX Integer</para>
+                     </item>
+                     <item>
+                        <para>wheelTicksY Integer</para>
+                     </item>
+                     <item>
+                        <para>accelerationRatioX Integer</para>
+                     </item>
+                     <item>
+                        <para>accelerationRatioY Integer</para>
+                     </item>
+                     <item>
+                        <para>hasPreciseScrollingDeltas Boolean</para>
+                     </item>
+                     <item>
+                        <para>canScroll Boolean</para>
+                     </item>
+                  </list>
+               </description>
             </method>
             <method name="beginFrameSubscription">
                <param optional="true" name="onlyDirty" type="Boolean"/>
@@ -272,13 +622,25 @@
                   <param name="frameBuffer" type="Buffer"/>
                   <param name="dirtyRect" type="Rectangle"/>
                </param>
+               <description>
+                  <para>Begin subscribing for presentation events and captured frames, the callback will be called with callback(frameBuffer, dirtyRect) when there is a presentation event.</para>
+                  <para>The frameBuffer is a Buffer that contains raw pixel data. On most machines, the pixel data is effectively stored in 32bit BGRA format, but the actual representation depends on the endianness of the processor (most modern processors are little-endian, on machines with big-endian processors the data is in 32bit ARGB format).</para>
+                  <para>The dirtyRect is an object with x, y, width, height properties that describes which part of the page was repainted. If onlyDirty is set to true, frameBuffer will only contain the repainted area. onlyDirty defaults to false.</para>
+               </description>
             </method>
-            <method name="endFrameSubscription"/>
+            <method name="endFrameSubscription">
+               <description>
+                  <para>End subscribing for frame presentation events.</para>
+               </description>
+            </method>
             <method name="startDrag">
                <param name="item" type="Object">
                   <property name="file" type="String"/>
                   <property name="icon" type="NativeImage"/>
                </param>
+               <description>
+                  <para>Sets the item as dragging item for current drag-drop operation, file is the absolute path of the file to be dragged, and icon is the image showing under the cursor when dragging.</para>
+               </description>
             </method>
             <method name="savePage">
                <param name="fullPath" type="String"/>
@@ -290,26 +652,123 @@
                <param name="callback" type="Function">
                   <param name="error" type="Error"/>
                </param>
-               <returns type="true"/>
+               <returns type="Boolean">
+                  <description>
+                     <para>- true if the process of saving page has been initiated successfully.</para>
+                  </description>
+               </returns>
+               <description>
+                  <programlisting>...omitted...</programlisting>
+               </description>
             </method>
-            <method name="showDefinitionForSelection"/>
-            <method name="setSize"/>
+            <method name="showDefinitionForSelection">
+               <description>
+                  <para>Shows pop-up dictionary that searches the selected word on the page.</para>
+               </description>
+            </method>
+            <method name="setSize">
+               <param name="options" type="Object">
+                  <property optional="true" name="normal" type="Object">
+                     <property name="width" type="Integer"/>
+                     <property name="height" type="Integer"/>
+                  </property>
+               </param>
+               <description>
+                  <para>Set the size of the page. This is only supported for &lt;webview&gt; guest contents.</para>
+                  <list>
+                     <item>
+                        <para>options Object</para>
+                        <list>
+                           <item>
+                              <para>normal Object (optional) - Normal size of the page. This can be used in combination with the disableguestresize attribute to manually resize the webview guest contents.</para>
+                              <list>
+                                 <item>
+                                    <para>width Integer</para>
+                                 </item>
+                                 <item>
+                                    <para>height Integer</para>
+                                 </item>
+                              </list>
+                           </item>
+                        </list>
+                     </item>
+                  </list>
+               </description>
+            </method>
             <method name="isOffscreen">
-               <returns type="Boolean"/>
+               <returns type="Boolean">
+                  <description>
+                     <para>- Indicates whether offscreen rendering is enabled.</para>
+                  </description>
+               </returns>
+               <description/>
             </method>
-            <method name="startPainting"/>
-            <method name="stopPainting"/>
+            <method name="startPainting">
+               <description>
+                  <para>If offscreen rendering is enabled and not painting, start painting.</para>
+               </description>
+            </method>
+            <method name="stopPainting">
+               <description>
+                  <para>If offscreen rendering is enabled and painting, stop painting.</para>
+               </description>
+            </method>
             <method name="isPainting">
-               <returns type="Boolean"/>
+               <returns type="Boolean">
+                  <description>
+                     <para>- If offscreen rendering is enabled returns whether it is currently painting.</para>
+                  </description>
+               </returns>
+               <description/>
             </method>
             <method name="setFrameRate">
                <param name="fps" type="Integer"/>
+               <description>
+                  <para>If offscreen rendering is enabled sets the frame rate to the specified number. Only values between 1 and 60 are accepted.</para>
+               </description>
             </method>
             <method name="getFrameRate">
-               <returns type="Integer"/>
+               <returns type="Integer">
+                  <description>
+                     <para>- If offscreen rendering is enabled returns the current frame rate.</para>
+                  </description>
+               </returns>
+               <description/>
             </method>
-            <method name="invalidate"/>
+            <method name="invalidate">
+               <description>
+                  <para>If offscreen rendering is enabled invalidates the frame and generates a new one through the 'paint' event.</para>
+               </description>
+            </method>
          </methods>
+         <properties type="instance">
+            <property name="id">
+               <description>
+                  <para>A Integer representing the unique ID of this WebContents.</para>
+               </description>
+            </property>
+            <property name="session">
+               <description>
+                  <para>A Session object (session) used by this webContents.</para>
+               </description>
+            </property>
+            <property name="hostWebContents" type="WebContents">
+               <description>
+                  <para>A WebContents instance that might own this WebContents.</para>
+               </description>
+            </property>
+            <property name="devToolsWebContents" type="WebContents">
+               <description>
+                  <para>A WebContents of DevTools for this WebContents.</para>
+                  <para>Note: Users should never store this object because it may become null when the DevTools has been closed.</para>
+               </description>
+            </property>
+            <property name="debugger">
+               <description>
+                  <para>A Debugger instance for this webContents.</para>
+               </description>
+            </property>
+         </properties>
       </class>
    </object>
    <class title="WebContents">
@@ -328,64 +787,169 @@
                   <option type="UploadBlob"/>
                </property>
             </param>
+            <description>
+               <para>Loads the url in the window. The url must contain the protocol prefix, e.g. the http:// or file://. If the load should bypass http cache then use the pragma header to achieve it.</para>
+               <programlisting>...omitted...</programlisting>
+            </description>
          </method>
          <method name="downloadURL">
             <param name="url" type="String"/>
+            <description>
+               <para>Initiates a download of the resource at url without navigating. The will-download event of session will be triggered.</para>
+            </description>
          </method>
          <method name="getURL">
-            <returns type="String"/>
+            <returns type="String">
+               <description>
+                  <para>- The URL of the current web page.</para>
+               </description>
+            </returns>
+            <description>
+               <programlisting>...omitted...</programlisting>
+            </description>
          </method>
          <method name="getTitle">
-            <returns type="String"/>
+            <returns type="String">
+               <description>
+                  <para>- The title of the current web page.</para>
+               </description>
+            </returns>
+            <description/>
          </method>
          <method name="isDestroyed">
-            <returns type="Boolean"/>
+            <returns type="Boolean">
+               <description>
+                  <para>- Whether the web page is destroyed.</para>
+               </description>
+            </returns>
+            <description/>
          </method>
          <method name="isFocused">
-            <returns type="Boolean"/>
+            <returns type="Boolean">
+               <description>
+                  <para>- Whether the web page is focused.</para>
+               </description>
+            </returns>
+            <description/>
          </method>
          <method name="isLoading">
-            <returns type="Boolean"/>
+            <returns type="Boolean">
+               <description>
+                  <para>- Whether web page is still loading resources.</para>
+               </description>
+            </returns>
+            <description/>
          </method>
          <method name="isLoadingMainFrame">
-            <returns type="Boolean"/>
+            <returns type="Boolean">
+               <description>
+                  <para>- Whether the main frame (and not just iframes or frames within it) is still loading.</para>
+               </description>
+            </returns>
+            <description/>
          </method>
          <method name="isWaitingForResponse">
-            <returns type="Boolean"/>
+            <returns type="Boolean">
+               <description>
+                  <para>- Whether the web page is waiting for a first-response from the main resource of the page.</para>
+               </description>
+            </returns>
+            <description/>
          </method>
-         <method name="stop"/>
-         <method name="reload"/>
-         <method name="reloadIgnoringCache"/>
+         <method name="stop">
+            <description>
+               <para>Stops any pending navigation.</para>
+            </description>
+         </method>
+         <method name="reload">
+            <description>
+               <para>Reloads the current web page.</para>
+            </description>
+         </method>
+         <method name="reloadIgnoringCache">
+            <description>
+               <para>Reloads current page and ignores cache.</para>
+            </description>
+         </method>
          <method name="canGoBack">
-            <returns type="Boolean"/>
+            <returns type="Boolean">
+               <description>
+                  <para>- Whether the browser can go back to previous web page.</para>
+               </description>
+            </returns>
+            <description/>
          </method>
          <method name="canGoForward">
-            <returns type="Boolean"/>
+            <returns type="Boolean">
+               <description>
+                  <para>- Whether the browser can go forward to next web page.</para>
+               </description>
+            </returns>
+            <description/>
          </method>
          <method name="canGoToOffset">
             <param name="offset" type="Integer"/>
-            <returns type="Boolean"/>
+            <returns type="Boolean">
+               <description>
+                  <para>- Whether the web page can go to offset.</para>
+               </description>
+            </returns>
+            <description/>
          </method>
-         <method name="clearHistory"/>
-         <method name="goBack"/>
-         <method name="goForward"/>
+         <method name="clearHistory">
+            <description>
+               <para>Clears the navigation history.</para>
+            </description>
+         </method>
+         <method name="goBack">
+            <description>
+               <para>Makes the browser go back a web page.</para>
+            </description>
+         </method>
+         <method name="goForward">
+            <description>
+               <para>Makes the browser go forward a web page.</para>
+            </description>
+         </method>
          <method name="goToIndex">
             <param name="index" type="Integer"/>
+            <description>
+               <para>Navigates browser to the specified absolute web page index.</para>
+            </description>
          </method>
          <method name="goToOffset">
             <param name="offset" type="Integer"/>
+            <description>
+               <para>Navigates to the specified offset from the "current entry".</para>
+            </description>
          </method>
          <method name="isCrashed">
-            <returns type="Boolean"/>
+            <returns type="Boolean">
+               <description>
+                  <para>- Whether the renderer process has crashed.</para>
+               </description>
+            </returns>
+            <description/>
          </method>
          <method name="setUserAgent">
             <param name="userAgent" type="String"/>
+            <description>
+               <para>Overrides the user agent for this web page.</para>
+            </description>
          </method>
          <method name="getUserAgent">
-            <returns type="String"/>
+            <returns type="String">
+               <description>
+                  <para>- The user agent for this web page.</para>
+               </description>
+            </returns>
+            <description/>
          </method>
          <method name="insertCSS">
             <param name="css" type="String"/>
+            <description>
+               <para>Injects CSS into the current web page.</para>
+            </description>
          </method>
          <method name="executeJavaScript">
             <param name="code" type="String"/>
@@ -393,63 +957,150 @@
             <param optional="true" name="callback" type="Function">
                <param name="result" type="Any"/>
             </param>
-            <returns type="Promise"/>
+            <returns type="Promise">
+               <description>
+                  <para>- A promise that resolves with the result of the executed code or is rejected if the result of the code is a rejected promise.</para>
+               </description>
+            </returns>
+            <description>
+               <para>Evaluates code in page.</para>
+               <para>In the browser window some HTML APIs like requestFullScreen can only be invoked by a gesture from the user. Setting userGesture to true will remove this limitation.</para>
+               <para>If the result of the executed code is a promise the callback result will be the resolved value of the promise. We recommend that you use the returned Promise to handle code that results in a Promise.</para>
+               <programlisting>...omitted...</programlisting>
+            </description>
          </method>
          <method name="setAudioMuted">
             <param name="muted" type="Boolean"/>
+            <description>
+               <para>Mute the audio on the current web page.</para>
+            </description>
          </method>
          <method name="isAudioMuted">
-            <returns type="Boolean"/>
+            <returns type="Boolean">
+               <description>
+                  <para>- Whether this page has been muted.</para>
+               </description>
+            </returns>
+            <description/>
          </method>
          <method name="setZoomFactor">
             <param name="factor" type="Number"/>
+            <description>
+               <para>Changes the zoom factor to the specified factor. Zoom factor is zoom percent divided by 100, so 300% = 3.0.</para>
+            </description>
          </method>
          <method name="getZoomFactor">
             <param name="callback" type="Function">
                <param name="zoomFactor" type="Number"/>
             </param>
+            <description>
+               <para>Sends a request to get current zoom factor, the callback will be called with callback(zoomFactor).</para>
+            </description>
          </method>
          <method name="setZoomLevel">
             <param name="level" type="Number"/>
+            <description>
+               <para>Changes the zoom level to the specified level. The original size is 0 and each increment above or below represents zooming 20% larger or smaller to default limits of 300% and 50% of original size, respectively.</para>
+            </description>
          </method>
          <method name="getZoomLevel">
             <param name="callback" type="Function">
                <param name="zoomLevel" type="Number"/>
             </param>
+            <description>
+               <para>Sends a request to get current zoom level, the callback will be called with callback(zoomLevel).</para>
+            </description>
          </method>
          <method name="setZoomLevelLimits">
             <param name="minimumLevel" type="Number"/>
             <param name="maximumLevel" type="Number"/>
+            <description>
+               <para>Deprecated: Call setVisualZoomLevelLimits instead to set the visual zoom level limits. This method will be removed in Electron 2.0.</para>
+            </description>
          </method>
          <method name="setVisualZoomLevelLimits">
             <param name="minimumLevel" type="Number"/>
             <param name="maximumLevel" type="Number"/>
+            <description>
+               <para>Sets the maximum and minimum pinch-to-zoom level.</para>
+            </description>
          </method>
          <method name="setLayoutZoomLevelLimits">
             <param name="minimumLevel" type="Number"/>
             <param name="maximumLevel" type="Number"/>
+            <description>
+               <para>Sets the maximum and minimum layout-based (i.e. non-visual) zoom level.</para>
+            </description>
          </method>
-         <method name="undo"/>
-         <method name="redo"/>
-         <method name="cut"/>
-         <method name="copy"/>
+         <method name="undo">
+            <description>
+               <para>Executes the editing command undo in web page.</para>
+            </description>
+         </method>
+         <method name="redo">
+            <description>
+               <para>Executes the editing command redo in web page.</para>
+            </description>
+         </method>
+         <method name="cut">
+            <description>
+               <para>Executes the editing command cut in web page.</para>
+            </description>
+         </method>
+         <method name="copy">
+            <description>
+               <para>Executes the editing command copy in web page.</para>
+            </description>
+         </method>
          <method name="copyImageAt">
             <param name="x" type="Integer"/>
             <param name="y" type="Integer"/>
+            <description>
+               <para>Copy the image at the given position to the clipboard.</para>
+            </description>
          </method>
-         <method name="paste"/>
-         <method name="pasteAndMatchStyle"/>
-         <method name="delete"/>
-         <method name="selectAll"/>
-         <method name="unselect"/>
+         <method name="paste">
+            <description>
+               <para>Executes the editing command paste in web page.</para>
+            </description>
+         </method>
+         <method name="pasteAndMatchStyle">
+            <description>
+               <para>Executes the editing command pasteAndMatchStyle in web page.</para>
+            </description>
+         </method>
+         <method name="delete">
+            <description>
+               <para>Executes the editing command delete in web page.</para>
+            </description>
+         </method>
+         <method name="selectAll">
+            <description>
+               <para>Executes the editing command selectAll in web page.</para>
+            </description>
+         </method>
+         <method name="unselect">
+            <description>
+               <para>Executes the editing command unselect in web page.</para>
+            </description>
+         </method>
          <method name="replace">
             <param name="text" type="String"/>
+            <description>
+               <para>Executes the editing command replace in web page.</para>
+            </description>
          </method>
          <method name="replaceMisspelling">
             <param name="text" type="String"/>
+            <description>
+               <para>Executes the editing command replaceMisspelling in web page.</para>
+            </description>
          </method>
          <method name="insertText">
             <param name="text" type="String"/>
+            <description>
+               <para>Inserts text to the focused element.</para>
+            </description>
          </method>
          <method name="findInPage">
             <param name="text" type="String"/>
@@ -460,6 +1111,9 @@
                <property optional="true" name="wordStart" type="Boolean"/>
                <property optional="true" name="medialCapitalAsWordStart" type="Boolean"/>
             </param>
+            <description>
+               <para>Starts a request to find all matches for the text in the web page and returns an Integer representing the request id used for the request. The result of the request can be obtained by subscribing to found-in-page event.</para>
+            </description>
          </method>
          <method name="stopFindInPage">
             <param name="action" type="String">
@@ -467,28 +1121,46 @@
                <param name="keepSelection"/>
                <param name="activateSelection"/>
             </param>
+            <description>
+               <para>Stops any findInPage request for the webContents with the provided action.</para>
+               <programlisting>...omitted...</programlisting>
+            </description>
          </method>
          <method name="capturePage">
             <param optional="true" name="rect" type="Rectangle"/>
             <param name="callback" type="Function">
                <param name="image" type="NativeImage"/>
             </param>
+            <description>
+               <para>Captures a snapshot of the page within rect. Upon completion callback will be called with callback(image). The image is an instance of NativeImage that stores data of the snapshot. Omitting rect will capture the whole visible page.</para>
+            </description>
          </method>
          <method name="hasServiceWorker">
             <param name="callback" type="Function">
                <param name="hasWorker" type="Boolean"/>
             </param>
+            <description>
+               <para>Checks if any ServiceWorker is registered and returns a boolean as response to callback.</para>
+            </description>
          </method>
          <method name="unregisterServiceWorker">
             <param name="callback" type="Function">
                <param name="success" type="Boolean"/>
             </param>
+            <description>
+               <para>Unregisters any ServiceWorker if present and returns a boolean as response to callback when the JS promise is fulfilled or false when the JS promise is rejected.</para>
+            </description>
          </method>
          <method name="print">
             <param optional="true" name="options" type="Object">
                <property name="silent" type="Boolean"/>
                <property name="printBackground" type="Boolean"/>
             </param>
+            <description>
+               <para>Prints window's web page. When silent is set to true, Electron will pick up system's default printer and default settings for printing.</para>
+               <para>Calling window.print() in web page is equivalent to calling webContents.print({silent: false, printBackground: false}).</para>
+               <para>Use page-break-before: always; CSS style to force to print to a new page.</para>
+            </description>
          </method>
          <method name="printToPDF">
             <param name="options" type="Object">
@@ -502,34 +1174,86 @@
                <param name="error" type="Error"/>
                <param name="data" type="Buffer"/>
             </param>
+            <description>
+               <para>Prints window's web page as PDF with Chromium's preview printing custom settings.</para>
+               <para>The callback will be called with callback(error, data) on completion. The data is a Buffer that contains the generated PDF data.</para>
+               <para>The landscape will be ignored if @page CSS at-rule is used in the web page.</para>
+               <para>By default, an empty options will be regarded as:</para>
+               <programlisting>...omitted...</programlisting>
+               <para>Use page-break-before: always; CSS style to force to print to a new page.</para>
+               <para>An example of webContents.printToPDF:</para>
+               <programlisting>...omitted...</programlisting>
+            </description>
          </method>
          <method name="addWorkSpace">
             <param name="path" type="String"/>
+            <description>
+               <para>Adds the specified path to DevTools workspace. Must be used after DevTools creation:</para>
+               <programlisting>...omitted...</programlisting>
+            </description>
          </method>
          <method name="removeWorkSpace">
             <param name="path" type="String"/>
+            <description>
+               <para>Removes the specified path from DevTools workspace.</para>
+            </description>
          </method>
          <method name="openDevTools">
             <param optional="true" name="options" type="Object">
                <property name="mode" type="String"/>
             </param>
+            <description>
+               <para>Opens the devtools.</para>
+            </description>
          </method>
-         <method name="closeDevTools"/>
+         <method name="closeDevTools">
+            <description>
+               <para>Closes the devtools.</para>
+            </description>
+         </method>
          <method name="isDevToolsOpened">
-            <returns type="Boolean"/>
+            <returns type="Boolean">
+               <description>
+                  <para>- Whether the devtools is opened.</para>
+               </description>
+            </returns>
+            <description/>
          </method>
          <method name="isDevToolsFocused">
-            <returns type="Boolean"/>
+            <returns type="Boolean">
+               <description>
+                  <para>- Whether the devtools view is focused .</para>
+               </description>
+            </returns>
+            <description/>
          </method>
-         <method name="toggleDevTools"/>
+         <method name="toggleDevTools">
+            <description>
+               <para>Toggles the developer tools.</para>
+            </description>
+         </method>
          <method name="inspectElement">
             <param name="x" type="Integer"/>
             <param name="y" type="Integer"/>
+            <description>
+               <para>Starts inspecting element at position (x, y).</para>
+            </description>
          </method>
-         <method name="inspectServiceWorker"/>
+         <method name="inspectServiceWorker">
+            <description>
+               <para>Opens the developer tools for the service worker context.</para>
+            </description>
+         </method>
          <method name="send">
             <param name="channel" type="String"/>
             <param name="args" vararg="true" type="any" isArray="true"/>
+            <description>
+               <para>Send an asynchronous message to renderer process via channel, you can also send arbitrary arguments. Arguments will be serialized in JSON internally and hence no functions or prototype chain will be included.</para>
+               <para>The renderer process can handle the message by listening to channel with the ipcRenderer module.</para>
+               <para>An example of sending messages from the main process to the renderer process:</para>
+               <programlisting>...omitted...</programlisting>
+               <programlisting>...omitted...</programlisting>
+            </description>
          </method>
          <method name="enableDeviceEmulation">
             <param name="parameters" type="Object">
@@ -557,13 +1281,83 @@
                </property>
                <property name="scale" type="Float"/>
             </param>
+            <description>
+               <para>Enable device emulation with the given parameters.</para>
+            </description>
          </method>
-         <method name="disableDeviceEmulation"/>
+         <method name="disableDeviceEmulation">
+            <description>
+               <para>Disable device emulation enabled by webContents.enableDeviceEmulation.</para>
+            </description>
+         </method>
          <method name="sendInputEvent">
             <param name="event" type="Object">
                <property name="type" type="String"/>
                <property name="modifiers" type="String" isArray="true"/>
             </param>
+            <description>
+               <para>Sends an input event to the page.</para>
+               <para>For keyboard events, the event object also have following properties:</para>
+               <list>
+                  <item>
+                     <para>keyCode String (required) - The character that will be sent as the keyboard event. Should only use the valid key codes in Accelerator.</para>
+                  </item>
+               </list>
+               <para>For mouse events, the event object also have following properties:</para>
+               <list>
+                  <item>
+                     <para>x Integer (required)</para>
+                  </item>
+                  <item>
+                     <para>y Integer (required)</para>
+                  </item>
+                  <item>
+                     <para>button String - The button pressed, can be left, middle, right</para>
+                  </item>
+                  <item>
+                     <para>globalX Integer</para>
+                  </item>
+                  <item>
+                     <para>globalY Integer</para>
+                  </item>
+                  <item>
+                     <para>movementX Integer</para>
+                  </item>
+                  <item>
+                     <para>movementY Integer</para>
+                  </item>
+                  <item>
+                     <para>clickCount Integer</para>
+                  </item>
+               </list>
+               <para>For the mouseWheel event, the event object also have following properties:</para>
+               <list>
+                  <item>
+                     <para>deltaX Integer</para>
+                  </item>
+                  <item>
+                     <para>deltaY Integer</para>
+                  </item>
+                  <item>
+                     <para>wheelTicksX Integer</para>
+                  </item>
+                  <item>
+                     <para>wheelTicksY Integer</para>
+                  </item>
+                  <item>
+                     <para>accelerationRatioX Integer</para>
+                  </item>
+                  <item>
+                     <para>accelerationRatioY Integer</para>
+                  </item>
+                  <item>
+                     <para>hasPreciseScrollingDeltas Boolean</para>
+                  </item>
+                  <item>
+                     <para>canScroll Boolean</para>
+                  </item>
+               </list>
+            </description>
          </method>
          <method name="beginFrameSubscription">
             <param optional="true" name="onlyDirty" type="Boolean"/>
@@ -571,13 +1365,25 @@
                <param name="frameBuffer" type="Buffer"/>
                <param name="dirtyRect" type="Rectangle"/>
             </param>
+            <description>
+               <para>Begin subscribing for presentation events and captured frames, the callback will be called with callback(frameBuffer, dirtyRect) when there is a presentation event.</para>
+               <para>The frameBuffer is a Buffer that contains raw pixel data. On most machines, the pixel data is effectively stored in 32bit BGRA format, but the actual representation depends on the endianness of the processor (most modern processors are little-endian, on machines with big-endian processors the data is in 32bit ARGB format).</para>
+               <para>The dirtyRect is an object with x, y, width, height properties that describes which part of the page was repainted. If onlyDirty is set to true, frameBuffer will only contain the repainted area. onlyDirty defaults to false.</para>
+            </description>
          </method>
-         <method name="endFrameSubscription"/>
+         <method name="endFrameSubscription">
+            <description>
+               <para>End subscribing for frame presentation events.</para>
+            </description>
+         </method>
          <method name="startDrag">
             <param name="item" type="Object">
                <property name="file" type="String"/>
                <property name="icon" type="NativeImage"/>
             </param>
+            <description>
+               <para>Sets the item as dragging item for current drag-drop operation, file is the absolute path of the file to be dragged, and icon is the image showing under the cursor when dragging.</para>
+            </description>
          </method>
          <method name="savePage">
             <param name="fullPath" type="String"/>
@@ -589,25 +1395,122 @@
             <param name="callback" type="Function">
                <param name="error" type="Error"/>
             </param>
-            <returns type="true"/>
+            <returns type="Boolean">
+               <description>
+                  <para>- true if the process of saving page has been initiated successfully.</para>
+               </description>
+            </returns>
+            <description>
+               <programlisting>...omitted...</programlisting>
+            </description>
          </method>
-         <method name="showDefinitionForSelection"/>
-         <method name="setSize"/>
+         <method name="showDefinitionForSelection">
+            <description>
+               <para>Shows pop-up dictionary that searches the selected word on the page.</para>
+            </description>
+         </method>
+         <method name="setSize">
+            <param name="options" type="Object">
+               <property optional="true" name="normal" type="Object">
+                  <property name="width" type="Integer"/>
+                  <property name="height" type="Integer"/>
+               </property>
+            </param>
+            <description>
+               <para>Set the size of the page. This is only supported for &lt;webview&gt; guest contents.</para>
+               <list>
+                  <item>
+                     <para>options Object</para>
+                     <list>
+                        <item>
+                           <para>normal Object (optional) - Normal size of the page. This can be used in combination with the disableguestresize attribute to manually resize the webview guest contents.</para>
+                           <list>
+                              <item>
+                                 <para>width Integer</para>
+                              </item>
+                              <item>
+                                 <para>height Integer</para>
+                              </item>
+                           </list>
+                        </item>
+                     </list>
+                  </item>
+               </list>
+            </description>
+         </method>
          <method name="isOffscreen">
-            <returns type="Boolean"/>
+            <returns type="Boolean">
+               <description>
+                  <para>- Indicates whether offscreen rendering is enabled.</para>
+               </description>
+            </returns>
+            <description/>
          </method>
-         <method name="startPainting"/>
-         <method name="stopPainting"/>
+         <method name="startPainting">
+            <description>
+               <para>If offscreen rendering is enabled and not painting, start painting.</para>
+            </description>
+         </method>
+         <method name="stopPainting">
+            <description>
+               <para>If offscreen rendering is enabled and painting, stop painting.</para>
+            </description>
+         </method>
          <method name="isPainting">
-            <returns type="Boolean"/>
+            <returns type="Boolean">
+               <description>
+                  <para>- If offscreen rendering is enabled returns whether it is currently painting.</para>
+               </description>
+            </returns>
+            <description/>
          </method>
          <method name="setFrameRate">
             <param name="fps" type="Integer"/>
+            <description>
+               <para>If offscreen rendering is enabled sets the frame rate to the specified number. Only values between 1 and 60 are accepted.</para>
+            </description>
          </method>
          <method name="getFrameRate">
-            <returns type="Integer"/>
+            <returns type="Integer">
+               <description>
+                  <para>- If offscreen rendering is enabled returns the current frame rate.</para>
+               </description>
+            </returns>
+            <description/>
          </method>
-         <method name="invalidate"/>
+         <method name="invalidate">
+            <description>
+               <para>If offscreen rendering is enabled invalidates the frame and generates a new one through the 'paint' event.</para>
+            </description>
+         </method>
       </methods>
+      <properties type="instance">
+         <property name="id">
+            <description>
+               <para>A Integer representing the unique ID of this WebContents.</para>
+            </description>
+         </property>
+         <property name="session">
+            <description>
+               <para>A Session object (session) used by this webContents.</para>
+            </description>
+         </property>
+         <property name="hostWebContents" type="WebContents">
+            <description>
+               <para>A WebContents instance that might own this WebContents.</para>
+            </description>
+         </property>
+         <property name="devToolsWebContents" type="WebContents">
+            <description>
+               <para>A WebContents of DevTools for this WebContents.</para>
+               <para>Note: Users should never store this object because it may become null when the DevTools has been closed.</para>
+            </description>
+         </property>
+         <property name="debugger">
+            <description>
+               <para>A Debugger instance for this webContents.</para>
+            </description>
+         </property>
+      </properties>
    </class>
 </file>

@@ -7,7 +7,15 @@
             <param name="options" type="Object">
                <property name="cache" type="Boolean"/>
             </param>
-            <returns type="Session"/>
+            <returns type="Session">
+               <description>
+                  <para>- A session instance from partition string. When there is an existing Session with the same partition, it will be returned; otherwise a new Session instance will be created with options.</para>
+               </description>
+            </returns>
+            <description>
+               <para>If partition starts with persist:, the page will use a persistent session available to all pages in the app with the same partition. if there is no persist: prefix, the page will use an in-memory session. If the partition is empty then default session of the app will be returned.</para>
+               <para>To create a Session with options, you have to ensure the Session with the partition has never been used before. There is no way to change the options of an existing Session object.</para>
+            </description>
          </method>
       </methods>
       <class title="Session">
@@ -17,10 +25,15 @@
                <param name="callback" type="Function">
                   <param name="size" type="Integer"/>
                </param>
-               <returns type="the"/>
+               <description>
+                  <para>Callback is invoked with the session's current cache size.</para>
+               </description>
             </method>
             <method name="clearCache">
                <param name="callback" type="Function"/>
+               <description>
+                  <para>Clears the session’s HTTP cache.</para>
+               </description>
             </method>
             <method name="clearStorageData">
                <param optional="true" name="options" type="Object">
@@ -29,8 +42,15 @@
                   <property name="quotas" type="String" isArray="true"/>
                </param>
                <param optional="true" name="callback" type="Function"/>
+               <description>
+                  <para>Clears the data of web storages.</para>
+               </description>
             </method>
-            <method name="flushStorageData"/>
+            <method name="flushStorageData">
+               <description>
+                  <para>Writes any unwritten DOMStorage data to disk.</para>
+               </description>
+            </method>
             <method name="setProxy">
                <param name="config" type="Object">
                   <property name="pacScript" type="String"/>
@@ -38,15 +58,86 @@
                   <property name="proxyBypassRules" type="String"/>
                </param>
                <param name="callback" type="Function"/>
+               <description>
+                  <para>Sets the proxy settings.</para>
+                  <para>When pacScript and proxyRules are provided together, the proxyRules option is ignored and pacScript configuration is applied.</para>
+                  <para>The proxyRules has to follow the rules below:</para>
+                  <programlisting>...omitted...</programlisting>
+                  <para>For example:</para>
+                  <list>
+                     <item>
+                        <para>http=foopy:80;ftp=foopy2 - Use HTTP proxy foopy:80 for http:// URLs, and HTTP proxy foopy2:80 for ftp:// URLs.</para>
+                     </item>
+                     <item>
+                        <para>foopy:80 - Use HTTP proxy foopy:80 for all URLs.</para>
+                     </item>
+                     <item>
+                        <para>foopy:80,bar,direct:// - Use HTTP proxy foopy:80 for all URLs, failing over to bar if foopy:80 is unavailable, and after that using no proxy.</para>
+                     </item>
+                     <item>
+                        <para>socks4://foopy - Use SOCKS v4 proxy foopy:1080 for all URLs.</para>
+                     </item>
+                     <item>
+                        <para>http=foopy,socks5://bar.com - Use HTTP proxy foopy for http URLs, and fail over to the SOCKS5 proxy bar.com if foopy is unavailable.</para>
+                     </item>
+                     <item>
+                        <para>http=foopy,direct:// - Use HTTP proxy foopy for http URLs, and use no proxy if foopy is unavailable.</para>
+                     </item>
+                     <item>
+                        <para>http=foopy;socks=foopy2 - Use HTTP proxy foopy for http URLs, and use socks4://foopy2 for all other URLs.</para>
+                     </item>
+                  </list>
+                  <para>The proxyBypassRules is a comma separated list of rules described below:</para>
+                  <list>
+                     <item>
+                        <para>[ URL_SCHEME "://" ] HOSTNAME_PATTERN [ ":" &lt;port&gt; ]</para>
+                     </item>
+                  </list>
+                  <para>Match all hostnames that match the pattern HOSTNAME_PATTERN.</para>
+                  <para>Examples: "foobar.com", "foobar.com", ".foobar.com", "foobar.com:99", "https://x..y.com:99"</para>
+                  <list>
+                     <item>
+                        <para>"." HOSTNAME_SUFFIX_PATTERN [ ":" PORT ]</para>
+                     </item>
+                  </list>
+                  <para>Match a particular domain suffix.</para>
+                  <para>Examples: ".google.com", ".com", "http://.google.com"</para>
+                  <list>
+                     <item>
+                        <para>[ SCHEME "://" ] IP_LITERAL [ ":" PORT ]</para>
+                     </item>
+                  </list>
+                  <para>Match URLs which are IP address literals.</para>
+                  <para>Examples: "127.0.1", "[0:0::1]", "[::1]", "http://[::1]:99"</para>
+                  <list>
+                     <item>
+                        <para>IP_LITERAL "/" PREFIX_LENGHT_IN_BITS</para>
+                     </item>
+                  </list>
+                  <para>Match any URL that is to an IP literal that falls between the given range. IP range is specified using CIDR notation.</para>
+                  <para>Examples: "192.168.1.1/16", "fefe:13::abc/33".</para>
+                  <list>
+                     <item>
+                        <para>&lt;local&gt;</para>
+                     </item>
+                  </list>
+                  <para>Match local addresses. The meaning of &lt;local&gt; is whether the host matches one of: "127.0.0.1", "::1", "localhost".</para>
+               </description>
             </method>
             <method name="resolveProxy">
                <param name="url" type="URL"/>
                <param name="callback" type="Function">
                   <param name="proxy" type="Object"/>
                </param>
+               <description>
+                  <para>Resolves the proxy information for url. The callback will be called with callback(proxy) when the request is performed.</para>
+               </description>
             </method>
             <method name="setDownloadPath">
                <param name="path" type="String"/>
+               <description>
+                  <para>Sets download saving directory. By default, the download directory will be the Downloads under the respective app folder.</para>
+               </description>
             </method>
             <method name="enableNetworkEmulation">
                <param name="options" type="Object">
@@ -55,8 +146,16 @@
                   <property optional="true" name="downloadThroughput" type="Double"/>
                   <property optional="true" name="uploadThroughput" type="Double"/>
                </param>
+               <description>
+                  <para>Emulates network with the given configuration for the session.</para>
+                  <programlisting>...omitted...</programlisting>
+               </description>
             </method>
-            <method name="disableNetworkEmulation"/>
+            <method name="disableNetworkEmulation">
+               <description>
+                  <para>Disables any network emulation already active for the session. Resets to the original network configuration.</para>
+               </description>
+            </method>
             <method name="setCertificateVerifyProc">
                <param name="proc" type="Function">
                   <param name="hostname" type="String"/>
@@ -65,6 +164,11 @@
                      <param name="isTrusted" type="Boolean"/>
                   </param>
                </param>
+               <description>
+                  <para>Sets the certificate verify proc for session, the proc will be called with proc(hostname, certificate, callback) whenever a server certificate verification is requested. Calling callback(true) accepts the certificate, calling callback(false) rejects it.</para>
+                  <para>Calling setCertificateVerifyProc(null) will revert back to default certificate verify proc.</para>
+                  <programlisting>...omitted...</programlisting>
+               </description>
             </method>
             <method name="setPermissionRequestHandler">
                <param name="handler" type="Function">
@@ -74,26 +178,52 @@
                      <param name="permissionGranted" type="Boolean"/>
                   </param>
                </param>
+               <description>
+                  <para>Sets the handler which can be used to respond to permission requests for the session. Calling callback(true) will allow the permission and callback(false) will reject it.</para>
+                  <programlisting>...omitted...</programlisting>
+               </description>
             </method>
             <method name="clearHostResolverCache">
                <param optional="true" name="callback" type="Function"/>
+               <description>
+                  <para>Clears the host resolver cache.</para>
+               </description>
             </method>
             <method name="allowNTLMCredentialsForDomains">
                <param name="domains" type="String"/>
+               <description>
+                  <para>Dynamically sets whether to always send credentials for HTTP NTLM or Negotiate authentication.</para>
+                  <programlisting>...omitted...</programlisting>
+               </description>
             </method>
             <method name="setUserAgent">
                <param name="userAgent" type="String"/>
                <param optional="true" name="acceptLanguages" type="String"/>
+               <description>
+                  <para>Overrides the userAgent and acceptLanguages for this session.</para>
+                  <para>The acceptLanguages must a comma separated ordered list of language codes, for example "en-US,fr,de,ko,zh-CN,ja".</para>
+                  <para>This doesn't affect existing WebContents, and each WebContents can use webContents.setUserAgent to override the session-wide user agent.</para>
+               </description>
             </method>
             <method name="getUserAgent">
-               <returns type="String"/>
+               <returns type="String">
+                  <description>
+                     <para>- The user agent for this session.</para>
+                  </description>
+               </returns>
+               <description/>
             </method>
             <method name="getBlobData">
                <param name="identifier" type="String"/>
                <param name="callback" type="Function">
                   <param name="result" type="Buffer"/>
                </param>
-               <returns type="Blob"/>
+               <returns type="Blob">
+                  <description>
+                     <para>- The blob data associated with the identifier.</para>
+                  </description>
+               </returns>
+               <description/>
             </method>
             <method name="createInterruptedDownload">
                <param name="options" type="Object">
@@ -106,6 +236,9 @@
                   <property name="eTag" type="String"/>
                   <property optional="true" name="startTime" type="Double"/>
                </param>
+               <description>
+                  <para>Allows resuming cancelled or interrupted downloads from previous Session. The API will generate a DownloadItem that can be accessed with the will-download event. The DownloadItem will not have any WebContents associated with it and the initial state will be interrupted. The download will start only when the resume API is called on the DownloadItem.</para>
+               </description>
             </method>
             <method name="clearAuthCache">
                <param name="options" type="union">
@@ -113,8 +246,29 @@
                   <option type="RemoveClientCertificate"/>
                </param>
                <param optional="true" name="callback" type="Function"/>
+               <description>
+                  <para>Clears the session’s HTTP authentication cache.</para>
+               </description>
             </method>
          </methods>
+         <properties type="instance">
+            <property name="cookies">
+               <description>
+                  <para>A Cookies object for this session.</para>
+               </description>
+            </property>
+            <property name="webRequest">
+               <description>
+                  <para>A WebRequest object for this session.</para>
+               </description>
+            </property>
+            <property name="protocol">
+               <description>
+                  <para>A Protocol object (an instance of protocol module) for this session.</para>
+                  <programlisting>...omitted...</programlisting>
+               </description>
+            </property>
+         </properties>
       </class>
    </object>
    <class title="Session">
@@ -124,10 +278,15 @@
             <param name="callback" type="Function">
                <param name="size" type="Integer"/>
             </param>
-            <returns type="the"/>
+            <description>
+               <para>Callback is invoked with the session's current cache size.</para>
+            </description>
          </method>
          <method name="clearCache">
             <param name="callback" type="Function"/>
+            <description>
+               <para>Clears the session’s HTTP cache.</para>
+            </description>
          </method>
          <method name="clearStorageData">
             <param optional="true" name="options" type="Object">
@@ -136,8 +295,15 @@
                <property name="quotas" type="String" isArray="true"/>
             </param>
             <param optional="true" name="callback" type="Function"/>
+            <description>
+               <para>Clears the data of web storages.</para>
+            </description>
          </method>
-         <method name="flushStorageData"/>
+         <method name="flushStorageData">
+            <description>
+               <para>Writes any unwritten DOMStorage data to disk.</para>
+            </description>
+         </method>
          <method name="setProxy">
             <param name="config" type="Object">
                <property name="pacScript" type="String"/>
@@ -145,15 +311,86 @@
                <property name="proxyBypassRules" type="String"/>
             </param>
             <param name="callback" type="Function"/>
+            <description>
+               <para>Sets the proxy settings.</para>
+               <para>When pacScript and proxyRules are provided together, the proxyRules option is ignored and pacScript configuration is applied.</para>
+               <para>The proxyRules has to follow the rules below:</para>
+               <programlisting>...omitted...</programlisting>
+               <para>For example:</para>
+               <list>
+                  <item>
+                     <para>http=foopy:80;ftp=foopy2 - Use HTTP proxy foopy:80 for http:// URLs, and HTTP proxy foopy2:80 for ftp:// URLs.</para>
+                  </item>
+                  <item>
+                     <para>foopy:80 - Use HTTP proxy foopy:80 for all URLs.</para>
+                  </item>
+                  <item>
+                     <para>foopy:80,bar,direct:// - Use HTTP proxy foopy:80 for all URLs, failing over to bar if foopy:80 is unavailable, and after that using no proxy.</para>
+                  </item>
+                  <item>
+                     <para>socks4://foopy - Use SOCKS v4 proxy foopy:1080 for all URLs.</para>
+                  </item>
+                  <item>
+                     <para>http=foopy,socks5://bar.com - Use HTTP proxy foopy for http URLs, and fail over to the SOCKS5 proxy bar.com if foopy is unavailable.</para>
+                  </item>
+                  <item>
+                     <para>http=foopy,direct:// - Use HTTP proxy foopy for http URLs, and use no proxy if foopy is unavailable.</para>
+                  </item>
+                  <item>
+                     <para>http=foopy;socks=foopy2 - Use HTTP proxy foopy for http URLs, and use socks4://foopy2 for all other URLs.</para>
+                  </item>
+               </list>
+               <para>The proxyBypassRules is a comma separated list of rules described below:</para>
+               <list>
+                  <item>
+                     <para>[ URL_SCHEME "://" ] HOSTNAME_PATTERN [ ":" &lt;port&gt; ]</para>
+                  </item>
+               </list>
+               <para>Match all hostnames that match the pattern HOSTNAME_PATTERN.</para>
+               <para>Examples: "foobar.com", "foobar.com", ".foobar.com", "foobar.com:99", "https://x..y.com:99"</para>
+               <list>
+                  <item>
+                     <para>"." HOSTNAME_SUFFIX_PATTERN [ ":" PORT ]</para>
+                  </item>
+               </list>
+               <para>Match a particular domain suffix.</para>
+               <para>Examples: ".google.com", ".com", "http://.google.com"</para>
+               <list>
+                  <item>
+                     <para>[ SCHEME "://" ] IP_LITERAL [ ":" PORT ]</para>
+                  </item>
+               </list>
+               <para>Match URLs which are IP address literals.</para>
+               <para>Examples: "127.0.1", "[0:0::1]", "[::1]", "http://[::1]:99"</para>
+               <list>
+                  <item>
+                     <para>IP_LITERAL "/" PREFIX_LENGHT_IN_BITS</para>
+                  </item>
+               </list>
+               <para>Match any URL that is to an IP literal that falls between the given range. IP range is specified using CIDR notation.</para>
+               <para>Examples: "192.168.1.1/16", "fefe:13::abc/33".</para>
+               <list>
+                  <item>
+                     <para>&lt;local&gt;</para>
+                  </item>
+               </list>
+               <para>Match local addresses. The meaning of &lt;local&gt; is whether the host matches one of: "127.0.0.1", "::1", "localhost".</para>
+            </description>
          </method>
          <method name="resolveProxy">
             <param name="url" type="URL"/>
             <param name="callback" type="Function">
                <param name="proxy" type="Object"/>
             </param>
+            <description>
+               <para>Resolves the proxy information for url. The callback will be called with callback(proxy) when the request is performed.</para>
+            </description>
          </method>
          <method name="setDownloadPath">
             <param name="path" type="String"/>
+            <description>
+               <para>Sets download saving directory. By default, the download directory will be the Downloads under the respective app folder.</para>
+            </description>
          </method>
          <method name="enableNetworkEmulation">
             <param name="options" type="Object">
@@ -162,8 +399,16 @@
                <property optional="true" name="downloadThroughput" type="Double"/>
                <property optional="true" name="uploadThroughput" type="Double"/>
             </param>
+            <description>
+               <para>Emulates network with the given configuration for the session.</para>
+               <programlisting>...omitted...</programlisting>
+            </description>
          </method>
-         <method name="disableNetworkEmulation"/>
+         <method name="disableNetworkEmulation">
+            <description>
+               <para>Disables any network emulation already active for the session. Resets to the original network configuration.</para>
+            </description>
+         </method>
          <method name="setCertificateVerifyProc">
             <param name="proc" type="Function">
                <param name="hostname" type="String"/>
@@ -172,6 +417,11 @@
                   <param name="isTrusted" type="Boolean"/>
                </param>
             </param>
+            <description>
+               <para>Sets the certificate verify proc for session, the proc will be called with proc(hostname, certificate, callback) whenever a server certificate verification is requested. Calling callback(true) accepts the certificate, calling callback(false) rejects it.</para>
+               <para>Calling setCertificateVerifyProc(null) will revert back to default certificate verify proc.</para>
+               <programlisting>...omitted...</programlisting>
+            </description>
          </method>
          <method name="setPermissionRequestHandler">
             <param name="handler" type="Function">
@@ -181,26 +431,52 @@
                   <param name="permissionGranted" type="Boolean"/>
                </param>
             </param>
+            <description>
+               <para>Sets the handler which can be used to respond to permission requests for the session. Calling callback(true) will allow the permission and callback(false) will reject it.</para>
+               <programlisting>...omitted...</programlisting>
+            </description>
          </method>
          <method name="clearHostResolverCache">
             <param optional="true" name="callback" type="Function"/>
+            <description>
+               <para>Clears the host resolver cache.</para>
+            </description>
          </method>
          <method name="allowNTLMCredentialsForDomains">
             <param name="domains" type="String"/>
+            <description>
+               <para>Dynamically sets whether to always send credentials for HTTP NTLM or Negotiate authentication.</para>
+               <programlisting>...omitted...</programlisting>
+            </description>
          </method>
          <method name="setUserAgent">
             <param name="userAgent" type="String"/>
             <param optional="true" name="acceptLanguages" type="String"/>
+            <description>
+               <para>Overrides the userAgent and acceptLanguages for this session.</para>
+               <para>The acceptLanguages must a comma separated ordered list of language codes, for example "en-US,fr,de,ko,zh-CN,ja".</para>
+               <para>This doesn't affect existing WebContents, and each WebContents can use webContents.setUserAgent to override the session-wide user agent.</para>
+            </description>
          </method>
          <method name="getUserAgent">
-            <returns type="String"/>
+            <returns type="String">
+               <description>
+                  <para>- The user agent for this session.</para>
+               </description>
+            </returns>
+            <description/>
          </method>
          <method name="getBlobData">
             <param name="identifier" type="String"/>
             <param name="callback" type="Function">
                <param name="result" type="Buffer"/>
             </param>
-            <returns type="Blob"/>
+            <returns type="Blob">
+               <description>
+                  <para>- The blob data associated with the identifier.</para>
+               </description>
+            </returns>
+            <description/>
          </method>
          <method name="createInterruptedDownload">
             <param name="options" type="Object">
@@ -213,6 +489,9 @@
                <property name="eTag" type="String"/>
                <property optional="true" name="startTime" type="Double"/>
             </param>
+            <description>
+               <para>Allows resuming cancelled or interrupted downloads from previous Session. The API will generate a DownloadItem that can be accessed with the will-download event. The DownloadItem will not have any WebContents associated with it and the initial state will be interrupted. The download will start only when the resume API is called on the DownloadItem.</para>
+            </description>
          </method>
          <method name="clearAuthCache">
             <param name="options" type="union">
@@ -220,7 +499,28 @@
                <option type="RemoveClientCertificate"/>
             </param>
             <param optional="true" name="callback" type="Function"/>
+            <description>
+               <para>Clears the session’s HTTP authentication cache.</para>
+            </description>
          </method>
       </methods>
+      <properties type="instance">
+         <property name="cookies">
+            <description>
+               <para>A Cookies object for this session.</para>
+            </description>
+         </property>
+         <property name="webRequest">
+            <description>
+               <para>A WebRequest object for this session.</para>
+            </description>
+         </property>
+         <property name="protocol">
+            <description>
+               <para>A Protocol object (an instance of protocol module) for this session.</para>
+               <programlisting>...omitted...</programlisting>
+            </description>
+         </property>
+      </properties>
    </class>
 </file>

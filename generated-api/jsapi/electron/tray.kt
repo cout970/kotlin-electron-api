@@ -2,15 +2,15 @@ package jsapi.electron
 
 class Tray(image: dynamic) {
 
-    private val module: dynamic = js("require('electron').Tray")
-
     val instance: dynamic
 
     init {
         val _constructor = js("require('electron').Tray")
-        val _image = image
+        val _image = image.instance
         instance = js("new _constructor(_image)")
     }
+
+    // ~ Events --------------------------------------------------------------------------------
 
     fun onEvent(event: String, callback: () -> Unit) = 
         module.on(event, callback)
@@ -50,18 +50,25 @@ class Tray(image: dynamic) {
     fun isDestroyed(): Boolean = 
         instance.isDestroyed()
 
-    // ~ Builders -------------------------------------------------------------------------------
+    // ~ Companion -----------------------------------------------------------------------------
+
+    companion object { 
+
+        private val module: dynamic = js("require('electron').Tray")
+
+    }
+
+    // ~ Builders ------------------------------------------------------------------------------
 
     class DisplayBalloonOptions(
-        var icon: dynamic? = null, 
-        var title: String? = null, 
+        var icon: dynamic? = null,
+        var title: String? = null,
         var content: String? = null
     )
 
     class PopUpContextMenuPosition(
-        var x: Int, 
+        var x: Int,
         var y: Int
     )
-
 }
 

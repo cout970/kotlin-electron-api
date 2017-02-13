@@ -2,15 +2,15 @@ package jsapi.electron
 
 class ClientRequest(options: dynamic) {
 
-    private val module: dynamic = js("require('electron').ClientRequest")
-
     val instance: dynamic
 
     init {
         val _constructor = js("require('electron').ClientRequest")
-        val _options = options
+        val _options = options.instance
         instance = js("new _constructor(_options)")
     }
+
+    // ~ Events --------------------------------------------------------------------------------
 
     fun onEvent(event: String, callback: () -> Unit) = 
         module.on(event, callback)
@@ -35,10 +35,17 @@ class ClientRequest(options: dynamic) {
     fun abort(): Unit = 
         instance.abort()
 
-    // ~ Builders -------------------------------------------------------------------------------
+    // ~ Companion -----------------------------------------------------------------------------
+
+    companion object { 
+
+        private val module: dynamic = js("require('electron').ClientRequest")
+
+    }
+
+    // ~ Builders ------------------------------------------------------------------------------
 
     class Session(
     )
-
 }
 

@@ -4,6 +4,8 @@ object process {
 
     private val module: dynamic = js("require('electron').process")
 
+    // ~ Events --------------------------------------------------------------------------------
+
     fun onEvent(event: String, callback: () -> Unit) = 
         module.on(event, callback)
 
@@ -24,7 +26,6 @@ object process {
     fun getSystemMemoryInfo(): dynamic = 
         module.getSystemMemoryInfo()
 
-    // ~ Builders -------------------------------------------------------------------------------
-
+    // ~ Builders ------------------------------------------------------------------------------
 }
 

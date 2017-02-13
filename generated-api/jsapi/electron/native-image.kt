@@ -4,6 +4,8 @@ object nativeImage {
 
     private val module: dynamic = js("require('electron').nativeImage")
 
+    // ~ Events --------------------------------------------------------------------------------
+
     fun onEvent(event: String, callback: () -> Unit) = 
         module.on(event, callback)
 
@@ -21,19 +23,16 @@ object nativeImage {
     fun createFromDataURL(dataURL: String): Unit = 
         module.createFromDataURL(dataURL)
 
-    // ~ Builders -------------------------------------------------------------------------------
+    // ~ Builders ------------------------------------------------------------------------------
 
     class CreateFromBufferOptions(
-        var width: Int? = null, 
-        var height: Int? = null, 
+        var width: Int? = null,
+        var height: Int? = null,
         var scaleFactor: Double? = null
     )
-
 }
 
 class NativeImage() {
-
-    private val module: dynamic = js("require('electron').NativeImage")
 
     val instance: dynamic
 
@@ -41,6 +40,8 @@ class NativeImage() {
         val _constructor = js("require('electron').NativeImage")
         instance = js("new _constructor(_)")
     }
+
+    // ~ Events --------------------------------------------------------------------------------
 
     fun onEvent(event: String, callback: () -> Unit) = 
         module.on(event, callback)
@@ -86,20 +87,27 @@ class NativeImage() {
     fun getAspectRatio(): Float = 
         instance.getAspectRatio()
 
-    // ~ Builders -------------------------------------------------------------------------------
+    // ~ Companion -----------------------------------------------------------------------------
+
+    companion object { 
+
+        private val module: dynamic = js("require('electron').NativeImage")
+
+    }
+
+    // ~ Builders ------------------------------------------------------------------------------
 
     class CropRect(
-        var x: Int, 
-        var y: Int, 
-        var width: Int, 
+        var x: Int,
+        var y: Int,
+        var width: Int,
         var height: Int
     )
 
     class ResizeOptions(
-        var width: Int? = null, 
-        var height: Int? = null, 
+        var width: Int? = null,
+        var height: Int? = null,
         var quality: String? = null
     )
-
 }
 

@@ -4,6 +4,8 @@ object app {
 
     private val module: dynamic = js("require('electron').app")
 
+    // ~ Events --------------------------------------------------------------------------------
+
     fun onEvent(event: String, callback: () -> Unit) = 
         module.on(event, callback)
 
@@ -120,10 +122,10 @@ object app {
     fun setAboutPanelOptions(options: SetAboutPanelOptionsOptions.() -> Unit): Unit = 
         module.setAboutPanelOptions(options.let { SetAboutPanelOptionsOptions().apply(it) })
 
-    // ~ Builders -------------------------------------------------------------------------------
+    // ~ Builders ------------------------------------------------------------------------------
 
     class RelaunchOptions(
-        var args: Array<String>? = null, 
+        var args: Array<String>? = null,
         var execPath: String? = null
     )
 
@@ -135,29 +137,28 @@ object app {
     )
 
     class ImportCertificateOptions(
-        var certificate: String, 
+        var certificate: String,
         var password: String
     )
 
     class GetLoginItemSettingsOptions(
-        var path: String? = null, 
+        var path: String? = null,
         var args: Array<String>? = null
     )
 
     class SetLoginItemSettingsSettings(
-        var openAtLogin: Boolean? = null, 
-        var openAsHidden: Boolean? = null, 
-        var path: String? = null, 
+        var openAtLogin: Boolean? = null,
+        var openAsHidden: Boolean? = null,
+        var path: String? = null,
         var args: Array<String>? = null
     )
 
     class SetAboutPanelOptionsOptions(
-        var applicationName: String? = null, 
-        var applicationVersion: String? = null, 
-        var copyright: String? = null, 
-        var credits: String? = null, 
+        var applicationName: String? = null,
+        var applicationVersion: String? = null,
+        var copyright: String? = null,
+        var credits: String? = null,
         var version: String? = null
     )
-
 }
 

@@ -2,14 +2,14 @@ package jsapi.electron
 
 class WebRequest() {
 
-    private val module: dynamic = js("require('electron').WebRequest")
-
     val instance: dynamic
 
     init {
         val _constructor = js("require('electron').WebRequest")
         instance = js("new _constructor(_)")
     }
+
+    // ~ Events --------------------------------------------------------------------------------
 
     fun onEvent(event: String, callback: () -> Unit) = 
         module.on(event, callback)
@@ -40,22 +40,30 @@ class WebRequest() {
     fun onErrorOccurred(filter: OnErrorOccurredFilter.() -> Unit, listener: (details: OnErrorOccurredDetails) -> Unit): Unit = 
         instance.onErrorOccurred(filter.let { OnErrorOccurredFilter().apply(it) }, listener)
 
-    // ~ Builders -------------------------------------------------------------------------------
+    // ~ Companion -----------------------------------------------------------------------------
+
+    companion object { 
+
+        private val module: dynamic = js("require('electron').WebRequest")
+
+    }
+
+    // ~ Builders ------------------------------------------------------------------------------
 
     class OnBeforeRequestFilter(
     )
 
     class OnBeforeRequestDetails(
-        var id: Int, 
-        var url: String, 
-        var method: String, 
-        var resourceType: String, 
-        var timestamp: Double, 
+        var id: Int,
+        var url: String,
+        var method: String,
+        var resourceType: String,
+        var timestamp: Double,
         var uploadData: Array<UploadData>
     )
 
     class OnBeforeRequestResponse(
-        var cancel: Boolean? = null, 
+        var cancel: Boolean? = null,
         var redirectURL: String? = null
     )
 
@@ -66,16 +74,16 @@ class WebRequest() {
     )
 
     class OnSendHeadersDetails(
-        var id: Int, 
-        var url: String, 
-        var method: String, 
-        var resourceType: String, 
-        var timestamp: Double, 
-        var requestHeaders: OnSendHeadersRequestHeaders
+        var id: Int,
+        var url: String,
+        var method: String,
+        var resourceType: String,
+        var timestamp: Double,
+        var requestHeaders: OnSendHeadersRequestHeaders.() -> Unit
     )
-
     class OnSendHeadersRequestHeaders(
     )
+
 
     class OnHeadersReceivedFilter(
     )
@@ -84,69 +92,68 @@ class WebRequest() {
     )
 
     class OnResponseStartedDetails(
-        var id: Int, 
-        var url: String, 
-        var method: String, 
-        var resourceType: String, 
-        var timestamp: Double, 
-        var responseHeaders: OnResponseStartedResponseHeaders, 
-        var fromCache: Boolean, 
-        var statusCode: Int, 
+        var id: Int,
+        var url: String,
+        var method: String,
+        var resourceType: String,
+        var timestamp: Double,
+        var responseHeaders: OnResponseStartedResponseHeaders.() -> Unit,
+        var fromCache: Boolean,
+        var statusCode: Int,
         var statusLine: String
     )
-
     class OnResponseStartedResponseHeaders(
     )
+
 
     class OnBeforeRedirectFilter(
     )
 
     class OnBeforeRedirectDetails(
-        var id: String, 
-        var url: String, 
-        var method: String, 
-        var resourceType: String, 
-        var timestamp: Double, 
-        var redirectURL: String, 
-        var statusCode: Int, 
-        var ip: String? = null, 
-        var fromCache: Boolean, 
-        var responseHeaders: OnBeforeRedirectResponseHeaders
+        var id: String,
+        var url: String,
+        var method: String,
+        var resourceType: String,
+        var timestamp: Double,
+        var redirectURL: String,
+        var statusCode: Int,
+        var ip: String? = null,
+        var fromCache: Boolean,
+        var responseHeaders: OnBeforeRedirectResponseHeaders.() -> Unit
     )
-
     class OnBeforeRedirectResponseHeaders(
     )
+
 
     class OnCompletedFilter(
     )
 
     class OnCompletedDetails(
-        var id: Int, 
-        var url: String, 
-        var method: String, 
-        var resourceType: String, 
-        var timestamp: Double, 
-        var responseHeaders: OnCompletedResponseHeaders, 
-        var fromCache: Boolean, 
-        var statusCode: Int, 
+        var id: Int,
+        var url: String,
+        var method: String,
+        var resourceType: String,
+        var timestamp: Double,
+        var responseHeaders: OnCompletedResponseHeaders.() -> Unit,
+        var fromCache: Boolean,
+        var statusCode: Int,
         var statusLine: String
     )
-
     class OnCompletedResponseHeaders(
     )
+
 
     class OnErrorOccurredFilter(
     )
 
     class OnErrorOccurredDetails(
-        var id: Int, 
-        var url: String, 
-        var method: String, 
-        var resourceType: String, 
-        var timestamp: Double, 
-        var fromCache: Boolean, 
+        var id: Int,
+        var url: String,
+        var method: String,
+        var resourceType: String,
+        var timestamp: Double,
+        var fromCache: Boolean,
         var error: String
     )
-
 }
 

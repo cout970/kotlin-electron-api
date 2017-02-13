@@ -4,6 +4,8 @@ object systemPreferences {
 
     private val module: dynamic = js("require('electron').systemPreferences")
 
+    // ~ Events --------------------------------------------------------------------------------
+
     fun onEvent(event: String, callback: () -> Unit) = 
         module.on(event, callback)
 
@@ -51,7 +53,7 @@ object systemPreferences {
     fun isInvertedColorScheme(): Boolean = 
         module.isInvertedColorScheme()
 
-    // ~ Builders -------------------------------------------------------------------------------
+    // ~ Builders ------------------------------------------------------------------------------
 
     class PostNotificationUserInfo(
     )
@@ -64,6 +66,5 @@ object systemPreferences {
 
     class SubscribeLocalNotificationUserInfo(
     )
-
 }
 

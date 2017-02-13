@@ -2,8 +2,6 @@ package jsapi.electron
 
 class BrowserWindow(options: (Options.() -> Unit)?) {
 
-    private val module: dynamic = js("require('electron').BrowserWindow")
-
     val instance: dynamic
 
     init {
@@ -12,31 +10,12 @@ class BrowserWindow(options: (Options.() -> Unit)?) {
         instance = js("new _constructor(_options)")
     }
 
+    // ~ Events --------------------------------------------------------------------------------
+
     fun onEvent(event: String, callback: () -> Unit) = 
         module.on(event, callback)
 
     // ~ Methods -------------------------------------------------------------------------------
-
-    fun getAllWindows(): Array<BrowserWindow> = 
-        module.getAllWindows()
-
-    fun getFocusedWindow(): BrowserWindow = 
-        module.getFocusedWindow()
-
-    fun fromWebContents(webContents: WebContents): BrowserWindow = 
-        module.fromWebContents(webContents.instance)
-
-    fun fromId(id: Int): BrowserWindow = 
-        module.fromId(id)
-
-    fun addDevToolsExtension(path: String): Unit = 
-        module.addDevToolsExtension(path)
-
-    fun removeDevToolsExtension(name: String): Unit = 
-        module.removeDevToolsExtension(name)
-
-    fun getDevToolsExtensions(): dynamic = 
-        module.getDevToolsExtensions()
 
     fun destroy(): Unit = 
         instance.destroy()
@@ -329,101 +308,131 @@ class BrowserWindow(options: (Options.() -> Unit)?) {
     fun setVibrancy(type: String): Unit = 
         instance.setVibrancy(type)
 
-    // ~ Builders -------------------------------------------------------------------------------
+    // ~ Companion -----------------------------------------------------------------------------
+
+    companion object { 
+
+        private val module: dynamic = js("require('electron').BrowserWindow")
+
+        // ~ Methods -------------------------------------------------------------------------------
+
+        fun getAllWindows(): Array<BrowserWindow> = 
+            module.getAllWindows()
+
+        fun getFocusedWindow(): BrowserWindow = 
+            module.getFocusedWindow()
+
+        fun fromWebContents(webContents: WebContents): BrowserWindow = 
+            module.fromWebContents(webContents.instance)
+
+        fun fromId(id: Int): BrowserWindow = 
+            module.fromId(id)
+
+        fun addDevToolsExtension(path: String): Unit = 
+            module.addDevToolsExtension(path)
+
+        fun removeDevToolsExtension(name: String): Unit = 
+            module.removeDevToolsExtension(name)
+
+        fun getDevToolsExtensions(): dynamic = 
+            module.getDevToolsExtensions()
+    }
+
+    // ~ Builders ------------------------------------------------------------------------------
 
     class Options(
-        var width: Int? = null, 
-        var height: Int? = null, 
-        var x: Int? = null, 
-        var y: Int? = null, 
-        var useContentSize: Boolean? = null, 
-        var center: Boolean? = null, 
-        var minWidth: Int? = null, 
-        var minHeight: Int? = null, 
-        var maxWidth: Int? = null, 
-        var maxHeight: Int? = null, 
-        var resizable: Boolean? = null, 
-        var movable: Boolean? = null, 
-        var minimizable: Boolean? = null, 
-        var maximizable: Boolean? = null, 
-        var closable: Boolean? = null, 
-        var focusable: Boolean? = null, 
-        var alwaysOnTop: Boolean? = null, 
-        var fullscreen: Boolean? = null, 
-        var fullscreenable: Boolean? = null, 
-        var skipTaskbar: Boolean? = null, 
-        var kiosk: Boolean? = null, 
-        var title: String? = null, 
-        var icon: dynamic? = null, 
-        var show: Boolean? = null, 
-        var frame: Boolean? = null, 
-        var parent: BrowserWindow? = null, 
-        var modal: Boolean? = null, 
-        var acceptFirstMouse: Boolean? = null, 
-        var disableAutoHideCursor: Boolean? = null, 
-        var autoHideMenuBar: Boolean? = null, 
-        var enableLargerThanScreen: Boolean? = null, 
-        var backgroundColor: String? = null, 
-        var hasShadow: Boolean? = null, 
-        var darkTheme: Boolean? = null, 
-        var transparent: Boolean? = null, 
-        var type: String? = null, 
-        var titleBarStyle: String? = null, 
-        var thickFrame: Boolean? = null, 
-        var vibrancy: String? = null, 
-        var zoomToPageWidth: Boolean? = null, 
-        var webPreferences: WebPreferences? = null
+        var width: Int? = null,
+        var height: Int? = null,
+        var x: Int? = null,
+        var y: Int? = null,
+        var useContentSize: Boolean? = null,
+        var center: Boolean? = null,
+        var minWidth: Int? = null,
+        var minHeight: Int? = null,
+        var maxWidth: Int? = null,
+        var maxHeight: Int? = null,
+        var resizable: Boolean? = null,
+        var movable: Boolean? = null,
+        var minimizable: Boolean? = null,
+        var maximizable: Boolean? = null,
+        var closable: Boolean? = null,
+        var focusable: Boolean? = null,
+        var alwaysOnTop: Boolean? = null,
+        var fullscreen: Boolean? = null,
+        var fullscreenable: Boolean? = null,
+        var skipTaskbar: Boolean? = null,
+        var kiosk: Boolean? = null,
+        var title: String? = null,
+        var icon: dynamic? = null,
+        var show: Boolean? = null,
+        var frame: Boolean? = null,
+        var parent: BrowserWindow? = null,
+        var modal: Boolean? = null,
+        var acceptFirstMouse: Boolean? = null,
+        var disableAutoHideCursor: Boolean? = null,
+        var autoHideMenuBar: Boolean? = null,
+        var enableLargerThanScreen: Boolean? = null,
+        var backgroundColor: String? = null,
+        var hasShadow: Boolean? = null,
+        var darkTheme: Boolean? = null,
+        var transparent: Boolean? = null,
+        var type: String? = null,
+        var titleBarStyle: String? = null,
+        var thickFrame: Boolean? = null,
+        var vibrancy: String? = null,
+        var zoomToPageWidth: Boolean? = null,
+        var webPreferences: (WebPreferences.() -> Unit)? = null
     )
-
     class WebPreferences(
-        var devTools: Boolean? = null, 
-        var nodeIntegration: Boolean? = null, 
-        var preload: String? = null, 
-        var session: Session? = null, 
-        var partition: String? = null, 
-        var zoomFactor: Float? = null, 
-        var javascript: Boolean? = null, 
-        var webSecurity: Boolean? = null, 
-        var allowRunningInsecureContent: Boolean? = null, 
-        var images: Boolean? = null, 
-        var textAreasAreResizable: Boolean? = null, 
-        var webgl: Boolean? = null, 
-        var webaudio: Boolean? = null, 
-        var plugins: Boolean? = null, 
-        var experimentalFeatures: Boolean? = null, 
-        var experimentalCanvasFeatures: Boolean? = null, 
-        var scrollBounce: Boolean? = null, 
-        var blinkFeatures: String? = null, 
-        var disableBlinkFeatures: String? = null, 
-        var defaultFontFamily: DefaultFontFamily? = null, 
-        var defaultFontSize: Int? = null, 
-        var defaultMonospaceFontSize: Int? = null, 
-        var minimumFontSize: Int? = null, 
-        var defaultEncoding: String? = null, 
-        var backgroundThrottling: Boolean? = null, 
-        var offscreen: Boolean? = null, 
-        var sandbox: Boolean? = null, 
+        var devTools: Boolean? = null,
+        var nodeIntegration: Boolean? = null,
+        var preload: String? = null,
+        var session: Session? = null,
+        var partition: String? = null,
+        var zoomFactor: Number? = null,
+        var javascript: Boolean? = null,
+        var webSecurity: Boolean? = null,
+        var allowRunningInsecureContent: Boolean? = null,
+        var images: Boolean? = null,
+        var textAreasAreResizable: Boolean? = null,
+        var webgl: Boolean? = null,
+        var webaudio: Boolean? = null,
+        var plugins: Boolean? = null,
+        var experimentalFeatures: Boolean? = null,
+        var experimentalCanvasFeatures: Boolean? = null,
+        var scrollBounce: Boolean? = null,
+        var blinkFeatures: String? = null,
+        var disableBlinkFeatures: String? = null,
+        var defaultFontFamily: (DefaultFontFamily.() -> Unit)? = null,
+        var defaultFontSize: Int? = null,
+        var defaultMonospaceFontSize: Int? = null,
+        var minimumFontSize: Int? = null,
+        var defaultEncoding: String? = null,
+        var backgroundThrottling: Boolean? = null,
+        var offscreen: Boolean? = null,
+        var sandbox: Boolean? = null,
         var contextIsolation: Boolean? = null
     )
-
     class DefaultFontFamily(
-        var standard: String? = null, 
-        var serif: String? = null, 
-        var sansSerif: String? = null, 
-        var monospace: String? = null, 
-        var cursive: String? = null, 
+        var standard: String? = null,
+        var serif: String? = null,
+        var sansSerif: String? = null,
+        var monospace: String? = null,
+        var cursive: String? = null,
         var fantasy: String? = null
     )
 
+
+
     class SetAspectRatioExtraSize(
-        var width: Int, 
+        var width: Int,
         var height: Int
     )
 
     class LoadURLOptions(
-        var httpReferrer: String? = null, 
-        var userAgent: String? = null, 
-        var extraHeaders: String? = null, 
+        var httpReferrer: String? = null,
+        var userAgent: String? = null,
+        var extraHeaders: String? = null,
         var postData: Array<dynamic>? = null
     )
 
@@ -432,12 +441,11 @@ class BrowserWindow(options: (Options.() -> Unit)?) {
     )
 
     class SetAppDetailsOptions(
-        var appId: String? = null, 
-        var appIconPath: String? = null, 
-        var appIconIndex: Int? = null, 
-        var relaunchCommand: String? = null, 
+        var appId: String? = null,
+        var appIconPath: String? = null,
+        var appIconIndex: Int? = null,
+        var relaunchCommand: String? = null,
         var relaunchDisplayName: String? = null
     )
-
 }
 

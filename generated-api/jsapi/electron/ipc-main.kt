@@ -4,6 +4,8 @@ object ipcMain {
 
     private val module: dynamic = js("require('electron').ipcMain")
 
+    // ~ Events --------------------------------------------------------------------------------
+
     fun onEvent(event: String, callback: () -> Unit) = 
         module.on(event, callback)
 
@@ -21,7 +23,6 @@ object ipcMain {
     fun removeAllListeners(channel: String?): Unit = 
         module.removeAllListeners(channel)
 
-    // ~ Builders -------------------------------------------------------------------------------
-
+    // ~ Builders ------------------------------------------------------------------------------
 }
 

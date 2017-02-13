@@ -4,6 +4,8 @@ object globalShortcut {
 
     private val module: dynamic = js("require('electron').globalShortcut")
 
+    // ~ Events --------------------------------------------------------------------------------
+
     fun onEvent(event: String, callback: () -> Unit) = 
         module.on(event, callback)
 
@@ -21,7 +23,6 @@ object globalShortcut {
     fun unregisterAll(): Unit = 
         module.unregisterAll()
 
-    // ~ Builders -------------------------------------------------------------------------------
-
+    // ~ Builders ------------------------------------------------------------------------------
 }
 
