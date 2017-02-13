@@ -17,7 +17,9 @@ class DownloadItem() {
     // ~ Methods -------------------------------------------------------------------------------
 
     /**
-     * The API is only available in session's will-download callback function. If user doesn't set the save path via the API, Electron will use the original routine to determine the save path(Usually prompts a save dialog).
+     * The API is only available in session's will-download callback function. If 
+     * user doesn't set the save path via the API, Electron will use the original 
+     * routine to determine the save path(Usually prompts a save dialog).
      */
     fun setSavePath(path: String): Unit = 
         instance.setSavePath(path)
@@ -72,7 +74,9 @@ class DownloadItem() {
         instance.hasUserGesture()
 
     /**
-     * Note: The file name is not always the same as the actual one saved in local disk. If user changes the file name in a prompted download saving dialog, the actual name of saved file will be different.
+     * Note: The file name is not always the same as the actual one saved in local 
+     * disk. If user changes the file name in a prompted download saving dialog, the 
+     * actual name of saved file will be different.
      */
     fun getFilename(): String = 
         instance.getFilename()
@@ -94,7 +98,8 @@ class DownloadItem() {
         instance.getContentDisposition()
 
     /**
-     * Note: The following methods are useful specifically to resume a cancelled item when session is restarted.
+     * Note: The following methods are useful specifically to resume a cancelled item 
+     * when session is restarted.
      */
     fun getState(): String = 
         instance.getState()

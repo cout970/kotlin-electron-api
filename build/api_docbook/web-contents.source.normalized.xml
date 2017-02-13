@@ -46,7 +46,11 @@
                </param>
                <description>
                   <para>Loads the url in the window. The url must contain the protocol prefix, e.g. the http:// or file://. If the load should bypass http cache then use the pragma header to achieve it.</para>
-                  <programlisting>...omitted...</programlisting>
+                  <programlisting language="javascript">
+const {webContents} = require('electron')
+const options = {extraHeaders: 'pragma: no-cache\n'}
+webContents.loadURL('https://github.com', options)
+</programlisting>
                </description>
             </method>
             <method name="downloadURL">
@@ -62,7 +66,14 @@
                   </description>
                </returns>
                <description>
-                  <programlisting>...omitted...</programlisting>
+                  <programlisting language="javascript">
+const {BrowserWindow} = require('electron')
+let win = new BrowserWindow({width: 800, height: 600})
+win.loadURL('http://github.com')
+
+let currentURL = win.webContents.getURL()
+console.log(currentURL)
+</programlisting>
                </description>
             </method>
             <method name="getTitle">
@@ -223,7 +234,12 @@
                   <para>Evaluates code in page.</para>
                   <para>In the browser window some HTML APIs like requestFullScreen can only be invoked by a gesture from the user. Setting userGesture to true will remove this limitation.</para>
                   <para>If the result of the executed code is a promise the callback result will be the resolved value of the promise. We recommend that you use the returned Promise to handle code that results in a Promise.</para>
-                  <programlisting>...omitted...</programlisting>
+                  <programlisting language="javascript">
+contents.executeJavaScript('fetch("https://jsonplaceholder.typicode.com/users/1").then(resp =&gt; resp.json())', true)
+  .then((result) =&gt; {
+    console.log(result) // Will be the JSON object from the fetch call
+  })
+</programlisting>
                </description>
             </method>
             <method name="setAudioMuted">
@@ -380,7 +396,15 @@
                </param>
                <description>
                   <para>Stops any findInPage request for the webContents with the provided action.</para>
-                  <programlisting>...omitted...</programlisting>
+                  <programlisting language="javascript">
+const {webContents} = require('electron')
+webContents.on('found-in-page', (event, result) =&gt; {
+  if (result.finalUpdate) webContents.stopFindInPage('clearSelection')
+})
+
+const requestId = webContents.findInPage('api')
+console.log(requestId)
+</programlisting>
                </description>
             </method>
             <method name="capturePage">
@@ -436,17 +460,47 @@
                   <para>The callback will be called with callback(error, data) on completion. The data is a Buffer that contains the generated PDF data.</para>
                   <para>The landscape will be ignored if @page CSS at-rule is used in the web page.</para>
                   <para>By default, an empty options will be regarded as:</para>
-                  <programlisting>...omitted...</programlisting>
+                  <programlisting language="javascript">
+{
+  marginsType: 0,
+  printBackground: false,
+  printSelectionOnly: false,
+  landscape: false
+}
+</programlisting>
                   <para>Use page-break-before: always; CSS style to force to print to a new page.</para>
                   <para>An example of webContents.printToPDF:</para>
-                  <programlisting>...omitted...</programlisting>
+                  <programlisting language="javascript">
+const {BrowserWindow} = require('electron')
+const fs = require('fs')
+
+let win = new BrowserWindow({width: 800, height: 600})
+win.loadURL('http://github.com')
+
+win.webContents.on('did-finish-load', () =&gt; {
+  // Use default printing options
+  win.webContents.printToPDF({}, (error, data) =&gt; {
+    if (error) throw error
+    fs.writeFile('/tmp/print.pdf', data, (error) =&gt; {
+      if (error) throw error
+      console.log('Write PDF successfully.')
+    })
+  })
+})
+</programlisting>
                </description>
             </method>
             <method name="addWorkSpace">
                <param name="path" type="String"/>
                <description>
                   <para>Adds the specified path to DevTools workspace. Must be used after DevTools creation:</para>
-                  <programlisting>...omitted...</programlisting>
+                  <programlisting language="javascript">
+const {BrowserWindow} = require('electron')
+let win = new BrowserWindow()
+win.webContents.on('devtools-opened', () =&gt; {
+  win.webContents.addWorkSpace(__dirname)
+})
+</programlisting>
                </description>
             </method>
             <method name="removeWorkSpace">
@@ -508,8 +562,31 @@
                   <para>Send an asynchronous message to renderer process via channel, you can also send arbitrary arguments. Arguments will be serialized in JSON internally and hence no functions or prototype chain will be included.</para>
                   <para>The renderer process can handle the message by listening to channel with the ipcRenderer module.</para>
                   <para>An example of sending messages from the main process to the renderer process:</para>
-                  <programlisting>...omitted...</programlisting>
-                  <programlisting>...omitted...</programlisting>
+                  <programlisting language="javascript">
+// In the main process.
+const {app, BrowserWindow} = require('electron')
+let win = null
+
+app.on('ready', () =&gt; {
+  win = new BrowserWindow({width: 800, height: 600})
+  win.loadURL(`file://${__dirname}/index.html`)
+  win.webContents.on('did-finish-load', () =&gt; {
+    win.webContents.send('ping', 'whoooooooh!')
+  })
+})
+</programlisting>
+                  <programlisting language="html">
+&lt;!-- index.html --&gt;
+&lt;html&gt;
+&lt;body&gt;
+  &lt;script&gt;
+    require('electron').ipcRenderer.on('ping', (event, message) =&gt; {
+      console.log(message)  // Prints 'whoooooooh!'
+    })
+  &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</programlisting>
                </description>
             </method>
             <method name="enableDeviceEmulation">
@@ -658,7 +735,18 @@
                   </description>
                </returns>
                <description>
-                  <programlisting>...omitted...</programlisting>
+                  <programlisting language="javascript">
+const {BrowserWindow} = require('electron')
+let win = new BrowserWindow()
+
+win.loadURL('https://github.com')
+
+win.webContents.on('did-finish-load', () =&gt; {
+  win.webContents.savePage('/tmp/test.html', 'HTMLComplete', (error) =&gt; {
+    if (!error) console.log('Save page successfully')
+  })
+})
+</programlisting>
                </description>
             </method>
             <method name="showDefinitionForSelection">
@@ -789,7 +877,11 @@
             </param>
             <description>
                <para>Loads the url in the window. The url must contain the protocol prefix, e.g. the http:// or file://. If the load should bypass http cache then use the pragma header to achieve it.</para>
-               <programlisting>...omitted...</programlisting>
+               <programlisting language="javascript">
+const {webContents} = require('electron')
+const options = {extraHeaders: 'pragma: no-cache\n'}
+webContents.loadURL('https://github.com', options)
+</programlisting>
             </description>
          </method>
          <method name="downloadURL">
@@ -805,7 +897,14 @@
                </description>
             </returns>
             <description>
-               <programlisting>...omitted...</programlisting>
+               <programlisting language="javascript">
+const {BrowserWindow} = require('electron')
+let win = new BrowserWindow({width: 800, height: 600})
+win.loadURL('http://github.com')
+
+let currentURL = win.webContents.getURL()
+console.log(currentURL)
+</programlisting>
             </description>
          </method>
          <method name="getTitle">
@@ -966,7 +1065,12 @@
                <para>Evaluates code in page.</para>
                <para>In the browser window some HTML APIs like requestFullScreen can only be invoked by a gesture from the user. Setting userGesture to true will remove this limitation.</para>
                <para>If the result of the executed code is a promise the callback result will be the resolved value of the promise. We recommend that you use the returned Promise to handle code that results in a Promise.</para>
-               <programlisting>...omitted...</programlisting>
+               <programlisting language="javascript">
+contents.executeJavaScript('fetch("https://jsonplaceholder.typicode.com/users/1").then(resp =&gt; resp.json())', true)
+  .then((result) =&gt; {
+    console.log(result) // Will be the JSON object from the fetch call
+  })
+</programlisting>
             </description>
          </method>
          <method name="setAudioMuted">
@@ -1123,7 +1227,15 @@
             </param>
             <description>
                <para>Stops any findInPage request for the webContents with the provided action.</para>
-               <programlisting>...omitted...</programlisting>
+               <programlisting language="javascript">
+const {webContents} = require('electron')
+webContents.on('found-in-page', (event, result) =&gt; {
+  if (result.finalUpdate) webContents.stopFindInPage('clearSelection')
+})
+
+const requestId = webContents.findInPage('api')
+console.log(requestId)
+</programlisting>
             </description>
          </method>
          <method name="capturePage">
@@ -1179,17 +1291,47 @@
                <para>The callback will be called with callback(error, data) on completion. The data is a Buffer that contains the generated PDF data.</para>
                <para>The landscape will be ignored if @page CSS at-rule is used in the web page.</para>
                <para>By default, an empty options will be regarded as:</para>
-               <programlisting>...omitted...</programlisting>
+               <programlisting language="javascript">
+{
+  marginsType: 0,
+  printBackground: false,
+  printSelectionOnly: false,
+  landscape: false
+}
+</programlisting>
                <para>Use page-break-before: always; CSS style to force to print to a new page.</para>
                <para>An example of webContents.printToPDF:</para>
-               <programlisting>...omitted...</programlisting>
+               <programlisting language="javascript">
+const {BrowserWindow} = require('electron')
+const fs = require('fs')
+
+let win = new BrowserWindow({width: 800, height: 600})
+win.loadURL('http://github.com')
+
+win.webContents.on('did-finish-load', () =&gt; {
+  // Use default printing options
+  win.webContents.printToPDF({}, (error, data) =&gt; {
+    if (error) throw error
+    fs.writeFile('/tmp/print.pdf', data, (error) =&gt; {
+      if (error) throw error
+      console.log('Write PDF successfully.')
+    })
+  })
+})
+</programlisting>
             </description>
          </method>
          <method name="addWorkSpace">
             <param name="path" type="String"/>
             <description>
                <para>Adds the specified path to DevTools workspace. Must be used after DevTools creation:</para>
-               <programlisting>...omitted...</programlisting>
+               <programlisting language="javascript">
+const {BrowserWindow} = require('electron')
+let win = new BrowserWindow()
+win.webContents.on('devtools-opened', () =&gt; {
+  win.webContents.addWorkSpace(__dirname)
+})
+</programlisting>
             </description>
          </method>
          <method name="removeWorkSpace">
@@ -1251,8 +1393,31 @@
                <para>Send an asynchronous message to renderer process via channel, you can also send arbitrary arguments. Arguments will be serialized in JSON internally and hence no functions or prototype chain will be included.</para>
                <para>The renderer process can handle the message by listening to channel with the ipcRenderer module.</para>
                <para>An example of sending messages from the main process to the renderer process:</para>
-               <programlisting>...omitted...</programlisting>
-               <programlisting>...omitted...</programlisting>
+               <programlisting language="javascript">
+// In the main process.
+const {app, BrowserWindow} = require('electron')
+let win = null
+
+app.on('ready', () =&gt; {
+  win = new BrowserWindow({width: 800, height: 600})
+  win.loadURL(`file://${__dirname}/index.html`)
+  win.webContents.on('did-finish-load', () =&gt; {
+    win.webContents.send('ping', 'whoooooooh!')
+  })
+})
+</programlisting>
+               <programlisting language="html">
+&lt;!-- index.html --&gt;
+&lt;html&gt;
+&lt;body&gt;
+  &lt;script&gt;
+    require('electron').ipcRenderer.on('ping', (event, message) =&gt; {
+      console.log(message)  // Prints 'whoooooooh!'
+    })
+  &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</programlisting>
             </description>
          </method>
          <method name="enableDeviceEmulation">
@@ -1401,7 +1566,18 @@
                </description>
             </returns>
             <description>
-               <programlisting>...omitted...</programlisting>
+               <programlisting language="javascript">
+const {BrowserWindow} = require('electron')
+let win = new BrowserWindow()
+
+win.loadURL('https://github.com')
+
+win.webContents.on('did-finish-load', () =&gt; {
+  win.webContents.savePage('/tmp/test.html', 'HTMLComplete', (error) =&gt; {
+    if (!error) console.log('Save page successfully')
+  })
+})
+</programlisting>
             </description>
          </method>
          <method name="showDefinitionForSelection">

@@ -51,9 +51,11 @@ class BrowserWindowProxy() {
         instance.print()
 
     /**
-     * Sends a message to the child window with the specified origin or * for no origin preference.
+     * Sends a message to the child window with the specified origin or * for no 
+     * origin preference.
      *
-     * In addition to these methods, the child window implements window.opener object with no properties and a single method.
+     * In addition to these methods, the child window implements window.opener object 
+     * with no properties and a single method.
      */
     fun postMessage(message: String, targetOrigin: String): Unit = 
         instance.postMessage(message, targetOrigin)

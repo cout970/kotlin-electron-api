@@ -213,10 +213,6 @@
         </para>
     </xsl:template>
 
-    <xsl:template match="//description//programlisting" mode="pass3">
-        <programlisting>...omitted...</programlisting>
-    </xsl:template>
-
     <xsl:template match="//description//itemizedlist/@spacing" mode="pass3"/>
 
     <!-- delete parameters out of description -->

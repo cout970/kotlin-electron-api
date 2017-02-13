@@ -148,7 +148,12 @@
             </returns>
             <description>
                <para>To check if a DevTools extension is installed you can run the following:</para>
-               <programlisting>...omitted...</programlisting>
+               <programlisting language="javascript">
+const {BrowserWindow} = require('electron')
+
+let installed = BrowserWindow.getDevToolsExtensions().hasOwnProperty('devtron')
+console.log(installed)
+</programlisting>
                <para>Note: This API cannot be called before the ready event of the app module is emitted.</para>
             </description>
          </method>
@@ -549,7 +554,13 @@
             <param optional="true" name="offsetX" type="Float"/>
             <description>
                <para>Changes the attachment point for sheets on macOS. By default, sheets are attached just below the window frame, but you may want to display them beneath a HTML-rendered toolbar. For example:</para>
-               <programlisting>...omitted...</programlisting>
+               <programlisting language="javascript">
+const {BrowserWindow} = require('electron')
+let win = new BrowserWindow()
+
+let toolbarRect = document.getElementById('toolbar').getBoundingClientRect()
+win.setSheetOffset(toolbarRect.height)
+</programlisting>
             </description>
          </method>
          <method name="flashFrame">
@@ -679,9 +690,25 @@
                <para>Same as webContents.loadURL(url[, options]).</para>
                <para>The url can be a remote address (e.g. http://) or a path to a local HTML file using the file:// protocol.</para>
                <para>To ensure that file URLs are properly formatted, it is recommended to use Node's url.format method:</para>
-               <programlisting>...omitted...</programlisting>
+               <programlisting language="javascript">
+let url = require('url').format({
+  protocol: 'file',
+  slashes: true,
+  pathname: require('path').join(__dirname, 'index.html')
+})
+
+win.loadURL(url)
+</programlisting>
                <para>You can load a URL using a POST request with URL-encoded data by doing the following:</para>
-               <programlisting>...omitted...</programlisting>
+               <programlisting language="javascript">
+win.loadURL('http://localhost:8000/post', {
+  postData: [{
+    type: 'rawData',
+    bytes: Buffer.from('hello=world')
+  }],
+  extraHeaders: 'Content-Type: application/x-www-form-urlencoded'
+})
+</programlisting>
             </description>
          </method>
          <method name="reload">

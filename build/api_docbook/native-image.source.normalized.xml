@@ -21,7 +21,12 @@
             </returns>
             <description>
                <para>Creates a new NativeImage instance from a file located at path. This method returns an empty image if the path does not exist, cannot be read, or is not a valid image.</para>
-               <programlisting>...omitted...</programlisting>
+               <programlisting language="javascript">
+const nativeImage = require('electron').nativeImage
+
+let image = nativeImage.createFromPath('/Users/somebody/images/icon.png')
+console.log(image)
+</programlisting>
             </description>
          </method>
          <method name="createFromBuffer">

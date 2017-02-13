@@ -18,8 +18,16 @@ object nativeImage {
         module.createEmpty()
 
     /**
-     * Creates a new NativeImage instance from a file located at path. This method returns an empty image if the path does not exist, cannot be read, or is not a valid image.
+     * Creates a new NativeImage instance from a file located at path. This method 
+     * returns an empty image if the path does not exist, cannot be read, or is not a 
+     * valid image.
      *
+     *  | 
+     *  | const nativeImage = require('electron').nativeImage
+     *  | 
+     *  | let image = nativeImage.createFromPath('/Users/somebody/images/icon.png')
+     *  | console.log(image)
+     *  | 
      */
     fun createFromPath(path: String): NativeImage = 
         module.createFromPath(path)
@@ -82,13 +90,17 @@ class NativeImage() {
         instance.toDataURL()
 
     /**
-     * The difference between getBitmap() and toBitmap() is, getBitmap() does not copy the bitmap data, so you have to use the returned Buffer immediately in current event loop tick, otherwise the data might be changed or destroyed.
+     * The difference between getBitmap() and toBitmap() is, getBitmap() does not 
+     * copy the bitmap data, so you have to use the returned Buffer immediately in 
+     * current event loop tick, otherwise the data might be changed or destroyed.
      */
     fun getBitmap(): dynamic = 
         instance.getBitmap()
 
     /**
-     * Notice that the returned pointer is a weak pointer to the underlying native image instead of a copy, so you must ensure that the associated nativeImage instance is kept around.
+     * Notice that the returned pointer is a weak pointer to the underlying native 
+     * image instead of a copy, so you must ensure that the associated nativeImage 
+     * instance is kept around.
      */
     fun getNativeHandle(): dynamic = 
         instance.getNativeHandle()
@@ -100,6 +112,7 @@ class NativeImage() {
 
     /**
      *  . width Integer
+     *
      *  . height Integer
      *
      */
@@ -123,7 +136,8 @@ class NativeImage() {
         instance.crop(rect)
 
     /**
-     * If only the height or the width are specified then the current aspect ratio will be preserved in the resized image.
+     * If only the height or the width are specified then the current aspect ratio 
+     * will be preserved in the resized image.
      */
     fun resize(options: ResizeOptions.() -> Unit): NativeImage = 
         instance.resize(options.let { ResizeOptions().apply(it) })

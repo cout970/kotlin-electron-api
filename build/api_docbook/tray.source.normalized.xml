@@ -49,7 +49,22 @@
             <description>
                <para>Sets when the tray's icon background becomes highlighted (in blue).</para>
                <para>Note: You can use highlightMode with a BrowserWindow by toggling between 'never' and 'always' modes when the window visibility changes.</para>
-               <programlisting>...omitted...</programlisting>
+               <programlisting language="javascript">
+const {BrowserWindow, Tray} = require('electron')
+
+const win = new BrowserWindow({width: 800, height: 600})
+const tray = new Tray('/path/to/my/icon')
+
+tray.on('click', () =&gt; {
+  win.isVisible() ? win.hide() : win.show()
+})
+win.on('show', () =&gt; {
+  tray.setHighlightMode('always')
+})
+win.on('hide', () =&gt; {
+  tray.setHighlightMode('never')
+})
+</programlisting>
             </description>
          </method>
          <method name="displayBalloon">

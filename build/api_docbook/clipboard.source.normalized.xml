@@ -94,7 +94,12 @@
             <description>
                <para>Writes the title and url into the clipboard as a bookmark.</para>
                <para>Note: Most apps on Windows don't support pasting bookmarks into them so you can use clipboard.write to write both a bookmark and fallback text to the clipboard.</para>
-               <programlisting>...omitted...</programlisting>
+               <programlisting language="javascript">
+clipboard.write({
+  text: 'http://electron.atom.io',
+  bookmark: 'Electron Homepage'
+})
+</programlisting>
             </description>
          </method>
          <method name="readFindText">
@@ -135,7 +140,10 @@
                </description>
             </returns>
             <description>
-               <programlisting>...omitted...</programlisting>
+               <programlisting language="javascript">
+const {clipboard} = require('electron')
+console.log(clipboard.has('&lt;p&gt;selection&lt;/p&gt;'))
+</programlisting>
             </description>
          </method>
          <method name="read">
@@ -158,7 +166,10 @@
             </param>
             <param optional="true" name="type" type="String"/>
             <description>
-               <programlisting>...omitted...</programlisting>
+               <programlisting language="javascript">
+const {clipboard} = require('electron')
+clipboard.write({text: 'test', html: '&lt;b&gt;test&lt;/b&gt;'})
+</programlisting>
                <para>Writes data to the clipboard.</para>
             </description>
          </method>

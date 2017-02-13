@@ -24,7 +24,8 @@ object shell {
         module.openItem(fullPath)
 
     /**
-     * Open the given external protocol URL in the desktop's default manner. (For example, mailto: URLs in the user's default mail agent).
+     * Open the given external protocol URL in the desktop's default manner. (For 
+     * example, mailto: URLs in the user's default mail agent).
      */
     fun openExternal(url: String, options: OpenExternalOptions?, callback: ((error: Error) -> Unit)?): Boolean = 
         module.openExternal(url, options, callback)

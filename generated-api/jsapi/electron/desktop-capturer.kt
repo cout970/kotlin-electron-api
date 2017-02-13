@@ -12,9 +12,12 @@ object desktopCapturer {
     // ~ Methods -------------------------------------------------------------------------------
 
     /**
-     * Starts gathering information about all available desktop media sources, and calls callback(error, sources) when finished.
+     * Starts gathering information about all available desktop media sources, and 
+     * calls callback(error, sources) when finished.
      *
-     * sources is an array of DesktopCapturerSource objects, each DesktopCapturerSource represents a screen or an individual window that can be captured.
+     * sources is an array of DesktopCapturerSource objects, each 
+     * DesktopCapturerSource represents a screen or an individual window that can be 
+     * captured.
      */
     fun getSources(options: GetSourcesOptions, callback: (error: Error, sources: Array<DesktopCapturerSource>) -> Unit): Unit = 
         module.getSources(options, callback)

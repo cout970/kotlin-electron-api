@@ -13,6 +13,7 @@ object screen {
 
     /**
      *  . x Integer
+     *
      *  . y Integer
      *
      * The current absolute position of the mouse pointer.

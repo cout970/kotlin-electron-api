@@ -63,7 +63,14 @@
                <para>Sets a provider for spell checking in input fields and text areas.</para>
                <para>The provider must be an object that has a spellCheck method that returns whether the word passed is correctly spelled.</para>
                <para>An example of using node-spellchecker as provider:</para>
-               <programlisting>...omitted...</programlisting>
+               <programlisting language="javascript">
+const {webFrame} = require('electron')
+webFrame.setSpellCheckProvider('en-US', true, {
+  spellCheck (text) {
+    return !(require('spellchecker').isMisspelled(text))
+  }
+})
+</programlisting>
             </description>
          </method>
          <method name="registerURLSchemeAsSecure">
@@ -91,7 +98,10 @@
             <description>
                <para>Registers the scheme as secure, bypasses content security policy for resources, allows registering ServiceWorker and supports fetch API.</para>
                <para>Specify an option with the value of false to omit it from the registration. An example of registering a privileged scheme, without bypassing Content Security Policy:</para>
-               <programlisting>...omitted...</programlisting>
+               <programlisting language="javascript">
+const {webFrame} = require('electron')
+webFrame.registerURLSchemeAsPrivileged('foo', { bypassCSP: false })
+</programlisting>
             </description>
          </method>
          <method name="insertText">
@@ -145,9 +155,24 @@
                      <para>otherMemoryUsageDetails</para>
                   </item>
                </list>
-               <programlisting>...omitted...</programlisting>
+               <programlisting language="javascript">
+const {webFrame} = require('electron')
+console.log(webFrame.getResourceUsage())
+</programlisting>
                <para>This will generate:</para>
-               <programlisting>...omitted...</programlisting>
+               <programlisting language="javascript">
+{
+  images: {
+    count: 22,
+    size: 2549,
+    liveSize: 2542
+  },
+  cssStyleSheets: { /* same with "images" */ },
+  xslStyleSheets: { /* same with "images" */ },
+  fonts: { /* same with "images" */ },
+  other: { /* same with "images" */ }
+}
+</programlisting>
             </description>
          </method>
          <method name="clearCache">

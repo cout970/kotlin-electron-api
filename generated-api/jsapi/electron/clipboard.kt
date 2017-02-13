@@ -57,6 +57,7 @@ object clipboard {
 
     /**
      *  . title String
+     *
      *  . url String
      *
      */
@@ -66,8 +67,16 @@ object clipboard {
     /**
      * Writes the title and url into the clipboard as a bookmark.
      *
-     * Note: Most apps on Windows don't support pasting bookmarks into them so you can use clipboard.write to write both a bookmark and fallback text to the clipboard.
+     * Note: Most apps on Windows don't support pasting bookmarks into them so you 
+     * can use clipboard.write to write both a bookmark and fallback text to the 
+     * clipboard.
      *
+     *  | 
+     *  | clipboard.write({
+     *  |   text: 'http://electron.atom.io',
+     *  |   bookmark: 'Electron Homepage'
+     *  | })
+     *  | 
      */
     fun writeBookmark(title: String, url: String, type: String?): Unit = 
         module.writeBookmark(title, url, type)
@@ -78,7 +87,8 @@ object clipboard {
         module.readFindText()
 
     /**
-     * Writes the text into the find pasteboard as plain text. This method uses synchronous IPC when called from the renderer process.
+     * Writes the text into the find pasteboard as plain text. This method uses 
+     * synchronous IPC when called from the renderer process.
      */
     fun writeFindText(text: String): Unit = 
         module.writeFindText(text)
@@ -95,6 +105,10 @@ object clipboard {
         module.availableFormats(type)
 
     /**
+     *  | 
+     *  | const {clipboard} = require('electron')
+     *  | console.log(clipboard.has('<p>selection</p>'))
+     *  | 
      */
     fun has(data: String, type: String?): Boolean = 
         module.has(data, type)
@@ -105,6 +119,11 @@ object clipboard {
         module.read(data, type)
 
     /**
+     *  | 
+     *  | const {clipboard} = require('electron')
+     *  | clipboard.write({text: 'test', html: '<b>test</b>'})
+     *  | 
+     *
      * Writes data to the clipboard.
      */
     fun write(data: WriteData.() -> Unit, type: String?): Unit = 

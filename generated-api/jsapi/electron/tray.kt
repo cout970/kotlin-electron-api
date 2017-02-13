@@ -50,8 +50,25 @@ class Tray(image: dynamic) {
     /**
      * Sets when the tray's icon background becomes highlighted (in blue).
      *
-     * Note: You can use highlightMode with a BrowserWindow by toggling between 'never' and 'always' modes when the window visibility changes.
+     * Note: You can use highlightMode with a BrowserWindow by toggling between 
+     * 'never' and 'always' modes when the window visibility changes.
      *
+     *  | 
+     *  | const {BrowserWindow, Tray} = require('electron')
+     *  | 
+     *  | const win = new BrowserWindow({width: 800, height: 600})
+     *  | const tray = new Tray('/path/to/my/icon')
+     *  | 
+     *  | tray.on('click', () => {
+     *  |   win.isVisible() ? win.hide() : win.show()
+     *  | })
+     *  | win.on('show', () => {
+     *  |   tray.setHighlightMode('always')
+     *  | })
+     *  | win.on('hide', () => {
+     *  |   tray.setHighlightMode('never')
+     *  | })
+     *  | 
      */
     fun setHighlightMode(mode: String): Unit = 
         instance.setHighlightMode(mode)
@@ -63,7 +80,8 @@ class Tray(image: dynamic) {
         instance.displayBalloon(options.let { DisplayBalloonOptions().apply(it) })
 
     /**
-     * Pops up the context menu of the tray icon. When menu is passed, the menu will be shown instead of the tray icon's context menu.
+     * Pops up the context menu of the tray icon. When menu is passed, the menu will 
+     * be shown instead of the tray icon's context menu.
      *
      * The position is only available on Windows, and it is (0, 0) by default.
      */

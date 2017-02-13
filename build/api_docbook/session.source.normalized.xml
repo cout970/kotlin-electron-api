@@ -62,7 +62,13 @@
                   <para>Sets the proxy settings.</para>
                   <para>When pacScript and proxyRules are provided together, the proxyRules option is ignored and pacScript configuration is applied.</para>
                   <para>The proxyRules has to follow the rules below:</para>
-                  <programlisting>...omitted...</programlisting>
+                  <programlisting>
+proxyRules = schemeProxies[";"&lt;schemeProxies&gt;]
+schemeProxies = [&lt;urlScheme&gt;"="]&lt;proxyURIList&gt;
+urlScheme = "http" | "https" | "ftp" | "socks"
+proxyURIList = &lt;proxyURL&gt;[","&lt;proxyURIList&gt;]
+proxyURL = [&lt;proxyScheme&gt;"://"]&lt;proxyHost&gt;[":"&lt;proxyPort&gt;]
+</programlisting>
                   <para>For example:</para>
                   <list>
                      <item>
@@ -148,7 +154,17 @@
                </param>
                <description>
                   <para>Emulates network with the given configuration for the session.</para>
-                  <programlisting>...omitted...</programlisting>
+                  <programlisting language="javascript">
+// To emulate a GPRS connection with 50kbps throughput and 500 ms latency.
+window.webContents.session.enableNetworkEmulation({
+  latency: 500,
+  downloadThroughput: 6400,
+  uploadThroughput: 6400
+})
+
+// To emulate a network outage.
+window.webContents.session.enableNetworkEmulation({offline: true})
+</programlisting>
                </description>
             </method>
             <method name="disableNetworkEmulation">
@@ -167,7 +183,14 @@
                <description>
                   <para>Sets the certificate verify proc for session, the proc will be called with proc(hostname, certificate, callback) whenever a server certificate verification is requested. Calling callback(true) accepts the certificate, calling callback(false) rejects it.</para>
                   <para>Calling setCertificateVerifyProc(null) will revert back to default certificate verify proc.</para>
-                  <programlisting>...omitted...</programlisting>
+                  <programlisting language="javascript">
+const {BrowserWindow} = require('electron')
+let win = new BrowserWindow()
+
+win.webContents.session.setCertificateVerifyProc((hostname, cert, callback) =&gt; {
+  callback(hostname === 'github.com')
+})
+</programlisting>
                </description>
             </method>
             <method name="setPermissionRequestHandler">
@@ -180,7 +203,16 @@
                </param>
                <description>
                   <para>Sets the handler which can be used to respond to permission requests for the session. Calling callback(true) will allow the permission and callback(false) will reject it.</para>
-                  <programlisting>...omitted...</programlisting>
+                  <programlisting language="javascript">
+const {session} = require('electron')
+session.fromPartition('some-partition').setPermissionRequestHandler((webContents, permission, callback) =&gt; {
+  if (webContents.getURL() === 'some-host' &amp;&amp; permission === 'notifications') {
+    return callback(false) // denied.
+  }
+
+  callback(true)
+})
+</programlisting>
                </description>
             </method>
             <method name="clearHostResolverCache">
@@ -193,7 +225,15 @@
                <param name="domains" type="String"/>
                <description>
                   <para>Dynamically sets whether to always send credentials for HTTP NTLM or Negotiate authentication.</para>
-                  <programlisting>...omitted...</programlisting>
+                  <programlisting language="javascript">
+const {session} = require('electron')
+// consider any url ending with `example.com`, `foobar.com`, `baz`
+// for integrated authentication.
+session.defaultSession.allowNTLMCredentialsForDomains('*example.com, *foobar.com, *baz')
+
+// consider all urls for integrated authentication.
+session.defaultSession.allowNTLMCredentialsForDomains('*')
+</programlisting>
                </description>
             </method>
             <method name="setUserAgent">
@@ -265,7 +305,20 @@
             <property name="protocol">
                <description>
                   <para>A Protocol object (an instance of protocol module) for this session.</para>
-                  <programlisting>...omitted...</programlisting>
+                  <programlisting language="javascript">
+const {app, session} = require('electron')
+const path = require('path')
+
+app.on('ready', function () {
+  const protocol = session.fromPartition('some-partition').protocol
+  protocol.registerFileProtocol('atom', function (request, callback) {
+    var url = request.url.substr(7)
+    callback({path: path.normalize(`${__dirname}/${url}`)})
+  }, function (error) {
+    if (error) console.error('Failed to register protocol')
+  })
+})
+</programlisting>
                </description>
             </property>
          </properties>
@@ -315,7 +368,13 @@
                <para>Sets the proxy settings.</para>
                <para>When pacScript and proxyRules are provided together, the proxyRules option is ignored and pacScript configuration is applied.</para>
                <para>The proxyRules has to follow the rules below:</para>
-               <programlisting>...omitted...</programlisting>
+               <programlisting>
+proxyRules = schemeProxies[";"&lt;schemeProxies&gt;]
+schemeProxies = [&lt;urlScheme&gt;"="]&lt;proxyURIList&gt;
+urlScheme = "http" | "https" | "ftp" | "socks"
+proxyURIList = &lt;proxyURL&gt;[","&lt;proxyURIList&gt;]
+proxyURL = [&lt;proxyScheme&gt;"://"]&lt;proxyHost&gt;[":"&lt;proxyPort&gt;]
+</programlisting>
                <para>For example:</para>
                <list>
                   <item>
@@ -401,7 +460,17 @@
             </param>
             <description>
                <para>Emulates network with the given configuration for the session.</para>
-               <programlisting>...omitted...</programlisting>
+               <programlisting language="javascript">
+// To emulate a GPRS connection with 50kbps throughput and 500 ms latency.
+window.webContents.session.enableNetworkEmulation({
+  latency: 500,
+  downloadThroughput: 6400,
+  uploadThroughput: 6400
+})
+
+// To emulate a network outage.
+window.webContents.session.enableNetworkEmulation({offline: true})
+</programlisting>
             </description>
          </method>
          <method name="disableNetworkEmulation">
@@ -420,7 +489,14 @@
             <description>
                <para>Sets the certificate verify proc for session, the proc will be called with proc(hostname, certificate, callback) whenever a server certificate verification is requested. Calling callback(true) accepts the certificate, calling callback(false) rejects it.</para>
                <para>Calling setCertificateVerifyProc(null) will revert back to default certificate verify proc.</para>
-               <programlisting>...omitted...</programlisting>
+               <programlisting language="javascript">
+const {BrowserWindow} = require('electron')
+let win = new BrowserWindow()
+
+win.webContents.session.setCertificateVerifyProc((hostname, cert, callback) =&gt; {
+  callback(hostname === 'github.com')
+})
+</programlisting>
             </description>
          </method>
          <method name="setPermissionRequestHandler">
@@ -433,7 +509,16 @@
             </param>
             <description>
                <para>Sets the handler which can be used to respond to permission requests for the session. Calling callback(true) will allow the permission and callback(false) will reject it.</para>
-               <programlisting>...omitted...</programlisting>
+               <programlisting language="javascript">
+const {session} = require('electron')
+session.fromPartition('some-partition').setPermissionRequestHandler((webContents, permission, callback) =&gt; {
+  if (webContents.getURL() === 'some-host' &amp;&amp; permission === 'notifications') {
+    return callback(false) // denied.
+  }
+
+  callback(true)
+})
+</programlisting>
             </description>
          </method>
          <method name="clearHostResolverCache">
@@ -446,7 +531,15 @@
             <param name="domains" type="String"/>
             <description>
                <para>Dynamically sets whether to always send credentials for HTTP NTLM or Negotiate authentication.</para>
-               <programlisting>...omitted...</programlisting>
+               <programlisting language="javascript">
+const {session} = require('electron')
+// consider any url ending with `example.com`, `foobar.com`, `baz`
+// for integrated authentication.
+session.defaultSession.allowNTLMCredentialsForDomains('*example.com, *foobar.com, *baz')
+
+// consider all urls for integrated authentication.
+session.defaultSession.allowNTLMCredentialsForDomains('*')
+</programlisting>
             </description>
          </method>
          <method name="setUserAgent">
@@ -518,7 +611,20 @@
          <property name="protocol">
             <description>
                <para>A Protocol object (an instance of protocol module) for this session.</para>
-               <programlisting>...omitted...</programlisting>
+               <programlisting language="javascript">
+const {app, session} = require('electron')
+const path = require('path')
+
+app.on('ready', function () {
+  const protocol = session.fromPartition('some-partition').protocol
+  protocol.registerFileProtocol('atom', function (request, callback) {
+    var url = request.url.substr(7)
+    callback({path: path.normalize(`${__dirname}/${url}`)})
+  }, function (error) {
+    if (error) console.error('Failed to register protocol')
+  })
+})
+</programlisting>
             </description>
          </property>
       </properties>

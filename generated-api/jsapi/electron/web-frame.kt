@@ -12,7 +12,8 @@ object webFrame {
     // ~ Methods -------------------------------------------------------------------------------
 
     /**
-     * Changes the zoom factor to the specified factor. Zoom factor is zoom percent divided by 100, so 300% = 3.0.
+     * Changes the zoom factor to the specified factor. Zoom factor is zoom percent 
+     * divided by 100, so 300% = 3.0.
      */
     fun setZoomFactor(factor: Number): Unit = 
         module.setZoomFactor(factor)
@@ -23,7 +24,9 @@ object webFrame {
         module.getZoomFactor()
 
     /**
-     * Changes the zoom level to the specified level. The original size is 0 and each increment above or below represents zooming 20% larger or smaller to default limits of 300% and 50% of original size, respectively.
+     * Changes the zoom level to the specified level. The original size is 0 and each 
+     * increment above or below represents zooming 20% larger or smaller to default 
+     * limits of 300% and 50% of original size, respectively.
      */
     fun setZoomLevel(level: Number): Unit = 
         module.setZoomLevel(level)
@@ -34,7 +37,8 @@ object webFrame {
         module.getZoomLevel()
 
     /**
-     * Deprecated: Call setVisualZoomLevelLimits instead to set the visual zoom level limits. This method will be removed in Electron 2.0.
+     * Deprecated: Call setVisualZoomLevelLimits instead to set the visual zoom level 
+     * limits. This method will be removed in Electron 2.0.
      */
     fun setZoomLevelLimits(minimumLevel: Number, maximumLevel: Number): Unit = 
         module.setZoomLevelLimits(minimumLevel, maximumLevel)
@@ -54,10 +58,19 @@ object webFrame {
     /**
      * Sets a provider for spell checking in input fields and text areas.
      *
-     * The provider must be an object that has a spellCheck method that returns whether the word passed is correctly spelled.
+     * The provider must be an object that has a spellCheck method that returns 
+     * whether the word passed is correctly spelled.
      *
      * An example of using node-spellchecker as provider:
      *
+     *  | 
+     *  | const {webFrame} = require('electron')
+     *  | webFrame.setSpellCheckProvider('en-US', true, {
+     *  |   spellCheck (text) {
+     *  |     return !(require('spellchecker').isMisspelled(text))
+     *  |   }
+     *  | })
+     *  | 
      */
     fun setSpellCheckProvider(language: String, autoCorrectWord: Boolean, provider: SetSpellCheckProviderProvider): Unit = 
         module.setSpellCheckProvider(language, autoCorrectWord, provider)
@@ -65,22 +78,32 @@ object webFrame {
     /**
      * Registers the scheme as secure scheme.
      *
-     * Secure schemes do not trigger mixed content warnings. For example, https and data are secure schemes because they cannot be corrupted by active network attackers.
+     * Secure schemes do not trigger mixed content warnings. For example, https and 
+     * data are secure schemes because they cannot be corrupted by active network 
+     * attackers.
      */
     fun registerURLSchemeAsSecure(scheme: String): Unit = 
         module.registerURLSchemeAsSecure(scheme)
 
     /**
-     * Resources will be loaded from this scheme regardless of the current page's Content Security Policy.
+     * Resources will be loaded from this scheme regardless of the current page's 
+     * Content Security Policy.
      */
     fun registerURLSchemeAsBypassingCSP(scheme: String): Unit = 
         module.registerURLSchemeAsBypassingCSP(scheme)
 
     /**
-     * Registers the scheme as secure, bypasses content security policy for resources, allows registering ServiceWorker and supports fetch API.
+     * Registers the scheme as secure, bypasses content security policy for 
+     * resources, allows registering ServiceWorker and supports fetch API.
      *
-     * Specify an option with the value of false to omit it from the registration. An example of registering a privileged scheme, without bypassing Content Security Policy:
+     * Specify an option with the value of false to omit it from the registration. An 
+     * example of registering a privileged scheme, without bypassing Content Security 
+     * Policy:
      *
+     *  | 
+     *  | const {webFrame} = require('electron')
+     *  | webFrame.registerURLSchemeAsPrivileged('foo', { bypassCSP: false })
+     *  | 
      */
     fun registerURLSchemeAsPrivileged(scheme: String, options: (RegisterURLSchemeAsPrivilegedOptions.() -> Unit)?): Unit = 
         module.registerURLSchemeAsPrivileged(scheme, options?.let { RegisterURLSchemeAsPrivilegedOptions().apply(it) })
@@ -94,28 +117,57 @@ object webFrame {
     /**
      * Evaluates code in page.
      *
-     * In the browser window some HTML APIs like requestFullScreen can only be invoked by a gesture from the user. Setting userGesture to true will remove this limitation.
+     * In the browser window some HTML APIs like requestFullScreen can only be 
+     * invoked by a gesture from the user. Setting userGesture to true will remove 
+     * this limitation.
      */
     fun executeJavaScript(code: String, userGesture: Boolean?, callback: ((result: Any) -> Unit)?): Unit = 
         module.executeJavaScript(code, userGesture, callback)
 
     /**
      *  . imagesMemoryUsageDetails
+     *
      *  . cssStyleSheetsMemoryUsageDetails
+     *
      *  . xslStyleSheetsMemoryUsageDetails
+     *
      *  . fontsMemoryUsageDetails
+     *
      *  . otherMemoryUsageDetails
+     *
+     *  | 
+     *  | const {webFrame} = require('electron')
+     *  | console.log(webFrame.getResourceUsage())
+     *  | 
      *
      * This will generate:
      *
+     *  | 
+     *  | {
+     *  |   images: {
+     *  |     count: 22,
+     *  |     size: 2549,
+     *  |     liveSize: 2542
+     *  |   },
+     *  |   cssStyleSheets: { /* same with "images" */ },
+     *  |   xslStyleSheets: { /* same with "images" */ },
+     *  |   fonts: { /* same with "images" */ },
+     *  |   other: { /* same with "images" */ }
+     *  | }
+     *  | 
      */
     fun getResourceUsage(images: MemoryUsageDetails, cssStyleSheets: MemoryUsageDetails, xslStyleSheets: MemoryUsageDetails, fonts: MemoryUsageDetails, other: MemoryUsageDetails): dynamic = 
         module.getResourceUsage(images.instance, cssStyleSheets.instance, xslStyleSheets.instance, fonts.instance, other.instance)
 
     /**
-     * Attempts to free memory that is no longer being used (like images from a previous navigation).
+     * Attempts to free memory that is no longer being used (like images from a 
+     * previous navigation).
      *
-     * Note that blindly calling this method probably makes Electron slower since it will have to refill these emptied caches, you should only call it if an event in your app has occurred that makes you think your page is actually using less memory (i.e. you have navigated from a super heavy page to a mostly empty one, and intend to stay there).
+     * Note that blindly calling this method probably makes Electron slower since it 
+     * will have to refill these emptied caches, you should only call it if an event 
+     * in your app has occurred that makes you think your page is actually using less 
+     * memory (i.e. you have navigated from a super heavy page to a mostly empty one, 
+     * and intend to stay there).
      */
     fun clearCache(): Unit = 
         module.clearCache()
