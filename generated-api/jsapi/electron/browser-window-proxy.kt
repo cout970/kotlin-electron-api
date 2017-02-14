@@ -1,13 +1,12 @@
+@file:Suppress("UnsafeCastFromDynamic")
 package jsapi.electron
 
-class BrowserWindowProxy() {
+class BrowserWindowProxy constructor(val instance: dynamic, z: Unit) {
 
-    val instance: dynamic
-
-    init {
+    constructor() : this(Unit.let {
         val _constructor = js("require('electron').BrowserWindowProxy")
-        instance = js("new _constructor()")
-    }
+        js("new _constructor()")
+    }, z = Unit)
 
     // ~ Events --------------------------------------------------------------------------------
 
@@ -19,7 +18,7 @@ class BrowserWindowProxy() {
     /**
      * A Boolean that is set to true after the child window gets closed.
      */
-    val closed: dynamic get() = instance.closed
+    val closed: Boolean get() = instance.closed
 
 
     // ~ Methods -------------------------------------------------------------------------------

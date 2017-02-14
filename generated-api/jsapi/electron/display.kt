@@ -1,3 +1,4 @@
+@file:Suppress("UnsafeCastFromDynamic")
 package jsapi.electron
 
 class Display(
@@ -6,9 +7,9 @@ class Display(
         var scaleFactor: Number,
         var touchSupport: String,
         var bounds: Rectangle,
-        var size: Size,
+        var size: dynamic,
         var workArea: Rectangle,
-        var workAreaSize: WorkAreaSize
+        var workAreaSize: dynamic
 ) {
 
     val instance: dynamic = this

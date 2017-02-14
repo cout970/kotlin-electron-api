@@ -1,13 +1,12 @@
+@file:Suppress("UnsafeCastFromDynamic")
 package jsapi.electron
 
-class Debugger() {
+class Debugger constructor(val instance: dynamic, z: Unit) {
 
-    val instance: dynamic
-
-    init {
+    constructor() : this(Unit.let {
         val _constructor = js("require('electron').Debugger")
-        instance = js("new _constructor()")
-    }
+        js("new _constructor()")
+    }, z = Unit)
 
     // ~ Events --------------------------------------------------------------------------------
 

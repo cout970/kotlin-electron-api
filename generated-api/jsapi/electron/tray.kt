@@ -1,14 +1,13 @@
+@file:Suppress("UnsafeCastFromDynamic")
 package jsapi.electron
 
-class Tray(image: dynamic) {
+class Tray constructor(val instance: dynamic, z: Unit) {
 
-    val instance: dynamic
-
-    init {
+    constructor(image: dynamic) : this(Unit.let {
         val _constructor = js("require('electron').Tray")
-        val _image = _image
-        instance = js("new _constructor(_image)")
-    }
+        val _image = image
+        js("new _constructor(_image)")
+    }, z = Unit)
 
     // ~ Events --------------------------------------------------------------------------------
 

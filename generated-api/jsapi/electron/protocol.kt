@@ -1,3 +1,4 @@
+@file:Suppress("UnsafeCastFromDynamic")
 package jsapi.electron
 
 object protocol {
@@ -211,8 +212,8 @@ object protocol {
     class RegisterHttpProtocolRedirectRequest(
         var url: String,
         var method: String,
-        var session: (RegisterHttpProtocolSession.() -> Unit)? = null,
-        var uploadData: RegisterHttpProtocolUploadData? = null
+        var session: dynamic = null,
+        var uploadData: dynamic = null
     )
     class RegisterHttpProtocolSession(
     )
@@ -254,8 +255,8 @@ object protocol {
     class InterceptHttpProtocolRedirectRequest(
         var url: String,
         var method: String,
-        var session: (InterceptHttpProtocolSession.() -> Unit)? = null,
-        var uploadData: InterceptHttpProtocolUploadData? = null
+        var session: dynamic = null,
+        var uploadData: dynamic = null
     )
     class InterceptHttpProtocolSession(
     )

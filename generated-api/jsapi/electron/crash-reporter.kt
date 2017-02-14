@@ -1,3 +1,4 @@
+@file:Suppress("UnsafeCastFromDynamic")
 package jsapi.electron
 
 object crashReporter {
@@ -89,7 +90,7 @@ object crashReporter {
         var productName: String? = null,
         var uploadToServer: Boolean? = null,
         var ignoreSystemCrashHandler: Boolean? = null,
-        var extra: (StartExtra.() -> Unit)? = null
+        var extra: dynamic = null
     )
     class StartExtra(
     )

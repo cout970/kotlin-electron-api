@@ -1,3 +1,4 @@
+@file:Suppress("UnsafeCastFromDynamic")
 package jsapi.electron
 
 object process {

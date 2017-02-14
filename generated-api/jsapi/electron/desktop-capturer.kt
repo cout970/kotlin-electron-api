@@ -1,3 +1,4 @@
+@file:Suppress("UnsafeCastFromDynamic")
 package jsapi.electron
 
 object desktopCapturer {
@@ -26,7 +27,7 @@ object desktopCapturer {
 
     class GetSourcesOptions(
         var types: Array<String>,
-        var thumbnailSize: (GetSourcesThumbnailSize.() -> Unit)? = null
+        var thumbnailSize: dynamic = null
     )
     class GetSourcesThumbnailSize(
     )

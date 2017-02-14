@@ -191,9 +191,9 @@ proxyURL = [&lt;proxyScheme&gt;"://"]&lt;proxyHost&gt;[":"&lt;proxyPort&gt;]
                </description>
             </method>
             <method name="resolveProxy">
-               <param name="url" type="URL">
+               <param name="url" type="String">
                   <description>
-                     <para/>
+                     <para>URL</para>
                   </description>
                </param>
                <param name="callback" type="Function">
@@ -685,9 +685,9 @@ proxyURL = [&lt;proxyScheme&gt;"://"]&lt;proxyHost&gt;[":"&lt;proxyPort&gt;]
             </description>
          </method>
          <method name="resolveProxy">
-            <param name="url" type="URL">
+            <param name="url" type="String">
                <description>
-                  <para/>
+                  <para>URL</para>
                </description>
             </param>
             <param name="callback" type="Function">

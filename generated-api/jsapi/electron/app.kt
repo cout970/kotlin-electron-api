@@ -1,3 +1,4 @@
+@file:Suppress("UnsafeCastFromDynamic")
 package jsapi.electron
 
 object app {
@@ -243,7 +244,7 @@ object app {
      * app.setJumpList(categories) instead.
      */
     fun setUserTasks(tasks: Array<Task>): Boolean = 
-        module.setUserTasks(tasks)
+        module.setUserTasks(tasks.map { it.instance })
 
     /**
      *  . minItems Integer - The minimum number of items that will be shown in the Jump 
@@ -256,7 +257,7 @@ object app {
      *
      */
     fun getJumpListSettings(minItems: Int, removedItems: Array<JumpListItem>): dynamic = 
-        module.getJumpListSettings(minItems, removedItems)
+        module.getJumpListSettings(minItems, removedItems.map { it.instance })
 
     /**
      * Sets or removes a custom Jump List for the application, and returns one of the 
@@ -348,7 +349,7 @@ object app {
      *  | 
      */
     fun setJumpList(categories: Array<JumpListCategory>): Unit = 
-        module.setJumpList(categories)
+        module.setJumpList(categories.map { it.instance })
 
     /**
      * This method makes your application a Single Instance Application - instead of 

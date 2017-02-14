@@ -1,51 +1,13 @@
+@file:Suppress("UnsafeCastFromDynamic")
 package jsapi.electron
 
-class ClientRequest(options: dynamic) {
+class ClientRequest constructor(val instance: dynamic, z: Unit) {
 
-    val instance: dynamic
-
-    init {
+    constructor(options: dynamic) : this(Unit.let {
         val _constructor = js("require('electron').ClientRequest")
-        val _options = _options
-        instance = js("new _constructor(/**
- * The HTTP request method. Defaults to the GET method.
- */
-/**
- * The request URL. Must be provided in the absolute form with the protocol 
- * scheme specified as http or https.
- */
-/**
- * The Session instance with which the request is associated.
- */
-/**
- * The name of the partition with which the request is associated. Defaults to 
- * the empty string. The session option prevails on partition. Thus if a session 
- * is explicitly specified, partition is ignored.
- */
-/**
- * The protocol scheme in the form 'scheme:'. Currently supported values are 
- * 'http:' or 'https:'. Defaults to 'http:'.
- */
-/**
- * The server host provided as a concatenation of the hostname and the port 
- * number 'hostname:port'
- */
-/**
- * The server host name.
- */
-/**
- * The server's listening port number.
- */
-/**
- * The path part of the request URL.
- */
-/**
- * If options is a String, it is interpreted as the request URL. If it is an 
- * object, it is expected to fully specify an HTTP request via the following 
- * properties:
- */
-)")
-    }
+        val _options = options
+        js("new _constructor(_options)")
+    }, z = Unit)
 
     // ~ Events --------------------------------------------------------------------------------
 
@@ -65,7 +27,7 @@ class ClientRequest(options: dynamic) {
      * request body as data will be streamed in small chunks instead of being 
      * internally buffered inside Electron process memory.
      */
-    val chunkedEncoding: dynamic get() = instance.chunkedEncoding
+    val chunkedEncoding: Boolean get() = instance.chunkedEncoding
 
 
     // ~ Methods -------------------------------------------------------------------------------

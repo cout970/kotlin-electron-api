@@ -1,13 +1,12 @@
+@file:Suppress("UnsafeCastFromDynamic")
 package jsapi.electron
 
-class IncomingMessage() {
+class IncomingMessage constructor(val instance: dynamic, z: Unit) {
 
-    val instance: dynamic
-
-    init {
+    constructor() : this(Unit.let {
         val _constructor = js("require('electron').IncomingMessage")
-        instance = js("new _constructor()")
-    }
+        js("new _constructor()")
+    }, z = Unit)
 
     // ~ Events --------------------------------------------------------------------------------
 
@@ -19,21 +18,21 @@ class IncomingMessage() {
     /**
      * An Integer indicating the HTTP response status code.
      */
-    val statusCode: dynamic get() = instance.statusCode
+    val statusCode: Int get() = instance.statusCode
 
     /**
      * A String representing the HTTP status message.
      */
-    val statusMessage: dynamic get() = instance.statusMessage
+    val statusMessage: String get() = instance.statusMessage
 
     /**
      * An Object representing the response HTTP headers. The headers object is 
      * formatted as follows:
      *
- *  . All header names are lowercased.
- *  . Each header name produces an array-valued property on the headers object.
- *  . Each header value is pushed into the array associated with its header name.
- *
+     *  . All header names are lowercased.
+     *  . Each header name produces an array-valued property on the headers object.
+     *  . Each header value is pushed into the array associated with its header name.
+     *
      */
     val headers: dynamic get() = instance.headers
 
@@ -43,17 +42,17 @@ class IncomingMessage() {
      * Integer-valued readable properties that return respectively the HTTP major and 
      * minor version numbers.
      */
-    val httpVersion: dynamic get() = instance.httpVersion
+    val httpVersion: String get() = instance.httpVersion
 
     /**
      * An Integer indicating the HTTP protocol major version number.
      */
-    val httpVersionMajor: dynamic get() = instance.httpVersionMajor
+    val httpVersionMajor: Int get() = instance.httpVersionMajor
 
     /**
      * An Integer indicating the HTTP protocol minor version number.
      */
-    val httpVersionMinor: dynamic get() = instance.httpVersionMinor
+    val httpVersionMinor: Int get() = instance.httpVersionMinor
 
 
 

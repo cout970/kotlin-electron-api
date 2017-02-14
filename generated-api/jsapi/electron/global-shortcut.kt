@@ -1,3 +1,4 @@
+@file:Suppress("UnsafeCastFromDynamic")
 package jsapi.electron
 
 object globalShortcut {
@@ -19,22 +20,22 @@ object globalShortcut {
      * silently fail. This behavior is intended by operating systems, since they 
      * don't want applications to fight for global shortcuts.
      */
-    fun register(accelerator: dynamic, callback: () -> Unit): Unit = 
-        module.register(accelerator.instance, callback)
+    fun register(accelerator: String, callback: () -> Unit): Unit = 
+        module.register(accelerator, callback)
 
     /**
      * When the accelerator is already taken by other applications, this call will 
      * still return false. This behavior is intended by operating systems, since they 
      * don't want applications to fight for global shortcuts.
      */
-    fun isRegistered(accelerator: dynamic): Boolean = 
-        module.isRegistered(accelerator.instance)
+    fun isRegistered(accelerator: String): Boolean = 
+        module.isRegistered(accelerator)
 
     /**
      * Unregisters the global shortcut of accelerator.
      */
-    fun unregister(accelerator: dynamic): Unit = 
-        module.unregister(accelerator.instance)
+    fun unregister(accelerator: String): Unit = 
+        module.unregister(accelerator)
 
     /**
      * Unregisters all of the global shortcuts.

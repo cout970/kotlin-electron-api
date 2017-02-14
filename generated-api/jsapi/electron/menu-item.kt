@@ -1,71 +1,13 @@
+@file:Suppress("UnsafeCastFromDynamic")
 package jsapi.electron
 
-class MenuItem(options: Options.() -> Unit) {
+class MenuItem constructor(val instance: dynamic, z: Unit) {
 
-    val instance: dynamic
-
-    init {
+    constructor(options: Options.() -> Unit) : this(Unit.let {
         val _constructor = js("require('electron').MenuItem")
-        val _options = _options
-        instance = js("new _constructor(/**
- * 
- */
-/**
- * 
- */
-/**
- * 
- */
-    /**
-     * Will be called with click(menuItem, browserWindow, event) when the menu item 
-     * is clicked.
-     */
-    /**
-     * Define the action of the menu item, when specified the click property will be 
-     * ignored.
-     */
-    /**
-     * Can be normal, separator, submenu, checkbox or radio.
-     */
-    /**
-     * (optional)
-     */
-    /**
-     * (optional)
-     */
-    /**
-     * 
-     */
-    /**
-     * 
-     */
-    /**
-     * If false, the menu item will be greyed out and unclickable.
-     */
-    /**
-     * If false, the menu item will be entirely hidden.
-     */
-    /**
-     * Should only be specified for checkbox or radio type menu items.
-     */
-    /**
-     * Should be specified for submenu type menu items. If submenu is specified, the 
-     * type: 'submenu' can be omitted. If the value is not a Menu then it will be 
-     * automatically converted to one using Menu.buildFromTemplate.
-     */
-    /**
-     * Unique within a single menu. If defined then it can be used as a reference to 
-     * this item by the position attribute.
-     */
-    /**
-     * This field allows fine-grained definition of the specific location within a 
-     * given menu.
-     */
-/**
- * 
- */
-)")
-    }
+        val _options = options.let { Options().apply(it) }
+        js("new _constructor(_options)")
+    }, z = Unit)
 
     // ~ Events --------------------------------------------------------------------------------
 
@@ -78,13 +20,13 @@ class MenuItem(options: Options.() -> Unit) {
      * A Boolean indicating whether the item is enabled, this property can be 
      * dynamically changed.
      */
-    val enabled: dynamic get() = instance.enabled
+    val enabled: Boolean get() = instance.enabled
 
     /**
      * A Boolean indicating whether the item is visible, this property can be 
      * dynamically changed.
      */
-    val visible: dynamic get() = instance.visible
+    val visible: Boolean get() = instance.visible
 
     /**
      * A Boolean indicating whether the item is checked, this property can be 
@@ -97,17 +39,17 @@ class MenuItem(options: Options.() -> Unit) {
      *
      * You can add a click function for additional behavior.
      */
-    val checked: dynamic get() = instance.checked
+    val checked: Boolean get() = instance.checked
 
     /**
      * A String representing the menu items visible label
      */
-    val label: dynamic get() = instance.label
+    val label: String get() = instance.label
 
     /**
      * A Function that is fired when the MenuItem recieves a click event
      */
-    val click: dynamic get() = instance.click
+    val click: () -> Unit get() = instance.click
 
 
 
@@ -127,7 +69,7 @@ class MenuItem(options: Options.() -> Unit) {
         var type: String? = null,
         var label: String? = null,
         var sublabel: String? = null,
-        var accelerator: dynamic? = null,
+        var accelerator: String? = null,
         var icon: dynamic? = null,
         var enabled: Boolean? = null,
         var visible: Boolean? = null,

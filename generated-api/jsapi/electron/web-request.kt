@@ -1,13 +1,12 @@
+@file:Suppress("UnsafeCastFromDynamic")
 package jsapi.electron
 
-class WebRequest() {
+class WebRequest constructor(val instance: dynamic, z: Unit) {
 
-    val instance: dynamic
-
-    init {
+    constructor() : this(Unit.let {
         val _constructor = js("require('electron').WebRequest")
-        instance = js("new _constructor()")
-    }
+        js("new _constructor()")
+    }, z = Unit)
 
     // ~ Events --------------------------------------------------------------------------------
 
@@ -157,7 +156,7 @@ class WebRequest() {
         var method: String,
         var resourceType: String,
         var timestamp: Double,
-        var requestHeaders: OnSendHeadersRequestHeaders.() -> Unit
+        var requestHeaders: dynamic
     )
     class OnSendHeadersRequestHeaders(
     )
@@ -175,7 +174,7 @@ class WebRequest() {
         var method: String,
         var resourceType: String,
         var timestamp: Double,
-        var responseHeaders: OnResponseStartedResponseHeaders.() -> Unit,
+        var responseHeaders: dynamic,
         var fromCache: Boolean,
         var statusCode: Int,
         var statusLine: String
@@ -197,7 +196,7 @@ class WebRequest() {
         var statusCode: Int,
         var ip: String? = null,
         var fromCache: Boolean,
-        var responseHeaders: OnBeforeRedirectResponseHeaders.() -> Unit
+        var responseHeaders: dynamic
     )
     class OnBeforeRedirectResponseHeaders(
     )
@@ -212,7 +211,7 @@ class WebRequest() {
         var method: String,
         var resourceType: String,
         var timestamp: Double,
-        var responseHeaders: OnCompletedResponseHeaders.() -> Unit,
+        var responseHeaders: dynamic,
         var fromCache: Boolean,
         var statusCode: Int,
         var statusLine: String

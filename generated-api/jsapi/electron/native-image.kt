@@ -1,3 +1,4 @@
+@file:Suppress("UnsafeCastFromDynamic")
 package jsapi.electron
 
 object nativeImage {
@@ -36,7 +37,7 @@ object nativeImage {
      * Creates a new NativeImage instance from buffer.
      */
     fun createFromBuffer(buffer: dynamic, options: (CreateFromBufferOptions.() -> Unit)?): NativeImage = 
-        module.createFromBuffer(buffer.instance, options?.let { CreateFromBufferOptions().apply(it) })
+        module.createFromBuffer(buffer, options?.let { CreateFromBufferOptions().apply(it) })
 
     /**
      * Creates a new NativeImage instance from dataURL.
@@ -53,14 +54,12 @@ object nativeImage {
     )
 }
 
-class NativeImage() {
+class NativeImage constructor(val instance: dynamic, z: Unit) {
 
-    val instance: dynamic
-
-    init {
+    constructor() : this(Unit.let {
         val _constructor = js("require('electron').NativeImage")
-        instance = js("new _constructor()")
-    }
+        js("new _constructor()")
+    }, z = Unit)
 
     // ~ Events --------------------------------------------------------------------------------
 

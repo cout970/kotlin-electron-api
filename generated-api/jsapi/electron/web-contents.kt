@@ -1,4 +1,7 @@
+@file:Suppress("UnsafeCastFromDynamic")
 package jsapi.electron
+
+import kotlin.js.Promise
 
 object webContents {
 
@@ -29,14 +32,12 @@ object webContents {
     // ~ Builders ------------------------------------------------------------------------------
 }
 
-class WebContents() {
+class WebContents constructor(val instance: dynamic, z: Unit) {
 
-    val instance: dynamic
-
-    init {
+    constructor() : this(Unit.let {
         val _constructor = js("require('electron').WebContents")
-        instance = js("new _constructor()")
-    }
+        js("new _constructor()")
+    }, z = Unit)
 
     // ~ Events --------------------------------------------------------------------------------
 
@@ -48,17 +49,17 @@ class WebContents() {
     /**
      * A Integer representing the unique ID of this WebContents.
      */
-    val id: dynamic get() = instance.id
+    val id: Int get() = instance.id
 
     /**
      * A Session object (session) used by this webContents.
      */
-    val session: dynamic get() = instance.session
+    val session: Session get() = Session(instance.session, Unit)
 
     /**
      * A WebContents instance that might own this WebContents.
      */
-    val hostWebContents: WebContents get() = instance.hostWebContents
+    val hostWebContents: WebContents get() = WebContents(instance.hostWebContents, Unit)
 
     /**
      * A WebContents of DevTools for this WebContents.
@@ -66,12 +67,12 @@ class WebContents() {
      * Note: Users should never store this object because it may become null when the 
      * DevTools has been closed.
      */
-    val devToolsWebContents: WebContents get() = instance.devToolsWebContents
+    val devToolsWebContents: WebContents get() = WebContents(instance.devToolsWebContents, Unit)
 
     /**
      * A Debugger instance for this webContents.
      */
-    val debugger: dynamic get() = instance.debugger
+    val debugger: Debugger get() = Debugger(instance.debugger, Unit)
 
 
     // ~ Methods -------------------------------------------------------------------------------
@@ -243,7 +244,7 @@ class WebContents() {
      *  |   })
      *  | 
      */
-    fun executeJavaScript(code: String, userGesture: Boolean?, callback: ((result: Any) -> Unit)?): dynamic = 
+    fun executeJavaScript(code: String, userGesture: Boolean?, callback: ((result: Any) -> Unit)?): Promise<dynamic> = 
         instance.executeJavaScript(code, userGesture, callback)
 
     /**
@@ -791,12 +792,12 @@ class WebContents() {
 
     class EnableDeviceEmulationParameters(
         var screenPosition: String,
-        var screenSize: EnableDeviceEmulationScreenSize,
-        var viewPosition: EnableDeviceEmulationViewPosition,
+        var screenSize: dynamic,
+        var viewPosition: dynamic,
         var deviceScaleFactor: Int,
-        var viewSize: EnableDeviceEmulationViewSize,
+        var viewSize: dynamic,
         var fitToView: Boolean,
-        var offset: EnableDeviceEmulationOffset,
+        var offset: dynamic,
         var scale: Float
     )
     class EnableDeviceEmulationScreenSize(
@@ -831,7 +832,7 @@ class WebContents() {
     )
 
     class SetSizeOptions(
-        var normal: SetSizeNormal? = null
+        var normal: dynamic = null
     )
     class SetSizeNormal(
         var width: Int,

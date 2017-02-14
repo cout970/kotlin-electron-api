@@ -1,13 +1,12 @@
+@file:Suppress("UnsafeCastFromDynamic")
 package jsapi.electron
 
-class Menu() {
+class Menu constructor(val instance: dynamic, z: Unit) {
 
-    val instance: dynamic
-
-    init {
+    constructor() : this(Unit.let {
         val _constructor = js("require('electron').Menu")
-        instance = js("new _constructor()")
-    }
+        js("new _constructor()")
+    }, z = Unit)
 
     // ~ Events --------------------------------------------------------------------------------
 
@@ -21,7 +20,7 @@ class Menu() {
      *
      * Each Menu consists of multiple MenuItems and each MenuItem can have a submenu.
      */
-    val items: dynamic get() = instance.items
+    val items: Array<MenuItem> get() = (instance.items as Array<dynamic>).map { MenuItem(it, Unit) }.toTypedArray()
 
 
     // ~ Methods -------------------------------------------------------------------------------
@@ -84,7 +83,7 @@ class Menu() {
          * You can also attach other fields to the element of the template and they will 
          * become properties of the constructed menu items.
          */
-        fun buildFromTemplate(template: Array<dynamic>): Menu = 
+        fun buildFromTemplate(template: Array<MenuItem.Options>): Menu = 
             module.buildFromTemplate(template)
     }
 

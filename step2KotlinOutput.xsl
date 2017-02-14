@@ -1,14 +1,53 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
+<xsl:stylesheet xmlns:my="http://https://github.com/fab1an" xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+    version="2.0">
     <!-- settings -->
     <xsl:output method="text" />
     <xsl:strip-space elements="*" />
     <xsl:include href="xslLineWrapping.xsl" />
     <xsl:template match="text()" mode="#all" />
 
+    <xsl:function name="my:useWrappedInstance">
+        <xsl:param name="type" />
+        <xsl:value-of
+            select="not(my:translateType($type) = ('MenuItem.Options', 'dynamic', 'Boolean', 'Number','String', 'Int', 'Float', 'Object', 'Function', 'Double'))" />
+    </xsl:function>
+
+    <!-- custom types -->
+    <xsl:function name="my:translateType">
+        <xsl:param name="type" />
+        <xsl:choose>
+            <xsl:when test="$type = 'Accelerator'">
+                <xsl:text>String</xsl:text>
+            </xsl:when>
+            <xsl:when test="$type = 'Integer'">
+                <xsl:text>Int</xsl:text>
+            </xsl:when>
+            <xsl:when test="$type = 'Promise'">
+                <xsl:text>Promise&lt;dynamic&gt;</xsl:text>
+            </xsl:when>
+            <xsl:when test="$type = 'MenuItemConstructorOptions'">
+                <xsl:text>MenuItem.Options</xsl:text>
+            </xsl:when>
+            <xsl:when test="$type = ('any', 'Buffer', 'union', 'Protocol', 'Event')">
+                <xsl:text>dynamic</xsl:text>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:value-of select="$type" />
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:function>
+
     <!-- file -->
     <xsl:template match="/">
+        <xsl:text>@file:Suppress("UnsafeCastFromDynamic")&#10;</xsl:text>
         <xsl:text>package jsapi.electron&#10;&#10;</xsl:text>
+        <xsl:if test="//@type[. = 'Blob']">
+            <xsl:text>import org.w3c.files.Blob&#10;&#10;</xsl:text>
+        </xsl:if>
+        <xsl:if test="//@type[. = 'Promise']">
+            <xsl:text>import kotlin.js.Promise&#10;&#10;</xsl:text>
+        </xsl:if>
         <xsl:apply-templates />
     </xsl:template>
 
@@ -98,37 +137,31 @@
 
     <!-- constructor -->
     <xsl:template match="constructor" mode="signature">
-        <!-- signature -->
-        <xsl:text>(</xsl:text>
-        <xsl:apply-templates mode="signature" />
-        <xsl:text>)</xsl:text>
+        <xsl:text> constructor(val instance: dynamic, z: Unit)</xsl:text>
     </xsl:template>
 
     <!-- constructor -->
     <xsl:template match="constructor" mode="delegate_call">
 
         <!-- delegate / init -->
-        <xsl:text>    val instance: dynamic&#10;&#10;</xsl:text>
-        <xsl:text>    init {&#10;</xsl:text>
+        <xsl:text>    constructor(</xsl:text>
+        <xsl:apply-templates mode="signature" />
+        <xsl:text>) : this(Unit.let {&#10;</xsl:text>
         <xsl:text>        val _constructor = js("require('electron').</xsl:text>
         <xsl:value-of select="../@title" />
         <xsl:text>")&#10;</xsl:text>
         <xsl:apply-templates mode="delegate_call_vals" />
 
-        <xsl:text>        instance = js("new _constructor(</xsl:text>
-        <xsl:apply-templates mode="delegate_call" />
+        <xsl:text>        js("new _constructor(</xsl:text>
+        <xsl:for-each select="param/@name">
+            <xsl:text>_</xsl:text>
+            <xsl:value-of select="." />
+            <xsl:if test="position() &lt; last()">
+                <xsl:text>, </xsl:text>
+            </xsl:if>
+        </xsl:for-each>
         <xsl:text>)")&#10;</xsl:text>
-        <xsl:text>    }&#10;&#10;</xsl:text>
-    </xsl:template>
-
-
-    <!-- param: constructor delegate call -->
-    <xsl:template match="constructor/param" mode="delegate_call">
-        <xsl:text>_</xsl:text>
-        <xsl:value-of select="@name" />
-        <xsl:if test="position() &lt; last()">
-            <xsl:text>, </xsl:text>
-        </xsl:if>
+        <xsl:text>    }, z = Unit)&#10;&#10;</xsl:text>
     </xsl:template>
 
     <!-- delegate call -->
@@ -212,8 +245,10 @@
         </xsl:if>
     </xsl:template>
 
-    <!-- methods/constructor delegate call: object -->
+    <!-- methods/constructor delegate call -->
     <xsl:template match="param" mode="delegate_call">
+
+        <!-- for object -->
         <xsl:variable name="allPropsOptional">
             <xsl:value-of select="count(property[not(@optional = true())]) = 0" />
         </xsl:variable>
@@ -222,15 +257,20 @@
         <xsl:value-of select="@name" />
 
         <!-- reference to wrapped instance -->
-        <xsl:if
-            test="not(@type = 'Object') and not(@isArray = true()) and not(@type = ('union', 'Boolean', 'Number', 'String', 'Integer', 'Float', 'Object', 'Function', 'Double'))">
+        <xsl:if test="my:useWrappedInstance(@type) = true()">
             <xsl:if test="@optional=true()">
                 <xsl:text>?</xsl:text>
             </xsl:if>
+            <xsl:if test="@isArray = true()">
+                <xsl:text>.map { it</xsl:text>
+            </xsl:if>
             <xsl:text>.instance</xsl:text>
+            <xsl:if test="@isArray = true()">
+                <xsl:text> }</xsl:text>
+            </xsl:if>
         </xsl:if>
 
-        <!-- object building -->
+        <!-- execute object-builder-lambda -->
         <xsl:if test="@type = 'Object' and $allPropsOptional = true()">
             <xsl:if test="@optional=true()">
                 <xsl:text>?</xsl:text>
@@ -267,28 +307,24 @@
 
         <xsl:choose>
             <xsl:when test="@type = 'Integer'">
+                <!-- Integer is called Int -->
                 <xsl:text>Int</xsl:text>
             </xsl:when>
             <xsl:when test="@type = 'Function'">
+                <!-- function -->
                 <xsl:text>(</xsl:text>
                 <xsl:apply-templates mode="signature" select="param" />
                 <xsl:text>) -> Unit</xsl:text>
             </xsl:when>
             <xsl:when test="@type = 'Object'">
+                <!-- object -->
                 <xsl:apply-templates mode="adhoc_object_name" select="." />
                 <xsl:if test="$allPropsOptional = true()">
                     <xsl:text>.() -> Unit</xsl:text>
                 </xsl:if>
             </xsl:when>
-            <xsl:when
-                test="@type = ('chunkedEncoding', 'headers', 'httpVersionMajor', 'Buffer', 'union', 'MenuItemConstructorOptions', 'URL', 'Blob', 'any', 'Promise', 'Event', 'Accelerator')">
-                <xsl:text>dynamic</xsl:text>
-            </xsl:when>
-            <xsl:when test="not(@type)">
-                <xsl:text>dynamic</xsl:text>
-            </xsl:when>
             <xsl:otherwise>
-                <xsl:value-of select="@type" />
+                <xsl:value-of select="my:translateType(@type)" />
             </xsl:otherwise>
         </xsl:choose>
 
@@ -307,6 +343,11 @@
 
     <!-- return type object is dynamic for now -->
     <xsl:template match="returns[@type = 'Object']" mode="type">
+        <xsl:text>dynamic</xsl:text>
+    </xsl:template>
+
+    <!-- property type object is dynamic for now -->
+    <xsl:template match="property[@type = 'Object']" mode="type">
         <xsl:text>dynamic</xsl:text>
     </xsl:template>
 
@@ -366,12 +407,25 @@
         <xsl:value-of select="@name" />
         <xsl:text>: </xsl:text>
         <xsl:apply-templates mode="type" select="." />
-        <xsl:text> get() = instance.</xsl:text>
-        <xsl:value-of select="@name" />
+
+        <xsl:choose>
+            <xsl:when test="@isArray= true() and my:useWrappedInstance(@type) = true()">
+                <xsl:value-of select="concat(' get() = (instance.', @name, ' as Array&lt;dynamic&gt;).map { ', @type, '(it, Unit) }.toTypedArray()')" />
+            </xsl:when>
+            <xsl:when test="my:useWrappedInstance(@type) = true()">
+                <xsl:value-of select="concat(' get() = ', @type, '(instance.', @name, ', Unit)')" />
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:text> get() = instance.</xsl:text>
+                <xsl:value-of select="@name" />
+            </xsl:otherwise>
+        </xsl:choose>
+
         <xsl:text>&#10;&#10;</xsl:text>
         <xsl:if test="position() = last()">
             <xsl:text>&#10;</xsl:text>
         </xsl:if>
+
     </xsl:template>
 
 
@@ -379,7 +433,7 @@
     <xsl:template match="property/description" mode="indent" priority="-1">
         <xsl:text>    </xsl:text>
     </xsl:template>
-    <xsl:template match="property/description/*" mode="indent" priority="-1">
+    <xsl:template match="property/description//*" mode="indent" priority="-1">
         <xsl:text>    </xsl:text>
     </xsl:template>
     <xsl:template match="method/description" mode="indent" priority="-1">

@@ -1,10 +1,11 @@
 apply plugin: 'base'
+apply plugin: 'kotlin2js'
 
 clean.doFirst {
     file(outDir).deleteDir()
 }
 
-task electronAPIdocbook(type: IncrementalTransformTask) {
+task docbook(type: IncrementalTransformTask) {
     inputFiles fileTree(dir: "$electronDocs", includes: ["**/*.md"], excludes: ["webview-tag.md"])
     outputDir file("$buildDir/api_docbook/")
     getTransformedName { sourceFile ->
@@ -15,7 +16,7 @@ task electronAPIdocbook(type: IncrementalTransformTask) {
         "bash", "-c", "cat ${it.path} |sed 's/^        \\*/                */g'|sed 's/^      \\*/              */g'|sed 's/^    \\*/        */g'|sed 's/^  \\*/    */g'|pandoc -t docbook"] }
 }
 
-task electronAPInormalize(type: IncrementalXSLTTask, dependsOn: ["electronAPIdocbook"]) {
+task normalize(type: IncrementalXSLTTask, dependsOn: ["docbook"]) {
     inputFiles fileTree(dir: "$buildDir/api_docbook/", include: "*.source.xml")
     outputDir file("$buildDir/api_docbook/")
     getTransformedName { sourceFile ->
@@ -25,7 +26,7 @@ task electronAPInormalize(type: IncrementalXSLTTask, dependsOn: ["electronAPIdoc
     xsltFile new File(rootDir, "step1Normalize.xsl")
 }
 
-task electronAPI(type: IncrementalXSLTTask, dependsOn: ["electronAPInormalize"]) {
+task api(type: IncrementalXSLTTask, dependsOn: ["normalize"]) {
     inputFiles fileTree(dir: "$buildDir/api_docbook/", include: "*.normalized.xml")
     outputDir file("$outDir")
     getTransformedName { sourceFile ->
@@ -35,4 +36,29 @@ task electronAPI(type: IncrementalXSLTTask, dependsOn: ["electronAPInormalize"])
     xsltFile new File(rootDir, "step2KotlinOutput.xsl")
 }
 
-build.dependsOn electronAPI
+buildscript {
+    ext.kotlin_version = '1.1.0-beta-38'
+    repositories {
+        jcenter()
+        maven {
+            url "http://dl.bintray.com/kotlin/kotlin-eap-1.1"
+        }
+    }
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+    }
+}
+repositories {
+    jcenter()
+    maven {
+        url "http://dl.bintray.com/kotlin/kotlin-eap-1.1"
+    }
+}
+dependencies {
+    compile "org.jetbrains.kotlin:kotlin-stdlib-js:$kotlin_version"
+}
+sourceSets {
+    main.kotlin.srcDirs += 'generated-api/'
+}
+
+build.dependsOn api

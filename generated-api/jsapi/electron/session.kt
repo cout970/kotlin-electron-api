@@ -1,4 +1,7 @@
+@file:Suppress("UnsafeCastFromDynamic")
 package jsapi.electron
+
+import org.w3c.files.Blob
 
 object session {
 
@@ -31,14 +34,12 @@ object session {
     )
 }
 
-class Session() {
+class Session constructor(val instance: dynamic, z: Unit) {
 
-    val instance: dynamic
-
-    init {
+    constructor() : this(Unit.let {
         val _constructor = js("require('electron').Session")
-        instance = js("new _constructor()")
-    }
+        js("new _constructor()")
+    }, z = Unit)
 
     // ~ Events --------------------------------------------------------------------------------
 
@@ -50,12 +51,12 @@ class Session() {
     /**
      * A Cookies object for this session.
      */
-    val cookies: dynamic get() = instance.cookies
+    val cookies: Cookies get() = Cookies(instance.cookies, Unit)
 
     /**
      * A WebRequest object for this session.
      */
-    val webRequest: dynamic get() = instance.webRequest
+    val webRequest: WebRequest get() = WebRequest(instance.webRequest, Unit)
 
     /**
      * A Protocol object (an instance of protocol module) for this session.
@@ -175,8 +176,8 @@ class Session() {
      * Resolves the proxy information for url. The callback will be called with 
      * callback(proxy) when the request is performed.
      */
-    fun resolveProxy(url: dynamic, callback: (proxy: ResolveProxyProxy.() -> Unit) -> Unit): Unit = 
-        instance.resolveProxy(url.instance, callback)
+    fun resolveProxy(url: String, callback: (proxy: ResolveProxyProxy.() -> Unit) -> Unit): Unit = 
+        instance.resolveProxy(url, callback)
 
     /**
      * Sets download saving directory. By default, the download directory will be the 
@@ -292,7 +293,7 @@ class Session() {
 
     /**
      */
-    fun getBlobData(identifier: String, callback: (result: dynamic) -> Unit): dynamic = 
+    fun getBlobData(identifier: String, callback: (result: dynamic) -> Unit): Blob = 
         instance.getBlobData(identifier, callback)
 
     /**
