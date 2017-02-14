@@ -1,11 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <file>
    <struct title="Task">
-      <property name="program" type="String"/>
-      <property name="arguments" type="String"/>
-      <property name="title" type="String"/>
-      <property name="description" type="String"/>
-      <property name="iconPath" type="String"/>
-      <property name="iconIndex" type="Number"/>
+      <property name="program" type="String">
+         <description>
+            <para>Path of the program to execute, usually you should specify process.execPath which opens the current program.</para>
+         </description>
+      </property>
+      <property name="arguments" type="String">
+         <description>
+            <para>The command line arguments when program is executed.</para>
+         </description>
+      </property>
+      <property name="title" type="String">
+         <description>
+            <para>The string to be displayed in a JumpList.</para>
+         </description>
+      </property>
+      <property name="description" type="String">
+         <description>
+            <para>Description of this task.</para>
+         </description>
+      </property>
+      <property name="iconPath" type="String">
+         <description>
+            <para>The absolute path to an icon to be displayed in a JumpList, which can be an arbitrary resource file that contains an icon. You can usually specify process.execPath to show the icon of the program.</para>
+         </description>
+      </property>
+      <property name="iconIndex" type="Number">
+         <description>
+            <para>The icon index in the icon file. If an icon file consists of two or more icons, set this value to identify the icon. If an icon file consists of one icon, this value is 0.</para>
+         </description>
+      </property>
    </struct>
 </file>

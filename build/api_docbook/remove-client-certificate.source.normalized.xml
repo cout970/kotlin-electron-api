@@ -1,7 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <file>
    <struct title="RemoveClientCertificate">
-      <property name="type" type="String"/>
-      <property name="origin" type="String"/>
+      <property name="type" type="String">
+         <description>
+            <para>clientCertificate.</para>
+         </description>
+      </property>
+      <property name="origin" type="String">
+         <description>
+            <para>Origin of the server whose associated client certificate must be removed from the cache.</para>
+         </description>
+      </property>
    </struct>
 </file>

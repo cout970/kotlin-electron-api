@@ -48,11 +48,8 @@ object systemPreferences {
      * values of event are:
      *
      *  . AppleInterfaceThemeChangedNotification
-     *
      *  . AppleAquaColorVariantChanged
-     *
      *  . AppleColorPreferencesChangedNotification
-     *
      *  . AppleShowScrollBarsSettingChanged
      *
      */
@@ -86,17 +83,11 @@ object systemPreferences {
      * This API uses NSUserDefaults on macOS. Some popular key and types are:
      *
      *  . AppleInterfaceStyle: string
-     *
      *  . AppleAquaColorVariant: integer
-     *
      *  . AppleHighlightColor: string
-     *
      *  . AppleShowScrollBars: string
-     *
      *  . NSNavRecentPlaces: array
-     *
      *  . NSPreferredWebServices: dictionary
-     *
      *  . NSUserDictionaryReplacementItems: array
      *
      */

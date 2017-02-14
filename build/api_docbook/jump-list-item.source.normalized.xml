@@ -2,16 +2,59 @@
 <file>
    <struct title="JumpListItem">
       <property optional="true" name="type" type="String">
-         <param name="task"/>
-         <param name="separator"/>
-         <param name="file"/>
+         <param name="task">
+            <description>
+               <para>A task will launch an app with specific arguments.</para>
+            </description>
+         </param>
+         <param name="separator">
+            <description>
+               <para>Can be used to separate items in the standard Tasks category.</para>
+            </description>
+         </param>
+         <param name="file">
+            <description>
+               <para>A file link will open a file using the app that created the Jump List, for this to work the app must be registered as a handler for the file type (though it doesn't have to be the default handler).</para>
+            </description>
+         </param>
+         <description>
+            <para>One of the following:</para>
+         </description>
       </property>
-      <property optional="true" name="path" type="String"/>
-      <property optional="true" name="program" type="String"/>
-      <property optional="true" name="args" type="String"/>
-      <property optional="true" name="title" type="String"/>
-      <property optional="true" name="description" type="String"/>
-      <property optional="true" name="iconPath" type="String"/>
-      <property optional="true" name="iconIndex" type="Number"/>
+      <property optional="true" name="path" type="String">
+         <description>
+            <para>Path of the file to open, should only be set if type is file.</para>
+         </description>
+      </property>
+      <property optional="true" name="program" type="String">
+         <description>
+            <para>Path of the program to execute, usually you should specify process.execPath which opens the current program. Should only be set if type is task.</para>
+         </description>
+      </property>
+      <property optional="true" name="args" type="String">
+         <description>
+            <para>The command line arguments when program is executed. Should only be set if type is task.</para>
+         </description>
+      </property>
+      <property optional="true" name="title" type="String">
+         <description>
+            <para>The text to be displayed for the item in the Jump List. Should only be set if type is task.</para>
+         </description>
+      </property>
+      <property optional="true" name="description" type="String">
+         <description>
+            <para>Description of the task (displayed in a tooltip). Should only be set if type is task.</para>
+         </description>
+      </property>
+      <property optional="true" name="iconPath" type="String">
+         <description>
+            <para>The absolute path to an icon to be displayed in a Jump List, which can be an arbitrary resource file that contains an icon (e.g. .ico, .exe, .dll). You can usually specify process.execPath to show the program icon.</para>
+         </description>
+      </property>
+      <property optional="true" name="iconIndex" type="Number">
+         <description>
+            <para>The index of the icon in the resource file. If a resource file contains multiple icons this value can be used to specify the zero-based index of the icon that should be displayed for this task. If a resource file contains only one icon, this property should be set to zero.</para>
+         </description>
+      </property>
    </struct>
 </file>

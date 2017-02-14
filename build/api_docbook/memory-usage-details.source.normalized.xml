@@ -1,8 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <file>
    <struct title="MemoryUsageDetails">
-      <property name="count" type="Number"/>
-      <property name="size" type="Number"/>
-      <property name="liveSize" type="Number"/>
+      <property name="count" type="Number">
+         <description>
+            <para/>
+         </description>
+      </property>
+      <property name="size" type="Number">
+         <description>
+            <para/>
+         </description>
+      </property>
+      <property name="liveSize" type="Number">
+         <description>
+            <para/>
+         </description>
+      </property>
    </struct>
 </file>

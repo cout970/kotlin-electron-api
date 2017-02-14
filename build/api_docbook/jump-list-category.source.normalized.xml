@@ -2,12 +2,39 @@
 <file>
    <struct title="JumpListCategory">
       <property optional="true" name="type" type="String">
-         <param name="tasks"/>
-         <param name="frequent"/>
-         <param name="recent"/>
-         <param name="custom"/>
+         <param name="tasks">
+            <description>
+               <para>Items in this category will be placed into the standard Tasks category. There can be only one such category, and it will always be displayed at the bottom of the Jump List.</para>
+            </description>
+         </param>
+         <param name="frequent">
+            <description>
+               <para>Displays a list of files frequently opened by the app, the name of the category and its items are set by Windows.</para>
+            </description>
+         </param>
+         <param name="recent">
+            <description>
+               <para>Displays a list of files recently opened by the app, the name of the category and its items are set by Windows. Items may be added to this category indirectly using app.addRecentDocument(path).</para>
+            </description>
+         </param>
+         <param name="custom">
+            <description>
+               <para>Displays tasks or file links, name must be set by the app.</para>
+            </description>
+         </param>
+         <description>
+            <para>One of the following:</para>
+         </description>
       </property>
-      <property optional="true" name="name" type="String"/>
-      <property optional="true" name="items" type="JumpListItem" isArray="true"/>
+      <property optional="true" name="name" type="String">
+         <description>
+            <para>Must be set if type is custom, otherwise it should be omitted.</para>
+         </description>
+      </property>
+      <property optional="true" name="items" type="JumpListItem" isArray="true">
+         <description>
+            <para>Array of JumpListItem objects if type is tasks or custom, otherwise it should be omitted.</para>
+         </description>
+      </property>
    </struct>
 </file>

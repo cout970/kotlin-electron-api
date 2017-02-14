@@ -1,11 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <file>
    <struct title="CertificatePrincipal">
-      <property name="commonName" type="String"/>
-      <property name="organizations" type="String" isArray="true"/>
-      <property name="organizationUnits" type="String" isArray="true"/>
-      <property name="locality" type="String"/>
-      <property name="state" type="String"/>
-      <property name="country" type="String"/>
+      <property name="commonName" type="String">
+         <description>
+            <para>Common Name</para>
+         </description>
+      </property>
+      <property name="organizations" type="String" isArray="true">
+         <description>
+            <para>Organization names</para>
+         </description>
+      </property>
+      <property name="organizationUnits" type="String" isArray="true">
+         <description>
+            <para>Organization Unit names</para>
+         </description>
+      </property>
+      <property name="locality" type="String">
+         <description>
+            <para>Locality</para>
+         </description>
+      </property>
+      <property name="state" type="String">
+         <description>
+            <para>State or province</para>
+         </description>
+      </property>
+      <property name="country" type="String">
+         <description>
+            <para>Country or region</para>
+         </description>
+      </property>
    </struct>
 </file>

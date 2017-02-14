@@ -3,10 +3,14 @@
    <object title="remote">
       <methods>
          <method name="require">
-            <param name="module" type="String"/>
+            <param name="module" type="String">
+               <description>
+                  <para/>
+               </description>
+            </param>
             <returns type="any">
                <description>
-                  <para>- The object returned by require(module) in the main process.</para>
+                  <para>The object returned by require(module) in the main process.</para>
                </description>
             </returns>
             <description/>
@@ -14,7 +18,7 @@
          <method name="getCurrentWindow">
             <returns type="BrowserWindow">
                <description>
-                  <para/>
+                  <para>The window to which this web page belongs.</para>
                </description>
             </returns>
             <description/>
@@ -22,16 +26,20 @@
          <method name="getCurrentWebContents">
             <returns type="WebContents">
                <description>
-                  <para/>
+                  <para>The web contents of this web page.</para>
                </description>
             </returns>
             <description/>
          </method>
          <method name="getGlobal">
-            <param name="name" type="String"/>
+            <param name="name" type="String">
+               <description>
+                  <para/>
+               </description>
+            </param>
             <returns type="any">
                <description>
-                  <para>- The global variable of name (e.g. global[name]) in the main process.</para>
+                  <para>The global variable of name (e.g. global[name]) in the main process.</para>
                </description>
             </returns>
             <description/>

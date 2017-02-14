@@ -6,7 +6,7 @@ class DownloadItem() {
 
     init {
         val _constructor = js("require('electron').DownloadItem")
-        instance = js("new _constructor(_)")
+        instance = js("new _constructor()")
     }
 
     // ~ Events --------------------------------------------------------------------------------

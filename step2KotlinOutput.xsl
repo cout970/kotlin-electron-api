@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet xmlns:f="my:f" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
     <!-- settings -->
     <xsl:output method="text" />
     <xsl:strip-space elements="*" />
     <xsl:include href="xslLineWrapping.xsl" />
+    <xsl:template match="text()" mode="#all" />
 
     <!-- file -->
     <xsl:template match="/">
@@ -115,11 +116,20 @@
         <xsl:apply-templates mode="delegate_call_vals" />
 
         <xsl:text>        instance = js("new _constructor(</xsl:text>
-        <xsl:value-of select="concat('_', param/@name)" separator=", " />
+        <xsl:apply-templates mode="delegate_call" />
         <xsl:text>)")&#10;</xsl:text>
         <xsl:text>    }&#10;&#10;</xsl:text>
     </xsl:template>
 
+
+    <!-- param: constructor delegate call -->
+    <xsl:template match="constructor/param" mode="delegate_call">
+        <xsl:text>_</xsl:text>
+        <xsl:value-of select="@name" />
+        <xsl:if test="position() &lt; last()">
+            <xsl:text>, </xsl:text>
+        </xsl:if>
+    </xsl:template>
 
     <!-- delegate call -->
     <xsl:template match="constructor/param" mode="delegate_call_vals">
@@ -213,7 +223,7 @@
 
         <!-- reference to wrapped instance -->
         <xsl:if
-            test="not(@type = 'Object') and not(@isArray = true()) and not(@type = ('Boolean', 'Number', 'String', 'Integer', 'Float', 'Object', 'Function', 'Double'))">
+            test="not(@type = 'Object') and not(@isArray = true()) and not(@type = ('union', 'Boolean', 'Number', 'String', 'Integer', 'Float', 'Object', 'Function', 'Double'))">
             <xsl:if test="@optional=true()">
                 <xsl:text>?</xsl:text>
             </xsl:if>
@@ -261,7 +271,7 @@
             </xsl:when>
             <xsl:when test="@type = 'Function'">
                 <xsl:text>(</xsl:text>
-                <xsl:apply-templates mode="signature" />
+                <xsl:apply-templates mode="signature" select="param" />
                 <xsl:text>) -> Unit</xsl:text>
             </xsl:when>
             <xsl:when test="@type = 'Object'">
@@ -348,13 +358,17 @@
             <xsl:text>    // ~ Properties ----------------------------------------------------------------------------&#10;&#10;</xsl:text>
         </xsl:if>
 
+        <!-- description -->
+        <xsl:apply-templates select="description" />
+
+        <!-- val name: type -->
         <xsl:text>    val </xsl:text>
         <xsl:value-of select="@name" />
         <xsl:text>: </xsl:text>
         <xsl:apply-templates mode="type" select="." />
         <xsl:text> get() = instance.</xsl:text>
         <xsl:value-of select="@name" />
-        <xsl:text>&#10;</xsl:text>
+        <xsl:text>&#10;&#10;</xsl:text>
         <xsl:if test="position() = last()">
             <xsl:text>&#10;</xsl:text>
         </xsl:if>
@@ -362,23 +376,28 @@
 
 
     <!-- indent -->
-    <xsl:template match="object/methods/method/description" mode="indent">
+    <xsl:template match="property/description" mode="indent" priority="-1">
         <xsl:text>    </xsl:text>
     </xsl:template>
-    <xsl:template match="object/methods/method/description//*" mode="indent">
+    <xsl:template match="property/description/*" mode="indent" priority="-1">
         <xsl:text>    </xsl:text>
     </xsl:template>
-    <xsl:template match="class/methods/method/description" mode="indent">
+    <xsl:template match="method/description" mode="indent" priority="-1">
         <xsl:text>    </xsl:text>
     </xsl:template>
-    <xsl:template match="class/methods/method/description//*" mode="indent">
+    <xsl:template match="method/description//*" mode="indent" priority="-1">
         <xsl:text>    </xsl:text>
     </xsl:template>
 
-    <xsl:template match="*" mode="indent"/>
+    <xsl:template match="class/methods[@type='static']/method/description" mode="indent">
+        <xsl:text>        </xsl:text>
+    </xsl:template>
+    <xsl:template match="class/methods[@type='static']/method/description//*" mode="indent">
+        <xsl:text>        </xsl:text>
+    </xsl:template>
 
     <!-- description -->
-    <xsl:template match="method/description">
+    <xsl:template match="description">
         <xsl:apply-templates mode="indent" select="." />
         <xsl:text>/**&#10;</xsl:text>
         <xsl:apply-templates />
@@ -395,12 +414,12 @@
         <xsl:apply-templates mode="indent" select="." />
         <xsl:text> * </xsl:text>
 
-        <xsl:call-template name="wrap-string" >
+        <xsl:call-template name="wrap-string">
             <xsl:with-param name="str">
                 <xsl:value-of select="." />
             </xsl:with-param>
             <xsl:with-param name="break-mark">
-                <xsl:value-of select="concat('&#10;', $indent, ' * ')"/>
+                <xsl:value-of select="concat('&#10;', $indent, ' * ')" />
             </xsl:with-param>
             <xsl:with-param name="wrap-col">80</xsl:with-param>
         </xsl:call-template>
@@ -423,33 +442,37 @@
                 <xsl:text>   </xsl:text>
             </xsl:for-each>
         </xsl:variable>
-        <xsl:value-of select="concat($indent, ' * ', $listIndent, ' . ')"/>
+        <xsl:value-of select="concat($indent, ' * ', $listIndent, ' . ')" />
 
-        <xsl:call-template name="wrap-string" >
+        <xsl:call-template name="wrap-string">
             <xsl:with-param name="str">
                 <xsl:value-of select="para" />
             </xsl:with-param>
             <xsl:with-param name="break-mark">
-                <xsl:value-of select="concat('&#10;', $indent, ' * ', $listIndent, '   ')"/>
+                <xsl:value-of select="concat('&#10;', $indent, ' * ', $listIndent, '   ')" />
             </xsl:with-param>
             <xsl:with-param name="wrap-col">80</xsl:with-param>
         </xsl:call-template>
 
-        <xsl:value-of select="concat('&#10;', $indent, ' *&#10;')"/>
+        <xsl:text>&#10;</xsl:text>
+
+        <!-- line after item -->
+        <!--<xsl:value-of select="concat($indent, ' *&#10;')"/>-->
+
+        <xsl:if test="position() = last()">
+            <xsl:value-of select="concat($indent, ' *&#10;')" />
+        </xsl:if>
+
         <xsl:apply-templates select="list" />
     </xsl:template>
 
-    <xsl:template match="description//item/para">
-        asdfasdf
-    </xsl:template>
-
     <!-- description -->
-    <xsl:template match="method/description/programlisting" >
+    <xsl:template match="description/programlisting">
         <xsl:variable name="indent">
             <xsl:apply-templates mode="indent" select="." />
         </xsl:variable>
         <xsl:for-each select="tokenize(., '\n')">
-            <xsl:value-of select="concat($indent, ' *  | ', ., '&#10;')"/>
+            <xsl:value-of select="concat($indent, ' *  | ', ., '&#10;')" />
         </xsl:for-each>
         <xsl:if test="position() &lt; last()">
             <xsl:apply-templates mode="indent" select="." />

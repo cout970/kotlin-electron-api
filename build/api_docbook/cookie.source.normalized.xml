@@ -1,14 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <file>
    <struct title="Cookie">
-      <property name="name" type="String"/>
-      <property name="value" type="String"/>
-      <property optional="true" name="domain" type="String"/>
-      <property optional="true" name="hostOnly" type="Boolean"/>
-      <property optional="true" name="path" type="String"/>
-      <property optional="true" name="secure" type="Boolean"/>
-      <property optional="true" name="httpOnly" type="Boolean"/>
-      <property optional="true" name="session" type="Boolean"/>
-      <property optional="true" name="expirationDate" type="Double"/>
+      <property name="name" type="String">
+         <description>
+            <para>The name of the cookie.</para>
+         </description>
+      </property>
+      <property name="value" type="String">
+         <description>
+            <para>The value of the cookie.</para>
+         </description>
+      </property>
+      <property optional="true" name="domain" type="String">
+         <description>
+            <para>The domain of the cookie.</para>
+         </description>
+      </property>
+      <property optional="true" name="hostOnly" type="Boolean">
+         <description>
+            <para>Whether the cookie is a host-only cookie.</para>
+         </description>
+      </property>
+      <property optional="true" name="path" type="String">
+         <description>
+            <para>The path of the cookie.</para>
+         </description>
+      </property>
+      <property optional="true" name="secure" type="Boolean">
+         <description>
+            <para>Whether the cookie is marked as secure.</para>
+         </description>
+      </property>
+      <property optional="true" name="httpOnly" type="Boolean">
+         <description>
+            <para>Whether the cookie is marked as HTTP only.</para>
+         </description>
+      </property>
+      <property optional="true" name="session" type="Boolean">
+         <description>
+            <para>Whether the cookie is a session cookie or a persistent cookie with an expiration date.</para>
+         </description>
+      </property>
+      <property optional="true" name="expirationDate" type="Double">
+         <description>
+            <para>The expiration date of the cookie as the number of seconds since the UNIX epoch. Not provided for session cookies.</para>
+         </description>
+      </property>
    </struct>
 </file>

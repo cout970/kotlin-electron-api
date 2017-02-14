@@ -3,28 +3,89 @@
    <object title="dialog">
       <methods>
          <method name="showOpenDialog">
-            <param optional="true" name="browserWindow" type="BrowserWindow"/>
+            <param optional="true" name="browserWindow" type="BrowserWindow">
+               <description>
+                  <para/>
+               </description>
+            </param>
             <param name="options" type="Object">
-               <property optional="true" name="title" type="String"/>
-               <property optional="true" name="defaultPath" type="String"/>
-               <property optional="true" name="buttonLabel" type="String"/>
-               <property optional="true" name="filters" type="FileFilter" isArray="true"/>
-               <property optional="true" name="properties" type="String" isArray="true">
-                  <param name="openFile"/>
-                  <param name="openDirectory"/>
-                  <param name="multiSelections"/>
-                  <param name="showHiddenFiles"/>
-                  <param name="createDirectory" type="macOS"/>
-                  <param name="promptToCreate" type="Windows"/>
+               <property optional="true" name="title" type="String">
+                  <description>
+                     <para/>
+                  </description>
                </property>
-               <property optional="true" name="normalizeAccessKeys" type="Boolean"/>
+               <property optional="true" name="defaultPath" type="String">
+                  <description>
+                     <para/>
+                  </description>
+               </property>
+               <property optional="true" name="buttonLabel" type="String">
+                  <description>
+                     <para>Custom label for the confirmation button, when left empty the default label will be used.</para>
+                  </description>
+               </property>
+               <property optional="true" name="filters" type="FileFilter" isArray="true">
+                  <description>
+                     <para/>
+                  </description>
+               </property>
+               <property optional="true" name="properties" type="String" isArray="true">
+                  <param name="openFile">
+                     <description>
+                        <para>Allow files to be selected.</para>
+                     </description>
+                  </param>
+                  <param name="openDirectory">
+                     <description>
+                        <para>Allow directories to be selected.</para>
+                     </description>
+                  </param>
+                  <param name="multiSelections">
+                     <description>
+                        <para>Allow multiple paths to be selected.</para>
+                     </description>
+                  </param>
+                  <param name="showHiddenFiles">
+                     <description>
+                        <para>Show hidden files in dialog.</para>
+                     </description>
+                  </param>
+                  <param name="createDirectory" type="macOS">
+                     <description>
+                        <para>Allow creating new directories from dialog.</para>
+                     </description>
+                  </param>
+                  <param name="promptToCreate" type="Windows">
+                     <description>
+                        <para>Prompt for creation if the file path entered in the dialog does not exist. This does not actually create the file at the path but allows non-existent paths to be returned that should be created by the application.</para>
+                     </description>
+                  </param>
+                  <description>
+                     <para>Contains which features the dialog should use. The following values are supported:</para>
+                  </description>
+               </property>
+               <property optional="true" name="normalizeAccessKeys" type="Boolean">
+                  <description>
+                     <para>Normalize the keyboard access keys across platforms. Default is false. Enabling this assumes &amp; is used in the button labels for the placement of the keyboard shortcut access key and labels will be converted so they work correctly on each platform, &amp; characters are removed on macOS, converted to _ on Linux, and left untouched on Windows. For example, a button label of Vie&amp;w will be converted to Vie_w on Linux and View on macOS and can be selected via Alt-W on Windows and Linux.</para>
+                  </description>
+               </property>
+               <description>
+                  <para/>
+               </description>
             </param>
             <param optional="true" name="callback" type="Function">
-               <param name="filePaths" type="String" isArray="true"/>
+               <param name="filePaths" type="String" isArray="true">
+                  <description>
+                     <para>An array of file paths chosen by the user</para>
+                  </description>
+               </param>
+               <description>
+                  <para/>
+               </description>
             </param>
             <returns type="String" isArray="true">
                <description>
-                  <para>, an array of file paths chosen by the user, if the callback is provided it returns undefined.</para>
+                  <para/>
                </description>
             </returns>
             <description>
@@ -46,19 +107,49 @@
             </description>
          </method>
          <method name="showSaveDialog">
-            <param optional="true" name="browserWindow" type="BrowserWindow"/>
+            <param optional="true" name="browserWindow" type="BrowserWindow">
+               <description>
+                  <para/>
+               </description>
+            </param>
             <param name="options" type="Object">
-               <property optional="true" name="title" type="String"/>
-               <property optional="true" name="defaultPath" type="String"/>
-               <property optional="true" name="buttonLabel" type="String"/>
-               <property optional="true" name="filters" type="FileFilter" isArray="true"/>
+               <property optional="true" name="title" type="String">
+                  <description>
+                     <para/>
+                  </description>
+               </property>
+               <property optional="true" name="defaultPath" type="String">
+                  <description>
+                     <para/>
+                  </description>
+               </property>
+               <property optional="true" name="buttonLabel" type="String">
+                  <description>
+                     <para>Custom label for the confirmation button, when left empty the default label will be used.</para>
+                  </description>
+               </property>
+               <property optional="true" name="filters" type="FileFilter" isArray="true">
+                  <description>
+                     <para/>
+                  </description>
+               </property>
+               <description>
+                  <para/>
+               </description>
             </param>
             <param optional="true" name="callback" type="Function">
-               <param name="filename" type="String"/>
+               <param name="filename" type="String">
+                  <description>
+                     <para/>
+                  </description>
+               </param>
+               <description>
+                  <para/>
+               </description>
             </param>
             <returns type="String">
                <description>
-                  <para>, the path of the file chosen by the user, if a callback is provided it returns undefined.</para>
+                  <para/>
                </description>
             </returns>
             <description>
@@ -68,24 +159,74 @@
             </description>
          </method>
          <method name="showMessageBox">
-            <param optional="true" name="browserWindow" type="BrowserWindow"/>
+            <param optional="true" name="browserWindow" type="BrowserWindow">
+               <description>
+                  <para/>
+               </description>
+            </param>
             <param name="options" type="Object">
-               <property optional="true" name="type" type="String"/>
-               <property optional="true" name="buttons" type="String" isArray="true"/>
-               <property optional="true" name="defaultId" type="Integer"/>
-               <property optional="true" name="title" type="String"/>
-               <property name="message" type="String"/>
-               <property optional="true" name="detail" type="String"/>
-               <property optional="true" name="icon" type="NativeImage"/>
-               <property optional="true" name="cancelId" type="Integer"/>
-               <property optional="true" name="noLink" type="Boolean"/>
+               <property optional="true" name="type" type="String">
+                  <description>
+                     <para>Can be "none", "info", "error", "question" or "warning". On Windows, "question" displays the same icon as "info", unless you set an icon using the "icon" option.</para>
+                  </description>
+               </property>
+               <property optional="true" name="buttons" type="String" isArray="true">
+                  <description>
+                     <para>Array of texts for buttons. On Windows, an empty array will result in one button labeled "OK".</para>
+                  </description>
+               </property>
+               <property optional="true" name="defaultId" type="Integer">
+                  <description>
+                     <para>Index of the button in the buttons array which will be selected by default when the message box opens.</para>
+                  </description>
+               </property>
+               <property optional="true" name="title" type="String">
+                  <description>
+                     <para>Title of the message box, some platforms will not show it.</para>
+                  </description>
+               </property>
+               <property name="message" type="String">
+                  <description>
+                     <para>Content of the message box.</para>
+                  </description>
+               </property>
+               <property optional="true" name="detail" type="String">
+                  <description>
+                     <para>Extra information of the message.</para>
+                  </description>
+               </property>
+               <property optional="true" name="icon" type="NativeImage">
+                  <description>
+                     <para/>
+                  </description>
+               </property>
+               <property optional="true" name="cancelId" type="Integer">
+                  <description>
+                     <para>The value will be returned when user cancels the dialog instead of clicking the buttons of the dialog. By default it is the index of the buttons that have "cancel" or "no" as label, or 0 if there is no such buttons. On macOS and Windows the index of the "Cancel" button will always be used as cancelId even if it is specified.</para>
+                  </description>
+               </property>
+               <property optional="true" name="noLink" type="Boolean">
+                  <description>
+                     <para>On Windows Electron will try to figure out which one of the buttons are common buttons (like "Cancel" or "Yes"), and show the others as command links in the dialog. This can make the dialog appear in the style of modern Windows apps. If you don't like this behavior, you can set noLink to true.</para>
+                  </description>
+               </property>
+               <description>
+                  <para/>
+               </description>
             </param>
             <param optional="true" name="callback" type="Function">
-               <param name="response" type="Number"/>
+               <param name="response" type="Number">
+                  <description>
+                     <para>The index of the button that was clicked</para>
+                  </description>
+               </param>
+               <description>
+                  <para/>
+               </description>
             </param>
             <returns type="Integer">
                <description>
-                  <para>, the index of the clicked button, if a callback is provided it returns undefined.</para>
+                  <para/>
                </description>
             </returns>
             <description>
@@ -95,8 +236,16 @@
             </description>
          </method>
          <method name="showErrorBox">
-            <param name="title" type="String"/>
-            <param name="content" type="String"/>
+            <param name="title" type="String">
+               <description>
+                  <para>The title to display in the error box</para>
+               </description>
+            </param>
+            <param name="content" type="String">
+               <description>
+                  <para>The text content to display in the error box</para>
+               </description>
+            </param>
             <description>
                <para>Displays a modal dialog that shows an error message.</para>
                <para>This API can be called safely before the ready event the app module emits, it is usually used to report errors in early stage of startup. If called before the app readyevent on Linux, the message will be emitted to stderr, and no GUI dialog will appear.</para>

@@ -1,9 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <file>
    <struct title="Rectangle">
-      <property name="x" type="Number"/>
-      <property name="y" type="Number"/>
-      <property name="width" type="Number"/>
-      <property name="height" type="Number"/>
+      <property name="x" type="Number">
+         <description>
+            <para>The x coordinate of the origin of the rectangle</para>
+         </description>
+      </property>
+      <property name="y" type="Number">
+         <description>
+            <para>The y coordinate of the origin of the rectangle</para>
+         </description>
+      </property>
+      <property name="width" type="Number">
+         <description>
+            <para/>
+         </description>
+      </property>
+      <property name="height" type="Number">
+         <description>
+            <para/>
+         </description>
+      </property>
    </struct>
 </file>

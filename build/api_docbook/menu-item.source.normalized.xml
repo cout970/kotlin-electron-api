@@ -4,28 +4,92 @@
       <constructor>
          <param name="options" type="Object">
             <property optional="true" name="click" type="Function">
-               <param name="menuItem" type="MenuItem"/>
-               <param name="browserWindow" type="BrowserWindow"/>
-               <param name="event" type="Event"/>
+               <param name="menuItem" type="MenuItem">
+                  <description>
+                     <para/>
+                  </description>
+               </param>
+               <param name="browserWindow" type="BrowserWindow">
+                  <description>
+                     <para/>
+                  </description>
+               </param>
+               <param name="event" type="Event">
+                  <description>
+                     <para/>
+                  </description>
+               </param>
+               <description>
+                  <para>Will be called with click(menuItem, browserWindow, event) when the menu item is clicked.</para>
+               </description>
             </property>
-            <property optional="true" name="role" type="String"/>
-            <property optional="true" name="type" type="String"/>
-            <property optional="true" name="label" type="String"/>
-            <property optional="true" name="sublabel" type="String"/>
-            <property optional="true" name="accelerator" type="Accelerator"/>
+            <property optional="true" name="role" type="String">
+               <description>
+                  <para>Define the action of the menu item, when specified the click property will be ignored.</para>
+               </description>
+            </property>
+            <property optional="true" name="type" type="String">
+               <description>
+                  <para>Can be normal, separator, submenu, checkbox or radio.</para>
+               </description>
+            </property>
+            <property optional="true" name="label" type="String">
+               <description>
+                  <para>(optional)</para>
+               </description>
+            </property>
+            <property optional="true" name="sublabel" type="String">
+               <description>
+                  <para>(optional)</para>
+               </description>
+            </property>
+            <property optional="true" name="accelerator" type="Accelerator">
+               <description>
+                  <para/>
+               </description>
+            </property>
             <property optional="true" name="icon" type="union">
                <option type="NativeImage"/>
                <option type="String"/>
+               <description>
+                  <para/>
+               </description>
             </property>
-            <property optional="true" name="enabled" type="Boolean"/>
-            <property optional="true" name="visible" type="Boolean"/>
-            <property optional="true" name="checked" type="Boolean"/>
+            <property optional="true" name="enabled" type="Boolean">
+               <description>
+                  <para>If false, the menu item will be greyed out and unclickable.</para>
+               </description>
+            </property>
+            <property optional="true" name="visible" type="Boolean">
+               <description>
+                  <para>If false, the menu item will be entirely hidden.</para>
+               </description>
+            </property>
+            <property optional="true" name="checked" type="Boolean">
+               <description>
+                  <para>Should only be specified for checkbox or radio type menu items.</para>
+               </description>
+            </property>
             <property optional="true" name="submenu" type="union">
                <option type="MenuItemConstructorOptions" isArray="true"/>
                <option type="Menu"/>
+               <description>
+                  <para>Should be specified for submenu type menu items. If submenu is specified, the type: 'submenu' can be omitted. If the value is not a Menu then it will be automatically converted to one using Menu.buildFromTemplate.</para>
+               </description>
             </property>
-            <property optional="true" name="id" type="String"/>
-            <property optional="true" name="position" type="String"/>
+            <property optional="true" name="id" type="String">
+               <description>
+                  <para>Unique within a single menu. If defined then it can be used as a reference to this item by the position attribute.</para>
+               </description>
+            </property>
+            <property optional="true" name="position" type="String">
+               <description>
+                  <para>This field allows fine-grained definition of the specific location within a given menu.</para>
+               </description>
+            </property>
+            <description>
+               <para/>
+            </description>
          </param>
       </constructor>
       <properties type="instance">

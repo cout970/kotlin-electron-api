@@ -3,7 +3,11 @@
    <object title="webFrame">
       <methods>
          <method name="setZoomFactor">
-            <param name="factor" type="Number"/>
+            <param name="factor" type="Number">
+               <description>
+                  <para>Zoom factor.</para>
+               </description>
+            </param>
             <description>
                <para>Changes the zoom factor to the specified factor. Zoom factor is zoom percent divided by 100, so 300% = 3.0.</para>
             </description>
@@ -11,13 +15,17 @@
          <method name="getZoomFactor">
             <returns type="Number">
                <description>
-                  <para>- The current zoom factor.</para>
+                  <para>The current zoom factor.</para>
                </description>
             </returns>
             <description/>
          </method>
          <method name="setZoomLevel">
-            <param name="level" type="Number"/>
+            <param name="level" type="Number">
+               <description>
+                  <para>Zoom level</para>
+               </description>
+            </param>
             <description>
                <para>Changes the zoom level to the specified level. The original size is 0 and each increment above or below represents zooming 20% larger or smaller to default limits of 300% and 50% of original size, respectively.</para>
             </description>
@@ -25,39 +33,81 @@
          <method name="getZoomLevel">
             <returns type="Number">
                <description>
-                  <para>- The current zoom level.</para>
+                  <para>The current zoom level.</para>
                </description>
             </returns>
             <description/>
          </method>
          <method name="setZoomLevelLimits">
-            <param name="minimumLevel" type="Number"/>
-            <param name="maximumLevel" type="Number"/>
+            <param name="minimumLevel" type="Number">
+               <description>
+                  <para/>
+               </description>
+            </param>
+            <param name="maximumLevel" type="Number">
+               <description>
+                  <para/>
+               </description>
+            </param>
             <description>
                <para>Deprecated: Call setVisualZoomLevelLimits instead to set the visual zoom level limits. This method will be removed in Electron 2.0.</para>
             </description>
          </method>
          <method name="setVisualZoomLevelLimits">
-            <param name="minimumLevel" type="Number"/>
-            <param name="maximumLevel" type="Number"/>
+            <param name="minimumLevel" type="Number">
+               <description>
+                  <para/>
+               </description>
+            </param>
+            <param name="maximumLevel" type="Number">
+               <description>
+                  <para/>
+               </description>
+            </param>
             <description>
                <para>Sets the maximum and minimum pinch-to-zoom level.</para>
             </description>
          </method>
          <method name="setLayoutZoomLevelLimits">
-            <param name="minimumLevel" type="Number"/>
-            <param name="maximumLevel" type="Number"/>
+            <param name="minimumLevel" type="Number">
+               <description>
+                  <para/>
+               </description>
+            </param>
+            <param name="maximumLevel" type="Number">
+               <description>
+                  <para/>
+               </description>
+            </param>
             <description>
                <para>Sets the maximum and minimum layout-based (i.e. non-visual) zoom level.</para>
             </description>
          </method>
          <method name="setSpellCheckProvider">
-            <param name="language" type="String"/>
-            <param name="autoCorrectWord" type="Boolean"/>
+            <param name="language" type="String">
+               <description>
+                  <para/>
+               </description>
+            </param>
+            <param name="autoCorrectWord" type="Boolean">
+               <description>
+                  <para/>
+               </description>
+            </param>
             <param name="provider" type="Object">
                <property name="spellCheck" type="Function">
-                  <param name="text" type="String"/>
+                  <param name="text" type="String">
+                     <description>
+                        <para/>
+                     </description>
+                  </param>
+                  <description>
+                     <para>Returns Boolean</para>
+                  </description>
                </property>
+               <description>
+                  <para/>
+               </description>
             </param>
             <description>
                <para>Sets a provider for spell checking in input fields and text areas.</para>
@@ -74,26 +124,61 @@ webFrame.setSpellCheckProvider('en-US', true, {
             </description>
          </method>
          <method name="registerURLSchemeAsSecure">
-            <param name="scheme" type="String"/>
+            <param name="scheme" type="String">
+               <description>
+                  <para/>
+               </description>
+            </param>
             <description>
                <para>Registers the scheme as secure scheme.</para>
                <para>Secure schemes do not trigger mixed content warnings. For example, https and data are secure schemes because they cannot be corrupted by active network attackers.</para>
             </description>
          </method>
          <method name="registerURLSchemeAsBypassingCSP">
-            <param name="scheme" type="String"/>
+            <param name="scheme" type="String">
+               <description>
+                  <para/>
+               </description>
+            </param>
             <description>
                <para>Resources will be loaded from this scheme regardless of the current page's Content Security Policy.</para>
             </description>
          </method>
          <method name="registerURLSchemeAsPrivileged">
-            <param name="scheme" type="String"/>
+            <param name="scheme" type="String">
+               <description>
+                  <para/>
+               </description>
+            </param>
             <param optional="true" name="options" type="Object">
-               <property optional="true" name="secure" type="Boolean"/>
-               <property optional="true" name="bypassCSP" type="Boolean"/>
-               <property optional="true" name="allowServiceWorkers" type="Boolean"/>
-               <property optional="true" name="supportFetchAPI" type="Boolean"/>
-               <property optional="true" name="corsEnabled" type="Boolean"/>
+               <property optional="true" name="secure" type="Boolean">
+                  <description>
+                     <para>(optional) Default true.</para>
+                  </description>
+               </property>
+               <property optional="true" name="bypassCSP" type="Boolean">
+                  <description>
+                     <para>(optional) Default true.</para>
+                  </description>
+               </property>
+               <property optional="true" name="allowServiceWorkers" type="Boolean">
+                  <description>
+                     <para>(optional) Default true.</para>
+                  </description>
+               </property>
+               <property optional="true" name="supportFetchAPI" type="Boolean">
+                  <description>
+                     <para>(optional) Default true.</para>
+                  </description>
+               </property>
+               <property optional="true" name="corsEnabled" type="Boolean">
+                  <description>
+                     <para>(optional) Default true.</para>
+                  </description>
+               </property>
+               <description>
+                  <para/>
+               </description>
             </param>
             <description>
                <para>Registers the scheme as secure, bypasses content security policy for resources, allows registering ServiceWorker and supports fetch API.</para>
@@ -105,16 +190,35 @@ webFrame.registerURLSchemeAsPrivileged('foo', { bypassCSP: false })
             </description>
          </method>
          <method name="insertText">
-            <param name="text" type="String"/>
+            <param name="text" type="String">
+               <description>
+                  <para/>
+               </description>
+            </param>
             <description>
                <para>Inserts text to the focused element.</para>
             </description>
          </method>
          <method name="executeJavaScript">
-            <param name="code" type="String"/>
-            <param optional="true" name="userGesture" type="Boolean"/>
+            <param name="code" type="String">
+               <description>
+                  <para/>
+               </description>
+            </param>
+            <param optional="true" name="userGesture" type="Boolean">
+               <description>
+                  <para>Default is false.</para>
+               </description>
+            </param>
             <param optional="true" name="callback" type="Function">
-               <param name="result" type="Any"/>
+               <param name="result" type="Any">
+                  <description>
+                     <para/>
+                  </description>
+               </param>
+               <description>
+                  <para>Called after script has been executed.</para>
+               </description>
             </param>
             <description>
                <para>Evaluates code in page.</para>
@@ -123,20 +227,60 @@ webFrame.registerURLSchemeAsPrivileged('foo', { bypassCSP: false })
          </method>
          <method name="getResourceUsage">
             <returns type="Object">
-               <param name="images" type="MemoryUsageDetails"/>
-               <param name="cssStyleSheets" type="MemoryUsageDetails"/>
-               <param name="xslStyleSheets" type="MemoryUsageDetails"/>
-               <param name="fonts" type="MemoryUsageDetails"/>
-               <param name="other" type="MemoryUsageDetails"/>
+               <param name="images" type="MemoryUsageDetails">
+                  <description>
+                     <para/>
+                  </description>
+               </param>
+               <param name="cssStyleSheets" type="MemoryUsageDetails">
+                  <description>
+                     <para/>
+                  </description>
+               </param>
+               <param name="xslStyleSheets" type="MemoryUsageDetails">
+                  <description>
+                     <para/>
+                  </description>
+               </param>
+               <param name="fonts" type="MemoryUsageDetails">
+                  <description>
+                     <para/>
+                  </description>
+               </param>
+               <param name="other" type="MemoryUsageDetails">
+                  <description>
+                     <para/>
+                  </description>
+               </param>
                <description>
-                  <para>:</para>
+                  <para/>
                </description>
             </returns>
-            <param name="images" type="MemoryUsageDetails"/>
-            <param name="cssStyleSheets" type="MemoryUsageDetails"/>
-            <param name="xslStyleSheets" type="MemoryUsageDetails"/>
-            <param name="fonts" type="MemoryUsageDetails"/>
-            <param name="other" type="MemoryUsageDetails"/>
+            <param name="images" type="MemoryUsageDetails">
+               <description>
+                  <para/>
+               </description>
+            </param>
+            <param name="cssStyleSheets" type="MemoryUsageDetails">
+               <description>
+                  <para/>
+               </description>
+            </param>
+            <param name="xslStyleSheets" type="MemoryUsageDetails">
+               <description>
+                  <para/>
+               </description>
+            </param>
+            <param name="fonts" type="MemoryUsageDetails">
+               <description>
+                  <para/>
+               </description>
+            </param>
+            <param name="other" type="MemoryUsageDetails">
+               <description>
+                  <para/>
+               </description>
+            </param>
             <description>
                <list>
                   <item>

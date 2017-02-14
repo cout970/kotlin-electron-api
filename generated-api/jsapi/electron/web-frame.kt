@@ -126,13 +126,9 @@ object webFrame {
 
     /**
      *  . imagesMemoryUsageDetails
-     *
      *  . cssStyleSheetsMemoryUsageDetails
-     *
      *  . xslStyleSheetsMemoryUsageDetails
-     *
      *  . fontsMemoryUsageDetails
-     *
      *  . otherMemoryUsageDetails
      *
      *  | 

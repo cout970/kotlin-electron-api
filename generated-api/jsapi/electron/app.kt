@@ -93,36 +93,22 @@ object app {
      * You can request the following paths by the name:
      *
      *  . home User's home directory.
-     *
      *  . appData Per-user application data directory, which by default points to:
-     *
      *     . %APPDATA% on Windows
-     *
      *     . $XDG_CONFIG_HOME or ~/.config on Linux
-     *
      *     . ~/Library/Application Support on macOS
      *
      *  . userData The directory for storing your app's configuration files, which by 
      *    default it is the appData directory appended with your app's name.
-     *
      *  . temp Temporary directory.
-     *
      *  . exe The current executable file.
-     *
      *  . module The libchromiumcontent library.
-     *
      *  . desktop The current user's Desktop directory.
-     *
      *  . documents Directory for a user's "My Documents".
-     *
      *  . downloads Directory for a user's downloads.
-     *
      *  . music Directory for a user's music.
-     *
      *  . pictures Directory for a user's pictures.
-     *
      *  . videos Directory for a user's videos.
-     *
      *  . pepperFlashSystemPlugin Full path to the system version of the Pepper Flash 
      *    plugin.
      *
@@ -136,7 +122,6 @@ object app {
      * On Windows, there a 2 kinds of icons:
      *
      *  . Icons associated with certain file extensions, like .mp3, .png, etc.
-     *
      *  . Icons inside the file itself, like .exe, .dll, .ico.
      *
      * On Linux and macOS, icons depend on the application associated with file mime 
@@ -263,7 +248,6 @@ object app {
     /**
      *  . minItems Integer - The minimum number of items that will be shown in the Jump 
      *    List (for a more detailed description of this value see the MSDN docs).
-     *
      *  . removedItemsJumpListItem[] - Array of JumpListItem objects that correspond to 
      *    items that the user has explicitly removed from custom categories in the Jump 
      *    List. These items must not be re-added to the Jump List in the next call to 
@@ -279,17 +263,13 @@ object app {
      * following strings:
      *
      *  . ok - Nothing went wrong.
-     *
      *  . error - One or more errors occurred, enable runtime logging to figure out the 
      *    likely cause.
-     *
      *  . invalidSeparatorError - An attempt was made to add a separator to a custom 
      *    category in the Jump List. Separators are only allowed in the standard Tasks 
      *    category.
-     *
      *  . fileTypeRegistrationError - An attempt was made to add a file link to the Jump 
      *    List for a file type the app isn't registered to handle.
-     *
      *  . customCategoryAccessDeniedError - Custom categories can't be added to the Jump 
      *    List due to user privacy or group policy settings.
      *
@@ -492,17 +472,13 @@ object app {
      * need to pass the same arguments here for openAtLogin to be set correctly.
      *
      *  . openAtLogin Boolean - true if the app is set to open at login.
-     *
      *  . openAsHidden Boolean - true if the app is set to open as hidden at login. This 
      *    setting is only supported on macOS.
-     *
      *  . wasOpenedAtLogin Boolean - true if the app was opened at login automatically. 
      *    This setting is only supported on macOS.
-     *
      *  . wasOpenedAsHidden Boolean - true if the app was opened as a hidden login item. 
      *    This indicates that the app should not open any windows at startup. This 
      *    setting is only supported on macOS.
-     *
      *  . restoreState Boolean - true if the app was opened as a login item that should 
      *    restore the state from the previous session. This indicates that the app 
      *    should restore the windows that were open the last time the app was closed. 

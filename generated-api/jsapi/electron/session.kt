@@ -37,7 +37,7 @@ class Session() {
 
     init {
         val _constructor = js("require('electron').Session")
-        instance = js("new _constructor(_)")
+        instance = js("new _constructor()")
     }
 
     // ~ Events --------------------------------------------------------------------------------
@@ -47,9 +47,36 @@ class Session() {
 
     // ~ Properties ----------------------------------------------------------------------------
 
+    /**
+     * A Cookies object for this session.
+     */
     val cookies: dynamic get() = instance.cookies
+
+    /**
+     * A WebRequest object for this session.
+     */
     val webRequest: dynamic get() = instance.webRequest
+
+    /**
+     * A Protocol object (an instance of protocol module) for this session.
+     *
+     *  | 
+     *  | const {app, session} = require('electron')
+     *  | const path = require('path')
+     *  | 
+     *  | app.on('ready', function () {
+     *  |   const protocol = session.fromPartition('some-partition').protocol
+     *  |   protocol.registerFileProtocol('atom', function (request, callback) {
+     *  |     var url = request.url.substr(7)
+     *  |     callback({path: path.normalize(`${__dirname}/${url}`)})
+     *  |   }, function (error) {
+     *  |     if (error) console.error('Failed to register protocol')
+     *  |   })
+     *  | })
+     *  | 
+     */
     val protocol: dynamic get() = instance.protocol
+
 
     // ~ Methods -------------------------------------------------------------------------------
 
@@ -97,20 +124,14 @@ class Session() {
      *
      *  . http=foopy:80;ftp=foopy2 - Use HTTP proxy foopy:80 for http:// URLs, and HTTP 
      *    proxy foopy2:80 for ftp:// URLs.
-     *
      *  . foopy:80 - Use HTTP proxy foopy:80 for all URLs.
-     *
      *  . foopy:80,bar,direct:// - Use HTTP proxy foopy:80 for all URLs, failing over to 
      *    bar if foopy:80 is unavailable, and after that using no proxy.
-     *
      *  . socks4://foopy - Use SOCKS v4 proxy foopy:1080 for all URLs.
-     *
      *  . http=foopy,socks5://bar.com - Use HTTP proxy foopy for http URLs, and fail 
      *    over to the SOCKS5 proxy bar.com if foopy is unavailable.
-     *
      *  . http=foopy,direct:// - Use HTTP proxy foopy for http URLs, and use no proxy if 
      *    foopy is unavailable.
-     *
      *  . http=foopy;socks=foopy2 - Use HTTP proxy foopy for http URLs, and use 
      *    socks4://foopy2 for all other URLs.
      *
@@ -288,7 +309,7 @@ class Session() {
      * Clears the session’s HTTP authentication cache.
      */
     fun clearAuthCache(options: dynamic, callback: (() -> Unit)?): Unit = 
-        instance.clearAuthCache(options.instance, callback)
+        instance.clearAuthCache(options, callback)
 
     // ~ Companion -----------------------------------------------------------------------------
 

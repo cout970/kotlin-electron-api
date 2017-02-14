@@ -1,9 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <file>
    <struct title="ThumbarButton">
-      <property name="icon" type="NativeImage"/>
-      <property name="click" type="Function"/>
-      <property optional="true" name="tooltip" type="String"/>
-      <property optional="true" name="flags" type="String" isArray="true"/>
+      <property name="icon" type="NativeImage">
+         <description>
+            <para>The icon showing in thumbnail toolbar.</para>
+         </description>
+      </property>
+      <property name="click" type="Function">
+         <description>
+            <para/>
+         </description>
+      </property>
+      <property optional="true" name="tooltip" type="String">
+         <description>
+            <para>The text of the button's tooltip.</para>
+         </description>
+      </property>
+      <property optional="true" name="flags" type="String" isArray="true">
+         <description>
+            <para>Control specific states and behaviors of the button. By default, it is ['enabled'].</para>
+         </description>
+      </property>
    </struct>
 </file>

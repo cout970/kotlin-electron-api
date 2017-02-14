@@ -4,12 +4,34 @@
       <methods>
          <method name="getSources">
             <param name="options" type="Object">
-               <property name="types" type="String" isArray="true"/>
-               <property optional="true" name="thumbnailSize" type="Object"/>
+               <property name="types" type="String" isArray="true">
+                  <description>
+                     <para>An array of Strings that lists the types of desktop sources to be captured, available types are screen and window.</para>
+                  </description>
+               </property>
+               <property optional="true" name="thumbnailSize" type="Object">
+                  <description>
+                     <para>The suggested size that the media source thumbnail should be scaled to, defaults to {width: 150, height: 150}.</para>
+                  </description>
+               </property>
+               <description>
+                  <para/>
+               </description>
             </param>
             <param name="callback" type="Function">
-               <param name="error" type="Error"/>
-               <param name="sources" type="DesktopCapturerSource" isArray="true"/>
+               <param name="error" type="Error">
+                  <description>
+                     <para/>
+                  </description>
+               </param>
+               <param name="sources" type="DesktopCapturerSource" isArray="true">
+                  <description>
+                     <para/>
+                  </description>
+               </param>
+               <description>
+                  <para/>
+               </description>
             </param>
             <description>
                <para>Starts gathering information about all available desktop media sources, and calls callback(error, sources) when finished.</para>

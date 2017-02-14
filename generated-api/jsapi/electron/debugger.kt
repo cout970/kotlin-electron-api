@@ -6,7 +6,7 @@ class Debugger() {
 
     init {
         val _constructor = js("require('electron').Debugger")
-        instance = js("new _constructor(_)")
+        instance = js("new _constructor()")
     }
 
     // ~ Events --------------------------------------------------------------------------------

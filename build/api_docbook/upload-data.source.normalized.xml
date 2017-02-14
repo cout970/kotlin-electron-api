@@ -1,8 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <file>
    <struct title="UploadData">
-      <property name="bytes" type="Buffer"/>
-      <property name="file" type="String"/>
-      <property name="blobUUID" type="String"/>
+      <property name="bytes" type="Buffer">
+         <description>
+            <para>Content being sent.</para>
+         </description>
+      </property>
+      <property name="file" type="String">
+         <description>
+            <para>Path of file being uploaded.</para>
+         </description>
+      </property>
+      <property name="blobUUID" type="String">
+         <description>
+            <para>UUID of blob data. Use ses.getBlobData method to retrieve the data.</para>
+         </description>
+      </property>
    </struct>
 </file>

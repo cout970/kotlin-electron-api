@@ -6,7 +6,7 @@ class Cookies() {
 
     init {
         val _constructor = js("require('electron').Cookies")
-        instance = js("new _constructor(_)")
+        instance = js("new _constructor()")
     }
 
     // ~ Events --------------------------------------------------------------------------------

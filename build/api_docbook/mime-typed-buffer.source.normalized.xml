@@ -1,7 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <file>
    <struct title="MimeTypedBuffer">
-      <property name="mimeType" type="String"/>
-      <property name="buffer" type="Buffer"/>
+      <property name="mimeType" type="String">
+         <description>
+            <para>The mimeType of the Buffer that you are sending</para>
+         </description>
+      </property>
+      <property name="buffer" type="Buffer">
+         <description>
+            <para>The actual Buffer content</para>
+         </description>
+      </property>
    </struct>
 </file>

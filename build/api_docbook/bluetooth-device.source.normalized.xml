@@ -1,7 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <file>
    <struct title="BluetoothDevice">
-      <property name="deviceName" type="String"/>
-      <property name="deviceId" type="String"/>
+      <property name="deviceName" type="String">
+         <description>
+            <para/>
+         </description>
+      </property>
+      <property name="deviceId" type="String">
+         <description>
+            <para/>
+         </description>
+      </property>
    </struct>
 </file>

@@ -3,8 +3,16 @@
    <object title="autoUpdater">
       <methods>
          <method name="setFeedURL">
-            <param name="url" type="String"/>
-            <param optional="true" name="requestHeaders" type="Object"/>
+            <param name="url" type="String">
+               <description>
+                  <para/>
+               </description>
+            </param>
+            <param optional="true" name="requestHeaders" type="Object">
+               <description>
+                  <para>HTTP request headers.</para>
+               </description>
+            </param>
             <description>
                <para>Sets the url and initialize the auto updater.</para>
             </description>
@@ -12,7 +20,7 @@
          <method name="getFeedURL">
             <returns type="String">
                <description>
-                  <para>- The current update feed URL.</para>
+                  <para>The current update feed URL.</para>
                </description>
             </returns>
             <description/>

@@ -3,97 +3,408 @@
    <class title="BrowserWindow">
       <constructor>
          <param optional="true" name="options" type="Object">
-            <property optional="true" name="width" type="Integer"/>
-            <property optional="true" name="height" type="Integer"/>
-            <property optional="true" name="x" type="Integer"/>
-            <property optional="true" name="y" type="Integer"/>
-            <property optional="true" name="useContentSize" type="Boolean"/>
-            <property optional="true" name="center" type="Boolean"/>
-            <property optional="true" name="minWidth" type="Integer"/>
-            <property optional="true" name="minHeight" type="Integer"/>
-            <property optional="true" name="maxWidth" type="Integer"/>
-            <property optional="true" name="maxHeight" type="Integer"/>
-            <property optional="true" name="resizable" type="Boolean"/>
-            <property optional="true" name="movable" type="Boolean"/>
-            <property optional="true" name="minimizable" type="Boolean"/>
-            <property optional="true" name="maximizable" type="Boolean"/>
-            <property optional="true" name="closable" type="Boolean"/>
-            <property optional="true" name="focusable" type="Boolean"/>
-            <property optional="true" name="alwaysOnTop" type="Boolean"/>
-            <property optional="true" name="fullscreen" type="Boolean"/>
-            <property optional="true" name="fullscreenable" type="Boolean"/>
-            <property optional="true" name="skipTaskbar" type="Boolean"/>
-            <property optional="true" name="kiosk" type="Boolean"/>
-            <property optional="true" name="title" type="String"/>
+            <property optional="true" name="width" type="Integer">
+               <description>
+                  <para>Window's width in pixels. Default is 800.</para>
+               </description>
+            </property>
+            <property optional="true" name="height" type="Integer">
+               <description>
+                  <para>Window's height in pixels. Default is 600.</para>
+               </description>
+            </property>
+            <property optional="true" name="x" type="Integer">
+               <description>
+                  <para>Window's left offset from screen. Default is to center the window.</para>
+               </description>
+            </property>
+            <property optional="true" name="y" type="Integer">
+               <description>
+                  <para>Window's top offset from screen. Default is to center the window.</para>
+               </description>
+            </property>
+            <property optional="true" name="useContentSize" type="Boolean">
+               <description>
+                  <para>The width and height would be used as web page's size, which means the actual window's size will include window frame's size and be slightly larger. Default is false.</para>
+               </description>
+            </property>
+            <property optional="true" name="center" type="Boolean">
+               <description>
+                  <para>Show window in the center of the screen.</para>
+               </description>
+            </property>
+            <property optional="true" name="minWidth" type="Integer">
+               <description>
+                  <para>Window's minimum width. Default is 0.</para>
+               </description>
+            </property>
+            <property optional="true" name="minHeight" type="Integer">
+               <description>
+                  <para>Window's minimum height. Default is 0.</para>
+               </description>
+            </property>
+            <property optional="true" name="maxWidth" type="Integer">
+               <description>
+                  <para>Window's maximum width. Default is no limit.</para>
+               </description>
+            </property>
+            <property optional="true" name="maxHeight" type="Integer">
+               <description>
+                  <para>Window's maximum height. Default is no limit.</para>
+               </description>
+            </property>
+            <property optional="true" name="resizable" type="Boolean">
+               <description>
+                  <para>Whether window is resizable. Default is true.</para>
+               </description>
+            </property>
+            <property optional="true" name="movable" type="Boolean">
+               <description>
+                  <para>Whether window is movable. This is not implemented on Linux. Default is true.</para>
+               </description>
+            </property>
+            <property optional="true" name="minimizable" type="Boolean">
+               <description>
+                  <para>Whether window is minimizable. This is not implemented on Linux. Default is true.</para>
+               </description>
+            </property>
+            <property optional="true" name="maximizable" type="Boolean">
+               <description>
+                  <para>Whether window is maximizable. This is not implemented on Linux. Default is true.</para>
+               </description>
+            </property>
+            <property optional="true" name="closable" type="Boolean">
+               <description>
+                  <para>Whether window is closable. This is not implemented on Linux. Default is true.</para>
+               </description>
+            </property>
+            <property optional="true" name="focusable" type="Boolean">
+               <description>
+                  <para>Whether the window can be focused. Default is true. On Windows setting focusable: false also implies setting skipTaskbar: true. On Linux setting focusable: false makes the window stop interacting with wm, so the window will always stay on top in all workspaces.</para>
+               </description>
+            </property>
+            <property optional="true" name="alwaysOnTop" type="Boolean">
+               <description>
+                  <para>Whether the window should always stay on top of other windows. Default is false.</para>
+               </description>
+            </property>
+            <property optional="true" name="fullscreen" type="Boolean">
+               <description>
+                  <para>Whether the window should show in fullscreen. When explicitly set to false the fullscreen button will be hidden or disabled on macOS. Default is false.</para>
+               </description>
+            </property>
+            <property optional="true" name="fullscreenable" type="Boolean">
+               <description>
+                  <para>Whether the window can be put into fullscreen mode. On macOS, also whether the maximize/zoom button should toggle full screen mode or maximize window. Default is true.</para>
+               </description>
+            </property>
+            <property optional="true" name="skipTaskbar" type="Boolean">
+               <description>
+                  <para>Whether to show the window in taskbar. Default is false.</para>
+               </description>
+            </property>
+            <property optional="true" name="kiosk" type="Boolean">
+               <description>
+                  <para>The kiosk mode. Default is false.</para>
+               </description>
+            </property>
+            <property optional="true" name="title" type="String">
+               <description>
+                  <para>Default window title. Default is "Electron".</para>
+               </description>
+            </property>
             <property optional="true" name="icon" type="union">
                <option type="NativeImage"/>
                <option type="String"/>
+               <description>
+                  <para>The window icon. On Windows it is recommended to use ICO icons to get best visual effects, you can also leave it undefined so the executable's icon will be used.</para>
+               </description>
             </property>
-            <property optional="true" name="show" type="Boolean"/>
-            <property optional="true" name="frame" type="Boolean"/>
-            <property optional="true" name="parent" type="BrowserWindow"/>
-            <property optional="true" name="modal" type="Boolean"/>
-            <property optional="true" name="acceptFirstMouse" type="Boolean"/>
-            <property optional="true" name="disableAutoHideCursor" type="Boolean"/>
-            <property optional="true" name="autoHideMenuBar" type="Boolean"/>
-            <property optional="true" name="enableLargerThanScreen" type="Boolean"/>
-            <property optional="true" name="backgroundColor" type="String"/>
-            <property optional="true" name="hasShadow" type="Boolean"/>
-            <property optional="true" name="darkTheme" type="Boolean"/>
-            <property optional="true" name="transparent" type="Boolean"/>
-            <property optional="true" name="type" type="String"/>
+            <property optional="true" name="show" type="Boolean">
+               <description>
+                  <para>Whether window should be shown when created. Default is true.</para>
+               </description>
+            </property>
+            <property optional="true" name="frame" type="Boolean">
+               <description>
+                  <para>Specify false to create a Frameless Window. Default is true.</para>
+               </description>
+            </property>
+            <property optional="true" name="parent" type="BrowserWindow">
+               <description>
+                  <para>Specify parent window. Default is null.</para>
+               </description>
+            </property>
+            <property optional="true" name="modal" type="Boolean">
+               <description>
+                  <para>Whether this is a modal window. This only works when the window is a child window. Default is false.</para>
+               </description>
+            </property>
+            <property optional="true" name="acceptFirstMouse" type="Boolean">
+               <description>
+                  <para>Whether the web view accepts a single mouse-down event that simultaneously activates the window. Default is false.</para>
+               </description>
+            </property>
+            <property optional="true" name="disableAutoHideCursor" type="Boolean">
+               <description>
+                  <para>Whether to hide cursor when typing. Default is false.</para>
+               </description>
+            </property>
+            <property optional="true" name="autoHideMenuBar" type="Boolean">
+               <description>
+                  <para>Auto hide the menu bar unless the Alt key is pressed. Default is false.</para>
+               </description>
+            </property>
+            <property optional="true" name="enableLargerThanScreen" type="Boolean">
+               <description>
+                  <para>Enable the window to be resized larger than screen. Default is false.</para>
+               </description>
+            </property>
+            <property optional="true" name="backgroundColor" type="String">
+               <description>
+                  <para>Window's background color as Hexadecimal value, like #66CD00 or #FFF or #80FFFFFF (alpha is supported). Default is #FFF (white).</para>
+               </description>
+            </property>
+            <property optional="true" name="hasShadow" type="Boolean">
+               <description>
+                  <para>Whether window should have a shadow. This is only implemented on macOS. Default is true.</para>
+               </description>
+            </property>
+            <property optional="true" name="darkTheme" type="Boolean">
+               <description>
+                  <para>Forces using dark theme for the window, only works on some GTK+3 desktop environments. Default is false.</para>
+               </description>
+            </property>
+            <property optional="true" name="transparent" type="Boolean">
+               <description>
+                  <para>Makes the window transparent. Default is false.</para>
+               </description>
+            </property>
+            <property optional="true" name="type" type="String">
+               <description>
+                  <para>The type of window, default is normal window. See more about this below.</para>
+               </description>
+            </property>
             <property optional="true" name="titleBarStyle" type="String">
-               <param name="default"/>
-               <param name="hidden"/>
-               <param name="hidden-inset"/>
+               <param name="default">
+                  <description>
+                     <para>Results in the standard gray opaque Mac title bar.</para>
+                  </description>
+               </param>
+               <param name="hidden">
+                  <description>
+                     <para>Results in a hidden title bar and a full size content window, yet the title bar still has the standard window controls ("traffic lights") in the top left.</para>
+                  </description>
+               </param>
+               <param name="hidden-inset">
+                  <description>
+                     <para>inset - Results in a hidden title bar with an alternative look where the traffic light buttons are slightly more inset from the window edge.</para>
+                  </description>
+               </param>
+               <description>
+                  <para>The style of window title bar. Default is default. Possible values are:</para>
+               </description>
             </property>
-            <property optional="true" name="thickFrame" type="Boolean"/>
-            <property optional="true" name="vibrancy" type="String"/>
-            <property optional="true" name="zoomToPageWidth" type="Boolean"/>
+            <property optional="true" name="thickFrame" type="Boolean">
+               <description>
+                  <para>Use WS_THICKFRAME style for frameless windows on Windows, which adds standard window frame. Setting it to false will remove window shadow and window animations. Default is true.</para>
+               </description>
+            </property>
+            <property optional="true" name="vibrancy" type="String">
+               <description>
+                  <para>Add a type of vibrancy effect to the window, only on macOS. Can be appearance-based, light, dark, titlebar, selection, menu, popover, sidebar, medium-light or ultra-dark.</para>
+               </description>
+            </property>
+            <property optional="true" name="zoomToPageWidth" type="Boolean">
+               <description>
+                  <para>Controls the behavior on macOS when option-clicking the green stoplight button on the toolbar or by clicking the Window &gt; Zoom menu item. If true, the window will grow to the preferred width of the web page when zoomed, false will cause it to zoom to the width of the screen. This will also affect the behavior when calling maximize() directly. Default is false.</para>
+               </description>
+            </property>
             <property optional="true" name="webPreferences" type="Object">
-               <property optional="true" name="devTools" type="Boolean"/>
-               <property optional="true" name="nodeIntegration" type="Boolean"/>
-               <property optional="true" name="preload" type="String"/>
-               <property optional="true" name="session" type="Session"/>
-               <property optional="true" name="partition" type="String"/>
-               <property optional="true" name="zoomFactor" type="Number"/>
-               <property optional="true" name="javascript" type="Boolean"/>
-               <property optional="true" name="webSecurity" type="Boolean"/>
-               <property optional="true" name="allowRunningInsecureContent" type="Boolean"/>
-               <property optional="true" name="images" type="Boolean"/>
-               <property optional="true" name="textAreasAreResizable" type="Boolean"/>
-               <property optional="true" name="webgl" type="Boolean"/>
-               <property optional="true" name="webaudio" type="Boolean"/>
-               <property optional="true" name="plugins" type="Boolean"/>
-               <property optional="true" name="experimentalFeatures" type="Boolean"/>
-               <property optional="true" name="experimentalCanvasFeatures" type="Boolean"/>
-               <property optional="true" name="scrollBounce" type="Boolean"/>
-               <property optional="true" name="blinkFeatures" type="String"/>
-               <property optional="true" name="disableBlinkFeatures" type="String"/>
-               <property optional="true" name="defaultFontFamily" type="Object">
-                  <property optional="true" name="standard" type="String"/>
-                  <property optional="true" name="serif" type="String"/>
-                  <property optional="true" name="sansSerif" type="String"/>
-                  <property optional="true" name="monospace" type="String"/>
-                  <property optional="true" name="cursive" type="String"/>
-                  <property optional="true" name="fantasy" type="String"/>
+               <property optional="true" name="devTools" type="Boolean">
+                  <description>
+                     <para>Whether to enable DevTools. If it is set to false, can not use BrowserWindow.webContents.openDevTools() to open DevTools. Default is true.</para>
+                  </description>
                </property>
-               <property optional="true" name="defaultFontSize" type="Integer"/>
-               <property optional="true" name="defaultMonospaceFontSize" type="Integer"/>
-               <property optional="true" name="minimumFontSize" type="Integer"/>
-               <property optional="true" name="defaultEncoding" type="String"/>
-               <property optional="true" name="backgroundThrottling" type="Boolean"/>
-               <property optional="true" name="offscreen" type="Boolean"/>
-               <property optional="true" name="sandbox" type="Boolean"/>
-               <property optional="true" name="contextIsolation" type="Boolean"/>
+               <property optional="true" name="nodeIntegration" type="Boolean">
+                  <description>
+                     <para>Whether node integration is enabled. Default is true.</para>
+                  </description>
+               </property>
+               <property optional="true" name="preload" type="String">
+                  <description>
+                     <para>Specifies a script that will be loaded before other scripts run in the page. This script will always have access to node APIs no matter whether node integration is turned on or off. The value should be the absolute file path to the script. When node integration is turned off, the preload script can reintroduce Node global symbols back to the global scope. See example here.</para>
+                  </description>
+               </property>
+               <property optional="true" name="session" type="Session">
+                  <description>
+                     <para>Sets the session used by the page. Instead of passing the Session object directly, you can also choose to use the partition option instead, which accepts a partition string. When both session and partition are provided, session will be preferred. Default is the default session.</para>
+                  </description>
+               </property>
+               <property optional="true" name="partition" type="String">
+                  <description>
+                     <para>Sets the session used by the page according to the session's partition string. If partition starts with persist:, the page will use a persistent session available to all pages in the app with the same partition. If there is no persist: prefix, the page will use an in-memory session. By assigning the same partition, multiple pages can share the same session. Default is the default session.</para>
+                  </description>
+               </property>
+               <property optional="true" name="zoomFactor" type="Number">
+                  <description>
+                     <para>The default zoom factor of the page, 3.0 represents 300%. Default is 1.0.</para>
+                  </description>
+               </property>
+               <property optional="true" name="javascript" type="Boolean">
+                  <description>
+                     <para>Enables JavaScript support. Default is true.</para>
+                  </description>
+               </property>
+               <property optional="true" name="webSecurity" type="Boolean">
+                  <description>
+                     <para>When false, it will disable the same-origin policy (usually using testing websites by people), and set allowRunningInsecureContent to true if this options has not been set by user. Default is true.</para>
+                  </description>
+               </property>
+               <property optional="true" name="allowRunningInsecureContent" type="Boolean">
+                  <description>
+                     <para>Allow an https page to run JavaScript, CSS or plugins from http URLs. Default is false.</para>
+                  </description>
+               </property>
+               <property optional="true" name="images" type="Boolean">
+                  <description>
+                     <para>Enables image support. Default is true.</para>
+                  </description>
+               </property>
+               <property optional="true" name="textAreasAreResizable" type="Boolean">
+                  <description>
+                     <para>Make TextArea elements resizable. Default is true.</para>
+                  </description>
+               </property>
+               <property optional="true" name="webgl" type="Boolean">
+                  <description>
+                     <para>Enables WebGL support. Default is true.</para>
+                  </description>
+               </property>
+               <property optional="true" name="webaudio" type="Boolean">
+                  <description>
+                     <para>Enables WebAudio support. Default is true.</para>
+                  </description>
+               </property>
+               <property optional="true" name="plugins" type="Boolean">
+                  <description>
+                     <para>Whether plugins should be enabled. Default is false.</para>
+                  </description>
+               </property>
+               <property optional="true" name="experimentalFeatures" type="Boolean">
+                  <description>
+                     <para>Enables Chromium's experimental features. Default is false.</para>
+                  </description>
+               </property>
+               <property optional="true" name="experimentalCanvasFeatures" type="Boolean">
+                  <description>
+                     <para>Enables Chromium's experimental canvas features. Default is false.</para>
+                  </description>
+               </property>
+               <property optional="true" name="scrollBounce" type="Boolean">
+                  <description>
+                     <para>Enables scroll bounce (rubber banding) effect on macOS. Default is false.</para>
+                  </description>
+               </property>
+               <property optional="true" name="blinkFeatures" type="String">
+                  <description>
+                     <para>A list of feature strings separated by ,, like CSSVariables,KeyboardEventKey to enable. The full list of supported feature strings can be found in the RuntimeEnabledFeatures.in file.</para>
+                  </description>
+               </property>
+               <property optional="true" name="disableBlinkFeatures" type="String">
+                  <description>
+                     <para>A list of feature strings separated by ,, like CSSVariables,KeyboardEventKey to disable. The full list of supported feature strings can be found in the RuntimeEnabledFeatures.in file.</para>
+                  </description>
+               </property>
+               <property optional="true" name="defaultFontFamily" type="Object">
+                  <property optional="true" name="standard" type="String">
+                     <description>
+                        <para>Defaults to Times New Roman.</para>
+                     </description>
+                  </property>
+                  <property optional="true" name="serif" type="String">
+                     <description>
+                        <para>Defaults to Times New Roman.</para>
+                     </description>
+                  </property>
+                  <property optional="true" name="sansSerif" type="String">
+                     <description>
+                        <para>Defaults to Arial.</para>
+                     </description>
+                  </property>
+                  <property optional="true" name="monospace" type="String">
+                     <description>
+                        <para>Defaults to Courier New.</para>
+                     </description>
+                  </property>
+                  <property optional="true" name="cursive" type="String">
+                     <description>
+                        <para>Defaults to Script.</para>
+                     </description>
+                  </property>
+                  <property optional="true" name="fantasy" type="String">
+                     <description>
+                        <para>Defaults to Impact.</para>
+                     </description>
+                  </property>
+                  <description>
+                     <para>Sets the default font for the font-family.</para>
+                  </description>
+               </property>
+               <property optional="true" name="defaultFontSize" type="Integer">
+                  <description>
+                     <para>Defaults to 16.</para>
+                  </description>
+               </property>
+               <property optional="true" name="defaultMonospaceFontSize" type="Integer">
+                  <description>
+                     <para>Defaults to 13.</para>
+                  </description>
+               </property>
+               <property optional="true" name="minimumFontSize" type="Integer">
+                  <description>
+                     <para>Defaults to 0.</para>
+                  </description>
+               </property>
+               <property optional="true" name="defaultEncoding" type="String">
+                  <description>
+                     <para>Defaults to ISO-8859-1.</para>
+                  </description>
+               </property>
+               <property optional="true" name="backgroundThrottling" type="Boolean">
+                  <description>
+                     <para>Whether to throttle animations and timers when the page becomes background. Defaults to true.</para>
+                  </description>
+               </property>
+               <property optional="true" name="offscreen" type="Boolean">
+                  <description>
+                     <para>Whether to enable offscreen rendering for the browser window. Defaults to false. See the offscreen rendering tutorial for more details.</para>
+                  </description>
+               </property>
+               <property optional="true" name="sandbox" type="Boolean">
+                  <description>
+                     <para>Whether to enable Chromium OS-level sandbox.</para>
+                  </description>
+               </property>
+               <property optional="true" name="contextIsolation" type="Boolean">
+                  <description>
+                     <para>Whether to run Electron APIs and the specified preload script in a separate JavaScript context. Defaults to false. The context that the preload script runs in will still have full access to the document and window globals but it will use its own set of JavaScript builtins (Array, Object, JSON, etc.) and will be isolated from any changes made to the global environment by the loaded page. The Electron API will only be available in the preload script and not the loaded page. This option should be used when loading potentially untrusted remote content to ensure the loaded content cannot tamper with the preload script and any Electron APIs being used. This option uses the same technique used by Chrome Content Scripts. You can access this context in the dev tools by selecting the 'Electron Isolated Context' entry in the combo box at the top of the Console tab. Note: This option is currently experimental and may change or be removed in future Electron releases.</para>
+                  </description>
+               </property>
+               <description>
+                  <para>Settings of web page's features.</para>
+               </description>
             </property>
+            <description>
+               <para/>
+            </description>
          </param>
       </constructor>
       <methods type="static">
          <method name="getAllWindows">
             <returns type="BrowserWindow" isArray="true">
                <description>
-                  <para>- An array of all opened browser windows.</para>
+                  <para>An array of all opened browser windows.</para>
                </description>
             </returns>
             <description/>
@@ -101,31 +412,43 @@
          <method name="getFocusedWindow">
             <returns type="BrowserWindow">
                <description>
-                  <para>- The window that is focused in this application, otherwise returns null.</para>
+                  <para>The window that is focused in this application, otherwise returns null.</para>
                </description>
             </returns>
             <description/>
          </method>
          <method name="fromWebContents">
-            <param name="webContents" type="WebContents"/>
+            <param name="webContents" type="WebContents">
+               <description>
+                  <para/>
+               </description>
+            </param>
             <returns type="BrowserWindow">
                <description>
-                  <para>- The window that owns the given webContents.</para>
+                  <para>The window that owns the given webContents.</para>
                </description>
             </returns>
             <description/>
          </method>
          <method name="fromId">
-            <param name="id" type="Integer"/>
+            <param name="id" type="Integer">
+               <description>
+                  <para/>
+               </description>
+            </param>
             <returns type="BrowserWindow">
                <description>
-                  <para>- The window with the given id.</para>
+                  <para>The window with the given id.</para>
                </description>
             </returns>
             <description/>
          </method>
          <method name="addDevToolsExtension">
-            <param name="path" type="String"/>
+            <param name="path" type="String">
+               <description>
+                  <para/>
+               </description>
+            </param>
             <description>
                <para>Adds DevTools extension located at path, and returns extension's name.</para>
                <para>The extension will be remembered so you only need to call this API once, this API is not for programming use. If you try to add an extension that has already been loaded, this method will not return and instead log a warning to the console.</para>
@@ -134,7 +457,11 @@
             </description>
          </method>
          <method name="removeDevToolsExtension">
-            <param name="name" type="String"/>
+            <param name="name" type="String">
+               <description>
+                  <para/>
+               </description>
+            </param>
             <description>
                <para>Remove a DevTools extension by name.</para>
                <para>Note: This API cannot be called before the ready event of the app module is emitted.</para>
@@ -143,7 +470,7 @@
          <method name="getDevToolsExtensions">
             <returns type="Object">
                <description>
-                  <para>- The keys are the extension names and each value is an Object containing name and version properties.</para>
+                  <para>The keys are the extension names and each value is an Object containing name and version properties.</para>
                </description>
             </returns>
             <description>
@@ -195,7 +522,7 @@ console.log(installed)
          <method name="isFocused">
             <returns type="Boolean">
                <description>
-                  <para>- Whether the window is focused.</para>
+                  <para>Whether the window is focused.</para>
                </description>
             </returns>
             <description/>
@@ -203,7 +530,7 @@ console.log(installed)
          <method name="isDestroyed">
             <returns type="Boolean">
                <description>
-                  <para>- Whether the window is destroyed.</para>
+                  <para>Whether the window is destroyed.</para>
                </description>
             </returns>
             <description/>
@@ -226,7 +553,7 @@ console.log(installed)
          <method name="isVisible">
             <returns type="Boolean">
                <description>
-                  <para>- Whether the window is visible to the user.</para>
+                  <para>Whether the window is visible to the user.</para>
                </description>
             </returns>
             <description/>
@@ -234,7 +561,7 @@ console.log(installed)
          <method name="isModal">
             <returns type="Boolean">
                <description>
-                  <para>- Whether current window is a modal window.</para>
+                  <para>Whether current window is a modal window.</para>
                </description>
             </returns>
             <description/>
@@ -252,7 +579,7 @@ console.log(installed)
          <method name="isMaximized">
             <returns type="Boolean">
                <description>
-                  <para>- Whether the window is maximized.</para>
+                  <para>Whether the window is maximized.</para>
                </description>
             </returns>
             <description/>
@@ -270,13 +597,17 @@ console.log(installed)
          <method name="isMinimized">
             <returns type="Boolean">
                <description>
-                  <para>- Whether the window is minimized.</para>
+                  <para>Whether the window is minimized.</para>
                </description>
             </returns>
             <description/>
          </method>
          <method name="setFullScreen">
-            <param name="flag" type="Boolean"/>
+            <param name="flag" type="Boolean">
+               <description>
+                  <para/>
+               </description>
+            </param>
             <description>
                <para>Sets whether the window should be in fullscreen mode.</para>
             </description>
@@ -284,16 +615,31 @@ console.log(installed)
          <method name="isFullScreen">
             <returns type="Boolean">
                <description>
-                  <para>- Whether the window is in fullscreen mode.</para>
+                  <para>Whether the window is in fullscreen mode.</para>
                </description>
             </returns>
             <description/>
          </method>
          <method name="setAspectRatio">
-            <param name="aspectRatio" type="Float"/>
+            <param name="aspectRatio" type="Float">
+               <description>
+                  <para>The aspect ratio to maintain for some portion of the content view.</para>
+               </description>
+            </param>
             <param optional="true" name="extraSize" type="Object">
-               <property name="width" type="Integer"/>
-               <property name="height" type="Integer"/>
+               <property name="width" type="Integer">
+                  <description>
+                     <para/>
+                  </description>
+               </property>
+               <property name="height" type="Integer">
+                  <description>
+                     <para/>
+                  </description>
+               </property>
+               <description>
+                  <para>The extra size not to be included while maintaining the aspect ratio.</para>
+               </description>
             </param>
             <description>
                <para>This will make a window maintain an aspect ratio. The extra size allows a developer to have space, specified in pixels, not included within the aspect ratio calculations. This API already takes into account the difference between a window's size and its content size.</para>
@@ -301,8 +647,16 @@ console.log(installed)
             </description>
          </method>
          <method name="previewFile">
-            <param name="path" type="String"/>
-            <param optional="true" name="displayName" type="String"/>
+            <param name="path" type="String">
+               <description>
+                  <para>The absolute path to the file to preview with QuickLook. This is important as Quick Look uses the file name and file extension on the path to determine the content type of the file to open.</para>
+               </description>
+            </param>
+            <param optional="true" name="displayName" type="String">
+               <description>
+                  <para>The name of the file to display on the Quick Look modal view. This is purely visual and does not affect the content type of the file. Defaults to path.</para>
+               </description>
+            </param>
             <description>
                <para>Uses Quick Look to preview a file at a given path.</para>
             </description>
@@ -313,8 +667,16 @@ console.log(installed)
             </description>
          </method>
          <method name="setBounds">
-            <param name="bounds" type="Rectangle"/>
-            <param optional="true" name="animate" type="Boolean"/>
+            <param name="bounds" type="Rectangle">
+               <description>
+                  <para/>
+               </description>
+            </param>
+            <param optional="true" name="animate" type="Boolean">
+               <description>
+                  <para/>
+               </description>
+            </param>
             <description>
                <para>Resizes and moves the window to the supplied bounds</para>
             </description>
@@ -328,8 +690,16 @@ console.log(installed)
             <description/>
          </method>
          <method name="setContentBounds">
-            <param name="bounds" type="Rectangle"/>
-            <param optional="true" name="animate" type="Boolean"/>
+            <param name="bounds" type="Rectangle">
+               <description>
+                  <para/>
+               </description>
+            </param>
+            <param optional="true" name="animate" type="Boolean">
+               <description>
+                  <para/>
+               </description>
+            </param>
             <description>
                <para>Resizes and moves the window's client area (e.g. the web page) to the supplied bounds.</para>
             </description>
@@ -343,9 +713,21 @@ console.log(installed)
             <description/>
          </method>
          <method name="setSize">
-            <param name="width" type="Integer"/>
-            <param name="height" type="Integer"/>
-            <param optional="true" name="animate" type="Boolean"/>
+            <param name="width" type="Integer">
+               <description>
+                  <para/>
+               </description>
+            </param>
+            <param name="height" type="Integer">
+               <description>
+                  <para/>
+               </description>
+            </param>
+            <param optional="true" name="animate" type="Boolean">
+               <description>
+                  <para/>
+               </description>
+            </param>
             <description>
                <para>Resizes the window to width and height.</para>
             </description>
@@ -353,15 +735,27 @@ console.log(installed)
          <method name="getSize">
             <returns type="Integer" isArray="true">
                <description>
-                  <para>- Contains the window's width and height.</para>
+                  <para>Contains the window's width and height.</para>
                </description>
             </returns>
             <description/>
          </method>
          <method name="setContentSize">
-            <param name="width" type="Integer"/>
-            <param name="height" type="Integer"/>
-            <param optional="true" name="animate" type="Boolean"/>
+            <param name="width" type="Integer">
+               <description>
+                  <para/>
+               </description>
+            </param>
+            <param name="height" type="Integer">
+               <description>
+                  <para/>
+               </description>
+            </param>
+            <param optional="true" name="animate" type="Boolean">
+               <description>
+                  <para/>
+               </description>
+            </param>
             <description>
                <para>Resizes the window's client area (e.g. the web page) to width and height.</para>
             </description>
@@ -369,14 +763,22 @@ console.log(installed)
          <method name="getContentSize">
             <returns type="Integer" isArray="true">
                <description>
-                  <para>- Contains the window's client area's width and height.</para>
+                  <para>Contains the window's client area's width and height.</para>
                </description>
             </returns>
             <description/>
          </method>
          <method name="setMinimumSize">
-            <param name="width" type="Integer"/>
-            <param name="height" type="Integer"/>
+            <param name="width" type="Integer">
+               <description>
+                  <para/>
+               </description>
+            </param>
+            <param name="height" type="Integer">
+               <description>
+                  <para/>
+               </description>
+            </param>
             <description>
                <para>Sets the minimum size of window to width and height.</para>
             </description>
@@ -384,14 +786,22 @@ console.log(installed)
          <method name="getMinimumSize">
             <returns type="Integer" isArray="true">
                <description>
-                  <para>- Contains the window's minimum width and height.</para>
+                  <para>Contains the window's minimum width and height.</para>
                </description>
             </returns>
             <description/>
          </method>
          <method name="setMaximumSize">
-            <param name="width" type="Integer"/>
-            <param name="height" type="Integer"/>
+            <param name="width" type="Integer">
+               <description>
+                  <para/>
+               </description>
+            </param>
+            <param name="height" type="Integer">
+               <description>
+                  <para/>
+               </description>
+            </param>
             <description>
                <para>Sets the maximum size of window to width and height.</para>
             </description>
@@ -399,13 +809,17 @@ console.log(installed)
          <method name="getMaximumSize">
             <returns type="Integer" isArray="true">
                <description>
-                  <para>- Contains the window's maximum width and height.</para>
+                  <para>Contains the window's maximum width and height.</para>
                </description>
             </returns>
             <description/>
          </method>
          <method name="setResizable">
-            <param name="resizable" type="Boolean"/>
+            <param name="resizable" type="Boolean">
+               <description>
+                  <para/>
+               </description>
+            </param>
             <description>
                <para>Sets whether the window can be manually resized by user.</para>
             </description>
@@ -413,13 +827,17 @@ console.log(installed)
          <method name="isResizable">
             <returns type="Boolean">
                <description>
-                  <para>- Whether the window can be manually resized by user.</para>
+                  <para>Whether the window can be manually resized by user.</para>
                </description>
             </returns>
             <description/>
          </method>
          <method name="setMovable">
-            <param name="movable" type="Boolean"/>
+            <param name="movable" type="Boolean">
+               <description>
+                  <para/>
+               </description>
+            </param>
             <description>
                <para>Sets whether the window can be moved by user. On Linux does nothing.</para>
             </description>
@@ -427,7 +845,7 @@ console.log(installed)
          <method name="isMovable">
             <returns type="Boolean">
                <description>
-                  <para>- Whether the window can be moved by user.</para>
+                  <para>Whether the window can be moved by user.</para>
                </description>
             </returns>
             <description>
@@ -435,7 +853,11 @@ console.log(installed)
             </description>
          </method>
          <method name="setMinimizable">
-            <param name="minimizable" type="Boolean"/>
+            <param name="minimizable" type="Boolean">
+               <description>
+                  <para/>
+               </description>
+            </param>
             <description>
                <para>Sets whether the window can be manually minimized by user. On Linux does nothing.</para>
             </description>
@@ -443,7 +865,7 @@ console.log(installed)
          <method name="isMinimizable">
             <returns type="Boolean">
                <description>
-                  <para>- Whether the window can be manually minimized by user</para>
+                  <para>Whether the window can be manually minimized by user</para>
                </description>
             </returns>
             <description>
@@ -451,7 +873,11 @@ console.log(installed)
             </description>
          </method>
          <method name="setMaximizable">
-            <param name="maximizable" type="Boolean"/>
+            <param name="maximizable" type="Boolean">
+               <description>
+                  <para/>
+               </description>
+            </param>
             <description>
                <para>Sets whether the window can be manually maximized by user. On Linux does nothing.</para>
             </description>
@@ -459,7 +885,7 @@ console.log(installed)
          <method name="isMaximizable">
             <returns type="Boolean">
                <description>
-                  <para>- Whether the window can be manually maximized by user.</para>
+                  <para>Whether the window can be manually maximized by user.</para>
                </description>
             </returns>
             <description>
@@ -467,7 +893,11 @@ console.log(installed)
             </description>
          </method>
          <method name="setFullScreenable">
-            <param name="fullscreenable" type="Boolean"/>
+            <param name="fullscreenable" type="Boolean">
+               <description>
+                  <para/>
+               </description>
+            </param>
             <description>
                <para>Sets whether the maximize/zoom window button toggles fullscreen mode or maximizes the window.</para>
             </description>
@@ -475,13 +905,17 @@ console.log(installed)
          <method name="isFullScreenable">
             <returns type="Boolean">
                <description>
-                  <para>- Whether the maximize/zoom window button toggles fullscreen mode or maximizes the window.</para>
+                  <para>Whether the maximize/zoom window button toggles fullscreen mode or maximizes the window.</para>
                </description>
             </returns>
             <description/>
          </method>
          <method name="setClosable">
-            <param name="closable" type="Boolean"/>
+            <param name="closable" type="Boolean">
+               <description>
+                  <para/>
+               </description>
+            </param>
             <description>
                <para>Sets whether the window can be manually closed by user. On Linux does nothing.</para>
             </description>
@@ -489,7 +923,7 @@ console.log(installed)
          <method name="isClosable">
             <returns type="Boolean">
                <description>
-                  <para>- Whether the window can be manually closed by user.</para>
+                  <para>Whether the window can be manually closed by user.</para>
                </description>
             </returns>
             <description>
@@ -497,9 +931,21 @@ console.log(installed)
             </description>
          </method>
          <method name="setAlwaysOnTop">
-            <param name="flag" type="Boolean"/>
-            <param optional="true" name="level" type="String"/>
-            <param optional="true" name="relativeLevel" type="Integer"/>
+            <param name="flag" type="Boolean">
+               <description>
+                  <para/>
+               </description>
+            </param>
+            <param optional="true" name="level" type="String">
+               <description>
+                  <para>Values include normal, floating, torn-off-menu, modal-panel, main-menu, status, pop-up-menu, screen-saver, and dock (Deprecated). The default is floating. See the macOS docs for more details.</para>
+               </description>
+            </param>
+            <param optional="true" name="relativeLevel" type="Integer">
+               <description>
+                  <para>The number of layers higher to set this window relative to the given level. The default is 0. Note that Apple discourages setting levels higher than 1 above screen-saver.</para>
+               </description>
+            </param>
             <description>
                <para>Sets whether the window should show always on top of other windows. After setting this, the window is still a normal window, not a toolbox window which can not be focused on.</para>
             </description>
@@ -507,7 +953,7 @@ console.log(installed)
          <method name="isAlwaysOnTop">
             <returns type="Boolean">
                <description>
-                  <para>- Whether the window is always on top of other windows.</para>
+                  <para>Whether the window is always on top of other windows.</para>
                </description>
             </returns>
             <description/>
@@ -518,9 +964,21 @@ console.log(installed)
             </description>
          </method>
          <method name="setPosition">
-            <param name="x" type="Integer"/>
-            <param name="y" type="Integer"/>
-            <param optional="true" name="animate" type="Boolean"/>
+            <param name="x" type="Integer">
+               <description>
+                  <para/>
+               </description>
+            </param>
+            <param name="y" type="Integer">
+               <description>
+                  <para/>
+               </description>
+            </param>
+            <param optional="true" name="animate" type="Boolean">
+               <description>
+                  <para/>
+               </description>
+            </param>
             <description>
                <para>Moves window to x and y.</para>
             </description>
@@ -528,13 +986,17 @@ console.log(installed)
          <method name="getPosition">
             <returns type="Integer" isArray="true">
                <description>
-                  <para>- Contains the window's current position.</para>
+                  <para>Contains the window's current position.</para>
                </description>
             </returns>
             <description/>
          </method>
          <method name="setTitle">
-            <param name="title" type="String"/>
+            <param name="title" type="String">
+               <description>
+                  <para/>
+               </description>
+            </param>
             <description>
                <para>Changes the title of native window to title.</para>
             </description>
@@ -542,7 +1004,7 @@ console.log(installed)
          <method name="getTitle">
             <returns type="String">
                <description>
-                  <para>- The title of the native window.</para>
+                  <para>The title of the native window.</para>
                </description>
             </returns>
             <description>
@@ -550,8 +1012,16 @@ console.log(installed)
             </description>
          </method>
          <method name="setSheetOffset">
-            <param name="offsetY" type="Float"/>
-            <param optional="true" name="offsetX" type="Float"/>
+            <param name="offsetY" type="Float">
+               <description>
+                  <para/>
+               </description>
+            </param>
+            <param optional="true" name="offsetX" type="Float">
+               <description>
+                  <para/>
+               </description>
+            </param>
             <description>
                <para>Changes the attachment point for sheets on macOS. By default, sheets are attached just below the window frame, but you may want to display them beneath a HTML-rendered toolbar. For example:</para>
                <programlisting language="javascript">
@@ -564,19 +1034,31 @@ win.setSheetOffset(toolbarRect.height)
             </description>
          </method>
          <method name="flashFrame">
-            <param name="flag" type="Boolean"/>
+            <param name="flag" type="Boolean">
+               <description>
+                  <para/>
+               </description>
+            </param>
             <description>
                <para>Starts or stops flashing the window to attract user's attention.</para>
             </description>
          </method>
          <method name="setSkipTaskbar">
-            <param name="skip" type="Boolean"/>
+            <param name="skip" type="Boolean">
+               <description>
+                  <para/>
+               </description>
+            </param>
             <description>
                <para>Makes the window not show in the taskbar.</para>
             </description>
          </method>
          <method name="setKiosk">
-            <param name="flag" type="Boolean"/>
+            <param name="flag" type="Boolean">
+               <description>
+                  <para/>
+               </description>
+            </param>
             <description>
                <para>Enters or leaves the kiosk mode.</para>
             </description>
@@ -584,7 +1066,7 @@ win.setSheetOffset(toolbarRect.height)
          <method name="isKiosk">
             <returns type="Boolean">
                <description>
-                  <para>- Whether the window is in kiosk mode.</para>
+                  <para>Whether the window is in kiosk mode.</para>
                </description>
             </returns>
             <description/>
@@ -592,7 +1074,7 @@ win.setSheetOffset(toolbarRect.height)
          <method name="getNativeWindowHandle">
             <returns type="Buffer">
                <description>
-                  <para>- The platform-specific handle of the window.</para>
+                  <para>The platform-specific handle of the window.</para>
                </description>
             </returns>
             <description>
@@ -600,23 +1082,39 @@ win.setSheetOffset(toolbarRect.height)
             </description>
          </method>
          <method name="hookWindowMessage">
-            <param name="message" type="Integer"/>
-            <param name="callback" type="Function"/>
+            <param name="message" type="Integer">
+               <description>
+                  <para/>
+               </description>
+            </param>
+            <param name="callback" type="Function">
+               <description>
+                  <para/>
+               </description>
+            </param>
             <description>
                <para>Hooks a windows message. The callback is called when the message is received in the WndProc.</para>
             </description>
          </method>
          <method name="isWindowMessageHooked">
-            <param name="message" type="Integer"/>
+            <param name="message" type="Integer">
+               <description>
+                  <para/>
+               </description>
+            </param>
             <returns type="Boolean">
                <description>
-                  <para>- true or false depending on whether the message is hooked.</para>
+                  <para>true or false depending on whether the message is hooked.</para>
                </description>
             </returns>
             <description/>
          </method>
          <method name="unhookWindowMessage">
-            <param name="message" type="Integer"/>
+            <param name="message" type="Integer">
+               <description>
+                  <para/>
+               </description>
+            </param>
             <description>
                <para>Unhook the window message.</para>
             </description>
@@ -627,7 +1125,11 @@ win.setSheetOffset(toolbarRect.height)
             </description>
          </method>
          <method name="setRepresentedFilename">
-            <param name="filename" type="String"/>
+            <param name="filename" type="String">
+               <description>
+                  <para/>
+               </description>
+            </param>
             <description>
                <para>Sets the pathname of the file the window represents, and the icon of the file will show in window's title bar.</para>
             </description>
@@ -635,13 +1137,17 @@ win.setSheetOffset(toolbarRect.height)
          <method name="getRepresentedFilename">
             <returns type="String">
                <description>
-                  <para>- The pathname of the file the window represents.</para>
+                  <para>The pathname of the file the window represents.</para>
                </description>
             </returns>
             <description/>
          </method>
          <method name="setDocumentEdited">
-            <param name="edited" type="Boolean"/>
+            <param name="edited" type="Boolean">
+               <description>
+                  <para/>
+               </description>
+            </param>
             <description>
                <para>Specifies whether the window’s document has been edited, and the icon in title bar will become gray when set to true.</para>
             </description>
@@ -649,7 +1155,7 @@ win.setSheetOffset(toolbarRect.height)
          <method name="isDocumentEdited">
             <returns type="Boolean">
                <description>
-                  <para>- Whether the window's document has been edited.</para>
+                  <para>Whether the window's document has been edited.</para>
                </description>
             </returns>
             <description/>
@@ -665,26 +1171,59 @@ win.setSheetOffset(toolbarRect.height)
             </description>
          </method>
          <method name="capturePage">
-            <param optional="true" name="rect" type="Rectangle"/>
+            <param optional="true" name="rect" type="Rectangle">
+               <description>
+                  <para>The bounds to capture</para>
+               </description>
+            </param>
             <param name="callback" type="Function">
-               <param name="image" type="NativeImage"/>
+               <param name="image" type="NativeImage">
+                  <description>
+                     <para/>
+                  </description>
+               </param>
+               <description>
+                  <para/>
+               </description>
             </param>
             <description>
                <para>Same as webContents.capturePage([rect, ]callback).</para>
             </description>
          </method>
          <method name="loadURL">
-            <param name="url" type="String"/>
+            <param name="url" type="String">
+               <description>
+                  <para/>
+               </description>
+            </param>
             <param optional="true" name="options" type="Object">
-               <property optional="true" name="httpReferrer" type="String"/>
-               <property optional="true" name="userAgent" type="String"/>
-               <property optional="true" name="extraHeaders" type="String"/>
+               <property optional="true" name="httpReferrer" type="String">
+                  <description>
+                     <para>A HTTP Referrer url.</para>
+                  </description>
+               </property>
+               <property optional="true" name="userAgent" type="String">
+                  <description>
+                     <para>A user agent originating the request.</para>
+                  </description>
+               </property>
+               <property optional="true" name="extraHeaders" type="String">
+                  <description>
+                     <para>Extra headers separated by ""</para>
+                  </description>
+               </property>
                <property optional="true" name="postData" type="union" isArray="true">
                   <option type="UploadRawData"/>
                   <option type="UploadFile"/>
                   <option type="UploadFileSystem"/>
                   <option type="UploadBlob"/>
+                  <description>
+                     <para>(optional)</para>
+                  </description>
                </property>
+               <description>
+                  <para/>
+               </description>
             </param>
             <description>
                <para>Same as webContents.loadURL(url[, options]).</para>
@@ -717,15 +1256,30 @@ win.loadURL('http://localhost:8000/post', {
             </description>
          </method>
          <method name="setMenu">
-            <param name="menu" type="Menu"/>
+            <param name="menu" type="Menu">
+               <description>
+                  <para/>
+               </description>
+            </param>
             <description>
                <para>Sets the menu as the window's menu bar, setting it to null will remove the menu bar.</para>
             </description>
          </method>
          <method name="setProgressBar">
-            <param name="progress" type="Double"/>
+            <param name="progress" type="Double">
+               <description>
+                  <para/>
+               </description>
+            </param>
             <param optional="true" name="options" type="Object">
-               <property name="mode" type="String"/>
+               <property name="mode" type="String">
+                  <description>
+                     <para>Mode for the progress bar. Can be none, normal, indeterminate, error, or paused.</para>
+                  </description>
+               </property>
+               <description>
+                  <para/>
+               </description>
             </param>
             <description>
                <para>Sets progress value in progress bar. Valid range is [0, 1.0].</para>
@@ -735,14 +1289,26 @@ win.loadURL('http://localhost:8000/post', {
             </description>
          </method>
          <method name="setOverlayIcon">
-            <param name="overlay" type="NativeImage"/>
-            <param name="description" type="String"/>
+            <param name="overlay" type="NativeImage">
+               <description>
+                  <para>the icon to display on the bottom right corner of the taskbar icon. If this parameter is null, the overlay is cleared</para>
+               </description>
+            </param>
+            <param name="description" type="String">
+               <description>
+                  <para>a description that will be provided to Accessibility screen readers</para>
+               </description>
+            </param>
             <description>
                <para>Sets a 16 x 16 pixel overlay onto the current taskbar icon, usually used to convey some sort of application status or to passively notify the user.</para>
             </description>
          </method>
          <method name="setHasShadow">
-            <param name="hasShadow" type="Boolean"/>
+            <param name="hasShadow" type="Boolean">
+               <description>
+                  <para/>
+               </description>
+            </param>
             <description>
                <para>Sets whether the window should have a shadow. On Windows and Linux does nothing.</para>
             </description>
@@ -750,7 +1316,7 @@ win.loadURL('http://localhost:8000/post', {
          <method name="hasShadow">
             <returns type="Boolean">
                <description>
-                  <para>- Whether the window has a shadow.</para>
+                  <para>Whether the window has a shadow.</para>
                </description>
             </returns>
             <description>
@@ -758,10 +1324,14 @@ win.loadURL('http://localhost:8000/post', {
             </description>
          </method>
          <method name="setThumbarButtons">
-            <param name="buttons" type="ThumbarButton" isArray="true"/>
+            <param name="buttons" type="ThumbarButton" isArray="true">
+               <description>
+                  <para/>
+               </description>
+            </param>
             <returns type="Boolean">
                <description>
-                  <para>- Whether the buttons were added successfully</para>
+                  <para>Whether the buttons were added successfully</para>
                </description>
             </returns>
             <description>
@@ -811,24 +1381,55 @@ win.loadURL('http://localhost:8000/post', {
             </description>
          </method>
          <method name="setThumbnailClip">
-            <param name="region" type="Rectangle"/>
+            <param name="region" type="Rectangle">
+               <description>
+                  <para>Region of the window</para>
+               </description>
+            </param>
             <description>
                <para>Sets the region of the window to show as the thumbnail image displayed when hovering over the window in the taskbar. You can reset the thumbnail to be the entire window by specifying an empty region: {x: 0, y: 0, width: 0, height: 0}.</para>
             </description>
          </method>
          <method name="setThumbnailToolTip">
-            <param name="toolTip" type="String"/>
+            <param name="toolTip" type="String">
+               <description>
+                  <para/>
+               </description>
+            </param>
             <description>
                <para>Sets the toolTip that is displayed when hovering over the window thumbnail in the taskbar.</para>
             </description>
          </method>
          <method name="setAppDetails">
             <param name="options" type="Object">
-               <property optional="true" name="appId" type="String"/>
-               <property optional="true" name="appIconPath" type="String"/>
-               <property optional="true" name="appIconIndex" type="Integer"/>
-               <property optional="true" name="relaunchCommand" type="String"/>
-               <property optional="true" name="relaunchDisplayName" type="String"/>
+               <property optional="true" name="appId" type="String">
+                  <description>
+                     <para>Window's App User Model ID. It has to be set, otherwise the other options will have no effect.</para>
+                  </description>
+               </property>
+               <property optional="true" name="appIconPath" type="String">
+                  <description>
+                     <para>Window's Relaunch Icon.</para>
+                  </description>
+               </property>
+               <property optional="true" name="appIconIndex" type="Integer">
+                  <description>
+                     <para>Index of the icon in appIconPath. Ignored when appIconPath is not set. Default is 0.</para>
+                  </description>
+               </property>
+               <property optional="true" name="relaunchCommand" type="String">
+                  <description>
+                     <para>Window's Relaunch Command.</para>
+                  </description>
+               </property>
+               <property optional="true" name="relaunchDisplayName" type="String">
+                  <description>
+                     <para>Window's Relaunch Display Name.</para>
+                  </description>
+               </property>
+               <description>
+                  <para/>
+               </description>
             </param>
             <description>
                <para>Sets the properties for the window's taskbar button.</para>
@@ -841,13 +1442,21 @@ win.loadURL('http://localhost:8000/post', {
             </description>
          </method>
          <method name="setIcon">
-            <param name="icon" type="NativeImage"/>
+            <param name="icon" type="NativeImage">
+               <description>
+                  <para/>
+               </description>
+            </param>
             <description>
                <para>Changes window icon.</para>
             </description>
          </method>
          <method name="setAutoHideMenuBar">
-            <param name="hide" type="Boolean"/>
+            <param name="hide" type="Boolean">
+               <description>
+                  <para/>
+               </description>
+            </param>
             <description>
                <para>Sets whether the window menu bar should hide itself automatically. Once set the menu bar will only show when users press the single Alt key.</para>
                <para>If the menu bar is already visible, calling setAutoHideMenuBar(true) won't hide it immediately.</para>
@@ -856,13 +1465,17 @@ win.loadURL('http://localhost:8000/post', {
          <method name="isMenuBarAutoHide">
             <returns type="Boolean">
                <description>
-                  <para>- Whether menu bar automatically hides itself.</para>
+                  <para>Whether menu bar automatically hides itself.</para>
                </description>
             </returns>
             <description/>
          </method>
          <method name="setMenuBarVisibility">
-            <param name="visible" type="Boolean"/>
+            <param name="visible" type="Boolean">
+               <description>
+                  <para/>
+               </description>
+            </param>
             <description>
                <para>Sets whether the menu bar should be visible. If the menu bar is auto-hide, users can still bring up the menu bar by pressing the single Alt key.</para>
             </description>
@@ -870,13 +1483,17 @@ win.loadURL('http://localhost:8000/post', {
          <method name="isMenuBarVisible">
             <returns type="Boolean">
                <description>
-                  <para>- Whether the menu bar is visible.</para>
+                  <para>Whether the menu bar is visible.</para>
                </description>
             </returns>
             <description/>
          </method>
          <method name="setVisibleOnAllWorkspaces">
-            <param name="visible" type="Boolean"/>
+            <param name="visible" type="Boolean">
+               <description>
+                  <para/>
+               </description>
+            </param>
             <description>
                <para>Sets whether the window should be visible on all workspaces.</para>
                <para>Note: This API does nothing on Windows.</para>
@@ -885,7 +1502,7 @@ win.loadURL('http://localhost:8000/post', {
          <method name="isVisibleOnAllWorkspaces">
             <returns type="Boolean">
                <description>
-                  <para>- Whether the window is visible on all workspaces.</para>
+                  <para>Whether the window is visible on all workspaces.</para>
                </description>
             </returns>
             <description>
@@ -893,27 +1510,43 @@ win.loadURL('http://localhost:8000/post', {
             </description>
          </method>
          <method name="setIgnoreMouseEvents">
-            <param name="ignore" type="Boolean"/>
+            <param name="ignore" type="Boolean">
+               <description>
+                  <para/>
+               </description>
+            </param>
             <description>
                <para>Makes the window ignore all mouse events.</para>
                <para>All mouse events happened in this window will be passed to the window below this window, but if this window has focus, it will still receive keyboard events.</para>
             </description>
          </method>
          <method name="setContentProtection">
-            <param name="enable" type="Boolean"/>
+            <param name="enable" type="Boolean">
+               <description>
+                  <para/>
+               </description>
+            </param>
             <description>
                <para>Prevents the window contents from being captured by other apps.</para>
                <para>On macOS it sets the NSWindow's sharingType to NSWindowSharingNone. On Windows it calls SetWindowDisplayAffinity with WDA_MONITOR.</para>
             </description>
          </method>
          <method name="setFocusable">
-            <param name="focusable" type="Boolean"/>
+            <param name="focusable" type="Boolean">
+               <description>
+                  <para/>
+               </description>
+            </param>
             <description>
                <para>Changes whether the window can be focused.</para>
             </description>
          </method>
          <method name="setParentWindow">
-            <param name="parent" type="BrowserWindow"/>
+            <param name="parent" type="BrowserWindow">
+               <description>
+                  <para/>
+               </description>
+            </param>
             <description>
                <para>Sets parent as current window's parent window, passing null will turn current window into a top-level window.</para>
             </description>
@@ -921,7 +1554,7 @@ win.loadURL('http://localhost:8000/post', {
          <method name="getParentWindow">
             <returns type="BrowserWindow">
                <description>
-                  <para>- The parent window.</para>
+                  <para>The parent window.</para>
                </description>
             </returns>
             <description/>
@@ -929,19 +1562,27 @@ win.loadURL('http://localhost:8000/post', {
          <method name="getChildWindows">
             <returns type="BrowserWindow" isArray="true">
                <description>
-                  <para>- All child windows.</para>
+                  <para>All child windows.</para>
                </description>
             </returns>
             <description/>
          </method>
          <method name="setAutoHideCursor">
-            <param name="autoHide" type="Boolean"/>
+            <param name="autoHide" type="Boolean">
+               <description>
+                  <para/>
+               </description>
+            </param>
             <description>
                <para>Controls whether to hide cursor when typing.</para>
             </description>
          </method>
          <method name="setVibrancy">
-            <param name="type" type="String"/>
+            <param name="type" type="String">
+               <description>
+                  <para>Can be appearance-based, light, dark, titlebar, selection, menu, popover, sidebar, medium-light or ultra-dark. See the macOS documentation for more details.</para>
+               </description>
+            </param>
             <description>
                <para>Adds a vibrancy effect to the browser window. Passing null or an empty string will remove the vibrancy effect on the window.</para>
             </description>

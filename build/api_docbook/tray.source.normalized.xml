@@ -5,6 +5,9 @@
          <param name="image" type="union">
             <option type="NativeImage"/>
             <option type="String"/>
+            <description>
+               <para/>
+            </description>
          </param>
       </constructor>
       <methods type="instance">
@@ -17,34 +20,64 @@
             <param name="image" type="union">
                <option type="NativeImage"/>
                <option type="String"/>
+               <description>
+                  <para/>
+               </description>
             </param>
             <description>
                <para>Sets the image associated with this tray icon.</para>
             </description>
          </method>
          <method name="setPressedImage">
-            <param name="image" type="NativeImage"/>
+            <param name="image" type="NativeImage">
+               <description>
+                  <para/>
+               </description>
+            </param>
             <description>
                <para>Sets the image associated with this tray icon when pressed on macOS.</para>
             </description>
          </method>
          <method name="setToolTip">
-            <param name="toolTip" type="String"/>
+            <param name="toolTip" type="String">
+               <description>
+                  <para/>
+               </description>
+            </param>
             <description>
                <para>Sets the hover text for this tray icon.</para>
             </description>
          </method>
          <method name="setTitle">
-            <param name="title" type="String"/>
+            <param name="title" type="String">
+               <description>
+                  <para/>
+               </description>
+            </param>
             <description>
                <para>Sets the title displayed aside of the tray icon in the status bar.</para>
             </description>
          </method>
          <method name="setHighlightMode">
             <param name="mode" type="String">
-               <param name="selection"/>
-               <param name="always"/>
-               <param name="never"/>
+               <param name="selection">
+                  <description>
+                     <para>Highlight the tray icon when it is clicked and also when its context menu is open. This is the default.</para>
+                  </description>
+               </param>
+               <param name="always">
+                  <description>
+                     <para>Always highlight the tray icon.</para>
+                  </description>
+               </param>
+               <param name="never">
+                  <description>
+                     <para>Never highlight the tray icon.</para>
+                  </description>
+               </param>
+               <description>
+                  <para>Highlight mode with one of the following values:</para>
+               </description>
             </param>
             <description>
                <para>Sets when the tray's icon background becomes highlighted (in blue).</para>
@@ -72,19 +105,48 @@ win.on('hide', () =&gt; {
                <property optional="true" name="icon" type="union">
                   <option type="NativeImage"/>
                   <option type="String"/>
+                  <description>
+                     <para>(optional)</para>
+                  </description>
                </property>
-               <property optional="true" name="title" type="String"/>
-               <property optional="true" name="content" type="String"/>
+               <property optional="true" name="title" type="String">
+                  <description>
+                     <para>(optional)</para>
+                  </description>
+               </property>
+               <property optional="true" name="content" type="String">
+                  <description>
+                     <para>(optional)</para>
+                  </description>
+               </property>
+               <description>
+                  <para/>
+               </description>
             </param>
             <description>
                <para>Displays a tray balloon.</para>
             </description>
          </method>
          <method name="popUpContextMenu">
-            <param optional="true" name="menu" type="Menu"/>
+            <param optional="true" name="menu" type="Menu">
+               <description>
+                  <para/>
+               </description>
+            </param>
             <param optional="true" name="position" type="Object">
-               <property name="x" type="Integer"/>
-               <property name="y" type="Integer"/>
+               <property name="x" type="Integer">
+                  <description>
+                     <para/>
+                  </description>
+               </property>
+               <property name="y" type="Integer">
+                  <description>
+                     <para/>
+                  </description>
+               </property>
+               <description>
+                  <para>The pop up position.</para>
+               </description>
             </param>
             <description>
                <para>Pops up the context menu of the tray icon. When menu is passed, the menu will be shown instead of the tray icon's context menu.</para>
@@ -92,7 +154,11 @@ win.on('hide', () =&gt; {
             </description>
          </method>
          <method name="setContextMenu">
-            <param name="menu" type="Menu"/>
+            <param name="menu" type="Menu">
+               <description>
+                  <para/>
+               </description>
+            </param>
             <description>
                <para>Sets the context menu for this icon.</para>
             </description>
@@ -110,7 +176,7 @@ win.on('hide', () =&gt; {
          <method name="isDestroyed">
             <returns type="Boolean">
                <description>
-                  <para>- Whether the tray icon is destroyed.</para>
+                  <para>Whether the tray icon is destroyed.</para>
                </description>
             </returns>
             <description/>

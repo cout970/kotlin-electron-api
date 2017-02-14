@@ -4,7 +4,11 @@
       <constructor/>
       <methods type="instance">
          <method name="attach">
-            <param optional="true" name="protocolVersion" type="String"/>
+            <param optional="true" name="protocolVersion" type="String">
+               <description>
+                  <para>Requested debugging protocol version.</para>
+               </description>
+            </param>
             <description>
                <para>Attaches the debugger to the webContents.</para>
             </description>
@@ -12,7 +16,7 @@
          <method name="isAttached">
             <returns type="Boolean">
                <description>
-                  <para>- Whether a debugger is attached to the webContents.</para>
+                  <para>Whether a debugger is attached to the webContents.</para>
                </description>
             </returns>
             <description/>
@@ -23,11 +27,30 @@
             </description>
          </method>
          <method name="sendCommand">
-            <param name="method" type="String"/>
-            <param optional="true" name="commandParams" type="Object"/>
+            <param name="method" type="String">
+               <description>
+                  <para>Method name, should be one of the methods defined by the remote debugging protocol.</para>
+               </description>
+            </param>
+            <param optional="true" name="commandParams" type="Object">
+               <description>
+                  <para>JSON object with request parameters.</para>
+               </description>
+            </param>
             <param optional="true" name="callback" type="Function">
-               <param name="error" type="Object"/>
-               <param name="result" type="Any"/>
+               <param name="error" type="Object">
+                  <description>
+                     <para>Error message indicating the failure of the command.</para>
+                  </description>
+               </param>
+               <param name="result" type="Any">
+                  <description>
+                     <para>Response defined by the 'returns' attribute of the command description in the remote debugging protocol.</para>
+                  </description>
+               </param>
+               <description>
+                  <para>Response</para>
+               </description>
             </param>
             <description>
                <para>Send given command to the debugging target.</para>

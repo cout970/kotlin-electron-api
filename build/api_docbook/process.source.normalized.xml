@@ -13,25 +13,61 @@
             </description>
          </method>
          <method name="setFdLimit">
-            <param name="maxDescriptors" type="Integer"/>
+            <param name="maxDescriptors" type="Integer">
+               <description>
+                  <para/>
+               </description>
+            </param>
             <description>
                <para>Sets the file descriptor soft limit to maxDescriptors or the OS hard limit, whichever is lower for the current process.</para>
             </description>
          </method>
          <method name="getProcessMemoryInfo">
             <returns type="Object">
-               <param name="workingSetSize" type="Integer"/>
-               <param name="peakWorkingSetSize" type="Integer"/>
-               <param name="privateBytes" type="Integer"/>
-               <param name="sharedBytes" type="Integer"/>
+               <param name="workingSetSize" type="Integer">
+                  <description>
+                     <para>The amount of memory currently pinned to actual physical RAM.</para>
+                  </description>
+               </param>
+               <param name="peakWorkingSetSize" type="Integer">
+                  <description>
+                     <para>The maximum amount of memory that has ever been pinned to actual physical RAM.</para>
+                  </description>
+               </param>
+               <param name="privateBytes" type="Integer">
+                  <description>
+                     <para>The amount of memory not shared by other processes, such as JS heap or HTML content.</para>
+                  </description>
+               </param>
+               <param name="sharedBytes" type="Integer">
+                  <description>
+                     <para>The amount of memory shared between processes, typically memory consumed by the Electron code itself</para>
+                  </description>
+               </param>
                <description>
-                  <para>:</para>
+                  <para/>
                </description>
             </returns>
-            <param name="workingSetSize" type="Integer"/>
-            <param name="peakWorkingSetSize" type="Integer"/>
-            <param name="privateBytes" type="Integer"/>
-            <param name="sharedBytes" type="Integer"/>
+            <param name="workingSetSize" type="Integer">
+               <description>
+                  <para>The amount of memory currently pinned to actual physical RAM.</para>
+               </description>
+            </param>
+            <param name="peakWorkingSetSize" type="Integer">
+               <description>
+                  <para>The maximum amount of memory that has ever been pinned to actual physical RAM.</para>
+               </description>
+            </param>
+            <param name="privateBytes" type="Integer">
+               <description>
+                  <para>The amount of memory not shared by other processes, such as JS heap or HTML content.</para>
+               </description>
+            </param>
+            <param name="sharedBytes" type="Integer">
+               <description>
+                  <para>The amount of memory shared between processes, typically memory consumed by the Electron code itself</para>
+               </description>
+            </param>
             <description>
                <list>
                   <item>
@@ -51,18 +87,50 @@
          </method>
          <method name="getSystemMemoryInfo">
             <returns type="Object">
-               <param name="total" type="Integer"/>
-               <param name="free" type="Integer"/>
-               <param name="swapTotal" type="Integer"/>
-               <param name="swapFree" type="Integer"/>
+               <param name="total" type="Integer">
+                  <description>
+                     <para>The total amount of physical memory in Kilobytes available to the system.</para>
+                  </description>
+               </param>
+               <param name="free" type="Integer">
+                  <description>
+                     <para>The total amount of memory not being used by applications or disk cache.</para>
+                  </description>
+               </param>
+               <param name="swapTotal" type="Integer">
+                  <description>
+                     <para>The total amount of swap memory in Kilobytes available to the system. WindowsLinux</para>
+                  </description>
+               </param>
+               <param name="swapFree" type="Integer">
+                  <description>
+                     <para>The free amount of swap memory in Kilobytes available to the system. WindowsLinux</para>
+                  </description>
+               </param>
                <description>
-                  <para>:</para>
+                  <para/>
                </description>
             </returns>
-            <param name="total" type="Integer"/>
-            <param name="free" type="Integer"/>
-            <param name="swapTotal" type="Integer"/>
-            <param name="swapFree" type="Integer"/>
+            <param name="total" type="Integer">
+               <description>
+                  <para>The total amount of physical memory in Kilobytes available to the system.</para>
+               </description>
+            </param>
+            <param name="free" type="Integer">
+               <description>
+                  <para>The total amount of memory not being used by applications or disk cache.</para>
+               </description>
+            </param>
+            <param name="swapTotal" type="Integer">
+               <description>
+                  <para>The total amount of swap memory in Kilobytes available to the system. WindowsLinux</para>
+               </description>
+            </param>
+            <param name="swapFree" type="Integer">
+               <description>
+                  <para>The free amount of swap memory in Kilobytes available to the system. WindowsLinux</para>
+               </description>
+            </param>
             <description>
                <list>
                   <item>

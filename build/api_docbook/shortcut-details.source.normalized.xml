@@ -1,12 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <file>
    <struct title="ShortcutDetails">
-      <property name="target" type="String"/>
-      <property optional="true" name="cwd" type="String"/>
-      <property optional="true" name="args" type="String"/>
-      <property optional="true" name="description" type="String"/>
-      <property optional="true" name="icon" type="String"/>
-      <property optional="true" name="iconIndex" type="Number"/>
-      <property optional="true" name="appUserModelId" type="String"/>
+      <property name="target" type="String">
+         <description>
+            <para>The target to launch from this shortcut.</para>
+         </description>
+      </property>
+      <property optional="true" name="cwd" type="String">
+         <description>
+            <para>The working directory. Default is empty.</para>
+         </description>
+      </property>
+      <property optional="true" name="args" type="String">
+         <description>
+            <para>The arguments to be applied to target when launching from this shortcut. Default is empty.</para>
+         </description>
+      </property>
+      <property optional="true" name="description" type="String">
+         <description>
+            <para>The description of the shortcut. Default is empty.</para>
+         </description>
+      </property>
+      <property optional="true" name="icon" type="String">
+         <description>
+            <para>The path to the icon, can be a DLL or EXE. icon and iconIndex have to be set together. Default is empty, which uses the target's icon.</para>
+         </description>
+      </property>
+      <property optional="true" name="iconIndex" type="Number">
+         <description>
+            <para>The resource ID of icon when icon is a DLL or EXE. Default is 0.</para>
+         </description>
+      </property>
+      <property optional="true" name="appUserModelId" type="String">
+         <description>
+            <para>The Application User Model ID. Default is empty.</para>
+         </description>
+      </property>
    </struct>
 </file>

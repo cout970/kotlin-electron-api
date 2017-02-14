@@ -4,12 +4,39 @@
       <methods>
          <method name="start">
             <param name="options" type="Object">
-               <property optional="true" name="companyName" type="String"/>
-               <property name="submitURL" type="String"/>
-               <property optional="true" name="productName" type="String"/>
-               <property optional="true" name="uploadToServer" type="Boolean"/>
-               <property optional="true" name="ignoreSystemCrashHandler" type="Boolean"/>
-               <property optional="true" name="extra" type="Object"/>
+               <property optional="true" name="companyName" type="String">
+                  <description>
+                     <para/>
+                  </description>
+               </property>
+               <property name="submitURL" type="String">
+                  <description>
+                     <para>URL that crash reports will be sent to as POST.</para>
+                  </description>
+               </property>
+               <property optional="true" name="productName" type="String">
+                  <description>
+                     <para>Defaults to app.getName().</para>
+                  </description>
+               </property>
+               <property optional="true" name="uploadToServer" type="Boolean">
+                  <description>
+                     <para>Whether crash reports should be sent to the server Default is true.</para>
+                  </description>
+               </property>
+               <property optional="true" name="ignoreSystemCrashHandler" type="Boolean">
+                  <description>
+                     <para>Default is false.</para>
+                  </description>
+               </property>
+               <property optional="true" name="extra" type="Object">
+                  <description>
+                     <para>An object you can define that will be sent along with the report. Only string properties are sent correctly, Nested objects are not supported.</para>
+                  </description>
+               </property>
+               <description>
+                  <para/>
+               </description>
             </param>
             <description>
                <para>You are required to call this method before using any other crashReporter APIs and in each process (main/renderer) from which you want to collect crash reports. You can pass different options to crashReporter.start when calling from different processes.</para>
@@ -51,7 +78,7 @@
          <method name="getUploadToServer">
             <returns type="Boolean">
                <description>
-                  <para>- Whether reports should be submitted to the server. Set through the start method or setUploadToServer.</para>
+                  <para>Whether reports should be submitted to the server. Set through the start method or setUploadToServer.</para>
                </description>
             </returns>
             <description>
@@ -59,7 +86,11 @@
             </description>
          </method>
          <method name="setUploadToServer">
-            <param name="uploadToServer" type="Boolean"/>
+            <param name="uploadToServer" type="Boolean">
+               <description>
+                  <para>Whether reports should be submitted to the server</para>
+               </description>
+            </param>
             <description>
                <para>This would normally be controlled by user preferences. This has no effect if called before start is called.</para>
                <para>Note: This API can only be called from the main process.</para>

@@ -6,6 +6,9 @@
             <param name="options" type="union">
                <option type="Object"/>
                <option type="String"/>
+               <description>
+                  <para>The ClientRequest constructor options.</para>
+               </description>
             </param>
             <returns type="ClientRequest">
                <description>

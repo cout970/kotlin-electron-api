@@ -36,22 +36,16 @@ object contentTracing {
      * Examples:
      *
      *  . test_MyTest*,
-     *
      *  . test_MyTest*,test_OtherStuff,
-     *
      *  . "-excluded_category1,-excluded_category2
      *
      * traceOptions controls what kind of tracing is enabled, it is a comma-delimited 
      * list. Possible options are:
      *
      *  . record-until-full
-     *
      *  . record-continuously
-     *
      *  . trace-to-console
-     *
      *  . enable-sampling
-     *
      *  . enable-systrace
      *
      * The first 3 options are trace recording modes and hence mutually exclusive. If 

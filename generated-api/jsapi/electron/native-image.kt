@@ -59,7 +59,7 @@ class NativeImage() {
 
     init {
         val _constructor = js("require('electron').NativeImage")
-        instance = js("new _constructor(_)")
+        instance = js("new _constructor()")
     }
 
     // ~ Events --------------------------------------------------------------------------------
@@ -112,7 +112,6 @@ class NativeImage() {
 
     /**
      *  . width Integer
-     *
      *  . height Integer
      *
      */

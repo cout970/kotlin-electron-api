@@ -1,7 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <file>
    <struct title="UploadRawData">
-      <property name="type" type="String"/>
-      <property name="bytes" type="Buffer"/>
+      <property name="type" type="String">
+         <description>
+            <para>rawData.</para>
+         </description>
+      </property>
+      <property name="bytes" type="Buffer">
+         <description>
+            <para>Data to be uploaded.</para>
+         </description>
+      </property>
    </struct>
 </file>

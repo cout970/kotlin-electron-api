@@ -6,7 +6,7 @@ class WebRequest() {
 
     init {
         val _constructor = js("require('electron').WebRequest")
-        instance = js("new _constructor(_)")
+        instance = js("new _constructor()")
     }
 
     // ~ Events --------------------------------------------------------------------------------
@@ -33,17 +33,11 @@ class WebRequest() {
      * TCP connection is made to the server, but before any http data is sent.
      *
      *  . details Object
-     *
      *     . id Integer
-     *
      *     . url String
-     *
      *     . method String
-     *
      *     . resourceType String
-     *
      *     . timestamp Double
-     *
      *     . requestHeaders Object
      *
      *  . callback Function
@@ -51,7 +45,6 @@ class WebRequest() {
      *     . response Object
      *
      *        . cancel Boolean (optional)
-     *
      *        . requestHeaders Object (optional) - When provided, request will be made with 
      *          these headers.
      *
@@ -73,21 +66,13 @@ class WebRequest() {
      * response headers of a request have been received.
      *
      *  . details Object
-     *
      *     . id String
-     *
      *     . url String
-     *
      *     . method String
-     *
      *     . resourceType String
-     *
      *     . timestamp Double
-     *
      *     . statusLine String
-     *
      *     . statusCode Integer
-     *
      *     . responseHeaders Object
      *
      *  . callback Function
@@ -95,10 +80,8 @@ class WebRequest() {
      *     . response Object
      *
      *        . cancel Boolean
-     *
      *        . responseHeaders Object (optional) - When provided, the server is assumed to 
      *          have responded with these headers.
-     *
      *        . statusLine String (optional) - Should be provided when overriding 
      *          responseHeaders to change header status otherwise original response header's 
      *          status will be used.

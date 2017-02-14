@@ -5,16 +5,54 @@
       <methods type="instance">
          <method name="get">
             <param name="filter" type="Object">
-               <property optional="true" name="url" type="String"/>
-               <property optional="true" name="name" type="String"/>
-               <property optional="true" name="domain" type="String"/>
-               <property optional="true" name="path" type="String"/>
-               <property optional="true" name="secure" type="Boolean"/>
-               <property optional="true" name="session" type="Boolean"/>
+               <property optional="true" name="url" type="String">
+                  <description>
+                     <para>Retrieves cookies which are associated with url. Empty implies retrieving cookies of all urls.</para>
+                  </description>
+               </property>
+               <property optional="true" name="name" type="String">
+                  <description>
+                     <para>Filters cookies by name.</para>
+                  </description>
+               </property>
+               <property optional="true" name="domain" type="String">
+                  <description>
+                     <para>Retrieves cookies whose domains match or are subdomains of domains</para>
+                  </description>
+               </property>
+               <property optional="true" name="path" type="String">
+                  <description>
+                     <para>Retrieves cookies whose path matches path.</para>
+                  </description>
+               </property>
+               <property optional="true" name="secure" type="Boolean">
+                  <description>
+                     <para>Filters cookies by their Secure property.</para>
+                  </description>
+               </property>
+               <property optional="true" name="session" type="Boolean">
+                  <description>
+                     <para>Filters out session or persistent cookies.</para>
+                  </description>
+               </property>
+               <description>
+                  <para/>
+               </description>
             </param>
             <param name="callback" type="Function">
-               <param name="error" type="Error"/>
-               <param name="cookies" type="Cookies" isArray="true"/>
+               <param name="error" type="Error">
+                  <description>
+                     <para/>
+                  </description>
+               </param>
+               <param name="cookies" type="Cookies" isArray="true">
+                  <description>
+                     <para/>
+                  </description>
+               </param>
+               <description>
+                  <para/>
+               </description>
             </param>
             <description>
                <para>Sends a request to get all cookies matching details, callback will be called with callback(error, cookies) on complete.</para>
@@ -23,26 +61,80 @@
          </method>
          <method name="set">
             <param name="details" type="Object">
-               <property name="url" type="String"/>
-               <property optional="true" name="name" type="String"/>
-               <property optional="true" name="value" type="String"/>
-               <property optional="true" name="domain" type="String"/>
-               <property optional="true" name="path" type="String"/>
-               <property optional="true" name="secure" type="Boolean"/>
-               <property optional="true" name="httpOnly" type="Boolean"/>
-               <property optional="true" name="expirationDate" type="Double"/>
+               <property name="url" type="String">
+                  <description>
+                     <para>The url to associate the cookie with.</para>
+                  </description>
+               </property>
+               <property optional="true" name="name" type="String">
+                  <description>
+                     <para>The name of the cookie. Empty by default if omitted.</para>
+                  </description>
+               </property>
+               <property optional="true" name="value" type="String">
+                  <description>
+                     <para>The value of the cookie. Empty by default if omitted.</para>
+                  </description>
+               </property>
+               <property optional="true" name="domain" type="String">
+                  <description>
+                     <para>The domain of the cookie. Empty by default if omitted.</para>
+                  </description>
+               </property>
+               <property optional="true" name="path" type="String">
+                  <description>
+                     <para>The path of the cookie. Empty by default if omitted.</para>
+                  </description>
+               </property>
+               <property optional="true" name="secure" type="Boolean">
+                  <description>
+                     <para>Whether the cookie should be marked as Secure. Defaults to false.</para>
+                  </description>
+               </property>
+               <property optional="true" name="httpOnly" type="Boolean">
+                  <description>
+                     <para>Whether the cookie should be marked as HTTP only. Defaults to false.</para>
+                  </description>
+               </property>
+               <property optional="true" name="expirationDate" type="Double">
+                  <description>
+                     <para>The expiration date of the cookie as the number of seconds since the UNIX epoch. If omitted then the cookie becomes a session cookie and will not be retained between sessions.</para>
+                  </description>
+               </property>
+               <description>
+                  <para/>
+               </description>
             </param>
             <param name="callback" type="Function">
-               <param name="error" type="Error"/>
+               <param name="error" type="Error">
+                  <description>
+                     <para/>
+                  </description>
+               </param>
+               <description>
+                  <para/>
+               </description>
             </param>
             <description>
                <para>Sets a cookie with details, callback will be called with callback(error) on complete.</para>
             </description>
          </method>
          <method name="remove">
-            <param name="url" type="String"/>
-            <param name="name" type="String"/>
-            <param name="callback" type="Function"/>
+            <param name="url" type="String">
+               <description>
+                  <para>The URL associated with the cookie.</para>
+               </description>
+            </param>
+            <param name="name" type="String">
+               <description>
+                  <para>The name of cookie to remove.</para>
+               </description>
+            </param>
+            <param name="callback" type="Function">
+               <description>
+                  <para/>
+               </description>
+            </param>
             <description>
                <para>Removes the cookies matching url and name, callback will called with callback() on complete.</para>
             </description>

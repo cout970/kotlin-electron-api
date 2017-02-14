@@ -6,7 +6,7 @@ class Menu() {
 
     init {
         val _constructor = js("require('electron').Menu")
-        instance = js("new _constructor(_)")
+        instance = js("new _constructor()")
     }
 
     // ~ Events --------------------------------------------------------------------------------
@@ -16,7 +16,13 @@ class Menu() {
 
     // ~ Properties ----------------------------------------------------------------------------
 
+    /**
+     * A MenuItem[] array containing the menu's items.
+     *
+     * Each Menu consists of multiple MenuItems and each MenuItem can have a submenu.
+     */
     val items: dynamic get() = instance.items
+
 
     // ~ Methods -------------------------------------------------------------------------------
 
@@ -46,38 +52,38 @@ class Menu() {
 
         // ~ Methods -------------------------------------------------------------------------------
 
-    /**
-     * Sets menu as the application menu on macOS. On Windows and Linux, the menu 
-     * will be set as each window's top menu.
-     *
-     * Note: This API has to be called after the ready event of app module.
-     */
+        /**
+         * Sets menu as the application menu on macOS. On Windows and Linux, the menu 
+         * will be set as each window's top menu.
+         *
+         * Note: This API has to be called after the ready event of app module.
+         */
         fun setApplicationMenu(menu: Menu): Unit = 
             module.setApplicationMenu(menu.instance)
 
-    /**
-     */
+        /**
+         */
         fun getApplicationMenu(): Menu = 
             module.getApplicationMenu()
 
-    /**
-     * Sends the action to the first responder of application. This is used for 
-     * emulating default Cocoa menu behaviors, usually you would just use the role 
-     * property of MenuItem.
-     *
-     * See the macOS Cocoa Event Handling Guide for more information on macOS' native 
-     * actions.
-     */
+        /**
+         * Sends the action to the first responder of application. This is used for 
+         * emulating default Cocoa menu behaviors, usually you would just use the role 
+         * property of MenuItem.
+         *
+         * See the macOS Cocoa Event Handling Guide for more information on macOS' native 
+         * actions.
+         */
         fun sendActionToFirstResponder(action: String): Unit = 
             module.sendActionToFirstResponder(action)
 
-    /**
-     * Generally, the template is just an array of options for constructing a 
-     * MenuItem. The usage can be referenced above.
-     *
-     * You can also attach other fields to the element of the template and they will 
-     * become properties of the constructed menu items.
-     */
+        /**
+         * Generally, the template is just an array of options for constructing a 
+         * MenuItem. The usage can be referenced above.
+         *
+         * You can also attach other fields to the element of the template and they will 
+         * become properties of the constructed menu items.
+         */
         fun buildFromTemplate(template: Array<dynamic>): Menu = 
             module.buildFromTemplate(template)
     }

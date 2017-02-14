@@ -4,7 +4,14 @@
       <methods>
          <method name="getCategories">
             <param name="callback" type="Function">
-               <param name="categories" type="String" isArray="true"/>
+               <param name="categories" type="String" isArray="true">
+                  <description>
+                     <para/>
+                  </description>
+               </param>
+               <description>
+                  <para/>
+               </description>
             </param>
             <description>
                <para>Get a set of category groups. The category groups can change as new code paths are reached.</para>
@@ -13,10 +20,25 @@
          </method>
          <method name="startRecording">
             <param name="options" type="Object">
-               <property name="categoryFilter" type="String"/>
-               <property name="traceOptions" type="String"/>
+               <property name="categoryFilter" type="String">
+                  <description>
+                     <para/>
+                  </description>
+               </property>
+               <property name="traceOptions" type="String">
+                  <description>
+                     <para/>
+                  </description>
+               </property>
+               <description>
+                  <para/>
+               </description>
             </param>
-            <param name="callback" type="Function"/>
+            <param name="callback" type="Function">
+               <description>
+                  <para/>
+               </description>
+            </param>
             <description>
                <para>Start recording on all processes.</para>
                <para>Recording begins immediately locally and asynchronously on child processes as soon as they receive the EnableRecording request. The callback will be called once all child processes have acknowledged the startRecording request.</para>
@@ -56,9 +78,20 @@
             </description>
          </method>
          <method name="stopRecording">
-            <param name="resultFilePath" type="String"/>
+            <param name="resultFilePath" type="String">
+               <description>
+                  <para/>
+               </description>
+            </param>
             <param name="callback" type="Function">
-               <param name="resultFilePath" type="String"/>
+               <param name="resultFilePath" type="String">
+                  <description>
+                     <para/>
+                  </description>
+               </param>
+               <description>
+                  <para/>
+               </description>
             </param>
             <description>
                <para>Stop recording on all processes.</para>
@@ -69,10 +102,25 @@
          </method>
          <method name="startMonitoring">
             <param name="options" type="Object">
-               <property name="categoryFilter" type="String"/>
-               <property name="traceOptions" type="String"/>
+               <property name="categoryFilter" type="String">
+                  <description>
+                     <para/>
+                  </description>
+               </property>
+               <property name="traceOptions" type="String">
+                  <description>
+                     <para/>
+                  </description>
+               </property>
+               <description>
+                  <para/>
+               </description>
             </param>
-            <param name="callback" type="Function"/>
+            <param name="callback" type="Function">
+               <description>
+                  <para/>
+               </description>
+            </param>
             <description>
                <para>Start monitoring on all processes.</para>
                <para>Monitoring begins immediately locally and asynchronously on child processes as soon as they receive the startMonitoring request.</para>
@@ -80,16 +128,31 @@
             </description>
          </method>
          <method name="stopMonitoring">
-            <param name="callback" type="Function"/>
+            <param name="callback" type="Function">
+               <description>
+                  <para/>
+               </description>
+            </param>
             <description>
                <para>Stop monitoring on all processes.</para>
                <para>Once all child processes have acknowledged the stopMonitoring request the callback is called.</para>
             </description>
          </method>
          <method name="captureMonitoringSnapshot">
-            <param name="resultFilePath" type="String"/>
+            <param name="resultFilePath" type="String">
+               <description>
+                  <para/>
+               </description>
+            </param>
             <param name="callback" type="Function">
-               <param name="resultFilePath" type="String"/>
+               <param name="resultFilePath" type="String">
+                  <description>
+                     <para/>
+                  </description>
+               </param>
+               <description>
+                  <para/>
+               </description>
             </param>
             <description>
                <para>Get the current monitoring traced data.</para>
@@ -99,8 +162,19 @@
          </method>
          <method name="getTraceBufferUsage">
             <param name="callback" type="Function">
-               <param name="value" type="Number"/>
-               <param name="percentage" type="Number"/>
+               <param name="value" type="Number">
+                  <description>
+                     <para/>
+                  </description>
+               </param>
+               <param name="percentage" type="Number">
+                  <description>
+                     <para/>
+                  </description>
+               </param>
+               <description>
+                  <para/>
+               </description>
             </param>
             <description>
                <para>Get the maximum usage across processes of trace buffer as a percentage of the full state. When the TraceBufferUsage value is determined the callback is called.</para>

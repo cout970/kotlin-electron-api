@@ -3,10 +3,14 @@
    <object title="shell">
       <methods>
          <method name="showItemInFolder">
-            <param name="fullPath" type="String"/>
+            <param name="fullPath" type="String">
+               <description>
+                  <para/>
+               </description>
+            </param>
             <returns type="Boolean">
                <description>
-                  <para>- Whether the item was successfully shown</para>
+                  <para>Whether the item was successfully shown</para>
                </description>
             </returns>
             <description>
@@ -14,10 +18,14 @@
             </description>
          </method>
          <method name="openItem">
-            <param name="fullPath" type="String"/>
+            <param name="fullPath" type="String">
+               <description>
+                  <para/>
+               </description>
+            </param>
             <returns type="Boolean">
                <description>
-                  <para>- Whether the item was successfully opened.</para>
+                  <para>Whether the item was successfully opened.</para>
                </description>
             </returns>
             <description>
@@ -25,16 +33,34 @@
             </description>
          </method>
          <method name="openExternal">
-            <param name="url" type="String"/>
+            <param name="url" type="String">
+               <description>
+                  <para/>
+               </description>
+            </param>
             <param optional="true" name="options" type="Object">
-               <property name="activate" type="Boolean"/>
+               <property name="activate" type="Boolean">
+                  <description>
+                     <para>true to bring the opened application to the foreground. The default is true.</para>
+                  </description>
+               </property>
+               <description>
+                  <para/>
+               </description>
             </param>
             <param optional="true" name="callback" type="Function">
-               <param name="error" type="Error"/>
+               <param name="error" type="Error">
+                  <description>
+                     <para/>
+                  </description>
+               </param>
+               <description>
+                  <para>If specified will perform the open asynchronously. macOS</para>
+               </description>
             </param>
             <returns type="Boolean">
                <description>
-                  <para>- Whether an application was available to open the URL. If callback is specified, always returns true.</para>
+                  <para>Whether an application was available to open the URL. If callback is specified, always returns true.</para>
                </description>
             </returns>
             <description>
@@ -42,10 +68,14 @@
             </description>
          </method>
          <method name="moveItemToTrash">
-            <param name="fullPath" type="String"/>
+            <param name="fullPath" type="String">
+               <description>
+                  <para/>
+               </description>
+            </param>
             <returns type="Boolean">
                <description>
-                  <para>- Whether the item was successfully moved to the trash</para>
+                  <para>Whether the item was successfully moved to the trash</para>
                </description>
             </returns>
             <description>
@@ -58,16 +88,39 @@
             </description>
          </method>
          <method name="writeShortcutLink">
-            <param name="shortcutPath" type="String"/>
-            <param optional="true" name="operation" type="String">
-               <param name="create"/>
-               <param name="update"/>
-               <param name="replace"/>
+            <param name="shortcutPath" type="String">
+               <description>
+                  <para/>
+               </description>
             </param>
-            <param name="options" type="ShortcutDetails"/>
+            <param optional="true" name="operation" type="String">
+               <param name="create">
+                  <description>
+                     <para>Creates a new shortcut, overwriting if necessary.</para>
+                  </description>
+               </param>
+               <param name="update">
+                  <description>
+                     <para>Updates specified properties only on an existing shortcut.</para>
+                  </description>
+               </param>
+               <param name="replace">
+                  <description>
+                     <para>Overwrites an existing shortcut, fails if the shortcut doesn't exist.</para>
+                  </description>
+               </param>
+               <description>
+                  <para>Default is create, can be one of following:</para>
+               </description>
+            </param>
+            <param name="options" type="ShortcutDetails">
+               <description>
+                  <para/>
+               </description>
+            </param>
             <returns type="Boolean">
                <description>
-                  <para>- Whether the shortcut was created successfully</para>
+                  <para>Whether the shortcut was created successfully</para>
                </description>
             </returns>
             <description>
@@ -75,7 +128,11 @@
             </description>
          </method>
          <method name="readShortcutLink">
-            <param name="shortcutPath" type="String"/>
+            <param name="shortcutPath" type="String">
+               <description>
+                  <para/>
+               </description>
+            </param>
             <returns type="ShortcutDetails">
                <description>
                   <para/>

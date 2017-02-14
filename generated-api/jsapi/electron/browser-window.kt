@@ -6,8 +6,307 @@ class BrowserWindow(options: (Options.() -> Unit)?) {
 
     init {
         val _constructor = js("require('electron').BrowserWindow")
-        val _options = options?.let { Options().apply(it) }
-        instance = js("new _constructor(_options)")
+        val _options = _options
+        instance = js("new _constructor(    /**
+     * Window's width in pixels. Default is 800.
+     */
+    /**
+     * Window's height in pixels. Default is 600.
+     */
+    /**
+     * Window's left offset from screen. Default is to center the window.
+     */
+    /**
+     * Window's top offset from screen. Default is to center the window.
+     */
+    /**
+     * The width and height would be used as web page's size, which means the actual 
+     * window's size will include window frame's size and be slightly larger. Default 
+     * is false.
+     */
+    /**
+     * Show window in the center of the screen.
+     */
+    /**
+     * Window's minimum width. Default is 0.
+     */
+    /**
+     * Window's minimum height. Default is 0.
+     */
+    /**
+     * Window's maximum width. Default is no limit.
+     */
+    /**
+     * Window's maximum height. Default is no limit.
+     */
+    /**
+     * Whether window is resizable. Default is true.
+     */
+    /**
+     * Whether window is movable. This is not implemented on Linux. Default is true.
+     */
+    /**
+     * Whether window is minimizable. This is not implemented on Linux. Default is 
+     * true.
+     */
+    /**
+     * Whether window is maximizable. This is not implemented on Linux. Default is 
+     * true.
+     */
+    /**
+     * Whether window is closable. This is not implemented on Linux. Default is true.
+     */
+    /**
+     * Whether the window can be focused. Default is true. On Windows setting 
+     * focusable: false also implies setting skipTaskbar: true. On Linux setting 
+     * focusable: false makes the window stop interacting with wm, so the window will 
+     * always stay on top in all workspaces.
+     */
+    /**
+     * Whether the window should always stay on top of other windows. Default is 
+     * false.
+     */
+    /**
+     * Whether the window should show in fullscreen. When explicitly set to false the 
+     * fullscreen button will be hidden or disabled on macOS. Default is false.
+     */
+    /**
+     * Whether the window can be put into fullscreen mode. On macOS, also whether the 
+     * maximize/zoom button should toggle full screen mode or maximize window. 
+     * Default is true.
+     */
+    /**
+     * Whether to show the window in taskbar. Default is false.
+     */
+    /**
+     * The kiosk mode. Default is false.
+     */
+    /**
+     * Default window title. Default is "Electron".
+     */
+    /**
+     * The window icon. On Windows it is recommended to use ICO icons to get best 
+     * visual effects, you can also leave it undefined so the executable's icon will 
+     * be used.
+     */
+    /**
+     * Whether window should be shown when created. Default is true.
+     */
+    /**
+     * Specify false to create a Frameless Window. Default is true.
+     */
+    /**
+     * Specify parent window. Default is null.
+     */
+    /**
+     * Whether this is a modal window. This only works when the window is a child 
+     * window. Default is false.
+     */
+    /**
+     * Whether the web view accepts a single mouse-down event that simultaneously 
+     * activates the window. Default is false.
+     */
+    /**
+     * Whether to hide cursor when typing. Default is false.
+     */
+    /**
+     * Auto hide the menu bar unless the Alt key is pressed. Default is false.
+     */
+    /**
+     * Enable the window to be resized larger than screen. Default is false.
+     */
+    /**
+     * Window's background color as Hexadecimal value, like #66CD00 or #FFF or 
+     * #80FFFFFF (alpha is supported). Default is #FFF (white).
+     */
+    /**
+     * Whether window should have a shadow. This is only implemented on macOS. 
+     * Default is true.
+     */
+    /**
+     * Forces using dark theme for the window, only works on some GTK+3 desktop 
+     * environments. Default is false.
+     */
+    /**
+     * Makes the window transparent. Default is false.
+     */
+    /**
+     * The type of window, default is normal window. See more about this below.
+     */
+/**
+ * Results in the standard gray opaque Mac title bar.
+ */
+/**
+ * Results in a hidden title bar and a full size content window, yet the title 
+ * bar still has the standard window controls ("traffic lights") in the top left.
+ */
+/**
+ * inset - Results in a hidden title bar with an alternative look where the 
+ * traffic light buttons are slightly more inset from the window edge.
+ */
+    /**
+     * The style of window title bar. Default is default. Possible values are:
+     */
+    /**
+     * Use WS_THICKFRAME style for frameless windows on Windows, which adds standard 
+     * window frame. Setting it to false will remove window shadow and window 
+     * animations. Default is true.
+     */
+    /**
+     * Add a type of vibrancy effect to the window, only on macOS. Can be 
+     * appearance-based, light, dark, titlebar, selection, menu, popover, sidebar, 
+     * medium-light or ultra-dark.
+     */
+    /**
+     * Controls the behavior on macOS when option-clicking the green stoplight button 
+     * on the toolbar or by clicking the Window > Zoom menu item. If true, the window 
+     * will grow to the preferred width of the web page when zoomed, false will cause 
+     * it to zoom to the width of the screen. This will also affect the behavior when 
+     * calling maximize() directly. Default is false.
+     */
+    /**
+     * Whether to enable DevTools. If it is set to false, can not use 
+     * BrowserWindow.webContents.openDevTools() to open DevTools. Default is true.
+     */
+    /**
+     * Whether node integration is enabled. Default is true.
+     */
+    /**
+     * Specifies a script that will be loaded before other scripts run in the page. 
+     * This script will always have access to node APIs no matter whether node 
+     * integration is turned on or off. The value should be the absolute file path to 
+     * the script. When node integration is turned off, the preload script can 
+     * reintroduce Node global symbols back to the global scope. See example here.
+     */
+    /**
+     * Sets the session used by the page. Instead of passing the Session object 
+     * directly, you can also choose to use the partition option instead, which 
+     * accepts a partition string. When both session and partition are provided, 
+     * session will be preferred. Default is the default session.
+     */
+    /**
+     * Sets the session used by the page according to the session's partition string. 
+     * If partition starts with persist:, the page will use a persistent session 
+     * available to all pages in the app with the same partition. If there is no 
+     * persist: prefix, the page will use an in-memory session. By assigning the same 
+     * partition, multiple pages can share the same session. Default is the default 
+     * session.
+     */
+    /**
+     * The default zoom factor of the page, 3.0 represents 300%. Default is 1.0.
+     */
+    /**
+     * Enables JavaScript support. Default is true.
+     */
+    /**
+     * When false, it will disable the same-origin policy (usually using testing 
+     * websites by people), and set allowRunningInsecureContent to true if this 
+     * options has not been set by user. Default is true.
+     */
+    /**
+     * Allow an https page to run JavaScript, CSS or plugins from http URLs. Default 
+     * is false.
+     */
+    /**
+     * Enables image support. Default is true.
+     */
+    /**
+     * Make TextArea elements resizable. Default is true.
+     */
+    /**
+     * Enables WebGL support. Default is true.
+     */
+    /**
+     * Enables WebAudio support. Default is true.
+     */
+    /**
+     * Whether plugins should be enabled. Default is false.
+     */
+    /**
+     * Enables Chromium's experimental features. Default is false.
+     */
+    /**
+     * Enables Chromium's experimental canvas features. Default is false.
+     */
+    /**
+     * Enables scroll bounce (rubber banding) effect on macOS. Default is false.
+     */
+    /**
+     * A list of feature strings separated by ,, like CSSVariables,KeyboardEventKey 
+     * to enable. The full list of supported feature strings can be found in the 
+     * RuntimeEnabledFeatures.in file.
+     */
+    /**
+     * A list of feature strings separated by ,, like CSSVariables,KeyboardEventKey 
+     * to disable. The full list of supported feature strings can be found in the 
+     * RuntimeEnabledFeatures.in file.
+     */
+    /**
+     * Defaults to Times New Roman.
+     */
+    /**
+     * Defaults to Times New Roman.
+     */
+    /**
+     * Defaults to Arial.
+     */
+    /**
+     * Defaults to Courier New.
+     */
+    /**
+     * Defaults to Script.
+     */
+    /**
+     * Defaults to Impact.
+     */
+    /**
+     * Sets the default font for the font-family.
+     */
+    /**
+     * Defaults to 16.
+     */
+    /**
+     * Defaults to 13.
+     */
+    /**
+     * Defaults to 0.
+     */
+    /**
+     * Defaults to ISO-8859-1.
+     */
+    /**
+     * Whether to throttle animations and timers when the page becomes background. 
+     * Defaults to true.
+     */
+    /**
+     * Whether to enable offscreen rendering for the browser window. Defaults to 
+     * false. See the offscreen rendering tutorial for more details.
+     */
+    /**
+     * Whether to enable Chromium OS-level sandbox.
+     */
+    /**
+     * Whether to run Electron APIs and the specified preload script in a separate 
+     * JavaScript context. Defaults to false. The context that the preload script 
+     * runs in will still have full access to the document and window globals but it 
+     * will use its own set of JavaScript builtins (Array, Object, JSON, etc.) and 
+     * will be isolated from any changes made to the global environment by the loaded 
+     * page. The Electron API will only be available in the preload script and not 
+     * the loaded page. This option should be used when loading potentially untrusted 
+     * remote content to ensure the loaded content cannot tamper with the preload 
+     * script and any Electron APIs being used. This option uses the same technique 
+     * used by Chrome Content Scripts. You can access this context in the dev tools 
+     * by selecting the 'Electron Isolated Context' entry in the combo box at the top 
+     * of the Console tab. Note: This option is currently experimental and may change 
+     * or be removed in future Electron releases.
+     */
+    /**
+     * Settings of web page's features.
+     */
+/**
+ * 
+ */
+)")
     }
 
     // ~ Events --------------------------------------------------------------------------------
@@ -17,8 +316,19 @@ class BrowserWindow(options: (Options.() -> Unit)?) {
 
     // ~ Properties ----------------------------------------------------------------------------
 
+    /**
+     * A WebContents object this window owns. All web page related events and 
+     * operations will be done via it.
+     *
+     * See the webContents documentation for its methods and events.
+     */
     val webContents: WebContents get() = instance.webContents
+
+    /**
+     * A Integer representing the unique ID of the window.
+     */
     val id: Int get() = instance.id
+
 
     // ~ Methods -------------------------------------------------------------------------------
 
@@ -559,28 +869,20 @@ class BrowserWindow(options: (Options.() -> Unit)?) {
      *  . Button Object
      *
      *     . iconNativeImage - The icon showing in thumbnail toolbar.
-     *
      *     . click Function
-     *
      *     . tooltip String (optional) - The text of the button's tooltip.
-     *
      *     . flags String[] (optional) - Control specific states and behaviors of the 
      *       button. By default, it is ['enabled'].
      *
      * The flags is an array that can include following Strings:
      *
      *  . enabled - The button is active and available to the user.
-     *
      *  . disabled - The button is disabled. It is present, but has a visual state 
      *    indicating it will not respond to user action.
-     *
      *  . dismissonclick - When the button is clicked, the thumbnail window closes 
      *    immediately.
-     *
      *  . nobackground - Do not draw a button border, use only the image.
-     *
      *  . hidden - The button is not shown to the user.
-     *
      *  . noninteractive - The button is enabled but not interactive; no pressed button 
      *    state is drawn. This value is intended for instances where the button is used 
      *    in a notification.
@@ -729,65 +1031,65 @@ class BrowserWindow(options: (Options.() -> Unit)?) {
 
         // ~ Methods -------------------------------------------------------------------------------
 
-    /**
-     */
+        /**
+         */
         fun getAllWindows(): Array<BrowserWindow> = 
             module.getAllWindows()
 
-    /**
-     */
+        /**
+         */
         fun getFocusedWindow(): BrowserWindow = 
             module.getFocusedWindow()
 
-    /**
-     */
+        /**
+         */
         fun fromWebContents(webContents: WebContents): BrowserWindow = 
             module.fromWebContents(webContents.instance)
 
-    /**
-     */
+        /**
+         */
         fun fromId(id: Int): BrowserWindow = 
             module.fromId(id)
 
-    /**
-     * Adds DevTools extension located at path, and returns extension's name.
-     *
-     * The extension will be remembered so you only need to call this API once, this 
-     * API is not for programming use. If you try to add an extension that has 
-     * already been loaded, this method will not return and instead log a warning to 
-     * the console.
-     *
-     * The method will also not return if the extension's manifest is missing or 
-     * incomplete.
-     *
-     * Note: This API cannot be called before the ready event of the app module is 
-     * emitted.
-     */
+        /**
+         * Adds DevTools extension located at path, and returns extension's name.
+         *
+         * The extension will be remembered so you only need to call this API once, this 
+         * API is not for programming use. If you try to add an extension that has 
+         * already been loaded, this method will not return and instead log a warning to 
+         * the console.
+         *
+         * The method will also not return if the extension's manifest is missing or 
+         * incomplete.
+         *
+         * Note: This API cannot be called before the ready event of the app module is 
+         * emitted.
+         */
         fun addDevToolsExtension(path: String): Unit = 
             module.addDevToolsExtension(path)
 
-    /**
-     * Remove a DevTools extension by name.
-     *
-     * Note: This API cannot be called before the ready event of the app module is 
-     * emitted.
-     */
+        /**
+         * Remove a DevTools extension by name.
+         *
+         * Note: This API cannot be called before the ready event of the app module is 
+         * emitted.
+         */
         fun removeDevToolsExtension(name: String): Unit = 
             module.removeDevToolsExtension(name)
 
-    /**
-     * To check if a DevTools extension is installed you can run the following:
-     *
-     *  | 
-     *  | const {BrowserWindow} = require('electron')
-     *  | 
-     *  | let installed = BrowserWindow.getDevToolsExtensions().hasOwnProperty('devtron')
-     *  | console.log(installed)
-     *  | 
-     *
-     * Note: This API cannot be called before the ready event of the app module is 
-     * emitted.
-     */
+        /**
+         * To check if a DevTools extension is installed you can run the following:
+         *
+         *  | 
+         *  | const {BrowserWindow} = require('electron')
+         *  | 
+         *  | let installed = BrowserWindow.getDevToolsExtensions().hasOwnProperty('devtron')
+         *  | console.log(installed)
+         *  | 
+         *
+         * Note: This API cannot be called before the ready event of the app module is 
+         * emitted.
+         */
         fun getDevToolsExtensions(): dynamic = 
             module.getDevToolsExtensions()
     }

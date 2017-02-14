@@ -18,7 +18,7 @@ object net {
      * specified protocol scheme in the options object.
      */
     fun request(options: dynamic): ClientRequest = 
-        module.request(options.instance)
+        module.request(options)
 
     // ~ Builders ------------------------------------------------------------------------------
 }

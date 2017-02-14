@@ -1,19 +1,65 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <file>
    <struct title="Display">
-      <property name="id" type="Number"/>
-      <property name="rotation" type="Number"/>
-      <property name="scaleFactor" type="Number"/>
-      <property name="touchSupport" type="String"/>
-      <property name="bounds" type="Rectangle"/>
-      <property name="size" type="Object">
-         <property name="height" type="Number"/>
-         <property name="width" type="Number"/>
+      <property name="id" type="Number">
+         <description>
+            <para>Unique identifier associated with the display.</para>
+         </description>
       </property>
-      <property name="workArea" type="Rectangle"/>
+      <property name="rotation" type="Number">
+         <description>
+            <para>Can be 0, 90, 180, 270, represents screen rotation in clock-wise degrees.</para>
+         </description>
+      </property>
+      <property name="scaleFactor" type="Number">
+         <description>
+            <para>Output device's pixel scale factor.</para>
+         </description>
+      </property>
+      <property name="touchSupport" type="String">
+         <description>
+            <para>Can be available, unavailable, unknown.</para>
+         </description>
+      </property>
+      <property name="bounds" type="Rectangle">
+         <description>
+            <para/>
+         </description>
+      </property>
+      <property name="size" type="Object">
+         <property name="height" type="Number">
+            <description>
+               <para/>
+            </description>
+         </property>
+         <property name="width" type="Number">
+            <description>
+               <para/>
+            </description>
+         </property>
+         <description>
+            <para/>
+         </description>
+      </property>
+      <property name="workArea" type="Rectangle">
+         <description>
+            <para/>
+         </description>
+      </property>
       <property name="workAreaSize" type="Object">
-         <property name="height" type="Number"/>
-         <property name="width" type="Number"/>
+         <property name="height" type="Number">
+            <description>
+               <para/>
+            </description>
+         </property>
+         <property name="width" type="Number">
+            <description>
+               <para/>
+            </description>
+         </property>
+         <description>
+            <para/>
+         </description>
       </property>
    </struct>
 </file>

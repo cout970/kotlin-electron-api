@@ -5,7 +5,7 @@
          <method name="isDarkMode">
             <returns type="Boolean">
                <description>
-                  <para>- Whether the system is in Dark Mode.</para>
+                  <para>Whether the system is in Dark Mode.</para>
                </description>
             </returns>
             <description/>
@@ -13,30 +13,61 @@
          <method name="isSwipeTrackingFromScrollEventsEnabled">
             <returns type="Boolean">
                <description>
-                  <para>- Whether the Swipe between pages setting is on.</para>
+                  <para>Whether the Swipe between pages setting is on.</para>
                </description>
             </returns>
             <description/>
          </method>
          <method name="postNotification">
-            <param name="event" type="String"/>
-            <param name="userInfo" type="Object"/>
+            <param name="event" type="String">
+               <description>
+                  <para/>
+               </description>
+            </param>
+            <param name="userInfo" type="Object">
+               <description>
+                  <para/>
+               </description>
+            </param>
             <description>
                <para>Posts event as native notifications of macOS. The userInfo is an Object that contains the user information dictionary sent along with the notification.</para>
             </description>
          </method>
          <method name="postLocalNotification">
-            <param name="event" type="String"/>
-            <param name="userInfo" type="Object"/>
+            <param name="event" type="String">
+               <description>
+                  <para/>
+               </description>
+            </param>
+            <param name="userInfo" type="Object">
+               <description>
+                  <para/>
+               </description>
+            </param>
             <description>
                <para>Posts event as native notifications of macOS. The userInfo is an Object that contains the user information dictionary sent along with the notification.</para>
             </description>
          </method>
          <method name="subscribeNotification">
-            <param name="event" type="String"/>
+            <param name="event" type="String">
+               <description>
+                  <para/>
+               </description>
+            </param>
             <param name="callback" type="Function">
-               <param name="event" type="String"/>
-               <param name="userInfo" type="Object"/>
+               <param name="event" type="String">
+                  <description>
+                     <para/>
+                  </description>
+               </param>
+               <param name="userInfo" type="Object">
+                  <description>
+                     <para/>
+                  </description>
+               </param>
+               <description>
+                  <para/>
+               </description>
             </param>
             <description>
                <para>Subscribes to native notifications of macOS, callback will be called with callback(event, userInfo) when the corresponding event happens. The userInfo is an Object that contains the user information dictionary sent along with the notification.</para>
@@ -59,30 +90,61 @@
             </description>
          </method>
          <method name="unsubscribeNotification">
-            <param name="id" type="Integer"/>
+            <param name="id" type="Integer">
+               <description>
+                  <para/>
+               </description>
+            </param>
             <description>
                <para>Removes the subscriber with id.</para>
             </description>
          </method>
          <method name="subscribeLocalNotification">
-            <param name="event" type="String"/>
+            <param name="event" type="String">
+               <description>
+                  <para/>
+               </description>
+            </param>
             <param name="callback" type="Function">
-               <param name="event" type="String"/>
-               <param name="userInfo" type="Object"/>
+               <param name="event" type="String">
+                  <description>
+                     <para/>
+                  </description>
+               </param>
+               <param name="userInfo" type="Object">
+                  <description>
+                     <para/>
+                  </description>
+               </param>
+               <description>
+                  <para/>
+               </description>
             </param>
             <description>
                <para>Same as subscribeNotification, but uses NSNotificationCenter for local defaults. This is necessary for events such as NSUserDefaultsDidChangeNotification</para>
             </description>
          </method>
          <method name="unsubscribeLocalNotification">
-            <param name="id" type="Integer"/>
+            <param name="id" type="Integer">
+               <description>
+                  <para/>
+               </description>
+            </param>
             <description>
                <para>Same as unsubscribeNotification, but removes the subscriber from NSNotificationCenter.</para>
             </description>
          </method>
          <method name="getUserDefault">
-            <param name="key" type="String"/>
-            <param name="type" type="String"/>
+            <param name="key" type="String">
+               <description>
+                  <para/>
+               </description>
+            </param>
+            <param name="type" type="String">
+               <description>
+                  <para>Can be string, boolean, integer, float, double, url, array, dictionary</para>
+               </description>
+            </param>
             <description>
                <para>Get the value of key in system preferences.</para>
                <para>This API uses NSUserDefaults on macOS. Some popular key and types are:</para>
@@ -112,9 +174,21 @@
             </description>
          </method>
          <method name="setUserDefault">
-            <param name="key" type="String"/>
-            <param name="type" type="String"/>
-            <param name="value" type="String"/>
+            <param name="key" type="String">
+               <description>
+                  <para/>
+               </description>
+            </param>
+            <param name="type" type="String">
+               <description>
+                  <para>See [getUserDefault][#systempreferencesgetuserdefaultkey-type-macos]</para>
+               </description>
+            </param>
+            <param name="value" type="String">
+               <description>
+                  <para/>
+               </description>
+            </param>
             <description>
                <para>Set the value of key in system preferences.</para>
                <para>Note that type should match actual type of value. An exception is thrown if they don't.</para>
@@ -156,7 +230,7 @@ if (browserOptions.transparent) {
          <method name="getAccentColor">
             <returns type="String">
                <description>
-                  <para>- The users current system wide accent color preference in RGBA hexadecimal form.</para>
+                  <para>The users current system wide accent color preference in RGBA hexadecimal form.</para>
                </description>
             </returns>
             <description>
@@ -171,40 +245,163 @@ const alpha = color.substr(6, 2) // "dd"
          </method>
          <method name="getColor">
             <param name="color" type="String">
-               <param name="3d-dark-shadow"/>
-               <param name="3d-face"/>
-               <param name="3d-highlight"/>
-               <param name="3d-light"/>
-               <param name="3d-shadow"/>
-               <param name="active-border"/>
-               <param name="active-caption"/>
-               <param name="active-caption-gradient"/>
-               <param name="app-workspace"/>
-               <param name="button-text"/>
-               <param name="caption-text"/>
-               <param name="desktop"/>
-               <param name="disabled-text"/>
-               <param name="highlight"/>
-               <param name="highlight-text"/>
-               <param name="hotlight"/>
-               <param name="inactive-border"/>
-               <param name="inactive-caption"/>
-               <param name="inactive-caption-gradient"/>
-               <param name="inactive-caption-text"/>
-               <param name="info-background"/>
-               <param name="info-text"/>
-               <param name="menu"/>
-               <param name="menu-highlight"/>
-               <param name="menubar"/>
-               <param name="menu-text"/>
-               <param name="scrollbar"/>
-               <param name="window"/>
-               <param name="window-frame"/>
-               <param name="window-text"/>
+               <param name="3d-dark-shadow">
+                  <description>
+                     <para>dark-shadow - Dark shadow for three-dimensional display elements.</para>
+                  </description>
+               </param>
+               <param name="3d-face">
+                  <description>
+                     <para>face - Face color for three-dimensional display elements and for dialog box backgrounds.</para>
+                  </description>
+               </param>
+               <param name="3d-highlight">
+                  <description>
+                     <para>highlight - Highlight color for three-dimensional display elements.</para>
+                  </description>
+               </param>
+               <param name="3d-light">
+                  <description>
+                     <para>light - Light color for three-dimensional display elements.</para>
+                  </description>
+               </param>
+               <param name="3d-shadow">
+                  <description>
+                     <para>shadow - Shadow color for three-dimensional display elements.</para>
+                  </description>
+               </param>
+               <param name="active-border">
+                  <description>
+                     <para>border - Active window border.</para>
+                  </description>
+               </param>
+               <param name="active-caption">
+                  <description>
+                     <para>caption - Active window title bar. Specifies the left side color in the color gradient of an active window's title bar if the gradient effect is enabled.</para>
+                  </description>
+               </param>
+               <param name="active-caption-gradient">
+                  <description>
+                     <para>caption-gradient - Right side color in the color gradient of an active window's title bar.</para>
+                  </description>
+               </param>
+               <param name="app-workspace">
+                  <description>
+                     <para>workspace - Background color of multiple document interface (MDI) applications.</para>
+                  </description>
+               </param>
+               <param name="button-text">
+                  <description>
+                     <para>text - Text on push buttons.</para>
+                  </description>
+               </param>
+               <param name="caption-text">
+                  <description>
+                     <para>text - Text in caption, size box, and scroll bar arrow box.</para>
+                  </description>
+               </param>
+               <param name="desktop">
+                  <description>
+                     <para>Desktop background color.</para>
+                  </description>
+               </param>
+               <param name="disabled-text">
+                  <description>
+                     <para>text - Grayed (disabled) text.</para>
+                  </description>
+               </param>
+               <param name="highlight">
+                  <description>
+                     <para>Item(s) selected in a control.</para>
+                  </description>
+               </param>
+               <param name="highlight-text">
+                  <description>
+                     <para>text - Text of item(s) selected in a control.</para>
+                  </description>
+               </param>
+               <param name="hotlight">
+                  <description>
+                     <para>Color for a hyperlink or hot-tracked item.</para>
+                  </description>
+               </param>
+               <param name="inactive-border">
+                  <description>
+                     <para>border - Inactive window border.</para>
+                  </description>
+               </param>
+               <param name="inactive-caption">
+                  <description>
+                     <para>caption - Inactive window caption. Specifies the left side color in the color gradient of an inactive window's title bar if the gradient effect is enabled.</para>
+                  </description>
+               </param>
+               <param name="inactive-caption-gradient">
+                  <description>
+                     <para>caption-gradient - Right side color in the color gradient of an inactive window's title bar.</para>
+                  </description>
+               </param>
+               <param name="inactive-caption-text">
+                  <description>
+                     <para>caption-text - Color of text in an inactive caption.</para>
+                  </description>
+               </param>
+               <param name="info-background">
+                  <description>
+                     <para>background - Background color for tooltip controls.</para>
+                  </description>
+               </param>
+               <param name="info-text">
+                  <description>
+                     <para>text - Text color for tooltip controls.</para>
+                  </description>
+               </param>
+               <param name="menu">
+                  <description>
+                     <para>Menu background.</para>
+                  </description>
+               </param>
+               <param name="menu-highlight">
+                  <description>
+                     <para>highlight - The color used to highlight menu items when the menu appears as a flat menu.</para>
+                  </description>
+               </param>
+               <param name="menubar">
+                  <description>
+                     <para>The background color for the menu bar when menus appear as flat menus.</para>
+                  </description>
+               </param>
+               <param name="menu-text">
+                  <description>
+                     <para>text - Text in menus.</para>
+                  </description>
+               </param>
+               <param name="scrollbar">
+                  <description>
+                     <para>Scroll bar gray area.</para>
+                  </description>
+               </param>
+               <param name="window">
+                  <description>
+                     <para>Window background.</para>
+                  </description>
+               </param>
+               <param name="window-frame">
+                  <description>
+                     <para>frame - Window frame.</para>
+                  </description>
+               </param>
+               <param name="window-text">
+                  <description>
+                     <para>text - Text in windows.</para>
+                  </description>
+               </param>
+               <description>
+                  <para>One of the following values:</para>
+               </description>
             </param>
             <returns type="String">
                <description>
-                  <para>- The system color setting in RGB hexadecimal form (#ABCDEF). See the Windows docs for more details.</para>
+                  <para>The system color setting in RGB hexadecimal form (#ABCDEF). See the Windows docs for more details.</para>
                </description>
             </returns>
             <description/>
@@ -212,7 +409,7 @@ const alpha = color.substr(6, 2) // "dd"
          <method name="isInvertedColorScheme">
             <returns type="Boolean">
                <description>
-                  <para>- true if an inverted color scheme, such as a high contrast theme, is active, false otherwise.</para>
+                  <para>true if an inverted color scheme, such as a high contrast theme, is active, false otherwise.</para>
                </description>
             </returns>
             <description/>

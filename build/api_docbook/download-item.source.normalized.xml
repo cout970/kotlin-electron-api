@@ -4,7 +4,11 @@
       <constructor/>
       <methods type="instance">
          <method name="setSavePath">
-            <param name="path" type="String"/>
+            <param name="path" type="String">
+               <description>
+                  <para>Set the save file path of the download item.</para>
+               </description>
+            </param>
             <description>
                <para>The API is only available in session's will-download callback function. If user doesn't set the save path via the API, Electron will use the original routine to determine the save path(Usually prompts a save dialog).</para>
             </description>
@@ -12,7 +16,7 @@
          <method name="getSavePath">
             <returns type="String">
                <description>
-                  <para>- The save path of the download item. This will be either the path set via downloadItem.setSavePath(path) or the path selected from the shown save dialog.</para>
+                  <para>The save path of the download item. This will be either the path set via downloadItem.setSavePath(path) or the path selected from the shown save dialog.</para>
                </description>
             </returns>
             <description/>
@@ -25,7 +29,7 @@
          <method name="isPaused">
             <returns type="Boolean">
                <description>
-                  <para>- Whether the download is paused.</para>
+                  <para>Whether the download is paused.</para>
                </description>
             </returns>
             <description/>
@@ -48,7 +52,7 @@
          <method name="getURL">
             <returns type="String">
                <description>
-                  <para>- The origin url where the item is downloaded from.</para>
+                  <para>The origin url where the item is downloaded from.</para>
                </description>
             </returns>
             <description/>
@@ -56,7 +60,7 @@
          <method name="getMimeType">
             <returns type="String">
                <description>
-                  <para>- The files mime type.</para>
+                  <para>The files mime type.</para>
                </description>
             </returns>
             <description/>
@@ -64,7 +68,7 @@
          <method name="hasUserGesture">
             <returns type="Boolean">
                <description>
-                  <para>- Whether the download has user gesture.</para>
+                  <para>Whether the download has user gesture.</para>
                </description>
             </returns>
             <description/>
@@ -72,7 +76,7 @@
          <method name="getFilename">
             <returns type="String">
                <description>
-                  <para>- The file name of the download item.</para>
+                  <para>The file name of the download item.</para>
                </description>
             </returns>
             <description>
@@ -82,7 +86,7 @@
          <method name="getTotalBytes">
             <returns type="Integer">
                <description>
-                  <para>- The total size in bytes of the download item.</para>
+                  <para>The total size in bytes of the download item.</para>
                </description>
             </returns>
             <description>
@@ -92,7 +96,7 @@
          <method name="getReceivedBytes">
             <returns type="Integer">
                <description>
-                  <para>- The received bytes of the download item.</para>
+                  <para>The received bytes of the download item.</para>
                </description>
             </returns>
             <description/>
@@ -100,7 +104,7 @@
          <method name="getContentDisposition">
             <returns type="String">
                <description>
-                  <para>- The Content-Disposition field from the response header.</para>
+                  <para>The Content-Disposition field from the response header.</para>
                </description>
             </returns>
             <description/>
@@ -108,7 +112,7 @@
          <method name="getState">
             <returns type="String">
                <description>
-                  <para>- The current state. Can be progressing, completed, cancelled or interrupted.</para>
+                  <para>The current state. Can be progressing, completed, cancelled or interrupted.</para>
                </description>
             </returns>
             <description>
@@ -118,7 +122,7 @@
          <method name="getURLChain">
             <returns type="String" isArray="true">
                <description>
-                  <para>- The complete url chain of the item including any redirects.</para>
+                  <para>The complete url chain of the item including any redirects.</para>
                </description>
             </returns>
             <description/>
@@ -126,7 +130,7 @@
          <method name="getLastModifiedTime">
             <returns type="String">
                <description>
-                  <para>- Last-Modified header value.</para>
+                  <para>Last-Modified header value.</para>
                </description>
             </returns>
             <description/>
@@ -134,7 +138,7 @@
          <method name="getETag">
             <returns type="String">
                <description>
-                  <para>- ETag header value.</para>
+                  <para>ETag header value.</para>
                </description>
             </returns>
             <description/>
@@ -142,7 +146,7 @@
          <method name="getStartTime">
             <returns type="Double">
                <description>
-                  <para>- Number of seconds since the UNIX epoch when the download was started.</para>
+                  <para>Number of seconds since the UNIX epoch when the download was started.</para>
                </description>
             </returns>
             <description/>

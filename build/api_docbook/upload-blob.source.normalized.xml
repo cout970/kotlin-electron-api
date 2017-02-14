@@ -1,7 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <file>
    <struct title="UploadBlob">
-      <property name="type" type="String"/>
-      <property name="blobUUID" type="String"/>
+      <property name="type" type="String">
+         <description>
+            <para>blob.</para>
+         </description>
+      </property>
+      <property name="blobUUID" type="String">
+         <description>
+            <para>UUID of blob data to upload.</para>
+         </description>
+      </property>
    </struct>
 </file>

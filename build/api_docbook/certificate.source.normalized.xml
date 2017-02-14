@@ -1,15 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <file>
    <struct title="Certificate">
-      <property name="data" type="String"/>
-      <property name="issuer" type="CertificatePrincipal"/>
-      <property name="issuerName" type="String"/>
-      <property name="issuerCert" type="Certificate"/>
-      <property name="subject" type="CertificatePrincipal"/>
-      <property name="subjectName" type="String"/>
-      <property name="serialNumber" type="String"/>
-      <property name="validStart" type="Number"/>
-      <property name="validExpiry" type="Number"/>
-      <property name="fingerprint" type="String"/>
+      <property name="data" type="String">
+         <description>
+            <para>PEM encoded data</para>
+         </description>
+      </property>
+      <property name="issuer" type="CertificatePrincipal">
+         <description>
+            <para>Issuer principal</para>
+         </description>
+      </property>
+      <property name="issuerName" type="String">
+         <description>
+            <para>Issuer's Common Name</para>
+         </description>
+      </property>
+      <property name="issuerCert" type="Certificate">
+         <description>
+            <para>Issuer certificate (if not self-signed)</para>
+         </description>
+      </property>
+      <property name="subject" type="CertificatePrincipal">
+         <description>
+            <para>Subject principal</para>
+         </description>
+      </property>
+      <property name="subjectName" type="String">
+         <description>
+            <para>Subject's Common Name</para>
+         </description>
+      </property>
+      <property name="serialNumber" type="String">
+         <description>
+            <para>Hex value represented string</para>
+         </description>
+      </property>
+      <property name="validStart" type="Number">
+         <description>
+            <para>Start date of the certificate being valid in seconds</para>
+         </description>
+      </property>
+      <property name="validExpiry" type="Number">
+         <description>
+            <para>End date of the certificate being valid in seconds</para>
+         </description>
+      </property>
+      <property name="fingerprint" type="String">
+         <description>
+            <para>Fingerprint of the certificate</para>
+         </description>
+      </property>
    </struct>
 </file>

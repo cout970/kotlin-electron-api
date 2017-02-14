@@ -34,3 +34,5 @@ task electronAPI(type: IncrementalXSLTTask, dependsOn: ["electronAPInormalize"])
     }
     xsltFile new File(rootDir, "step2KotlinOutput.xsl")
 }
+
+build.dependsOn electronAPI

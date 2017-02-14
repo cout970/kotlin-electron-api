@@ -57,7 +57,6 @@ object clipboard {
 
     /**
      *  . title String
-     *
      *  . url String
      *
      */

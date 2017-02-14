@@ -6,7 +6,7 @@ class Tray(image: dynamic) {
 
     init {
         val _constructor = js("require('electron').Tray")
-        val _image = image.instance
+        val _image = _image
         instance = js("new _constructor(_image)")
     }
 
@@ -27,7 +27,7 @@ class Tray(image: dynamic) {
      * Sets the image associated with this tray icon.
      */
     fun setImage(image: dynamic): Unit = 
-        instance.setImage(image.instance)
+        instance.setImage(image)
 
     /**
      * Sets the image associated with this tray icon when pressed on macOS.

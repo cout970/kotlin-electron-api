@@ -1,10 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <file>
    <struct title="UploadFileSystem">
-      <property name="type" type="String"/>
-      <property name="filsSystemURL" type="String"/>
-      <property name="offset" type="Integer"/>
-      <property name="length" type="Integer"/>
-      <property name="modificationTime" type="Double"/>
+      <property name="type" type="String">
+         <description>
+            <para>fileSystem.</para>
+         </description>
+      </property>
+      <property name="filsSystemURL" type="String">
+         <description>
+            <para>FileSystem url to read data for upload.</para>
+         </description>
+      </property>
+      <property name="offset" type="Integer">
+         <description>
+            <para>Defaults to 0.</para>
+         </description>
+      </property>
+      <property name="length" type="Integer">
+         <description>
+            <para>Number of bytes to read from offset. Defaults to 0.</para>
+         </description>
+      </property>
+      <property name="modificationTime" type="Double">
+         <description>
+            <para>Last Modification time in number of seconds sine the UNIX epoch.</para>
+         </description>
+      </property>
    </struct>
 </file>

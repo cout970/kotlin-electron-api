@@ -4,12 +4,23 @@
       <methods>
          <method name="start">
             <param name="type" type="String">
-               <param name="prevent-app-suspension"/>
-               <param name="prevent-display-sleep"/>
+               <param name="prevent-app-suspension">
+                  <description>
+                     <para>app-suspension - Prevent the application from being suspended. Keeps system active but allows screen to be turned off. Example use cases: downloading a file or playing audio.</para>
+                  </description>
+               </param>
+               <param name="prevent-display-sleep">
+                  <description>
+                     <para>display-sleep - Prevent the display from going to sleep. Keeps system and screen active. Example use case: playing video.</para>
+                  </description>
+               </param>
+               <description>
+                  <para>Power save blocker type.</para>
+               </description>
             </param>
             <returns type="Integer">
                <description>
-                  <para>- The blocker ID that is assigned to this power blocker</para>
+                  <para>The blocker ID that is assigned to this power blocker</para>
                </description>
             </returns>
             <description>
@@ -19,16 +30,24 @@
             </description>
          </method>
          <method name="stop">
-            <param name="id" type="Integer"/>
+            <param name="id" type="Integer">
+               <description>
+                  <para>The power save blocker id returned by powerSaveBlocker.start.</para>
+               </description>
+            </param>
             <description>
                <para>Stops the specified power save blocker.</para>
             </description>
          </method>
          <method name="isStarted">
-            <param name="id" type="Integer"/>
+            <param name="id" type="Integer">
+               <description>
+                  <para>The power save blocker id returned by powerSaveBlocker.start.</para>
+               </description>
+            </param>
             <returns type="Boolean">
                <description>
-                  <para>- Whether the corresponding powerSaveBlocker has started.</para>
+                  <para>Whether the corresponding powerSaveBlocker has started.</para>
                </description>
             </returns>
             <description/>

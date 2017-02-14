@@ -3,13 +3,24 @@
    <object title="session">
       <methods>
          <method name="fromPartition">
-            <param name="partition" type="String"/>
+            <param name="partition" type="String">
+               <description>
+                  <para/>
+               </description>
+            </param>
             <param name="options" type="Object">
-               <property name="cache" type="Boolean"/>
+               <property name="cache" type="Boolean">
+                  <description>
+                     <para>Whether to enable cache.</para>
+                  </description>
+               </property>
+               <description>
+                  <para/>
+               </description>
             </param>
             <returns type="Session">
                <description>
-                  <para>- A session instance from partition string. When there is an existing Session with the same partition, it will be returned; otherwise a new Session instance will be created with options.</para>
+                  <para>A session instance from partition string. When there is an existing Session with the same partition, it will be returned; otherwise a new Session instance will be created with options.</para>
                </description>
             </returns>
             <description>
@@ -23,25 +34,55 @@
          <methods type="instance">
             <method name="getCacheSize">
                <param name="callback" type="Function">
-                  <param name="size" type="Integer"/>
+                  <param name="size" type="Integer">
+                     <description>
+                        <para>Cache size used in bytes.</para>
+                     </description>
+                  </param>
+                  <description>
+                     <para/>
+                  </description>
                </param>
                <description>
                   <para>Callback is invoked with the session's current cache size.</para>
                </description>
             </method>
             <method name="clearCache">
-               <param name="callback" type="Function"/>
+               <param name="callback" type="Function">
+                  <description>
+                     <para>Called when operation is done</para>
+                  </description>
+               </param>
                <description>
                   <para>Clears the session’s HTTP cache.</para>
                </description>
             </method>
             <method name="clearStorageData">
                <param optional="true" name="options" type="Object">
-                  <property name="origin" type="String"/>
-                  <property name="storages" type="String" isArray="true"/>
-                  <property name="quotas" type="String" isArray="true"/>
+                  <property name="origin" type="String">
+                     <description>
+                        <para>Should follow window.location.origin’s representation scheme://host:port.</para>
+                     </description>
+                  </property>
+                  <property name="storages" type="String" isArray="true">
+                     <description>
+                        <para>The types of storages to clear, can contain: appcache, cookies, filesystem, indexdb, localstorage, shadercache, websql, serviceworkers</para>
+                     </description>
+                  </property>
+                  <property name="quotas" type="String" isArray="true">
+                     <description>
+                        <para>The types of quotas to clear, can contain: temporary, persistent, syncable.</para>
+                     </description>
+                  </property>
+                  <description>
+                     <para/>
+                  </description>
                </param>
-               <param optional="true" name="callback" type="Function"/>
+               <param optional="true" name="callback" type="Function">
+                  <description>
+                     <para>Called when operation is done.</para>
+                  </description>
+               </param>
                <description>
                   <para>Clears the data of web storages.</para>
                </description>
@@ -53,11 +94,30 @@
             </method>
             <method name="setProxy">
                <param name="config" type="Object">
-                  <property name="pacScript" type="String"/>
-                  <property name="proxyRules" type="String"/>
-                  <property name="proxyBypassRules" type="String"/>
+                  <property name="pacScript" type="String">
+                     <description>
+                        <para>The URL associated with the PAC file.</para>
+                     </description>
+                  </property>
+                  <property name="proxyRules" type="String">
+                     <description>
+                        <para>Rules indicating which proxies to use.</para>
+                     </description>
+                  </property>
+                  <property name="proxyBypassRules" type="String">
+                     <description>
+                        <para>Rules indicating which URLs should bypass the proxy settings.</para>
+                     </description>
+                  </property>
+                  <description>
+                     <para/>
+                  </description>
                </param>
-               <param name="callback" type="Function"/>
+               <param name="callback" type="Function">
+                  <description>
+                     <para>Called when operation is done.</para>
+                  </description>
+               </param>
                <description>
                   <para>Sets the proxy settings.</para>
                   <para>When pacScript and proxyRules are provided together, the proxyRules option is ignored and pacScript configuration is applied.</para>
@@ -131,26 +191,60 @@ proxyURL = [&lt;proxyScheme&gt;"://"]&lt;proxyHost&gt;[":"&lt;proxyPort&gt;]
                </description>
             </method>
             <method name="resolveProxy">
-               <param name="url" type="URL"/>
+               <param name="url" type="URL">
+                  <description>
+                     <para/>
+                  </description>
+               </param>
                <param name="callback" type="Function">
-                  <param name="proxy" type="Object"/>
+                  <param name="proxy" type="Object">
+                     <description>
+                        <para/>
+                     </description>
+                  </param>
+                  <description>
+                     <para/>
+                  </description>
                </param>
                <description>
                   <para>Resolves the proxy information for url. The callback will be called with callback(proxy) when the request is performed.</para>
                </description>
             </method>
             <method name="setDownloadPath">
-               <param name="path" type="String"/>
+               <param name="path" type="String">
+                  <description>
+                     <para>The download location</para>
+                  </description>
+               </param>
                <description>
                   <para>Sets download saving directory. By default, the download directory will be the Downloads under the respective app folder.</para>
                </description>
             </method>
             <method name="enableNetworkEmulation">
                <param name="options" type="Object">
-                  <property optional="true" name="offline" type="Boolean"/>
-                  <property optional="true" name="latency" type="Double"/>
-                  <property optional="true" name="downloadThroughput" type="Double"/>
-                  <property optional="true" name="uploadThroughput" type="Double"/>
+                  <property optional="true" name="offline" type="Boolean">
+                     <description>
+                        <para>Whether to emulate network outage. Defaults to false.</para>
+                     </description>
+                  </property>
+                  <property optional="true" name="latency" type="Double">
+                     <description>
+                        <para>RTT in ms. Defaults to 0 which will disable latency throttling.</para>
+                     </description>
+                  </property>
+                  <property optional="true" name="downloadThroughput" type="Double">
+                     <description>
+                        <para>Download rate in Bps. Defaults to 0 which will disable download throttling.</para>
+                     </description>
+                  </property>
+                  <property optional="true" name="uploadThroughput" type="Double">
+                     <description>
+                        <para>Upload rate in Bps. Defaults to 0 which will disable upload throttling.</para>
+                     </description>
+                  </property>
+                  <description>
+                     <para/>
+                  </description>
                </param>
                <description>
                   <para>Emulates network with the given configuration for the session.</para>
@@ -174,11 +268,29 @@ window.webContents.session.enableNetworkEmulation({offline: true})
             </method>
             <method name="setCertificateVerifyProc">
                <param name="proc" type="Function">
-                  <param name="hostname" type="String"/>
-                  <param name="certificate" type="Certificate"/>
-                  <param name="callback" type="Function">
-                     <param name="isTrusted" type="Boolean"/>
+                  <param name="hostname" type="String">
+                     <description>
+                        <para/>
+                     </description>
                   </param>
+                  <param name="certificate" type="Certificate">
+                     <description>
+                        <para/>
+                     </description>
+                  </param>
+                  <param name="callback" type="Function">
+                     <param name="isTrusted" type="Boolean">
+                        <description>
+                           <para>Determines if the certificate should be trusted</para>
+                        </description>
+                     </param>
+                     <description>
+                        <para/>
+                     </description>
+                  </param>
+                  <description>
+                     <para/>
+                  </description>
                </param>
                <description>
                   <para>Sets the certificate verify proc for session, the proc will be called with proc(hostname, certificate, callback) whenever a server certificate verification is requested. Calling callback(true) accepts the certificate, calling callback(false) rejects it.</para>
@@ -195,11 +307,29 @@ win.webContents.session.setCertificateVerifyProc((hostname, cert, callback) =&gt
             </method>
             <method name="setPermissionRequestHandler">
                <param name="handler" type="Function">
-                  <param name="webContents" type="Object"/>
-                  <param name="permission" type="String"/>
-                  <param name="callback" type="Function">
-                     <param name="permissionGranted" type="Boolean"/>
+                  <param name="webContents" type="Object">
+                     <description>
+                        <para>WebContents requesting the permission.</para>
+                     </description>
                   </param>
+                  <param name="permission" type="String">
+                     <description>
+                        <para>Enum of 'media', 'geolocation', 'notifications', 'midiSysex', 'pointerLock', 'fullscreen', 'openExternal'.</para>
+                     </description>
+                  </param>
+                  <param name="callback" type="Function">
+                     <param name="permissionGranted" type="Boolean">
+                        <description>
+                           <para>Allow or deny the permission</para>
+                        </description>
+                     </param>
+                     <description>
+                        <para/>
+                     </description>
+                  </param>
+                  <description>
+                     <para/>
+                  </description>
                </param>
                <description>
                   <para>Sets the handler which can be used to respond to permission requests for the session. Calling callback(true) will allow the permission and callback(false) will reject it.</para>
@@ -216,13 +346,21 @@ session.fromPartition('some-partition').setPermissionRequestHandler((webContents
                </description>
             </method>
             <method name="clearHostResolverCache">
-               <param optional="true" name="callback" type="Function"/>
+               <param optional="true" name="callback" type="Function">
+                  <description>
+                     <para>Called when operation is done.</para>
+                  </description>
+               </param>
                <description>
                   <para>Clears the host resolver cache.</para>
                </description>
             </method>
             <method name="allowNTLMCredentialsForDomains">
-               <param name="domains" type="String"/>
+               <param name="domains" type="String">
+                  <description>
+                     <para>A comma-seperated list of servers for which integrated authentication is enabled.</para>
+                  </description>
+               </param>
                <description>
                   <para>Dynamically sets whether to always send credentials for HTTP NTLM or Negotiate authentication.</para>
                   <programlisting language="javascript">
@@ -237,8 +375,16 @@ session.defaultSession.allowNTLMCredentialsForDomains('*')
                </description>
             </method>
             <method name="setUserAgent">
-               <param name="userAgent" type="String"/>
-               <param optional="true" name="acceptLanguages" type="String"/>
+               <param name="userAgent" type="String">
+                  <description>
+                     <para/>
+                  </description>
+               </param>
+               <param optional="true" name="acceptLanguages" type="String">
+                  <description>
+                     <para/>
+                  </description>
+               </param>
                <description>
                   <para>Overrides the userAgent and acceptLanguages for this session.</para>
                   <para>The acceptLanguages must a comma separated ordered list of language codes, for example "en-US,fr,de,ko,zh-CN,ja".</para>
@@ -248,33 +394,79 @@ session.defaultSession.allowNTLMCredentialsForDomains('*')
             <method name="getUserAgent">
                <returns type="String">
                   <description>
-                     <para>- The user agent for this session.</para>
+                     <para>The user agent for this session.</para>
                   </description>
                </returns>
                <description/>
             </method>
             <method name="getBlobData">
-               <param name="identifier" type="String"/>
+               <param name="identifier" type="String">
+                  <description>
+                     <para>Valid UUID.</para>
+                  </description>
+               </param>
                <param name="callback" type="Function">
-                  <param name="result" type="Buffer"/>
+                  <param name="result" type="Buffer">
+                     <description>
+                        <para>Blob data.</para>
+                     </description>
+                  </param>
+                  <description>
+                     <para/>
+                  </description>
                </param>
                <returns type="Blob">
                   <description>
-                     <para>- The blob data associated with the identifier.</para>
+                     <para>The blob data associated with the identifier.</para>
                   </description>
                </returns>
                <description/>
             </method>
             <method name="createInterruptedDownload">
                <param name="options" type="Object">
-                  <property name="path" type="String"/>
-                  <property name="urlChain" type="String" isArray="true"/>
-                  <property optional="true" name="mimeType" type="String"/>
-                  <property name="offset" type="Integer"/>
-                  <property name="length" type="Integer"/>
-                  <property name="lastModified" type="String"/>
-                  <property name="eTag" type="String"/>
-                  <property optional="true" name="startTime" type="Double"/>
+                  <property name="path" type="String">
+                     <description>
+                        <para>Absolute path of the download.</para>
+                     </description>
+                  </property>
+                  <property name="urlChain" type="String" isArray="true">
+                     <description>
+                        <para>Complete URL chain for the download.</para>
+                     </description>
+                  </property>
+                  <property optional="true" name="mimeType" type="String">
+                     <description>
+                        <para/>
+                     </description>
+                  </property>
+                  <property name="offset" type="Integer">
+                     <description>
+                        <para>Start range for the download.</para>
+                     </description>
+                  </property>
+                  <property name="length" type="Integer">
+                     <description>
+                        <para>Total length of the download.</para>
+                     </description>
+                  </property>
+                  <property name="lastModified" type="String">
+                     <description>
+                        <para>Last-Modified header value.</para>
+                     </description>
+                  </property>
+                  <property name="eTag" type="String">
+                     <description>
+                        <para>ETag header value.</para>
+                     </description>
+                  </property>
+                  <property optional="true" name="startTime" type="Double">
+                     <description>
+                        <para>Time when download was started in number of seconds since UNIX epoch.</para>
+                     </description>
+                  </property>
+                  <description>
+                     <para/>
+                  </description>
                </param>
                <description>
                   <para>Allows resuming cancelled or interrupted downloads from previous Session. The API will generate a DownloadItem that can be accessed with the will-download event. The DownloadItem will not have any WebContents associated with it and the initial state will be interrupted. The download will start only when the resume API is called on the DownloadItem.</para>
@@ -284,8 +476,15 @@ session.defaultSession.allowNTLMCredentialsForDomains('*')
                <param name="options" type="union">
                   <option type="RemovePassword"/>
                   <option type="RemoveClientCertificate"/>
+                  <description>
+                     <para/>
+                  </description>
                </param>
-               <param optional="true" name="callback" type="Function"/>
+               <param optional="true" name="callback" type="Function">
+                  <description>
+                     <para>Called when operation is done</para>
+                  </description>
+               </param>
                <description>
                   <para>Clears the session’s HTTP authentication cache.</para>
                </description>
@@ -329,25 +528,55 @@ app.on('ready', function () {
       <methods type="instance">
          <method name="getCacheSize">
             <param name="callback" type="Function">
-               <param name="size" type="Integer"/>
+               <param name="size" type="Integer">
+                  <description>
+                     <para>Cache size used in bytes.</para>
+                  </description>
+               </param>
+               <description>
+                  <para/>
+               </description>
             </param>
             <description>
                <para>Callback is invoked with the session's current cache size.</para>
             </description>
          </method>
          <method name="clearCache">
-            <param name="callback" type="Function"/>
+            <param name="callback" type="Function">
+               <description>
+                  <para>Called when operation is done</para>
+               </description>
+            </param>
             <description>
                <para>Clears the session’s HTTP cache.</para>
             </description>
          </method>
          <method name="clearStorageData">
             <param optional="true" name="options" type="Object">
-               <property name="origin" type="String"/>
-               <property name="storages" type="String" isArray="true"/>
-               <property name="quotas" type="String" isArray="true"/>
+               <property name="origin" type="String">
+                  <description>
+                     <para>Should follow window.location.origin’s representation scheme://host:port.</para>
+                  </description>
+               </property>
+               <property name="storages" type="String" isArray="true">
+                  <description>
+                     <para>The types of storages to clear, can contain: appcache, cookies, filesystem, indexdb, localstorage, shadercache, websql, serviceworkers</para>
+                  </description>
+               </property>
+               <property name="quotas" type="String" isArray="true">
+                  <description>
+                     <para>The types of quotas to clear, can contain: temporary, persistent, syncable.</para>
+                  </description>
+               </property>
+               <description>
+                  <para/>
+               </description>
             </param>
-            <param optional="true" name="callback" type="Function"/>
+            <param optional="true" name="callback" type="Function">
+               <description>
+                  <para>Called when operation is done.</para>
+               </description>
+            </param>
             <description>
                <para>Clears the data of web storages.</para>
             </description>
@@ -359,11 +588,30 @@ app.on('ready', function () {
          </method>
          <method name="setProxy">
             <param name="config" type="Object">
-               <property name="pacScript" type="String"/>
-               <property name="proxyRules" type="String"/>
-               <property name="proxyBypassRules" type="String"/>
+               <property name="pacScript" type="String">
+                  <description>
+                     <para>The URL associated with the PAC file.</para>
+                  </description>
+               </property>
+               <property name="proxyRules" type="String">
+                  <description>
+                     <para>Rules indicating which proxies to use.</para>
+                  </description>
+               </property>
+               <property name="proxyBypassRules" type="String">
+                  <description>
+                     <para>Rules indicating which URLs should bypass the proxy settings.</para>
+                  </description>
+               </property>
+               <description>
+                  <para/>
+               </description>
             </param>
-            <param name="callback" type="Function"/>
+            <param name="callback" type="Function">
+               <description>
+                  <para>Called when operation is done.</para>
+               </description>
+            </param>
             <description>
                <para>Sets the proxy settings.</para>
                <para>When pacScript and proxyRules are provided together, the proxyRules option is ignored and pacScript configuration is applied.</para>
@@ -437,26 +685,60 @@ proxyURL = [&lt;proxyScheme&gt;"://"]&lt;proxyHost&gt;[":"&lt;proxyPort&gt;]
             </description>
          </method>
          <method name="resolveProxy">
-            <param name="url" type="URL"/>
+            <param name="url" type="URL">
+               <description>
+                  <para/>
+               </description>
+            </param>
             <param name="callback" type="Function">
-               <param name="proxy" type="Object"/>
+               <param name="proxy" type="Object">
+                  <description>
+                     <para/>
+                  </description>
+               </param>
+               <description>
+                  <para/>
+               </description>
             </param>
             <description>
                <para>Resolves the proxy information for url. The callback will be called with callback(proxy) when the request is performed.</para>
             </description>
          </method>
          <method name="setDownloadPath">
-            <param name="path" type="String"/>
+            <param name="path" type="String">
+               <description>
+                  <para>The download location</para>
+               </description>
+            </param>
             <description>
                <para>Sets download saving directory. By default, the download directory will be the Downloads under the respective app folder.</para>
             </description>
          </method>
          <method name="enableNetworkEmulation">
             <param name="options" type="Object">
-               <property optional="true" name="offline" type="Boolean"/>
-               <property optional="true" name="latency" type="Double"/>
-               <property optional="true" name="downloadThroughput" type="Double"/>
-               <property optional="true" name="uploadThroughput" type="Double"/>
+               <property optional="true" name="offline" type="Boolean">
+                  <description>
+                     <para>Whether to emulate network outage. Defaults to false.</para>
+                  </description>
+               </property>
+               <property optional="true" name="latency" type="Double">
+                  <description>
+                     <para>RTT in ms. Defaults to 0 which will disable latency throttling.</para>
+                  </description>
+               </property>
+               <property optional="true" name="downloadThroughput" type="Double">
+                  <description>
+                     <para>Download rate in Bps. Defaults to 0 which will disable download throttling.</para>
+                  </description>
+               </property>
+               <property optional="true" name="uploadThroughput" type="Double">
+                  <description>
+                     <para>Upload rate in Bps. Defaults to 0 which will disable upload throttling.</para>
+                  </description>
+               </property>
+               <description>
+                  <para/>
+               </description>
             </param>
             <description>
                <para>Emulates network with the given configuration for the session.</para>
@@ -480,11 +762,29 @@ window.webContents.session.enableNetworkEmulation({offline: true})
          </method>
          <method name="setCertificateVerifyProc">
             <param name="proc" type="Function">
-               <param name="hostname" type="String"/>
-               <param name="certificate" type="Certificate"/>
-               <param name="callback" type="Function">
-                  <param name="isTrusted" type="Boolean"/>
+               <param name="hostname" type="String">
+                  <description>
+                     <para/>
+                  </description>
                </param>
+               <param name="certificate" type="Certificate">
+                  <description>
+                     <para/>
+                  </description>
+               </param>
+               <param name="callback" type="Function">
+                  <param name="isTrusted" type="Boolean">
+                     <description>
+                        <para>Determines if the certificate should be trusted</para>
+                     </description>
+                  </param>
+                  <description>
+                     <para/>
+                  </description>
+               </param>
+               <description>
+                  <para/>
+               </description>
             </param>
             <description>
                <para>Sets the certificate verify proc for session, the proc will be called with proc(hostname, certificate, callback) whenever a server certificate verification is requested. Calling callback(true) accepts the certificate, calling callback(false) rejects it.</para>
@@ -501,11 +801,29 @@ win.webContents.session.setCertificateVerifyProc((hostname, cert, callback) =&gt
          </method>
          <method name="setPermissionRequestHandler">
             <param name="handler" type="Function">
-               <param name="webContents" type="Object"/>
-               <param name="permission" type="String"/>
-               <param name="callback" type="Function">
-                  <param name="permissionGranted" type="Boolean"/>
+               <param name="webContents" type="Object">
+                  <description>
+                     <para>WebContents requesting the permission.</para>
+                  </description>
                </param>
+               <param name="permission" type="String">
+                  <description>
+                     <para>Enum of 'media', 'geolocation', 'notifications', 'midiSysex', 'pointerLock', 'fullscreen', 'openExternal'.</para>
+                  </description>
+               </param>
+               <param name="callback" type="Function">
+                  <param name="permissionGranted" type="Boolean">
+                     <description>
+                        <para>Allow or deny the permission</para>
+                     </description>
+                  </param>
+                  <description>
+                     <para/>
+                  </description>
+               </param>
+               <description>
+                  <para/>
+               </description>
             </param>
             <description>
                <para>Sets the handler which can be used to respond to permission requests for the session. Calling callback(true) will allow the permission and callback(false) will reject it.</para>
@@ -522,13 +840,21 @@ session.fromPartition('some-partition').setPermissionRequestHandler((webContents
             </description>
          </method>
          <method name="clearHostResolverCache">
-            <param optional="true" name="callback" type="Function"/>
+            <param optional="true" name="callback" type="Function">
+               <description>
+                  <para>Called when operation is done.</para>
+               </description>
+            </param>
             <description>
                <para>Clears the host resolver cache.</para>
             </description>
          </method>
          <method name="allowNTLMCredentialsForDomains">
-            <param name="domains" type="String"/>
+            <param name="domains" type="String">
+               <description>
+                  <para>A comma-seperated list of servers for which integrated authentication is enabled.</para>
+               </description>
+            </param>
             <description>
                <para>Dynamically sets whether to always send credentials for HTTP NTLM or Negotiate authentication.</para>
                <programlisting language="javascript">
@@ -543,8 +869,16 @@ session.defaultSession.allowNTLMCredentialsForDomains('*')
             </description>
          </method>
          <method name="setUserAgent">
-            <param name="userAgent" type="String"/>
-            <param optional="true" name="acceptLanguages" type="String"/>
+            <param name="userAgent" type="String">
+               <description>
+                  <para/>
+               </description>
+            </param>
+            <param optional="true" name="acceptLanguages" type="String">
+               <description>
+                  <para/>
+               </description>
+            </param>
             <description>
                <para>Overrides the userAgent and acceptLanguages for this session.</para>
                <para>The acceptLanguages must a comma separated ordered list of language codes, for example "en-US,fr,de,ko,zh-CN,ja".</para>
@@ -554,33 +888,79 @@ session.defaultSession.allowNTLMCredentialsForDomains('*')
          <method name="getUserAgent">
             <returns type="String">
                <description>
-                  <para>- The user agent for this session.</para>
+                  <para>The user agent for this session.</para>
                </description>
             </returns>
             <description/>
          </method>
          <method name="getBlobData">
-            <param name="identifier" type="String"/>
+            <param name="identifier" type="String">
+               <description>
+                  <para>Valid UUID.</para>
+               </description>
+            </param>
             <param name="callback" type="Function">
-               <param name="result" type="Buffer"/>
+               <param name="result" type="Buffer">
+                  <description>
+                     <para>Blob data.</para>
+                  </description>
+               </param>
+               <description>
+                  <para/>
+               </description>
             </param>
             <returns type="Blob">
                <description>
-                  <para>- The blob data associated with the identifier.</para>
+                  <para>The blob data associated with the identifier.</para>
                </description>
             </returns>
             <description/>
          </method>
          <method name="createInterruptedDownload">
             <param name="options" type="Object">
-               <property name="path" type="String"/>
-               <property name="urlChain" type="String" isArray="true"/>
-               <property optional="true" name="mimeType" type="String"/>
-               <property name="offset" type="Integer"/>
-               <property name="length" type="Integer"/>
-               <property name="lastModified" type="String"/>
-               <property name="eTag" type="String"/>
-               <property optional="true" name="startTime" type="Double"/>
+               <property name="path" type="String">
+                  <description>
+                     <para>Absolute path of the download.</para>
+                  </description>
+               </property>
+               <property name="urlChain" type="String" isArray="true">
+                  <description>
+                     <para>Complete URL chain for the download.</para>
+                  </description>
+               </property>
+               <property optional="true" name="mimeType" type="String">
+                  <description>
+                     <para/>
+                  </description>
+               </property>
+               <property name="offset" type="Integer">
+                  <description>
+                     <para>Start range for the download.</para>
+                  </description>
+               </property>
+               <property name="length" type="Integer">
+                  <description>
+                     <para>Total length of the download.</para>
+                  </description>
+               </property>
+               <property name="lastModified" type="String">
+                  <description>
+                     <para>Last-Modified header value.</para>
+                  </description>
+               </property>
+               <property name="eTag" type="String">
+                  <description>
+                     <para>ETag header value.</para>
+                  </description>
+               </property>
+               <property optional="true" name="startTime" type="Double">
+                  <description>
+                     <para>Time when download was started in number of seconds since UNIX epoch.</para>
+                  </description>
+               </property>
+               <description>
+                  <para/>
+               </description>
             </param>
             <description>
                <para>Allows resuming cancelled or interrupted downloads from previous Session. The API will generate a DownloadItem that can be accessed with the will-download event. The DownloadItem will not have any WebContents associated with it and the initial state will be interrupted. The download will start only when the resume API is called on the DownloadItem.</para>
@@ -590,8 +970,15 @@ session.defaultSession.allowNTLMCredentialsForDomains('*')
             <param name="options" type="union">
                <option type="RemovePassword"/>
                <option type="RemoveClientCertificate"/>
+               <description>
+                  <para/>
+               </description>
             </param>
-            <param optional="true" name="callback" type="Function"/>
+            <param optional="true" name="callback" type="Function">
+               <description>
+                  <para>Called when operation is done</para>
+               </description>
+            </param>
             <description>
                <para>Clears the session’s HTTP authentication cache.</para>
             </description>

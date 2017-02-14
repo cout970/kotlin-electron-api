@@ -6,7 +6,7 @@ class BrowserWindowProxy() {
 
     init {
         val _constructor = js("require('electron').BrowserWindowProxy")
-        instance = js("new _constructor(_)")
+        instance = js("new _constructor()")
     }
 
     // ~ Events --------------------------------------------------------------------------------
@@ -16,7 +16,11 @@ class BrowserWindowProxy() {
 
     // ~ Properties ----------------------------------------------------------------------------
 
+    /**
+     * A Boolean that is set to true after the child window gets closed.
+     */
     val closed: dynamic get() = instance.closed
+
 
     // ~ Methods -------------------------------------------------------------------------------
 

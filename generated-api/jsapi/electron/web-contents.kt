@@ -35,7 +35,7 @@ class WebContents() {
 
     init {
         val _constructor = js("require('electron').WebContents")
-        instance = js("new _constructor(_)")
+        instance = js("new _constructor()")
     }
 
     // ~ Events --------------------------------------------------------------------------------
@@ -45,11 +45,34 @@ class WebContents() {
 
     // ~ Properties ----------------------------------------------------------------------------
 
+    /**
+     * A Integer representing the unique ID of this WebContents.
+     */
     val id: dynamic get() = instance.id
+
+    /**
+     * A Session object (session) used by this webContents.
+     */
     val session: dynamic get() = instance.session
+
+    /**
+     * A WebContents instance that might own this WebContents.
+     */
     val hostWebContents: WebContents get() = instance.hostWebContents
+
+    /**
+     * A WebContents of DevTools for this WebContents.
+     *
+     * Note: Users should never store this object because it may become null when the 
+     * DevTools has been closed.
+     */
     val devToolsWebContents: WebContents get() = instance.devToolsWebContents
+
+    /**
+     * A Debugger instance for this webContents.
+     */
     val debugger: dynamic get() = instance.debugger
+
 
     // ~ Methods -------------------------------------------------------------------------------
 
@@ -589,37 +612,23 @@ class WebContents() {
      * For mouse events, the event object also have following properties:
      *
      *  . x Integer (required)
-     *
      *  . y Integer (required)
-     *
      *  . button String - The button pressed, can be left, middle, right
-     *
      *  . globalX Integer
-     *
      *  . globalY Integer
-     *
      *  . movementX Integer
-     *
      *  . movementY Integer
-     *
      *  . clickCount Integer
      *
      * For the mouseWheel event, the event object also have following properties:
      *
      *  . deltaX Integer
-     *
      *  . deltaY Integer
-     *
      *  . wheelTicksX Integer
-     *
      *  . wheelTicksY Integer
-     *
      *  . accelerationRatioX Integer
-     *
      *  . accelerationRatioY Integer
-     *
      *  . hasPreciseScrollingDeltas Boolean
-     *
      *  . canScroll Boolean
      *
      */
@@ -691,7 +700,6 @@ class WebContents() {
      *       webview guest contents.
      *
      *        . width Integer
-     *
      *        . height Integer
      *
      */

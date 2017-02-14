@@ -5,15 +5,54 @@
          <param name="options" type="union">
             <option type="Object"/>
             <option type="String"/>
-            <param optional="true" name="method" type="String"/>
-            <param optional="true" name="url" type="String"/>
-            <param optional="true" name="session" type="Object"/>
-            <param optional="true" name="partition" type="String"/>
-            <param optional="true" name="protocol" type="String"/>
-            <param optional="true" name="host" type="String"/>
-            <param optional="true" name="hostname" type="String"/>
-            <param optional="true" name="port" type="Integer"/>
-            <param optional="true" name="path" type="String"/>
+            <param optional="true" name="method" type="String">
+               <description>
+                  <para>The HTTP request method. Defaults to the GET method.</para>
+               </description>
+            </param>
+            <param optional="true" name="url" type="String">
+               <description>
+                  <para>The request URL. Must be provided in the absolute form with the protocol scheme specified as http or https.</para>
+               </description>
+            </param>
+            <param optional="true" name="session" type="Object">
+               <description>
+                  <para>The Session instance with which the request is associated.</para>
+               </description>
+            </param>
+            <param optional="true" name="partition" type="String">
+               <description>
+                  <para>The name of the partition with which the request is associated. Defaults to the empty string. The session option prevails on partition. Thus if a session is explicitly specified, partition is ignored.</para>
+               </description>
+            </param>
+            <param optional="true" name="protocol" type="String">
+               <description>
+                  <para>The protocol scheme in the form 'scheme:'. Currently supported values are 'http:' or 'https:'. Defaults to 'http:'.</para>
+               </description>
+            </param>
+            <param optional="true" name="host" type="String">
+               <description>
+                  <para>The server host provided as a concatenation of the hostname and the port number 'hostname:port'</para>
+               </description>
+            </param>
+            <param optional="true" name="hostname" type="String">
+               <description>
+                  <para>The server host name.</para>
+               </description>
+            </param>
+            <param optional="true" name="port" type="Integer">
+               <description>
+                  <para>The server's listening port number.</para>
+               </description>
+            </param>
+            <param optional="true" name="path" type="String">
+               <description>
+                  <para>The path part of the request URL.</para>
+               </description>
+            </param>
+            <description>
+               <para>If options is a String, it is interpreted as the request URL. If it is an object, it is expected to fully specify an HTTP request via the following properties:</para>
+            </description>
          </param>
       </constructor>
       <properties type="instance">
@@ -26,23 +65,39 @@
       </properties>
       <methods type="instance">
          <method name="setHeader">
-            <param name="name" type="String"/>
-            <param name="value" type="String"/>
+            <param name="name" type="String">
+               <description>
+                  <para>An extra HTTP header name.</para>
+               </description>
+            </param>
+            <param name="value" type="String">
+               <description>
+                  <para>An extra HTTP header value.</para>
+               </description>
+            </param>
             <description>
                <para>Adds an extra HTTP header. The header name will issued as it is without lowercasing. It can be called only before first write. Calling this method after the first write will throw an error.</para>
             </description>
          </method>
          <method name="getHeader">
-            <param name="name" type="String"/>
+            <param name="name" type="String">
+               <description>
+                  <para>Specify an extra header name.</para>
+               </description>
+            </param>
             <returns type="String">
                <description>
-                  <para/>
+                  <para>The value of a previously set extra header name.</para>
                </description>
             </returns>
             <description/>
          </method>
          <method name="removeHeader">
-            <param name="name" type="String"/>
+            <param name="name" type="String">
+               <description>
+                  <para>Specify an extra header name.</para>
+               </description>
+            </param>
             <description>
                <para>Removes a previously set extra header name. This method can be called only before first write. Trying to call it after the first write will throw an error.</para>
             </description>
@@ -51,9 +106,20 @@
             <param name="chunk" type="union">
                <option type="String"/>
                <option type="Buffer"/>
+               <description>
+                  <para>A chunk of the request body's data. If it is a string, it is converted into a Buffer using the specified encoding.</para>
+               </description>
             </param>
-            <param optional="true" name="encoding" type="String"/>
-            <param optional="true" name="callback" type="Function"/>
+            <param optional="true" name="encoding" type="String">
+               <description>
+                  <para>Used to convert string chunks into Buffer objects. Defaults to 'utf-8'.</para>
+               </description>
+            </param>
+            <param optional="true" name="callback" type="Function">
+               <description>
+                  <para>Called after the write operation ends.</para>
+               </description>
+            </param>
             <description>
                <para>callback is essentially a dummy function introduced in the purpose of keeping similarity with the Node.js API. It is called asynchronously in the next tick after chunk content have been delivered to the Chromium networking layer. Contrary to the Node.js implementation, it is not guaranteed that chunk content have been flushed on the wire before callback is called.</para>
                <para>Adds a chunk of data to the request body. The first write operation may cause the request headers to be issued on the wire. After the first write operation, it is not allowed to add or remove a custom header.</para>
@@ -63,9 +129,20 @@
             <param optional="true" name="chunk" type="union">
                <option type="String"/>
                <option type="Buffer"/>
+               <description>
+                  <para/>
+               </description>
             </param>
-            <param optional="true" name="encoding" type="String"/>
-            <param optional="true" name="callback" type="Function"/>
+            <param optional="true" name="encoding" type="String">
+               <description>
+                  <para/>
+               </description>
+            </param>
+            <param optional="true" name="callback" type="Function">
+               <description>
+                  <para/>
+               </description>
+            </param>
             <description>
                <para>Sends the last chunk of the request data. Subsequent write or end operations will not be allowed. The finish event is emitted just after the end operation.</para>
             </description>
