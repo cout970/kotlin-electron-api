@@ -1259,12 +1259,12 @@ win.webContents.on('did-finish-load', () =&gt; {
             </method>
          </methods>
          <properties type="instance">
-            <property name="id">
+            <property name="id" type="Integer">
                <description>
                   <para>A Integer representing the unique ID of this WebContents.</para>
                </description>
             </property>
-            <property name="session">
+            <property name="session" type="Session">
                <description>
                   <para>A Session object (session) used by this webContents.</para>
                </description>
@@ -1280,7 +1280,7 @@ win.webContents.on('did-finish-load', () =&gt; {
                   <para>Note: Users should never store this object because it may become null when the DevTools has been closed.</para>
                </description>
             </property>
-            <property name="debugger">
+            <property name="debugger" type="Debugger">
                <description>
                   <para>A Debugger instance for this webContents.</para>
                </description>
@@ -2515,12 +2515,12 @@ win.webContents.on('did-finish-load', () =&gt; {
          </method>
       </methods>
       <properties type="instance">
-         <property name="id">
+         <property name="id" type="Integer">
             <description>
                <para>A Integer representing the unique ID of this WebContents.</para>
             </description>
          </property>
-         <property name="session">
+         <property name="session" type="Session">
             <description>
                <para>A Session object (session) used by this webContents.</para>
             </description>
@@ -2536,7 +2536,7 @@ win.webContents.on('did-finish-load', () =&gt; {
                <para>Note: Users should never store this object because it may become null when the DevTools has been closed.</para>
             </description>
          </property>
-         <property name="debugger">
+         <property name="debugger" type="Debugger">
             <description>
                <para>A Debugger instance for this webContents.</para>
             </description>

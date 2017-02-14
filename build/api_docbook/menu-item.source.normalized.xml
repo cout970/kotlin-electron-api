@@ -93,17 +93,17 @@
          </param>
       </constructor>
       <properties type="instance">
-         <property name="enabled">
+         <property name="enabled" type="Boolean">
             <description>
                <para>A Boolean indicating whether the item is enabled, this property can be dynamically changed.</para>
             </description>
          </property>
-         <property name="visible">
+         <property name="visible" type="Boolean">
             <description>
                <para>A Boolean indicating whether the item is visible, this property can be dynamically changed.</para>
             </description>
          </property>
-         <property name="checked">
+         <property name="checked" type="Boolean">
             <description>
                <para>A Boolean indicating whether the item is checked, this property can be dynamically changed.</para>
                <para>A checkbox menu item will toggle the checked property on and off when selected.</para>
@@ -111,12 +111,12 @@
                <para>You can add a click function for additional behavior.</para>
             </description>
          </property>
-         <property name="label">
+         <property name="label" type="String">
             <description>
                <para>A String representing the menu items visible label</para>
             </description>
          </property>
-         <property name="click">
+         <property name="click" type="Function">
             <description>
                <para>A Function that is fired when the MenuItem recieves a click event</para>
             </description>

@@ -51,7 +51,7 @@
          </method>
       </methods>
       <properties type="instance">
-         <property name="closed">
+         <property name="closed" type="Boolean">
             <description>
                <para>A Boolean that is set to true after the child window gets closed.</para>
             </description>

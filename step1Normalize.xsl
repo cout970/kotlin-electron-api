@@ -194,7 +194,7 @@
         <property name="{string-join($nameTokens, '.')}">
             <!-- type -->
             <info>
-                <xsl:value-of select="para[1]/literal[1]" />
+                <xsl:value-of select="para[1]/*[self::ulink|self::literal][1]" />
             </info>
 
             <!-- description -->

@@ -103,7 +103,7 @@
          </method>
       </methods>
       <properties type="instance">
-         <property name="items">
+         <property name="items" type="MenuItem" isArray="true">
             <description>
                <para>A MenuItem[] array containing the menu's items.</para>
                <para>Each Menu consists of multiple MenuItems and each MenuItem can have a submenu.</para>

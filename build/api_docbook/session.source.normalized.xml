@@ -491,17 +491,17 @@ session.defaultSession.allowNTLMCredentialsForDomains('*')
             </method>
          </methods>
          <properties type="instance">
-            <property name="cookies">
+            <property name="cookies" type="Cookies">
                <description>
                   <para>A Cookies object for this session.</para>
                </description>
             </property>
-            <property name="webRequest">
+            <property name="webRequest" type="WebRequest">
                <description>
                   <para>A WebRequest object for this session.</para>
                </description>
             </property>
-            <property name="protocol">
+            <property name="protocol" type="Protocol">
                <description>
                   <para>A Protocol object (an instance of protocol module) for this session.</para>
                   <programlisting language="javascript">
@@ -985,17 +985,17 @@ session.defaultSession.allowNTLMCredentialsForDomains('*')
          </method>
       </methods>
       <properties type="instance">
-         <property name="cookies">
+         <property name="cookies" type="Cookies">
             <description>
                <para>A Cookies object for this session.</para>
             </description>
          </property>
-         <property name="webRequest">
+         <property name="webRequest" type="WebRequest">
             <description>
                <para>A WebRequest object for this session.</para>
             </description>
          </property>
-         <property name="protocol">
+         <property name="protocol" type="Protocol">
             <description>
                <para>A Protocol object (an instance of protocol module) for this session.</para>
                <programlisting language="javascript">
