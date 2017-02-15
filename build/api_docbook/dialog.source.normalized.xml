@@ -60,11 +60,21 @@
                         <para>Prompt for creation if the file path entered in the dialog does not exist. This does not actually create the file at the path but allows non-existent paths to be returned that should be created by the application.</para>
                      </description>
                   </param>
+                  <param name="noResolveAliases" type="macOS">
+                     <description>
+                        <para>Disable the automatic alias (symlink) path resolution. Selected aliases will now return the alias path instead of their target path.</para>
+                     </description>
+                  </param>
                   <description>
                      <para>Contains which features the dialog should use. The following values are supported:</para>
                   </description>
                </property>
                <property optional="true" name="normalizeAccessKeys" type="Boolean">
+                  <param optional="true" name="message" type="String">
+                     <description>
+                        <para>Message to display above input boxes.</para>
+                     </description>
+                  </param>
                   <description>
                      <para>Normalize the keyboard access keys across platforms. Default is false. Enabling this assumes &amp; is used in the button labels for the placement of the keyboard shortcut access key and labels will be converted so they work correctly on each platform, &amp; characters are removed on macOS, converted to _ on Linux, and left untouched on Windows. For example, a button label of Vie&amp;w will be converted to Vie_w on Linux and View on macOS and can be selected via Alt-W on Windows and Linux.</para>
                   </description>
@@ -133,6 +143,21 @@
                      <para/>
                   </description>
                </property>
+               <property optional="true" name="message" type="String">
+                  <description>
+                     <para>Message to display above text fields.</para>
+                  </description>
+               </property>
+               <property optional="true" name="nameFieldLabel" type="String">
+                  <description>
+                     <para>Custom label for the text displayed in front of the filename text field.</para>
+                  </description>
+               </property>
+               <property optional="true" name="showsTagField" type="Boolean">
+                  <description>
+                     <para>Show the tags input box, defaults to true.</para>
+                  </description>
+               </property>
                <description>
                   <para/>
                </description>
@@ -195,6 +220,16 @@
                      <para>Extra information of the message.</para>
                   </description>
                </property>
+               <property optional="true" name="checkboxLabel" type="String">
+                  <description>
+                     <para>If provided, the message box will include a checkbox with the given label. The checkbox state can be inspected only when using callback.</para>
+                  </description>
+               </property>
+               <property optional="true" name="checkboxChecked" type="Boolean">
+                  <description>
+                     <para>Initial checked state of the checkbox. false by default.</para>
+                  </description>
+               </property>
                <property optional="true" name="icon" type="NativeImage">
                   <description>
                      <para/>
@@ -218,6 +253,11 @@
                <param name="response" type="Number">
                   <description>
                      <para>The index of the button that was clicked</para>
+                  </description>
+               </param>
+               <param name="checkboxChecked" type="Boolean">
+                  <description>
+                     <para>The checked state of the checkbox if checkboxLabel was set. Otherwise false.</para>
                   </description>
                </param>
                <description>

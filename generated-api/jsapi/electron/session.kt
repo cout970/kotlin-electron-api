@@ -23,6 +23,10 @@ object session {
      * To create a Session with options, you have to ensure the Session with the 
      * partition has never been used before. There is no way to change the options of 
      * an existing Session object.
+     * 
+     * @return A session instance from partition string. When there is an existing Session 
+     * with the same partition, it will be returned; otherwise a new Session instance 
+     * will be created with options.
      */
     fun fromPartition(partition: String, options: FromPartitionOptions): Session = 
         module.fromPartition(partition, options)
@@ -213,9 +217,9 @@ class Session constructor(val instance: dynamic, z: Unit) {
 
     /**
      * Sets the certificate verify proc for session, the proc will be called with 
-     * proc(hostname, certificate, callback) whenever a server certificate 
-     * verification is requested. Calling callback(true) accepts the certificate, 
-     * calling callback(false) rejects it.
+     * proc(request, callback) whenever a server certificate verification is 
+     * requested. Calling callback(0) accepts the certificate, calling callback(-2) 
+     * rejects it.
      *
      * Calling setCertificateVerifyProc(null) will revert back to default certificate 
      * verify proc.
@@ -229,7 +233,7 @@ class Session constructor(val instance: dynamic, z: Unit) {
      *  | })
      *  | 
      */
-    fun setCertificateVerifyProc(proc: (hostname: String, certificate: Certificate, callback: (isTrusted: Boolean) -> Unit) -> Unit): Unit = 
+    fun setCertificateVerifyProc(proc: (request: SetCertificateVerifyProcRequest, callback: (verificationResult: Int) -> Unit) -> Unit): Unit = 
         instance.setCertificateVerifyProc(proc)
 
     /**
@@ -287,11 +291,13 @@ class Session constructor(val instance: dynamic, z: Unit) {
         instance.setUserAgent(userAgent, acceptLanguages)
 
     /**
+     * @return The user agent for this session.
      */
     fun getUserAgent(): String = 
         instance.getUserAgent()
 
     /**
+     * @return The blob data associated with the identifier.
      */
     fun getBlobData(identifier: String, callback: (result: dynamic) -> Unit): Blob = 
         instance.getBlobData(identifier, callback)
@@ -342,6 +348,12 @@ class Session constructor(val instance: dynamic, z: Unit) {
         var latency: Double? = null,
         var downloadThroughput: Double? = null,
         var uploadThroughput: Double? = null
+    )
+
+    class SetCertificateVerifyProcRequest(
+        var hostname: String,
+        var certificate: Certificate,
+        var error: String
     )
 
     class SetPermissionRequestHandlerWebContents(

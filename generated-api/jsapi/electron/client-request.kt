@@ -41,6 +41,7 @@ class ClientRequest constructor(val instance: dynamic, z: Unit) {
         instance.setHeader(name, value)
 
     /**
+     * @return The value of a previously set extra header name.
      */
     fun getHeader(name: String): String = 
         instance.getHeader(name)

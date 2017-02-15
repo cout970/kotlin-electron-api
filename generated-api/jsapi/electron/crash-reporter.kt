@@ -30,6 +30,10 @@ object crashReporter {
      * send the crash reports. Replace submitURL, productName and crashesDirectory 
      * with appropriate values.
      *
+     * Note: If you need send additional/updated extra parameters after your first 
+     * call start you can call setExtraParameter on macOS or call start again with 
+     * the new/updated extra parameters on Linux and Windows.
+     *
      *  | 
      *  |  const args = [
      *  |    `--reporter-url=${submitURL}`,
@@ -58,17 +62,22 @@ object crashReporter {
         module.start(options)
 
     /**
+     * @return 
      */
     fun getLastCrashReport(): CrashReport = 
         module.getLastCrashReport()
 
     /**
+     * @return 
      */
     fun getUploadedReports(): Array<CrashReport> = 
         module.getUploadedReports()
 
     /**
      * Note: This API can only be called from the main process.
+     * 
+     * @return Whether reports should be submitted to the server. Set through the start 
+     * method or setUploadToServer.
      */
     fun getUploadToServer(): Boolean = 
         module.getUploadToServer()
@@ -81,6 +90,16 @@ object crashReporter {
      */
     fun setUploadToServer(uploadToServer: Boolean): Unit = 
         module.setUploadToServer(uploadToServer)
+
+    /**
+     * Set an extra parameter to set be sent with the crash report. The values 
+     * specified here will be sent in addition to any values set via the extra option 
+     * when start was called. This API is only available on macOS, if you need to 
+     * add/update extra parameters on Linux and Windows after your first call to 
+     * start you can call start again with the updated extra options.
+     */
+    fun setExtraParameter(key: String, value: String): Unit = 
+        module.setExtraParameter(key, value)
 
     // ~ Builders ------------------------------------------------------------------------------
 

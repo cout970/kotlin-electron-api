@@ -15,16 +15,20 @@ object webContents {
     // ~ Methods -------------------------------------------------------------------------------
 
     /**
+     * @return An array of all WebContents instances. This will contain web contents for all 
+     * windows, webviews, opened devtools, and devtools extension background pages.
      */
     fun getAllWebContents(): Array<WebContents> = 
         module.getAllWebContents()
 
     /**
+     * @return The web contents that is focused in this application, otherwise returns null.
      */
     fun getFocusedWebContents(): WebContents = 
         module.getFocusedWebContents()
 
     /**
+     * @return A WebContents instance with the given ID.
      */
     fun fromId(id: Int): WebContents = 
         module.fromId(id)
@@ -107,36 +111,45 @@ class WebContents constructor(val instance: dynamic, z: Unit) {
      *  | let currentURL = win.webContents.getURL()
      *  | console.log(currentURL)
      *  | 
+     * @return The URL of the current web page.
      */
     fun getURL(): String = 
         instance.getURL()
 
     /**
+     * @return The title of the current web page.
      */
     fun getTitle(): String = 
         instance.getTitle()
 
     /**
+     * @return Whether the web page is destroyed.
      */
     fun isDestroyed(): Boolean = 
         instance.isDestroyed()
 
     /**
+     * @return Whether the web page is focused.
      */
     fun isFocused(): Boolean = 
         instance.isFocused()
 
     /**
+     * @return Whether web page is still loading resources.
      */
     fun isLoading(): Boolean = 
         instance.isLoading()
 
     /**
+     * @return Whether the main frame (and not just iframes or frames within it) is still 
+     * loading.
      */
     fun isLoadingMainFrame(): Boolean = 
         instance.isLoadingMainFrame()
 
     /**
+     * @return Whether the web page is waiting for a first-response from the main resource of 
+     * the page.
      */
     fun isWaitingForResponse(): Boolean = 
         instance.isWaitingForResponse()
@@ -160,16 +173,19 @@ class WebContents constructor(val instance: dynamic, z: Unit) {
         instance.reloadIgnoringCache()
 
     /**
+     * @return Whether the browser can go back to previous web page.
      */
     fun canGoBack(): Boolean = 
         instance.canGoBack()
 
     /**
+     * @return Whether the browser can go forward to next web page.
      */
     fun canGoForward(): Boolean = 
         instance.canGoForward()
 
     /**
+     * @return Whether the web page can go to offset.
      */
     fun canGoToOffset(offset: Int): Boolean = 
         instance.canGoToOffset(offset)
@@ -205,6 +221,7 @@ class WebContents constructor(val instance: dynamic, z: Unit) {
         instance.goToOffset(offset)
 
     /**
+     * @return Whether the renderer process has crashed.
      */
     fun isCrashed(): Boolean = 
         instance.isCrashed()
@@ -216,6 +233,7 @@ class WebContents constructor(val instance: dynamic, z: Unit) {
         instance.setUserAgent(userAgent)
 
     /**
+     * @return The user agent for this web page.
      */
     fun getUserAgent(): String = 
         instance.getUserAgent()
@@ -243,6 +261,9 @@ class WebContents constructor(val instance: dynamic, z: Unit) {
      *  |     console.log(result) // Will be the JSON object from the fetch call
      *  |   })
      *  | 
+     * 
+     * @return A promise that resolves with the result of the executed code or is rejected if 
+     * the result of the code is a rejected promise.
      */
     fun executeJavaScript(code: String, userGesture: Boolean?, callback: ((result: Any) -> Unit)?): Promise<dynamic> = 
         instance.executeJavaScript(code, userGesture, callback)
@@ -254,6 +275,7 @@ class WebContents constructor(val instance: dynamic, z: Unit) {
         instance.setAudioMuted(muted)
 
     /**
+     * @return Whether this page has been muted.
      */
     fun isAudioMuted(): Boolean = 
         instance.isAudioMuted()
@@ -523,11 +545,13 @@ class WebContents constructor(val instance: dynamic, z: Unit) {
         instance.closeDevTools()
 
     /**
+     * @return Whether the devtools is opened.
      */
     fun isDevToolsOpened(): Boolean = 
         instance.isDevToolsOpened()
 
     /**
+     * @return Whether the devtools view is focused .
      */
     fun isDevToolsFocused(): Boolean = 
         instance.isDevToolsFocused()
@@ -681,6 +705,7 @@ class WebContents constructor(val instance: dynamic, z: Unit) {
      *  |   })
      *  | })
      *  | 
+     * @return true if the process of saving page has been initiated successfully.
      */
     fun savePage(fullPath: String, saveType: String, callback: (error: Error) -> Unit): Boolean = 
         instance.savePage(fullPath, saveType, callback)
@@ -708,6 +733,7 @@ class WebContents constructor(val instance: dynamic, z: Unit) {
         instance.setSize(options.let { SetSizeOptions().apply(it) })
 
     /**
+     * @return Indicates whether offscreen rendering is enabled.
      */
     fun isOffscreen(): Boolean = 
         instance.isOffscreen()
@@ -725,6 +751,7 @@ class WebContents constructor(val instance: dynamic, z: Unit) {
         instance.stopPainting()
 
     /**
+     * @return If offscreen rendering is enabled returns whether it is currently painting.
      */
     fun isPainting(): Boolean = 
         instance.isPainting()
@@ -737,6 +764,7 @@ class WebContents constructor(val instance: dynamic, z: Unit) {
         instance.setFrameRate(fps)
 
     /**
+     * @return If offscreen rendering is enabled returns the current frame rate.
      */
     fun getFrameRate(): Int = 
         instance.getFrameRate()

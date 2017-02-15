@@ -61,11 +61,13 @@ class BrowserWindow constructor(val instance: dynamic, z: Unit) {
         instance.blur()
 
     /**
+     * @return Whether the window is focused.
      */
     fun isFocused(): Boolean = 
         instance.isFocused()
 
     /**
+     * @return Whether the window is destroyed.
      */
     fun isDestroyed(): Boolean = 
         instance.isDestroyed()
@@ -89,11 +91,13 @@ class BrowserWindow constructor(val instance: dynamic, z: Unit) {
         instance.hide()
 
     /**
+     * @return Whether the window is visible to the user.
      */
     fun isVisible(): Boolean = 
         instance.isVisible()
 
     /**
+     * @return Whether current window is a modal window.
      */
     fun isModal(): Boolean = 
         instance.isModal()
@@ -111,6 +115,7 @@ class BrowserWindow constructor(val instance: dynamic, z: Unit) {
         instance.unmaximize()
 
     /**
+     * @return Whether the window is maximized.
      */
     fun isMaximized(): Boolean = 
         instance.isMaximized()
@@ -129,6 +134,7 @@ class BrowserWindow constructor(val instance: dynamic, z: Unit) {
         instance.restore()
 
     /**
+     * @return Whether the window is minimized.
      */
     fun isMinimized(): Boolean = 
         instance.isMinimized()
@@ -140,6 +146,7 @@ class BrowserWindow constructor(val instance: dynamic, z: Unit) {
         instance.setFullScreen(flag)
 
     /**
+     * @return Whether the window is in fullscreen mode.
      */
     fun isFullScreen(): Boolean = 
         instance.isFullScreen()
@@ -181,6 +188,7 @@ class BrowserWindow constructor(val instance: dynamic, z: Unit) {
         instance.setBounds(bounds.instance, animate)
 
     /**
+     * @return 
      */
     fun getBounds(): Rectangle = 
         instance.getBounds()
@@ -193,6 +201,7 @@ class BrowserWindow constructor(val instance: dynamic, z: Unit) {
         instance.setContentBounds(bounds.instance, animate)
 
     /**
+     * @return 
      */
     fun getContentBounds(): Rectangle = 
         instance.getContentBounds()
@@ -204,6 +213,7 @@ class BrowserWindow constructor(val instance: dynamic, z: Unit) {
         instance.setSize(width, height, animate)
 
     /**
+     * @return Contains the window's width and height.
      */
     fun getSize(): Array<Int> = 
         instance.getSize()
@@ -215,6 +225,7 @@ class BrowserWindow constructor(val instance: dynamic, z: Unit) {
         instance.setContentSize(width, height, animate)
 
     /**
+     * @return Contains the window's client area's width and height.
      */
     fun getContentSize(): Array<Int> = 
         instance.getContentSize()
@@ -226,6 +237,7 @@ class BrowserWindow constructor(val instance: dynamic, z: Unit) {
         instance.setMinimumSize(width, height)
 
     /**
+     * @return Contains the window's minimum width and height.
      */
     fun getMinimumSize(): Array<Int> = 
         instance.getMinimumSize()
@@ -237,6 +249,7 @@ class BrowserWindow constructor(val instance: dynamic, z: Unit) {
         instance.setMaximumSize(width, height)
 
     /**
+     * @return Contains the window's maximum width and height.
      */
     fun getMaximumSize(): Array<Int> = 
         instance.getMaximumSize()
@@ -248,6 +261,7 @@ class BrowserWindow constructor(val instance: dynamic, z: Unit) {
         instance.setResizable(resizable)
 
     /**
+     * @return Whether the window can be manually resized by user.
      */
     fun isResizable(): Boolean = 
         instance.isResizable()
@@ -260,6 +274,8 @@ class BrowserWindow constructor(val instance: dynamic, z: Unit) {
 
     /**
      * On Linux always returns true.
+     * 
+     * @return Whether the window can be moved by user.
      */
     fun isMovable(): Boolean = 
         instance.isMovable()
@@ -273,6 +289,8 @@ class BrowserWindow constructor(val instance: dynamic, z: Unit) {
 
     /**
      * On Linux always returns true.
+     * 
+     * @return Whether the window can be manually minimized by user
      */
     fun isMinimizable(): Boolean = 
         instance.isMinimizable()
@@ -286,6 +304,8 @@ class BrowserWindow constructor(val instance: dynamic, z: Unit) {
 
     /**
      * On Linux always returns true.
+     * 
+     * @return Whether the window can be manually maximized by user.
      */
     fun isMaximizable(): Boolean = 
         instance.isMaximizable()
@@ -298,6 +318,8 @@ class BrowserWindow constructor(val instance: dynamic, z: Unit) {
         instance.setFullScreenable(fullscreenable)
 
     /**
+     * @return Whether the maximize/zoom window button toggles fullscreen mode or maximizes 
+     * the window.
      */
     fun isFullScreenable(): Boolean = 
         instance.isFullScreenable()
@@ -310,6 +332,8 @@ class BrowserWindow constructor(val instance: dynamic, z: Unit) {
 
     /**
      * On Linux always returns true.
+     * 
+     * @return Whether the window can be manually closed by user.
      */
     fun isClosable(): Boolean = 
         instance.isClosable()
@@ -323,6 +347,7 @@ class BrowserWindow constructor(val instance: dynamic, z: Unit) {
         instance.setAlwaysOnTop(flag, level, relativeLevel)
 
     /**
+     * @return Whether the window is always on top of other windows.
      */
     fun isAlwaysOnTop(): Boolean = 
         instance.isAlwaysOnTop()
@@ -340,6 +365,7 @@ class BrowserWindow constructor(val instance: dynamic, z: Unit) {
         instance.setPosition(x, y, animate)
 
     /**
+     * @return Contains the window's current position.
      */
     fun getPosition(): Array<Int> = 
         instance.getPosition()
@@ -353,6 +379,8 @@ class BrowserWindow constructor(val instance: dynamic, z: Unit) {
     /**
      * Note: The title of web page can be different from the title of the native 
      * window.
+     * 
+     * @return The title of the native window.
      */
     fun getTitle(): String = 
         instance.getTitle()
@@ -392,6 +420,7 @@ class BrowserWindow constructor(val instance: dynamic, z: Unit) {
         instance.setKiosk(flag)
 
     /**
+     * @return Whether the window is in kiosk mode.
      */
     fun isKiosk(): Boolean = 
         instance.isKiosk()
@@ -399,6 +428,8 @@ class BrowserWindow constructor(val instance: dynamic, z: Unit) {
     /**
      * The native type of the handle is HWND on Windows, NSView* on macOS, and Window 
      * (unsigned long) on Linux.
+     * 
+     * @return The platform-specific handle of the window.
      */
     fun getNativeWindowHandle(): dynamic = 
         instance.getNativeWindowHandle()
@@ -411,6 +442,7 @@ class BrowserWindow constructor(val instance: dynamic, z: Unit) {
         instance.hookWindowMessage(message, callback)
 
     /**
+     * @return true or false depending on whether the message is hooked.
      */
     fun isWindowMessageHooked(message: Int): Boolean = 
         instance.isWindowMessageHooked(message)
@@ -435,6 +467,7 @@ class BrowserWindow constructor(val instance: dynamic, z: Unit) {
         instance.setRepresentedFilename(filename)
 
     /**
+     * @return The pathname of the file the window represents.
      */
     fun getRepresentedFilename(): String = 
         instance.getRepresentedFilename()
@@ -447,6 +480,7 @@ class BrowserWindow constructor(val instance: dynamic, z: Unit) {
         instance.setDocumentEdited(edited)
 
     /**
+     * @return Whether the window's document has been edited.
      */
     fun isDocumentEdited(): Boolean = 
         instance.isDocumentEdited()
@@ -550,6 +584,8 @@ class BrowserWindow constructor(val instance: dynamic, z: Unit) {
 
     /**
      * On Windows and Linux always returns true.
+     * 
+     * @return Whether the window has a shadow.
      */
     fun hasShadow(): Boolean = 
         instance.hasShadow()
@@ -587,6 +623,8 @@ class BrowserWindow constructor(val instance: dynamic, z: Unit) {
      *    state is drawn. This value is intended for instances where the button is used 
      *    in a notification.
      *
+     * 
+     * @return Whether the buttons were added successfully
      */
     fun setThumbarButtons(buttons: Array<ThumbarButton>): Boolean = 
         instance.setThumbarButtons(buttons.map { it.instance })
@@ -638,6 +676,7 @@ class BrowserWindow constructor(val instance: dynamic, z: Unit) {
         instance.setAutoHideMenuBar(hide)
 
     /**
+     * @return Whether menu bar automatically hides itself.
      */
     fun isMenuBarAutoHide(): Boolean = 
         instance.isMenuBarAutoHide()
@@ -650,6 +689,7 @@ class BrowserWindow constructor(val instance: dynamic, z: Unit) {
         instance.setMenuBarVisibility(visible)
 
     /**
+     * @return Whether the menu bar is visible.
      */
     fun isMenuBarVisible(): Boolean = 
         instance.isMenuBarVisible()
@@ -664,6 +704,8 @@ class BrowserWindow constructor(val instance: dynamic, z: Unit) {
 
     /**
      * Note: This API always returns false on Windows.
+     * 
+     * @return Whether the window is visible on all workspaces.
      */
     fun isVisibleOnAllWorkspaces(): Boolean = 
         instance.isVisibleOnAllWorkspaces()
@@ -701,11 +743,13 @@ class BrowserWindow constructor(val instance: dynamic, z: Unit) {
         instance.setParentWindow(parent.instance)
 
     /**
+     * @return The parent window.
      */
     fun getParentWindow(): BrowserWindow = 
         instance.getParentWindow()
 
     /**
+     * @return All child windows.
      */
     fun getChildWindows(): Array<BrowserWindow> = 
         instance.getChildWindows()
@@ -732,21 +776,25 @@ class BrowserWindow constructor(val instance: dynamic, z: Unit) {
         // ~ Methods -------------------------------------------------------------------------------
 
         /**
+         * @return An array of all opened browser windows.
          */
         fun getAllWindows(): Array<BrowserWindow> = 
             module.getAllWindows()
 
         /**
+         * @return The window that is focused in this application, otherwise returns null.
          */
         fun getFocusedWindow(): BrowserWindow = 
             module.getFocusedWindow()
 
         /**
+         * @return The window that owns the given webContents.
          */
         fun fromWebContents(webContents: WebContents): BrowserWindow = 
             module.fromWebContents(webContents.instance)
 
         /**
+         * @return The window with the given id.
          */
         fun fromId(id: Int): BrowserWindow = 
             module.fromId(id)
@@ -789,6 +837,9 @@ class BrowserWindow constructor(val instance: dynamic, z: Unit) {
          *
          * Note: This API cannot be called before the ready event of the app module is 
          * emitted.
+         * 
+         * @return The keys are the extension names and each value is an Object containing name 
+         * and version properties.
          */
         fun getDevToolsExtensions(): dynamic = 
             module.getDevToolsExtensions()

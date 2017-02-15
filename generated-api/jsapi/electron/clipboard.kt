@@ -13,6 +13,7 @@ object clipboard {
     // ~ Methods -------------------------------------------------------------------------------
 
     /**
+     * @return The content in the clipboard as plain text.
      */
     fun readText(type: String?): String = 
         module.readText(type)
@@ -24,6 +25,7 @@ object clipboard {
         module.writeText(text, type)
 
     /**
+     * @return The content in the clipboard as markup.
      */
     fun readHTML(type: String?): String = 
         module.readHTML(type)
@@ -35,6 +37,7 @@ object clipboard {
         module.writeHTML(markup, type)
 
     /**
+     * @return The image content in the clipboard.
      */
     fun readImage(type: String?): NativeImage = 
         module.readImage(type)
@@ -46,6 +49,7 @@ object clipboard {
         module.writeImage(image.instance, type)
 
     /**
+     * @return The content in the clipboard as RTF.
      */
     fun readRTF(type: String?): String = 
         module.readRTF(type)
@@ -60,6 +64,7 @@ object clipboard {
      *  . title String
      *  . url String
      *
+     * @return 
      */
     fun readBookmark(title: String, url: String): dynamic = 
         module.readBookmark(title, url)
@@ -82,6 +87,9 @@ object clipboard {
         module.writeBookmark(title, url, type)
 
     /**
+     * @return The text on the find pasteboard. This method uses synchronous IPC when called 
+     * from the renderer process. The cached value is reread from the find pasteboard 
+     * whenever the application is activated.
      */
     fun readFindText(): String = 
         module.readFindText()
@@ -100,6 +108,7 @@ object clipboard {
         module.clear(type)
 
     /**
+     * @return An array of supported formats for the clipboard type.
      */
     fun availableFormats(type: String?): Array<String> = 
         module.availableFormats(type)
@@ -109,11 +118,13 @@ object clipboard {
      *  | const {clipboard} = require('electron')
      *  | console.log(clipboard.has('<p>selection</p>'))
      *  | 
+     * @return Whether the clipboard supports the format of specified data.
      */
     fun has(data: String, type: String?): Boolean = 
         module.has(data, type)
 
     /**
+     * @return Reads data from the clipboard.
      */
     fun read(data: String, type: String?): String = 
         module.read(data, type)

@@ -13,16 +13,19 @@ object remote {
     // ~ Methods -------------------------------------------------------------------------------
 
     /**
+     * @return The window to which this web page belongs.
      */
     fun getCurrentWindow(): BrowserWindow = 
         module.getCurrentWindow()
 
     /**
+     * @return The web contents of this web page.
      */
     fun getCurrentWebContents(): WebContents = 
         module.getCurrentWebContents()
 
     /**
+     * @return The global variable of name (e.g. global[name]) in the main process.
      */
     fun getGlobal(name: String): dynamic = 
         module.getGlobal(name)

@@ -23,6 +23,8 @@ object powerSaveBlocker {
      * For example, an API calling A requests for prevent-app-suspension, and another 
      * calling B requests for prevent-display-sleep. prevent-display-sleep will be 
      * used until B stops its request. After that, prevent-app-suspension is used.
+     * 
+     * @return The blocker ID that is assigned to this power blocker
      */
     fun start(type: String): Int = 
         module.start(type)
@@ -34,6 +36,7 @@ object powerSaveBlocker {
         module.stop(id)
 
     /**
+     * @return Whether the corresponding powerSaveBlocker has started.
      */
     fun isStarted(id: Int): Boolean = 
         module.isStarted(id)

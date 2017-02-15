@@ -27,6 +27,8 @@ object globalShortcut {
      * When the accelerator is already taken by other applications, this call will 
      * still return false. This behavior is intended by operating systems, since they 
      * don't want applications to fight for global shortcuts.
+     * 
+     * @return Whether this application has registered accelerator.
      */
     fun isRegistered(accelerator: String): Boolean = 
         module.isRegistered(accelerator)

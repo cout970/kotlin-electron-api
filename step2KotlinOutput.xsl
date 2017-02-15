@@ -198,7 +198,7 @@
         </xsl:if>
 
         <!-- description -->
-        <xsl:apply-templates select="description" />
+        <xsl:apply-templates select="." mode="description" />
 
         <!-- fun <name>(params)-->
         <xsl:value-of select="concat($indent, '    fun ', @name, '(')" />
@@ -400,7 +400,7 @@
         </xsl:if>
 
         <!-- description -->
-        <xsl:apply-templates select="description" />
+        <xsl:apply-templates select="." mode="description"/>
 
         <!-- val name: type -->
         <xsl:text>    val </xsl:text>
@@ -430,33 +430,52 @@
 
 
     <!-- indent -->
-    <xsl:template match="property/description" mode="indent" priority="-1">
+    <xsl:template match="property" mode="indent" priority="-1">
         <xsl:text>    </xsl:text>
     </xsl:template>
     <xsl:template match="property/description//*" mode="indent" priority="-1">
         <xsl:text>    </xsl:text>
     </xsl:template>
-    <xsl:template match="method/description" mode="indent" priority="-1">
+    <xsl:template match="method" mode="indent" priority="-1">
         <xsl:text>    </xsl:text>
     </xsl:template>
-    <xsl:template match="method/description//*" mode="indent" priority="-1">
+    <xsl:template match="method//*" mode="indent" priority="-1">
         <xsl:text>    </xsl:text>
     </xsl:template>
 
-    <xsl:template match="class/methods[@type='static']/method/description" mode="indent">
+    <xsl:template match="class/methods[@type='static']/method" mode="indent">
         <xsl:text>        </xsl:text>
     </xsl:template>
-    <xsl:template match="class/methods[@type='static']/method/description//*" mode="indent">
+    <xsl:template match="class/methods[@type='static']/method//*" mode="indent">
         <xsl:text>        </xsl:text>
     </xsl:template>
 
-    <!-- description -->
-    <xsl:template match="description">
+    <!-- method description -->
+    <xsl:template match="method" mode="description">
         <xsl:apply-templates mode="indent" select="." />
         <xsl:text>/**&#10;</xsl:text>
-        <xsl:apply-templates />
+        <xsl:apply-templates select="description"/>
+        <xsl:apply-templates select="returns/description"/>
         <xsl:apply-templates mode="indent" select="." />
         <xsl:text> */&#10;</xsl:text>
+    </xsl:template>
+
+    <!-- property description -->
+    <xsl:template match="property" mode="description">
+        <xsl:apply-templates mode="indent" select="." />
+        <xsl:text>/**&#10;</xsl:text>
+        <xsl:apply-templates select="description"/>
+        <xsl:apply-templates mode="indent" select="." />
+        <xsl:text> */&#10;</xsl:text>
+    </xsl:template>
+
+    <!-- make newline between description and returns -->
+    <xsl:template match="method/description">
+        <xsl:apply-templates />
+        <xsl:if test="para and parent::method/returns/description">
+            <xsl:apply-templates mode="indent" select="."/>
+            <xsl:text> * &#10;</xsl:text>
+        </xsl:if>
     </xsl:template>
 
     <!-- description -->
@@ -467,6 +486,10 @@
 
         <xsl:apply-templates mode="indent" select="." />
         <xsl:text> * </xsl:text>
+
+        <xsl:if test="ancestor::returns">
+            <xsl:text>@return </xsl:text>
+        </xsl:if>
 
         <xsl:call-template name="wrap-string">
             <xsl:with-param name="str">

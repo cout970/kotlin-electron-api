@@ -13,11 +13,13 @@ object systemPreferences {
     // ~ Methods -------------------------------------------------------------------------------
 
     /**
+     * @return Whether the system is in Dark Mode.
      */
     fun isDarkMode(): Boolean = 
         module.isDarkMode()
 
     /**
+     * @return Whether the Swipe between pages setting is on.
      */
     fun isSwipeTrackingFromScrollEventsEnabled(): Boolean = 
         module.isSwipeTrackingFromScrollEventsEnabled()
@@ -150,16 +152,21 @@ object systemPreferences {
      *  | const blue = color.substr(4, 2) // "cc"
      *  | const alpha = color.substr(6, 2) // "dd"
      *  | 
+     * @return The users current system wide accent color preference in RGBA hexadecimal form.
      */
     fun getAccentColor(): String = 
         module.getAccentColor()
 
     /**
+     * @return The system color setting in RGB hexadecimal form (#ABCDEF). See the Windows 
+     * docs for more details.
      */
     fun getColor(color: String): String = 
         module.getColor(color)
 
     /**
+     * @return true if an inverted color scheme, such as a high contrast theme, is active, 
+     * false otherwise.
      */
     fun isInvertedColorScheme(): Boolean = 
         module.isInvertedColorScheme()

@@ -95,11 +95,14 @@ class Tray constructor(val instance: dynamic, z: Unit) {
 
     /**
      * The bounds of this tray icon as Object.
+     * 
+     * @return 
      */
     fun getBounds(): Rectangle = 
         instance.getBounds()
 
     /**
+     * @return Whether the tray icon is destroyed.
      */
     fun isDestroyed(): Boolean = 
         instance.isDestroyed()

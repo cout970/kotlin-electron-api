@@ -61,6 +61,7 @@ object app {
         module.relaunch(options?.let { RelaunchOptions().apply(it) })
 
     /**
+     * @return true if Electron has finished initializing, false otherwise.
      */
     fun isReady(): Boolean = 
         module.isReady()
@@ -86,6 +87,7 @@ object app {
         module.show()
 
     /**
+     * @return The current application directory.
      */
     fun getAppPath(): String = 
         module.getAppPath()
@@ -113,6 +115,9 @@ object app {
      *  . pepperFlashSystemPlugin Full path to the system version of the Pepper Flash 
      *    plugin.
      *
+     * 
+     * @return A path to a special directory or file associated with name. On failure an 
+     * Error is thrown.
      */
     fun getPath(name: String): String = 
         module.getPath(name)
@@ -146,6 +151,9 @@ object app {
         module.setPath(name, path)
 
     /**
+     * @return The version of the loaded application. If no version is found in the 
+     * application's package.json file, the version of the current bundle or 
+     * executable is returned.
      */
     fun getVersion(): String = 
         module.getVersion()
@@ -155,6 +163,9 @@ object app {
      * to the npm modules spec. You should usually also specify a productName field, 
      * which is your application's full capitalized name, and which will be preferred 
      * over name by Electron.
+     * 
+     * @return The current application's name, which is the name in the application's 
+     * package.json file.
      */
     fun getName(): String = 
         module.getName()
@@ -170,6 +181,8 @@ object app {
      * folder.
      *
      * Note: On Windows you have to call it after the ready events gets emitted.
+     * 
+     * @return The current application locale. Possible return values are documented here.
      */
     fun getLocale(): String = 
         module.getLocale()
@@ -207,6 +220,8 @@ object app {
      *
      * The API uses the Windows Registry and LSSetDefaultHandlerForURLScheme 
      * internally.
+     * 
+     * @return Whether the call succeeded.
      */
     fun setAsDefaultProtocolClient(protocol: String, path: String?, args: Array<String>?): Boolean = 
         module.setAsDefaultProtocolClient(protocol, path, args)
@@ -215,6 +230,8 @@ object app {
      * This method checks if the current executable as the default handler for a 
      * protocol (aka URI scheme). If so, it will remove the app as the default 
      * handler.
+     * 
+     * @return Whether the call succeeded.
      */
     fun removeAsDefaultProtocolClient(protocol: String, path: String?, args: Array<String>?): Boolean = 
         module.removeAsDefaultProtocolClient(protocol, path, args)
@@ -231,6 +248,8 @@ object app {
      *
      * The API uses the Windows Registry and LSCopyDefaultHandlerForURLScheme 
      * internally.
+     * 
+     * @return 
      */
     fun isDefaultProtocolClient(protocol: String, path: String?, args: Array<String>?): Boolean = 
         module.isDefaultProtocolClient(protocol, path, args)
@@ -242,6 +261,8 @@ object app {
      *
      * Note: If you'd like to customize the Jump List even more use 
      * app.setJumpList(categories) instead.
+     * 
+     * @return Whether the call succeeded.
      */
     fun setUserTasks(tasks: Array<Task>): Boolean = 
         module.setUserTasks(tasks.map { it.instance })
@@ -255,6 +276,7 @@ object app {
      *    app.setJumpList(), Windows will not display any custom category that contains 
      *    any of the removed items.
      *
+     * @return 
      */
     fun getJumpListSettings(minItems: Int, removedItems: Array<JumpListItem>): dynamic = 
         module.getJumpListSettings(minItems, removedItems.map { it.instance })
@@ -419,6 +441,7 @@ object app {
         module.setUserActivity(type, userInfo.let { SetUserActivityUserInfo().apply(it) }, webpageURL)
 
     /**
+     * @return The type of the currently running activity.
      */
     fun getCurrentActivityType(): String = 
         module.getCurrentActivityType()
@@ -454,16 +477,20 @@ object app {
      *
      * Note: Unity launcher requires the existence of a .desktop file to work, for 
      * more information please read Desktop Environment Integration.
+     * 
+     * @return Whether the call succeeded.
      */
     fun setBadgeCount(count: Int): Boolean = 
         module.setBadgeCount(count)
 
     /**
+     * @return The current value displayed in the counter badge.
      */
     fun getBadgeCount(): Int = 
         module.getBadgeCount()
 
     /**
+     * @return Whether the current desktop environment is Unity launcher.
      */
     fun isUnityRunning(): Boolean = 
         module.isUnityRunning()
@@ -486,6 +513,8 @@ object app {
      *    This setting is only supported on macOS.
      *
      * Note: This API has no effect on MAS builds.
+     * 
+     * @return 
      */
     fun getLoginItemSettings(options: (GetLoginItemSettingsOptions.() -> Unit)?): dynamic = 
         module.getLoginItemSettings(options?.let { GetLoginItemSettingsOptions().apply(it) })
@@ -518,6 +547,11 @@ object app {
         module.setLoginItemSettings(settings.let { SetLoginItemSettingsSettings().apply(it) })
 
     /**
+     * @return true if Chrome's accessibility support is enabled, false otherwise. This API 
+     * will return true if the use of assistive technologies, such as screen readers, 
+     * has been detected. See 
+     * https://www.chromium.org/developers/design-documents/accessibility for more 
+     * details.
      */
     fun isAccessibilitySupportEnabled(): Boolean = 
         module.isAccessibilitySupportEnabled()

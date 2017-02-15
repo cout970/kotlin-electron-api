@@ -61,6 +61,7 @@ class Menu constructor(val instance: dynamic, z: Unit) {
             module.setApplicationMenu(menu.instance)
 
         /**
+         * @return The application menu, if set, or null, if not set.
          */
         fun getApplicationMenu(): Menu = 
             module.getApplicationMenu()
@@ -82,6 +83,8 @@ class Menu constructor(val instance: dynamic, z: Unit) {
          *
          * You can also attach other fields to the element of the template and they will 
          * become properties of the constructed menu items.
+         * 
+         * @return 
          */
         fun buildFromTemplate(template: Array<MenuItem.Options>): Menu = 
             module.buildFromTemplate(template)

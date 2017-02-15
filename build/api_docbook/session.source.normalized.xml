@@ -268,20 +268,45 @@ window.webContents.session.enableNetworkEmulation({offline: true})
             </method>
             <method name="setCertificateVerifyProc">
                <param name="proc" type="Function">
-                  <param name="hostname" type="String">
-                     <description>
-                        <para/>
-                     </description>
-                  </param>
-                  <param name="certificate" type="Certificate">
+                  <param name="request" type="Object">
+                     <property name="hostname" type="String">
+                        <description>
+                           <para/>
+                        </description>
+                     </property>
+                     <property name="certificate" type="Certificate">
+                        <description>
+                           <para/>
+                        </description>
+                     </property>
+                     <property name="error" type="String">
+                        <description>
+                           <para>Verification result from chromium.</para>
+                        </description>
+                     </property>
                      <description>
                         <para/>
                      </description>
                   </param>
                   <param name="callback" type="Function">
-                     <param name="isTrusted" type="Boolean">
+                     <param name="verificationResult" type="Integer">
+                        <param name="0">
+                           <description>
+                              <para>Indicates success and disables Certificate Transperancy verification.</para>
+                           </description>
+                        </param>
+                        <param name="-2">
+                           <description>
+                              <para>2 - Indicates failure.</para>
+                           </description>
+                        </param>
+                        <param name="-3">
+                           <description>
+                              <para>3 - Uses the verification result from chromium.</para>
+                           </description>
+                        </param>
                         <description>
-                           <para>Determines if the certificate should be trusted</para>
+                           <para>Value can be one of certificate error codes from here. Apart from the certificate error codes, the following special codes can be used.</para>
                         </description>
                      </param>
                      <description>
@@ -293,7 +318,7 @@ window.webContents.session.enableNetworkEmulation({offline: true})
                   </description>
                </param>
                <description>
-                  <para>Sets the certificate verify proc for session, the proc will be called with proc(hostname, certificate, callback) whenever a server certificate verification is requested. Calling callback(true) accepts the certificate, calling callback(false) rejects it.</para>
+                  <para>Sets the certificate verify proc for session, the proc will be called with proc(request, callback) whenever a server certificate verification is requested. Calling callback(0) accepts the certificate, calling callback(-2) rejects it.</para>
                   <para>Calling setCertificateVerifyProc(null) will revert back to default certificate verify proc.</para>
                   <programlisting language="javascript">
 const {BrowserWindow} = require('electron')
@@ -762,20 +787,45 @@ window.webContents.session.enableNetworkEmulation({offline: true})
          </method>
          <method name="setCertificateVerifyProc">
             <param name="proc" type="Function">
-               <param name="hostname" type="String">
-                  <description>
-                     <para/>
-                  </description>
-               </param>
-               <param name="certificate" type="Certificate">
+               <param name="request" type="Object">
+                  <property name="hostname" type="String">
+                     <description>
+                        <para/>
+                     </description>
+                  </property>
+                  <property name="certificate" type="Certificate">
+                     <description>
+                        <para/>
+                     </description>
+                  </property>
+                  <property name="error" type="String">
+                     <description>
+                        <para>Verification result from chromium.</para>
+                     </description>
+                  </property>
                   <description>
                      <para/>
                   </description>
                </param>
                <param name="callback" type="Function">
-                  <param name="isTrusted" type="Boolean">
+                  <param name="verificationResult" type="Integer">
+                     <param name="0">
+                        <description>
+                           <para>Indicates success and disables Certificate Transperancy verification.</para>
+                        </description>
+                     </param>
+                     <param name="-2">
+                        <description>
+                           <para>2 - Indicates failure.</para>
+                        </description>
+                     </param>
+                     <param name="-3">
+                        <description>
+                           <para>3 - Uses the verification result from chromium.</para>
+                        </description>
+                     </param>
                      <description>
-                        <para>Determines if the certificate should be trusted</para>
+                        <para>Value can be one of certificate error codes from here. Apart from the certificate error codes, the following special codes can be used.</para>
                      </description>
                   </param>
                   <description>
@@ -787,7 +837,7 @@ window.webContents.session.enableNetworkEmulation({offline: true})
                </description>
             </param>
             <description>
-               <para>Sets the certificate verify proc for session, the proc will be called with proc(hostname, certificate, callback) whenever a server certificate verification is requested. Calling callback(true) accepts the certificate, calling callback(false) rejects it.</para>
+               <para>Sets the certificate verify proc for session, the proc will be called with proc(request, callback) whenever a server certificate verification is requested. Calling callback(0) accepts the certificate, calling callback(-2) rejects it.</para>
                <para>Calling setCertificateVerifyProc(null) will revert back to default certificate verify proc.</para>
                <programlisting language="javascript">
 const {BrowserWindow} = require('electron')

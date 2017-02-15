@@ -20,6 +20,7 @@ object webFrame {
         module.setZoomFactor(factor)
 
     /**
+     * @return The current zoom factor.
      */
     fun getZoomFactor(): Number = 
         module.getZoomFactor()
@@ -33,6 +34,7 @@ object webFrame {
         module.setZoomLevel(level)
 
     /**
+     * @return The current zoom level.
      */
     fun getZoomLevel(): Number = 
         module.getZoomLevel()
@@ -152,6 +154,8 @@ object webFrame {
      *  |   other: { /* same with "images" */ }
      *  | }
      *  | 
+     * 
+     * @return 
      */
     fun getResourceUsage(images: MemoryUsageDetails, cssStyleSheets: MemoryUsageDetails, xslStyleSheets: MemoryUsageDetails, fonts: MemoryUsageDetails, other: MemoryUsageDetails): dynamic = 
         module.getResourceUsage(images.instance, cssStyleSheets.instance, xslStyleSheets.instance, fonts.instance, other.instance)

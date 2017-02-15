@@ -22,6 +22,7 @@ class Debugger constructor(val instance: dynamic, z: Unit) {
         instance.attach(protocolVersion)
 
     /**
+     * @return Whether a debugger is attached to the webContents.
      */
     fun isAttached(): Boolean = 
         instance.isAttached()

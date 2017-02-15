@@ -19,6 +19,7 @@ object autoUpdater {
         module.setFeedURL(url, requestHeaders?.let { SetFeedURLRequestHeaders().apply(it) })
 
     /**
+     * @return The current update feed URL.
      */
     fun getFeedURL(): String = 
         module.getFeedURL()
