@@ -888,7 +888,7 @@ class BrowserWindow constructor(val instance: dynamic, z: Unit) {
         var thickFrame: Boolean? = null,
         var vibrancy: String? = null,
         var zoomToPageWidth: Boolean? = null,
-        var webPreferences: dynamic = null
+        var webPreferences: WebPreferences? = null
     )
     class WebPreferences(
         var devTools: Boolean? = null,
@@ -910,7 +910,7 @@ class BrowserWindow constructor(val instance: dynamic, z: Unit) {
         var scrollBounce: Boolean? = null,
         var blinkFeatures: String? = null,
         var disableBlinkFeatures: String? = null,
-        var defaultFontFamily: dynamic = null,
+        var defaultFontFamily: DefaultFontFamily? = null,
         var defaultFontSize: Int? = null,
         var defaultMonospaceFontSize: Int? = null,
         var minimumFontSize: Int? = null,

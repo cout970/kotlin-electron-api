@@ -213,8 +213,8 @@ object protocol {
     class RegisterHttpProtocolRedirectRequest(
         var url: String,
         var method: String,
-        var session: dynamic = null,
-        var uploadData: dynamic = null
+        var session: RegisterHttpProtocolSession? = null,
+        var uploadData: RegisterHttpProtocolUploadData? = null
     )
     class RegisterHttpProtocolSession(
     )
@@ -256,8 +256,8 @@ object protocol {
     class InterceptHttpProtocolRedirectRequest(
         var url: String,
         var method: String,
-        var session: dynamic = null,
-        var uploadData: dynamic = null
+        var session: InterceptHttpProtocolSession? = null,
+        var uploadData: InterceptHttpProtocolUploadData? = null
     )
     class InterceptHttpProtocolSession(
     )

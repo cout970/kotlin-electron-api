@@ -27,7 +27,7 @@ object desktopCapturer {
 
     class GetSourcesOptions(
         var types: Array<String>,
-        var thumbnailSize: dynamic = null
+        var thumbnailSize: GetSourcesThumbnailSize? = null
     )
     class GetSourcesThumbnailSize(
     )

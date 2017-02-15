@@ -346,9 +346,17 @@
         <xsl:text>dynamic</xsl:text>
     </xsl:template>
 
-    <!-- property type object is dynamic for now -->
-    <xsl:template match="property[@type = 'Object']" mode="type">
+    <!-- property is dynamic for now -->
+    <xsl:template match="properties/property[@type = 'Object']" mode="type">
         <xsl:text>dynamic</xsl:text>
+    </xsl:template>
+
+    <!-- property is dynamic for now -->
+    <xsl:template match="*[self::param|self::property]/property[@type = 'Object']" mode="type">
+        <xsl:apply-templates mode="adhoc_object_name" select="." />
+        <xsl:if test="@optional = true()">
+            <xsl:text>?</xsl:text>
+        </xsl:if>
     </xsl:template>
 
     <!-- object param name -->

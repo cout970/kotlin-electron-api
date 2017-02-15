@@ -822,12 +822,12 @@ class WebContents constructor(val instance: dynamic, z: Unit) {
 
     class EnableDeviceEmulationParameters(
         var screenPosition: String,
-        var screenSize: dynamic,
-        var viewPosition: dynamic,
+        var screenSize: EnableDeviceEmulationScreenSize,
+        var viewPosition: EnableDeviceEmulationViewPosition,
         var deviceScaleFactor: Int,
-        var viewSize: dynamic,
+        var viewSize: EnableDeviceEmulationViewSize,
         var fitToView: Boolean,
-        var offset: dynamic,
+        var offset: EnableDeviceEmulationOffset,
         var scale: Float
     )
     class EnableDeviceEmulationScreenSize(
@@ -862,7 +862,7 @@ class WebContents constructor(val instance: dynamic, z: Unit) {
     )
 
     class SetSizeOptions(
-        var normal: dynamic = null
+        var normal: SetSizeNormal? = null
     )
     class SetSizeNormal(
         var width: Int,

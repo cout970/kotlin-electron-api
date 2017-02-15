@@ -109,7 +109,7 @@ object crashReporter {
         var productName: String? = null,
         var uploadToServer: Boolean? = null,
         var ignoreSystemCrashHandler: Boolean? = null,
-        var extra: dynamic = null
+        var extra: StartExtra? = null
     )
     class StartExtra(
     )

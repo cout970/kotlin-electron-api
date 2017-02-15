@@ -156,7 +156,7 @@ class WebRequest constructor(val instance: dynamic, z: Unit) {
         var method: String,
         var resourceType: String,
         var timestamp: Double,
-        var requestHeaders: dynamic
+        var requestHeaders: OnSendHeadersRequestHeaders
     )
     class OnSendHeadersRequestHeaders(
     )
@@ -174,7 +174,7 @@ class WebRequest constructor(val instance: dynamic, z: Unit) {
         var method: String,
         var resourceType: String,
         var timestamp: Double,
-        var responseHeaders: dynamic,
+        var responseHeaders: OnResponseStartedResponseHeaders,
         var fromCache: Boolean,
         var statusCode: Int,
         var statusLine: String
@@ -196,7 +196,7 @@ class WebRequest constructor(val instance: dynamic, z: Unit) {
         var statusCode: Int,
         var ip: String? = null,
         var fromCache: Boolean,
-        var responseHeaders: dynamic
+        var responseHeaders: OnBeforeRedirectResponseHeaders
     )
     class OnBeforeRedirectResponseHeaders(
     )
@@ -211,7 +211,7 @@ class WebRequest constructor(val instance: dynamic, z: Unit) {
         var method: String,
         var resourceType: String,
         var timestamp: Double,
-        var responseHeaders: dynamic,
+        var responseHeaders: OnCompletedResponseHeaders,
         var fromCache: Boolean,
         var statusCode: Int,
         var statusLine: String

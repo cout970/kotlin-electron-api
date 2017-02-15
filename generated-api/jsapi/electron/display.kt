@@ -7,9 +7,9 @@ class Display(
         var scaleFactor: Number,
         var touchSupport: String,
         var bounds: Rectangle,
-        var size: dynamic,
+        var size: Size,
         var workArea: Rectangle,
-        var workAreaSize: dynamic
+        var workAreaSize: WorkAreaSize
 ) {
 
     val instance: dynamic = this
