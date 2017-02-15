@@ -3,11 +3,7 @@
    <object title="shell">
       <methods>
          <method name="showItemInFolder">
-            <param name="fullPath" type="String">
-               <description>
-                  <para/>
-               </description>
-            </param>
+            <param name="fullPath" type="String"/>
             <returns type="Boolean">
                <description>
                   <para>Whether the item was successfully shown</para>
@@ -18,11 +14,7 @@
             </description>
          </method>
          <method name="openItem">
-            <param name="fullPath" type="String">
-               <description>
-                  <para/>
-               </description>
-            </param>
+            <param name="fullPath" type="String"/>
             <returns type="Boolean">
                <description>
                   <para>Whether the item was successfully opened.</para>
@@ -33,27 +25,16 @@
             </description>
          </method>
          <method name="openExternal">
-            <param name="url" type="String">
-               <description>
-                  <para/>
-               </description>
-            </param>
+            <param name="url" type="String"/>
             <param optional="true" name="options" type="Object">
                <property name="activate" type="Boolean">
                   <description>
                      <para>true to bring the opened application to the foreground. The default is true.</para>
                   </description>
                </property>
-               <description>
-                  <para/>
-               </description>
             </param>
             <param optional="true" name="callback" type="Function">
-               <param name="error" type="Error">
-                  <description>
-                     <para/>
-                  </description>
-               </param>
+               <param name="error" type="Error"/>
                <description>
                   <para>If specified will perform the open asynchronously. macOS</para>
                </description>
@@ -68,11 +49,7 @@
             </description>
          </method>
          <method name="moveItemToTrash">
-            <param name="fullPath" type="String">
-               <description>
-                  <para/>
-               </description>
-            </param>
+            <param name="fullPath" type="String"/>
             <returns type="Boolean">
                <description>
                   <para>Whether the item was successfully moved to the trash</para>
@@ -88,11 +65,7 @@
             </description>
          </method>
          <method name="writeShortcutLink">
-            <param name="shortcutPath" type="String">
-               <description>
-                  <para/>
-               </description>
-            </param>
+            <param name="shortcutPath" type="String"/>
             <param optional="true" name="operation" type="String">
                <param name="create">
                   <description>
@@ -113,11 +86,7 @@
                   <para>Default is create, can be one of following:</para>
                </description>
             </param>
-            <param name="options" type="ShortcutDetails">
-               <description>
-                  <para/>
-               </description>
-            </param>
+            <param name="options" type="ShortcutDetails"/>
             <returns type="Boolean">
                <description>
                   <para>Whether the shortcut was created successfully</para>
@@ -128,16 +97,8 @@
             </description>
          </method>
          <method name="readShortcutLink">
-            <param name="shortcutPath" type="String">
-               <description>
-                  <para/>
-               </description>
-            </param>
-            <returns type="ShortcutDetails">
-               <description>
-                  <para/>
-               </description>
-            </returns>
+            <param name="shortcutPath" type="String"/>
+            <returns type="ShortcutDetails"/>
             <description>
                <para>Resolves the shortcut link at shortcutPath.</para>
                <para>An exception will be thrown when any error happens.</para>

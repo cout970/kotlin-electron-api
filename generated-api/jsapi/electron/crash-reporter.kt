@@ -62,13 +62,13 @@ object crashReporter {
         module.start(options)
 
     /**
-     * @return 
+     *
      */
     fun getLastCrashReport(): CrashReport = 
         module.getLastCrashReport()
 
     /**
-     * @return 
+     *
      */
     fun getUploadedReports(): Array<CrashReport> = 
         module.getUploadedReports()

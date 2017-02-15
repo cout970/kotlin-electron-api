@@ -354,6 +354,15 @@
     <!-- throw out unparsed Info -->
     <xsl:template match="info" mode="pass7_cleanup" />
 
+    <!-- throw out empty para -->
+    <xsl:template match="para[normalize-space(.) = '']" mode="pass7_cleanup" />
+
+    <!-- remove empty descriptions -->
+    <xsl:template match="description[normalize-space(.) = '']" mode="pass7_cleanup" />
+
+    <!-- remove programlisting attributes -->
+    <xsl:template match="programlisting/@*" mode="pass7_cleanup" />
+
     <!-- generate empty constructor -->
     <xsl:template match="class[not(count(constructor))]" mode="pass7_cleanup">
         <xsl:copy>

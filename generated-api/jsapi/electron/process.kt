@@ -41,7 +41,6 @@ object process {
      *  . sharedBytes Integer - The amount of memory shared between processes, typically 
      *    memory consumed by the Electron code itself
      *
-     * @return 
      */
     fun getProcessMemoryInfo(workingSetSize: Int, peakWorkingSetSize: Int, privateBytes: Int, sharedBytes: Int): dynamic = 
         module.getProcessMemoryInfo(workingSetSize, peakWorkingSetSize, privateBytes, sharedBytes)
@@ -56,7 +55,6 @@ object process {
      *  . swapFree Integer - The free amount of swap memory in Kilobytes available to 
      *    the system. WindowsLinux
      *
-     * @return 
      */
     fun getSystemMemoryInfo(total: Int, free: Int, swapTotal: Int, swapFree: Int): dynamic = 
         module.getSystemMemoryInfo(total, free, swapTotal, swapFree)

@@ -111,6 +111,7 @@ class WebContents constructor(val instance: dynamic, z: Unit) {
      *  | let currentURL = win.webContents.getURL()
      *  | console.log(currentURL)
      *  | 
+     * 
      * @return The URL of the current web page.
      */
     fun getURL(): String = 
@@ -705,6 +706,7 @@ class WebContents constructor(val instance: dynamic, z: Unit) {
      *  |   })
      *  | })
      *  | 
+     * 
      * @return true if the process of saving page has been initiated successfully.
      */
     fun savePage(fullPath: String, saveType: String, callback: (error: Error) -> Unit): Boolean = 

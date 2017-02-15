@@ -64,7 +64,6 @@ object clipboard {
      *  . title String
      *  . url String
      *
-     * @return 
      */
     fun readBookmark(title: String, url: String): dynamic = 
         module.readBookmark(title, url)
@@ -118,6 +117,7 @@ object clipboard {
      *  | const {clipboard} = require('electron')
      *  | console.log(clipboard.has('<p>selection</p>'))
      *  | 
+     * 
      * @return Whether the clipboard supports the format of specified data.
      */
     fun has(data: String, type: String?): Boolean = 

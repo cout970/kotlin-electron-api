@@ -17,8 +17,6 @@ object net {
      * forwarded to the ClientRequest constructor. The net.request method would be 
      * used to issue both secure and insecure HTTP requests according to the 
      * specified protocol scheme in the options object.
-     * 
-     * @return 
      */
     fun request(options: dynamic): ClientRequest = 
         module.request(options)

@@ -17,8 +17,6 @@ object screen {
      *  . y Integer
      *
      * The current absolute position of the mouse pointer.
-     * 
-     * @return 
      */
     fun getCursorScreenPoint(x: Int, y: Int): dynamic = 
         module.getCursorScreenPoint(x, y)

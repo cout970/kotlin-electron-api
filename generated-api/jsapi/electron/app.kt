@@ -248,8 +248,6 @@ object app {
      *
      * The API uses the Windows Registry and LSCopyDefaultHandlerForURLScheme 
      * internally.
-     * 
-     * @return 
      */
     fun isDefaultProtocolClient(protocol: String, path: String?, args: Array<String>?): Boolean = 
         module.isDefaultProtocolClient(protocol, path, args)
@@ -276,7 +274,6 @@ object app {
      *    app.setJumpList(), Windows will not display any custom category that contains 
      *    any of the removed items.
      *
-     * @return 
      */
     fun getJumpListSettings(minItems: Int, removedItems: Array<JumpListItem>): dynamic = 
         module.getJumpListSettings(minItems, removedItems.map { it.instance })
@@ -513,8 +510,6 @@ object app {
      *    This setting is only supported on macOS.
      *
      * Note: This API has no effect on MAS builds.
-     * 
-     * @return 
      */
     fun getLoginItemSettings(options: (GetLoginItemSettingsOptions.() -> Unit)?): dynamic = 
         module.getLoginItemSettings(options?.let { GetLoginItemSettingsOptions().apply(it) })

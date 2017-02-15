@@ -152,6 +152,7 @@ object systemPreferences {
      *  | const blue = color.substr(4, 2) // "cc"
      *  | const alpha = color.substr(6, 2) // "dd"
      *  | 
+     * 
      * @return The users current system wide accent color preference in RGBA hexadecimal form.
      */
     fun getAccentColor(): String = 

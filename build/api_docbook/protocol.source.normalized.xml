@@ -14,22 +14,19 @@
                      <para>true to register the scheme as secure. Default false.</para>
                   </description>
                </property>
-               <description>
-                  <para/>
-               </description>
             </param>
             <description>
                <para>A standard scheme adheres to what RFC 3986 calls generic URI syntax. For example http and https are standard schemes, while file is not.</para>
                <para>Registering a scheme as standard, will allow relative and absolute resources to be resolved correctly when served. Otherwise the scheme will behave like the file protocol, but without the ability to resolve relative URLs.</para>
                <para>For example when you load following page with custom protocol without registering it as standard scheme, the image will not be loaded because non-standard schemes can not recognize relative URLs:</para>
-               <programlisting language="html">
+               <programlisting>
 &lt;body&gt;
   &lt;img src='test.png'&gt;
 &lt;/body&gt;
 </programlisting>
                <para>Registering a scheme as standard will allow access to files through the FileSystem API. Otherwise the renderer will throw a security error for the scheme.</para>
                <para>By default web storage apis (localStorage, sessionStorage, webSQL, indexedDB, cookies) are disabled for non standard schemes. So in general if you want to register a custom protocol to replace the http protocol, you have to register it as a standard scheme:</para>
-               <programlisting language="javascript">
+               <programlisting>
 const {app, protocol} = require('electron')
 
 protocol.registerStandardSchemes(['atom'])
@@ -46,63 +43,22 @@ app.on('ready', () =&gt; {
                   <para>Custom schemes to be registered to handle service workers.</para>
                </description>
             </param>
-            <description/>
          </method>
          <method name="registerFileProtocol">
-            <param name="scheme" type="String">
-               <description>
-                  <para/>
-               </description>
-            </param>
+            <param name="scheme" type="String"/>
             <param name="handler" type="Function">
                <param name="request" type="Object">
-                  <property name="url" type="String">
-                     <description>
-                        <para/>
-                     </description>
-                  </property>
-                  <property name="referrer" type="String">
-                     <description>
-                        <para/>
-                     </description>
-                  </property>
-                  <property name="method" type="String">
-                     <description>
-                        <para/>
-                     </description>
-                  </property>
-                  <property name="uploadData" type="UploadData" isArray="true">
-                     <description>
-                        <para/>
-                     </description>
-                  </property>
-                  <description>
-                     <para/>
-                  </description>
+                  <property name="url" type="String"/>
+                  <property name="referrer" type="String"/>
+                  <property name="method" type="String"/>
+                  <property name="uploadData" type="UploadData" isArray="true"/>
                </param>
                <param name="callback" type="Function">
-                  <param optional="true" name="filePath" type="String">
-                     <description>
-                        <para/>
-                     </description>
-                  </param>
-                  <description>
-                     <para/>
-                  </description>
+                  <param optional="true" name="filePath" type="String"/>
                </param>
-               <description>
-                  <para/>
-               </description>
             </param>
             <param optional="true" name="completion" type="Function">
-               <param name="error" type="Error">
-                  <description>
-                     <para/>
-                  </description>
-               </param>
-               <description>
-                  <para/>
-               </description>
+               <param name="error" type="Error"/>
             </param>
             <description>
                <para>Registers a protocol of scheme that will send the file as a response. The handler will be called with handler(request, callback) when a request is going to be created with scheme. completion will be called with completion(null) when scheme is successfully registered or completion(error) when failed.</para>
@@ -112,68 +68,29 @@ app.on('ready', () =&gt; {
             </description>
          </method>
          <method name="registerBufferProtocol">
-            <param name="scheme" type="String">
-               <description>
-                  <para/>
-               </description>
-            </param>
+            <param name="scheme" type="String"/>
             <param name="handler" type="Function">
                <param name="request" type="Object">
-                  <property name="url" type="String">
-                     <description>
-                        <para/>
-                     </description>
-                  </property>
-                  <property name="referrer" type="String">
-                     <description>
-                        <para/>
-                     </description>
-                  </property>
-                  <property name="method" type="String">
-                     <description>
-                        <para/>
-                     </description>
-                  </property>
-                  <property name="uploadData" type="UploadData" isArray="true">
-                     <description>
-                        <para/>
-                     </description>
-                  </property>
-                  <description>
-                     <para/>
-                  </description>
+                  <property name="url" type="String"/>
+                  <property name="referrer" type="String"/>
+                  <property name="method" type="String"/>
+                  <property name="uploadData" type="UploadData" isArray="true"/>
                </param>
                <param name="callback" type="Function">
                   <param optional="true" name="buffer" type="union">
                      <option type="Buffer"/>
                      <option type="MimeTypedBuffer"/>
-                     <description>
-                        <para/>
-                     </description>
                   </param>
-                  <description>
-                     <para/>
-                  </description>
                </param>
-               <description>
-                  <para/>
-               </description>
             </param>
             <param optional="true" name="completion" type="Function">
-               <param name="error" type="Error">
-                  <description>
-                     <para/>
-                  </description>
-               </param>
-               <description>
-                  <para/>
-               </description>
+               <param name="error" type="Error"/>
             </param>
             <description>
                <para>Registers a protocol of scheme that will send a Buffer as a response.</para>
                <para>The usage is the same with registerFileProtocol, except that the callback should be called with either a Buffer object or an object that has the data, mimeType, and charset properties.</para>
                <para>Example:</para>
-               <programlisting language="javascript">
+               <programlisting>
 const {protocol} = require('electron')
 
 protocol.registerBufferProtocol('atom', (request, callback) =&gt; {
@@ -185,60 +102,20 @@ protocol.registerBufferProtocol('atom', (request, callback) =&gt; {
             </description>
          </method>
          <method name="registerStringProtocol">
-            <param name="scheme" type="String">
-               <description>
-                  <para/>
-               </description>
-            </param>
+            <param name="scheme" type="String"/>
             <param name="handler" type="Function">
                <param name="request" type="Object">
-                  <property name="url" type="String">
-                     <description>
-                        <para/>
-                     </description>
-                  </property>
-                  <property name="referrer" type="String">
-                     <description>
-                        <para/>
-                     </description>
-                  </property>
-                  <property name="method" type="String">
-                     <description>
-                        <para/>
-                     </description>
-                  </property>
-                  <property name="uploadData" type="UploadData" isArray="true">
-                     <description>
-                        <para/>
-                     </description>
-                  </property>
-                  <description>
-                     <para/>
-                  </description>
+                  <property name="url" type="String"/>
+                  <property name="referrer" type="String"/>
+                  <property name="method" type="String"/>
+                  <property name="uploadData" type="UploadData" isArray="true"/>
                </param>
                <param name="callback" type="Function">
-                  <param optional="true" name="data" type="String">
-                     <description>
-                        <para/>
-                     </description>
-                  </param>
-                  <description>
-                     <para/>
-                  </description>
+                  <param optional="true" name="data" type="String"/>
                </param>
-               <description>
-                  <para/>
-               </description>
             </param>
             <param optional="true" name="completion" type="Function">
-               <param name="error" type="Error">
-                  <description>
-                     <para/>
-                  </description>
-               </param>
-               <description>
-                  <para/>
-               </description>
+               <param name="error" type="Error"/>
             </param>
             <description>
                <para>Registers a protocol of scheme that will send a String as a response.</para>
@@ -246,54 +123,19 @@ protocol.registerBufferProtocol('atom', (request, callback) =&gt; {
             </description>
          </method>
          <method name="registerHttpProtocol">
-            <param name="scheme" type="String">
-               <description>
-                  <para/>
-               </description>
-            </param>
+            <param name="scheme" type="String"/>
             <param name="handler" type="Function">
                <param name="request" type="Object">
-                  <property name="url" type="String">
-                     <description>
-                        <para/>
-                     </description>
-                  </property>
-                  <property name="referrer" type="String">
-                     <description>
-                        <para/>
-                     </description>
-                  </property>
-                  <property name="method" type="String">
-                     <description>
-                        <para/>
-                     </description>
-                  </property>
-                  <property name="uploadData" type="UploadData" isArray="true">
-                     <description>
-                        <para/>
-                     </description>
-                  </property>
-                  <description>
-                     <para/>
-                  </description>
+                  <property name="url" type="String"/>
+                  <property name="referrer" type="String"/>
+                  <property name="method" type="String"/>
+                  <property name="uploadData" type="UploadData" isArray="true"/>
                </param>
                <param name="callback" type="Function">
                   <param name="redirectRequest" type="Object">
-                     <property name="url" type="String">
-                        <description>
-                           <para/>
-                        </description>
-                     </property>
-                     <property name="method" type="String">
-                        <description>
-                           <para/>
-                        </description>
-                     </property>
-                     <property optional="true" name="session" type="Object">
-                        <description>
-                           <para/>
-                        </description>
-                     </property>
+                     <property name="url" type="String"/>
+                     <property name="method" type="String"/>
+                     <property optional="true" name="session" type="Object"/>
                      <property optional="true" name="uploadData" type="Object">
                         <property name="contentType" type="String">
                            <description>
@@ -305,31 +147,12 @@ protocol.registerBufferProtocol('atom', (request, callback) =&gt; {
                               <para>Content to be sent.</para>
                            </description>
                         </property>
-                        <description>
-                           <para/>
-                        </description>
                      </property>
-                     <description>
-                        <para/>
-                     </description>
                   </param>
-                  <description>
-                     <para/>
-                  </description>
                </param>
-               <description>
-                  <para/>
-               </description>
             </param>
             <param optional="true" name="completion" type="Function">
-               <param name="error" type="Error">
-                  <description>
-                     <para/>
-                  </description>
-               </param>
-               <description>
-                  <para/>
-               </description>
+               <param name="error" type="Error"/>
             </param>
             <description>
                <para>Registers a protocol of scheme that will send an HTTP request as a response.</para>
@@ -339,274 +162,97 @@ protocol.registerBufferProtocol('atom', (request, callback) =&gt; {
             </description>
          </method>
          <method name="unregisterProtocol">
-            <param name="scheme" type="String">
-               <description>
-                  <para/>
-               </description>
-            </param>
+            <param name="scheme" type="String"/>
             <param optional="true" name="completion" type="Function">
-               <param name="error" type="Error">
-                  <description>
-                     <para/>
-                  </description>
-               </param>
-               <description>
-                  <para/>
-               </description>
+               <param name="error" type="Error"/>
             </param>
             <description>
                <para>Unregisters the custom protocol of scheme.</para>
             </description>
          </method>
          <method name="isProtocolHandled">
-            <param name="scheme" type="String">
-               <description>
-                  <para/>
-               </description>
-            </param>
+            <param name="scheme" type="String"/>
             <param name="callback" type="Function">
-               <param name="error" type="Error">
-                  <description>
-                     <para/>
-                  </description>
-               </param>
-               <description>
-                  <para/>
-               </description>
+               <param name="error" type="Error"/>
             </param>
             <description>
                <para>The callback will be called with a boolean that indicates whether there is already a handler for scheme.</para>
             </description>
          </method>
          <method name="interceptFileProtocol">
-            <param name="scheme" type="String">
-               <description>
-                  <para/>
-               </description>
-            </param>
+            <param name="scheme" type="String"/>
             <param name="handler" type="Function">
                <param name="request" type="Object">
-                  <property name="url" type="String">
-                     <description>
-                        <para/>
-                     </description>
-                  </property>
-                  <property name="referrer" type="String">
-                     <description>
-                        <para/>
-                     </description>
-                  </property>
-                  <property name="method" type="String">
-                     <description>
-                        <para/>
-                     </description>
-                  </property>
-                  <property name="uploadData" type="UploadData" isArray="true">
-                     <description>
-                        <para/>
-                     </description>
-                  </property>
-                  <description>
-                     <para/>
-                  </description>
+                  <property name="url" type="String"/>
+                  <property name="referrer" type="String"/>
+                  <property name="method" type="String"/>
+                  <property name="uploadData" type="UploadData" isArray="true"/>
                </param>
                <param name="callback" type="Function">
-                  <param name="filePath" type="String">
-                     <description>
-                        <para/>
-                     </description>
-                  </param>
-                  <description>
-                     <para/>
-                  </description>
+                  <param name="filePath" type="String"/>
                </param>
-               <description>
-                  <para/>
-               </description>
             </param>
             <param optional="true" name="completion" type="Function">
-               <param name="error" type="Error">
-                  <description>
-                     <para/>
-                  </description>
-               </param>
-               <description>
-                  <para/>
-               </description>
+               <param name="error" type="Error"/>
             </param>
             <description>
                <para>Intercepts scheme protocol and uses handler as the protocol's new handler which sends a file as a response.</para>
             </description>
          </method>
          <method name="interceptStringProtocol">
-            <param name="scheme" type="String">
-               <description>
-                  <para/>
-               </description>
-            </param>
+            <param name="scheme" type="String"/>
             <param name="handler" type="Function">
                <param name="request" type="Object">
-                  <property name="url" type="String">
-                     <description>
-                        <para/>
-                     </description>
-                  </property>
-                  <property name="referrer" type="String">
-                     <description>
-                        <para/>
-                     </description>
-                  </property>
-                  <property name="method" type="String">
-                     <description>
-                        <para/>
-                     </description>
-                  </property>
-                  <property name="uploadData" type="UploadData" isArray="true">
-                     <description>
-                        <para/>
-                     </description>
-                  </property>
-                  <description>
-                     <para/>
-                  </description>
+                  <property name="url" type="String"/>
+                  <property name="referrer" type="String"/>
+                  <property name="method" type="String"/>
+                  <property name="uploadData" type="UploadData" isArray="true"/>
                </param>
                <param name="callback" type="Function">
-                  <param optional="true" name="data" type="String">
-                     <description>
-                        <para/>
-                     </description>
-                  </param>
-                  <description>
-                     <para/>
-                  </description>
+                  <param optional="true" name="data" type="String"/>
                </param>
-               <description>
-                  <para/>
-               </description>
             </param>
             <param optional="true" name="completion" type="Function">
-               <param name="error" type="Error">
-                  <description>
-                     <para/>
-                  </description>
-               </param>
-               <description>
-                  <para/>
-               </description>
+               <param name="error" type="Error"/>
             </param>
             <description>
                <para>Intercepts scheme protocol and uses handler as the protocol's new handler which sends a String as a response.</para>
             </description>
          </method>
          <method name="interceptBufferProtocol">
-            <param name="scheme" type="String">
-               <description>
-                  <para/>
-               </description>
-            </param>
+            <param name="scheme" type="String"/>
             <param name="handler" type="Function">
                <param name="request" type="Object">
-                  <property name="url" type="String">
-                     <description>
-                        <para/>
-                     </description>
-                  </property>
-                  <property name="referrer" type="String">
-                     <description>
-                        <para/>
-                     </description>
-                  </property>
-                  <property name="method" type="String">
-                     <description>
-                        <para/>
-                     </description>
-                  </property>
-                  <property name="uploadData" type="UploadData" isArray="true">
-                     <description>
-                        <para/>
-                     </description>
-                  </property>
-                  <description>
-                     <para/>
-                  </description>
+                  <property name="url" type="String"/>
+                  <property name="referrer" type="String"/>
+                  <property name="method" type="String"/>
+                  <property name="uploadData" type="UploadData" isArray="true"/>
                </param>
                <param name="callback" type="Function">
-                  <param optional="true" name="buffer" type="Buffer">
-                     <description>
-                        <para/>
-                     </description>
-                  </param>
-                  <description>
-                     <para/>
-                  </description>
+                  <param optional="true" name="buffer" type="Buffer"/>
                </param>
-               <description>
-                  <para/>
-               </description>
             </param>
             <param optional="true" name="completion" type="Function">
-               <param name="error" type="Error">
-                  <description>
-                     <para/>
-                  </description>
-               </param>
-               <description>
-                  <para/>
-               </description>
+               <param name="error" type="Error"/>
             </param>
             <description>
                <para>Intercepts scheme protocol and uses handler as the protocol's new handler which sends a Buffer as a response.</para>
             </description>
          </method>
          <method name="interceptHttpProtocol">
-            <param name="scheme" type="String">
-               <description>
-                  <para/>
-               </description>
-            </param>
+            <param name="scheme" type="String"/>
             <param name="handler" type="Function">
                <param name="request" type="Object">
-                  <property name="url" type="String">
-                     <description>
-                        <para/>
-                     </description>
-                  </property>
-                  <property name="referrer" type="String">
-                     <description>
-                        <para/>
-                     </description>
-                  </property>
-                  <property name="method" type="String">
-                     <description>
-                        <para/>
-                     </description>
-                  </property>
-                  <property name="uploadData" type="UploadData" isArray="true">
-                     <description>
-                        <para/>
-                     </description>
-                  </property>
-                  <description>
-                     <para/>
-                  </description>
+                  <property name="url" type="String"/>
+                  <property name="referrer" type="String"/>
+                  <property name="method" type="String"/>
+                  <property name="uploadData" type="UploadData" isArray="true"/>
                </param>
                <param name="callback" type="Function">
                   <param name="redirectRequest" type="Object">
-                     <property name="url" type="String">
-                        <description>
-                           <para/>
-                        </description>
-                     </property>
-                     <property name="method" type="String">
-                        <description>
-                           <para/>
-                        </description>
-                     </property>
-                     <property optional="true" name="session" type="Object">
-                        <description>
-                           <para/>
-                        </description>
-                     </property>
+                     <property name="url" type="String"/>
+                     <property name="method" type="String"/>
+                     <property optional="true" name="session" type="Object"/>
                      <property optional="true" name="uploadData" type="Object">
                         <property name="contentType" type="String">
                            <description>
@@ -618,51 +264,21 @@ protocol.registerBufferProtocol('atom', (request, callback) =&gt; {
                               <para>Content to be sent.</para>
                            </description>
                         </property>
-                        <description>
-                           <para/>
-                        </description>
                      </property>
-                     <description>
-                        <para/>
-                     </description>
                   </param>
-                  <description>
-                     <para/>
-                  </description>
                </param>
-               <description>
-                  <para/>
-               </description>
             </param>
             <param optional="true" name="completion" type="Function">
-               <param name="error" type="Error">
-                  <description>
-                     <para/>
-                  </description>
-               </param>
-               <description>
-                  <para/>
-               </description>
+               <param name="error" type="Error"/>
             </param>
             <description>
                <para>Intercepts scheme protocol and uses handler as the protocol's new handler which sends a new HTTP request as a response.</para>
             </description>
          </method>
          <method name="uninterceptProtocol">
-            <param name="scheme" type="String">
-               <description>
-                  <para/>
-               </description>
-            </param>
+            <param name="scheme" type="String"/>
             <param optional="true" name="completion" type="Function">
-               <param name="error" type="Error">
-                  <description>
-                     <para/>
-                  </description>
-               </param>
-               <description>
-                  <para/>
-               </description>
+               <param name="error" type="Error"/>
             </param>
             <description>
                <para>Remove the interceptor installed for scheme and restore its original handler.</para>

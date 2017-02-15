@@ -64,8 +64,6 @@ object shell {
      * Resolves the shortcut link at shortcutPath.
      *
      * An exception will be thrown when any error happens.
-     * 
-     * @return 
      */
     fun readShortcutLink(shortcutPath: String): ShortcutDetails = 
         module.readShortcutLink(shortcutPath)

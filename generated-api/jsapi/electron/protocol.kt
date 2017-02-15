@@ -55,6 +55,7 @@ object protocol {
         module.registerStandardSchemes(schemes, options?.let { RegisterStandardSchemesOptions().apply(it) })
 
     /**
+     *
      */
     fun registerServiceWorkerSchemes(schemes: Array<String>): Unit = 
         module.registerServiceWorkerSchemes(schemes)

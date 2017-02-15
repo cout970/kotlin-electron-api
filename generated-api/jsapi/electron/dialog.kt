@@ -40,8 +40,6 @@ object dialog {
      * Note: On Windows and Linux an open dialog can not be both a file selector and 
      * a directory selector, so if you set properties to ['openFile', 
      * 'openDirectory'] on these platforms, a directory selector will be shown.
-     * 
-     * @return 
      */
     fun showOpenDialog(browserWindow: BrowserWindow?, options: ShowOpenDialogOptions.() -> Unit, callback: ((filePaths: Array<String>) -> Unit)?): Array<String> = 
         module.showOpenDialog(browserWindow?.instance, options.let { ShowOpenDialogOptions().apply(it) }, callback)
@@ -55,8 +53,6 @@ object dialog {
      *
      * If a callback is passed, the API call will be asynchronous and the result will 
      * be passed via callback(filename)
-     * 
-     * @return 
      */
     fun showSaveDialog(browserWindow: BrowserWindow?, options: ShowSaveDialogOptions.() -> Unit, callback: ((filename: String) -> Unit)?): String = 
         module.showSaveDialog(browserWindow?.instance, options.let { ShowSaveDialogOptions().apply(it) }, callback)
@@ -70,8 +66,6 @@ object dialog {
      *
      * If a callback is passed, the API call will be asynchronous and the result will 
      * be passed via callback(response).
-     * 
-     * @return 
      */
     fun showMessageBox(browserWindow: BrowserWindow?, options: ShowMessageBoxOptions, callback: ((response: Number, checkboxChecked: Boolean) -> Unit)?): Int = 
         module.showMessageBox(browserWindow?.instance, options, callback)

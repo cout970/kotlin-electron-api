@@ -3,32 +3,16 @@
    <object title="dialog">
       <methods>
          <method name="showOpenDialog">
-            <param optional="true" name="browserWindow" type="BrowserWindow">
-               <description>
-                  <para/>
-               </description>
-            </param>
+            <param optional="true" name="browserWindow" type="BrowserWindow"/>
             <param name="options" type="Object">
-               <property optional="true" name="title" type="String">
-                  <description>
-                     <para/>
-                  </description>
-               </property>
-               <property optional="true" name="defaultPath" type="String">
-                  <description>
-                     <para/>
-                  </description>
-               </property>
+               <property optional="true" name="title" type="String"/>
+               <property optional="true" name="defaultPath" type="String"/>
                <property optional="true" name="buttonLabel" type="String">
                   <description>
                      <para>Custom label for the confirmation button, when left empty the default label will be used.</para>
                   </description>
                </property>
-               <property optional="true" name="filters" type="FileFilter" isArray="true">
-                  <description>
-                     <para/>
-                  </description>
-               </property>
+               <property optional="true" name="filters" type="FileFilter" isArray="true"/>
                <property optional="true" name="properties" type="String" isArray="true">
                   <param name="openFile">
                      <description>
@@ -79,9 +63,6 @@
                      <para>Normalize the keyboard access keys across platforms. Default is false. Enabling this assumes &amp; is used in the button labels for the placement of the keyboard shortcut access key and labels will be converted so they work correctly on each platform, &amp; characters are removed on macOS, converted to _ on Linux, and left untouched on Windows. For example, a button label of Vie&amp;w will be converted to Vie_w on Linux and View on macOS and can be selected via Alt-W on Windows and Linux.</para>
                   </description>
                </property>
-               <description>
-                  <para/>
-               </description>
             </param>
             <param optional="true" name="callback" type="Function">
                <param name="filePaths" type="String" isArray="true">
@@ -89,19 +70,12 @@
                      <para>An array of file paths chosen by the user</para>
                   </description>
                </param>
-               <description>
-                  <para/>
-               </description>
             </param>
-            <returns type="String" isArray="true">
-               <description>
-                  <para/>
-               </description>
-            </returns>
+            <returns type="String" isArray="true"/>
             <description>
                <para>The browserWindow argument allows the dialog to attach itself to a parent window, making it modal.</para>
                <para>The filters specifies an array of file types that can be displayed or selected when you want to limit the user to a specific type. For example:</para>
-               <programlisting language="javascript">
+               <programlisting>
 {
   filters: [
     {name: 'Images', extensions: ['jpg', 'png', 'gif']},
@@ -117,32 +91,16 @@
             </description>
          </method>
          <method name="showSaveDialog">
-            <param optional="true" name="browserWindow" type="BrowserWindow">
-               <description>
-                  <para/>
-               </description>
-            </param>
+            <param optional="true" name="browserWindow" type="BrowserWindow"/>
             <param name="options" type="Object">
-               <property optional="true" name="title" type="String">
-                  <description>
-                     <para/>
-                  </description>
-               </property>
-               <property optional="true" name="defaultPath" type="String">
-                  <description>
-                     <para/>
-                  </description>
-               </property>
+               <property optional="true" name="title" type="String"/>
+               <property optional="true" name="defaultPath" type="String"/>
                <property optional="true" name="buttonLabel" type="String">
                   <description>
                      <para>Custom label for the confirmation button, when left empty the default label will be used.</para>
                   </description>
                </property>
-               <property optional="true" name="filters" type="FileFilter" isArray="true">
-                  <description>
-                     <para/>
-                  </description>
-               </property>
+               <property optional="true" name="filters" type="FileFilter" isArray="true"/>
                <property optional="true" name="message" type="String">
                   <description>
                      <para>Message to display above text fields.</para>
@@ -158,25 +116,11 @@
                      <para>Show the tags input box, defaults to true.</para>
                   </description>
                </property>
-               <description>
-                  <para/>
-               </description>
             </param>
             <param optional="true" name="callback" type="Function">
-               <param name="filename" type="String">
-                  <description>
-                     <para/>
-                  </description>
-               </param>
-               <description>
-                  <para/>
-               </description>
+               <param name="filename" type="String"/>
             </param>
-            <returns type="String">
-               <description>
-                  <para/>
-               </description>
-            </returns>
+            <returns type="String"/>
             <description>
                <para>The browserWindow argument allows the dialog to attach itself to a parent window, making it modal.</para>
                <para>The filters specifies an array of file types that can be displayed, see dialog.showOpenDialog for an example.</para>
@@ -184,11 +128,7 @@
             </description>
          </method>
          <method name="showMessageBox">
-            <param optional="true" name="browserWindow" type="BrowserWindow">
-               <description>
-                  <para/>
-               </description>
-            </param>
+            <param optional="true" name="browserWindow" type="BrowserWindow"/>
             <param name="options" type="Object">
                <property optional="true" name="type" type="String">
                   <description>
@@ -230,11 +170,7 @@
                      <para>Initial checked state of the checkbox. false by default.</para>
                   </description>
                </property>
-               <property optional="true" name="icon" type="NativeImage">
-                  <description>
-                     <para/>
-                  </description>
-               </property>
+               <property optional="true" name="icon" type="NativeImage"/>
                <property optional="true" name="cancelId" type="Integer">
                   <description>
                      <para>The value will be returned when user cancels the dialog instead of clicking the buttons of the dialog. By default it is the index of the buttons that have "cancel" or "no" as label, or 0 if there is no such buttons. On macOS and Windows the index of the "Cancel" button will always be used as cancelId even if it is specified.</para>
@@ -245,9 +181,6 @@
                      <para>On Windows Electron will try to figure out which one of the buttons are common buttons (like "Cancel" or "Yes"), and show the others as command links in the dialog. This can make the dialog appear in the style of modern Windows apps. If you don't like this behavior, you can set noLink to true.</para>
                   </description>
                </property>
-               <description>
-                  <para/>
-               </description>
             </param>
             <param optional="true" name="callback" type="Function">
                <param name="response" type="Number">
@@ -260,15 +193,8 @@
                      <para>The checked state of the checkbox if checkboxLabel was set. Otherwise false.</para>
                   </description>
                </param>
-               <description>
-                  <para/>
-               </description>
             </param>
-            <returns type="Integer">
-               <description>
-                  <para/>
-               </description>
-            </returns>
+            <returns type="Integer"/>
             <description>
                <para>Shows a message box, it will block the process until the message box is closed. It returns the index of the clicked button.</para>
                <para>The browserWindow argument allows the dialog to attach itself to a parent window, making it modal.</para>

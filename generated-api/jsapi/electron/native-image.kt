@@ -14,8 +14,6 @@ object nativeImage {
 
     /**
      * Creates an empty NativeImage instance.
-     * 
-     * @return 
      */
     fun createEmpty(): NativeImage = 
         module.createEmpty()
@@ -31,16 +29,12 @@ object nativeImage {
      *  | let image = nativeImage.createFromPath('/Users/somebody/images/icon.png')
      *  | console.log(image)
      *  | 
-     * 
-     * @return 
      */
     fun createFromPath(path: String): NativeImage = 
         module.createFromPath(path)
 
     /**
      * Creates a new NativeImage instance from buffer.
-     * 
-     * @return 
      */
     fun createFromBuffer(buffer: dynamic, options: (CreateFromBufferOptions.() -> Unit)?): NativeImage = 
         module.createFromBuffer(buffer, options?.let { CreateFromBufferOptions().apply(it) })
@@ -129,7 +123,6 @@ class NativeImage constructor(val instance: dynamic, z: Unit) {
      *  . width Integer
      *  . height Integer
      *
-     * @return 
      */
     fun getSize(width: Int, height: Int): dynamic = 
         instance.getSize(width, height)

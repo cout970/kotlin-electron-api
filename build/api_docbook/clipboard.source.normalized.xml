@@ -3,143 +3,72 @@
    <object title="clipboard">
       <methods>
          <method name="readText">
-            <param optional="true" name="type" type="String">
-               <description>
-                  <para/>
-               </description>
-            </param>
+            <param optional="true" name="type" type="String"/>
             <returns type="String">
                <description>
                   <para>The content in the clipboard as plain text.</para>
                </description>
             </returns>
-            <description/>
          </method>
          <method name="writeText">
-            <param name="text" type="String">
-               <description>
-                  <para/>
-               </description>
-            </param>
-            <param optional="true" name="type" type="String">
-               <description>
-                  <para/>
-               </description>
-            </param>
+            <param name="text" type="String"/>
+            <param optional="true" name="type" type="String"/>
             <description>
                <para>Writes the text into the clipboard as plain text.</para>
             </description>
          </method>
          <method name="readHTML">
-            <param optional="true" name="type" type="String">
-               <description>
-                  <para/>
-               </description>
-            </param>
+            <param optional="true" name="type" type="String"/>
             <returns type="String">
                <description>
                   <para>The content in the clipboard as markup.</para>
                </description>
             </returns>
-            <description/>
          </method>
          <method name="writeHTML">
-            <param name="markup" type="String">
-               <description>
-                  <para/>
-               </description>
-            </param>
-            <param optional="true" name="type" type="String">
-               <description>
-                  <para/>
-               </description>
-            </param>
+            <param name="markup" type="String"/>
+            <param optional="true" name="type" type="String"/>
             <description>
                <para>Writes markup to the clipboard.</para>
             </description>
          </method>
          <method name="readImage">
-            <param optional="true" name="type" type="String">
-               <description>
-                  <para/>
-               </description>
-            </param>
+            <param optional="true" name="type" type="String"/>
             <returns type="NativeImage">
                <description>
                   <para>The image content in the clipboard.</para>
                </description>
             </returns>
-            <description/>
          </method>
          <method name="writeImage">
-            <param name="image" type="NativeImage">
-               <description>
-                  <para/>
-               </description>
-            </param>
-            <param optional="true" name="type" type="String">
-               <description>
-                  <para/>
-               </description>
-            </param>
+            <param name="image" type="NativeImage"/>
+            <param optional="true" name="type" type="String"/>
             <description>
                <para>Writes image to the clipboard.</para>
             </description>
          </method>
          <method name="readRTF">
-            <param optional="true" name="type" type="String">
-               <description>
-                  <para/>
-               </description>
-            </param>
+            <param optional="true" name="type" type="String"/>
             <returns type="String">
                <description>
                   <para>The content in the clipboard as RTF.</para>
                </description>
             </returns>
-            <description/>
          </method>
          <method name="writeRTF">
-            <param name="text" type="String">
-               <description>
-                  <para/>
-               </description>
-            </param>
-            <param optional="true" name="type" type="String">
-               <description>
-                  <para/>
-               </description>
-            </param>
+            <param name="text" type="String"/>
+            <param optional="true" name="type" type="String"/>
             <description>
                <para>Writes the text into the clipboard in RTF.</para>
             </description>
          </method>
          <method name="readBookmark">
             <returns type="Object">
-               <param name="title" type="String">
-                  <description>
-                     <para/>
-                  </description>
-               </param>
-               <param name="url" type="String">
-                  <description>
-                     <para/>
-                  </description>
-               </param>
-               <description>
-                  <para/>
-               </description>
+               <param name="title" type="String"/>
+               <param name="url" type="String"/>
             </returns>
-            <param name="title" type="String">
-               <description>
-                  <para/>
-               </description>
-            </param>
-            <param name="url" type="String">
-               <description>
-                  <para/>
-               </description>
-            </param>
+            <param name="title" type="String"/>
+            <param name="url" type="String"/>
             <description>
                <list>
                   <item>
@@ -152,25 +81,13 @@
             </description>
          </method>
          <method name="writeBookmark">
-            <param name="title" type="String">
-               <description>
-                  <para/>
-               </description>
-            </param>
-            <param name="url" type="String">
-               <description>
-                  <para/>
-               </description>
-            </param>
-            <param optional="true" name="type" type="String">
-               <description>
-                  <para/>
-               </description>
-            </param>
+            <param name="title" type="String"/>
+            <param name="url" type="String"/>
+            <param optional="true" name="type" type="String"/>
             <description>
                <para>Writes the title and url into the clipboard as a bookmark.</para>
                <para>Note: Most apps on Windows don't support pasting bookmarks into them so you can use clipboard.write to write both a bookmark and fallback text to the clipboard.</para>
-               <programlisting language="javascript">
+               <programlisting>
 clipboard.write({
   text: 'http://electron.atom.io',
   bookmark: 'Electron Homepage'
@@ -184,120 +101,66 @@ clipboard.write({
                   <para>The text on the find pasteboard. This method uses synchronous IPC when called from the renderer process. The cached value is reread from the find pasteboard whenever the application is activated.</para>
                </description>
             </returns>
-            <description/>
          </method>
          <method name="writeFindText">
-            <param name="text" type="String">
-               <description>
-                  <para/>
-               </description>
-            </param>
+            <param name="text" type="String"/>
             <description>
                <para>Writes the text into the find pasteboard as plain text. This method uses synchronous IPC when called from the renderer process.</para>
             </description>
          </method>
          <method name="clear">
-            <param optional="true" name="type" type="String">
-               <description>
-                  <para/>
-               </description>
-            </param>
+            <param optional="true" name="type" type="String"/>
             <description>
                <para>Clears the clipboard content.</para>
             </description>
          </method>
          <method name="availableFormats">
-            <param optional="true" name="type" type="String">
-               <description>
-                  <para/>
-               </description>
-            </param>
+            <param optional="true" name="type" type="String"/>
             <returns type="String" isArray="true">
                <description>
                   <para>An array of supported formats for the clipboard type.</para>
                </description>
             </returns>
-            <description/>
          </method>
          <method name="has">
-            <param name="data" type="String">
-               <description>
-                  <para/>
-               </description>
-            </param>
-            <param optional="true" name="type" type="String">
-               <description>
-                  <para/>
-               </description>
-            </param>
+            <param name="data" type="String"/>
+            <param optional="true" name="type" type="String"/>
             <returns type="Boolean">
                <description>
                   <para>Whether the clipboard supports the format of specified data.</para>
                </description>
             </returns>
             <description>
-               <programlisting language="javascript">
+               <programlisting>
 const {clipboard} = require('electron')
 console.log(clipboard.has('&lt;p&gt;selection&lt;/p&gt;'))
 </programlisting>
             </description>
          </method>
          <method name="read">
-            <param name="data" type="String">
-               <description>
-                  <para/>
-               </description>
-            </param>
-            <param optional="true" name="type" type="String">
-               <description>
-                  <para/>
-               </description>
-            </param>
+            <param name="data" type="String"/>
+            <param optional="true" name="type" type="String"/>
             <returns type="String">
                <description>
                   <para>Reads data from the clipboard.</para>
                </description>
             </returns>
-            <description/>
          </method>
          <method name="write">
             <param name="data" type="Object">
-               <property optional="true" name="text" type="String">
-                  <description>
-                     <para/>
-                  </description>
-               </property>
-               <property optional="true" name="html" type="String">
-                  <description>
-                     <para/>
-                  </description>
-               </property>
-               <property optional="true" name="image" type="NativeImage">
-                  <description>
-                     <para/>
-                  </description>
-               </property>
-               <property optional="true" name="rtf" type="String">
-                  <description>
-                     <para/>
-                  </description>
-               </property>
+               <property optional="true" name="text" type="String"/>
+               <property optional="true" name="html" type="String"/>
+               <property optional="true" name="image" type="NativeImage"/>
+               <property optional="true" name="rtf" type="String"/>
                <property optional="true" name="bookmark" type="String">
                   <description>
                      <para>The title of the url at text.</para>
                   </description>
                </property>
-               <description>
-                  <para/>
-               </description>
             </param>
-            <param optional="true" name="type" type="String">
-               <description>
-                  <para/>
-               </description>
-            </param>
+            <param optional="true" name="type" type="String"/>
             <description>
-               <programlisting language="javascript">
+               <programlisting>
 const {clipboard} = require('electron')
 clipboard.write({text: 'test', html: '&lt;b&gt;test&lt;/b&gt;'})
 </programlisting>

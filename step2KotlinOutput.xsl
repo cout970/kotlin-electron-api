@@ -454,6 +454,10 @@
     <xsl:template match="method" mode="description">
         <xsl:apply-templates mode="indent" select="." />
         <xsl:text>/**&#10;</xsl:text>
+        <xsl:if test="not(description) and not(returns/description)">
+            <xsl:apply-templates mode="indent" select="." />
+            <xsl:text> *&#10;</xsl:text>
+        </xsl:if>
         <xsl:apply-templates select="description"/>
         <xsl:apply-templates select="returns/description"/>
         <xsl:apply-templates mode="indent" select="." />
@@ -472,7 +476,7 @@
     <!-- make newline between description and returns -->
     <xsl:template match="method/description">
         <xsl:apply-templates />
-        <xsl:if test="para and parent::method/returns/description">
+        <xsl:if test="parent::method/returns/description">
             <xsl:apply-templates mode="indent" select="."/>
             <xsl:text> * &#10;</xsl:text>
         </xsl:if>

@@ -188,7 +188,7 @@ class BrowserWindow constructor(val instance: dynamic, z: Unit) {
         instance.setBounds(bounds.instance, animate)
 
     /**
-     * @return 
+     *
      */
     fun getBounds(): Rectangle = 
         instance.getBounds()
@@ -201,7 +201,7 @@ class BrowserWindow constructor(val instance: dynamic, z: Unit) {
         instance.setContentBounds(bounds.instance, animate)
 
     /**
-     * @return 
+     *
      */
     fun getContentBounds(): Rectangle = 
         instance.getContentBounds()
@@ -486,13 +486,13 @@ class BrowserWindow constructor(val instance: dynamic, z: Unit) {
         instance.isDocumentEdited()
 
     /**
-     * 
+     *
      */
     fun focusOnWebView(): Unit = 
         instance.focusOnWebView()
 
     /**
-     * 
+     *
      */
     fun blurWebView(): Unit = 
         instance.blurWebView()

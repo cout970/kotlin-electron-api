@@ -5,9 +5,6 @@
          <param name="image" type="union">
             <option type="NativeImage"/>
             <option type="String"/>
-            <description>
-               <para/>
-            </description>
          </param>
       </constructor>
       <methods type="instance">
@@ -20,40 +17,25 @@
             <param name="image" type="union">
                <option type="NativeImage"/>
                <option type="String"/>
-               <description>
-                  <para/>
-               </description>
             </param>
             <description>
                <para>Sets the image associated with this tray icon.</para>
             </description>
          </method>
          <method name="setPressedImage">
-            <param name="image" type="NativeImage">
-               <description>
-                  <para/>
-               </description>
-            </param>
+            <param name="image" type="NativeImage"/>
             <description>
                <para>Sets the image associated with this tray icon when pressed on macOS.</para>
             </description>
          </method>
          <method name="setToolTip">
-            <param name="toolTip" type="String">
-               <description>
-                  <para/>
-               </description>
-            </param>
+            <param name="toolTip" type="String"/>
             <description>
                <para>Sets the hover text for this tray icon.</para>
             </description>
          </method>
          <method name="setTitle">
-            <param name="title" type="String">
-               <description>
-                  <para/>
-               </description>
-            </param>
+            <param name="title" type="String"/>
             <description>
                <para>Sets the title displayed aside of the tray icon in the status bar.</para>
             </description>
@@ -82,7 +64,7 @@
             <description>
                <para>Sets when the tray's icon background becomes highlighted (in blue).</para>
                <para>Note: You can use highlightMode with a BrowserWindow by toggling between 'never' and 'always' modes when the window visibility changes.</para>
-               <programlisting language="javascript">
+               <programlisting>
 const {BrowserWindow, Tray} = require('electron')
 
 const win = new BrowserWindow({width: 800, height: 600})
@@ -119,31 +101,16 @@ win.on('hide', () =&gt; {
                      <para>(optional)</para>
                   </description>
                </property>
-               <description>
-                  <para/>
-               </description>
             </param>
             <description>
                <para>Displays a tray balloon.</para>
             </description>
          </method>
          <method name="popUpContextMenu">
-            <param optional="true" name="menu" type="Menu">
-               <description>
-                  <para/>
-               </description>
-            </param>
+            <param optional="true" name="menu" type="Menu"/>
             <param optional="true" name="position" type="Object">
-               <property name="x" type="Integer">
-                  <description>
-                     <para/>
-                  </description>
-               </property>
-               <property name="y" type="Integer">
-                  <description>
-                     <para/>
-                  </description>
-               </property>
+               <property name="x" type="Integer"/>
+               <property name="y" type="Integer"/>
                <description>
                   <para>The pop up position.</para>
                </description>
@@ -154,21 +121,13 @@ win.on('hide', () =&gt; {
             </description>
          </method>
          <method name="setContextMenu">
-            <param name="menu" type="Menu">
-               <description>
-                  <para/>
-               </description>
-            </param>
+            <param name="menu" type="Menu"/>
             <description>
                <para>Sets the context menu for this icon.</para>
             </description>
          </method>
          <method name="getBounds">
-            <returns type="Rectangle">
-               <description>
-                  <para/>
-               </description>
-            </returns>
+            <returns type="Rectangle"/>
             <description>
                <para>The bounds of this tray icon as Object.</para>
             </description>
@@ -179,7 +138,6 @@ win.on('hide', () =&gt; {
                   <para>Whether the tray icon is destroyed.</para>
                </description>
             </returns>
-            <description/>
          </method>
       </methods>
    </class>

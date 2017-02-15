@@ -13,11 +13,7 @@
             </description>
          </method>
          <method name="setFdLimit">
-            <param name="maxDescriptors" type="Integer">
-               <description>
-                  <para/>
-               </description>
-            </param>
+            <param name="maxDescriptors" type="Integer"/>
             <description>
                <para>Sets the file descriptor soft limit to maxDescriptors or the OS hard limit, whichever is lower for the current process.</para>
             </description>
@@ -44,9 +40,6 @@
                      <para>The amount of memory shared between processes, typically memory consumed by the Electron code itself</para>
                   </description>
                </param>
-               <description>
-                  <para/>
-               </description>
             </returns>
             <param name="workingSetSize" type="Integer">
                <description>
@@ -107,9 +100,6 @@
                      <para>The free amount of swap memory in Kilobytes available to the system. WindowsLinux</para>
                   </description>
                </param>
-               <description>
-                  <para/>
-               </description>
             </returns>
             <param name="total" type="Integer">
                <description>

@@ -4,11 +4,7 @@
       <methods>
          <method name="start">
             <param name="options" type="Object">
-               <property optional="true" name="companyName" type="String">
-                  <description>
-                     <para/>
-                  </description>
-               </property>
+               <property optional="true" name="companyName" type="String"/>
                <property name="submitURL" type="String">
                   <description>
                      <para>URL that crash reports will be sent to as POST.</para>
@@ -34,16 +30,13 @@
                      <para>An object you can define that will be sent along with the report. Only string properties are sent correctly. Nested objects are not supported.</para>
                   </description>
                </property>
-               <description>
-                  <para/>
-               </description>
             </param>
             <description>
                <para>You are required to call this method before using any other crashReporter APIs and in each process (main/renderer) from which you want to collect crash reports. You can pass different options to crashReporter.start when calling from different processes.</para>
                <para>Note Child processes created via the child_process module will not have access to the Electron modules. Therefore, to collect crash reports from them, use process.crashReporter.start instead. Pass the same options as above along with an additional one called crashesDirectory that should point to a directory to store the crash reports temporarily. You can test this out by calling process.crash() to crash the child process.</para>
                <para>Note: To collect crash reports from child process in Windows, you need to add this extra code as well. This will start the process that will monitor and send the crash reports. Replace submitURL, productName and crashesDirectory with appropriate values.</para>
                <para>Note: If you need send additional/updated extra parameters after your first call start you can call setExtraParameter on macOS or call start again with the new/updated extra parameters on Linux and Windows.</para>
-               <programlisting language="javascript">
+               <programlisting>
  const args = [
    `--reporter-url=${submitURL}`,
    `--application-name=${productName}`,
@@ -61,20 +54,10 @@
             </description>
          </method>
          <method name="getLastCrashReport">
-            <returns type="CrashReport">
-               <description>
-                  <para/>
-               </description>
-            </returns>
-            <description/>
+            <returns type="CrashReport"/>
          </method>
          <method name="getUploadedReports">
-            <returns type="CrashReport" isArray="true">
-               <description>
-                  <para/>
-               </description>
-            </returns>
-            <description/>
+            <returns type="CrashReport" isArray="true"/>
          </method>
          <method name="getUploadToServer">
             <returns type="Boolean">

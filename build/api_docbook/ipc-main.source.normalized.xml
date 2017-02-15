@@ -3,56 +3,28 @@
    <object title="ipcMain">
       <methods>
          <method name="on">
-            <param name="channel" type="String">
-               <description>
-                  <para/>
-               </description>
-            </param>
-            <param name="listener" type="Function">
-               <description>
-                  <para/>
-               </description>
-            </param>
+            <param name="channel" type="String"/>
+            <param name="listener" type="Function"/>
             <description>
                <para>Listens to channel, when a new message arrives listener would be called with listener(event, args...).</para>
             </description>
          </method>
          <method name="once">
-            <param name="channel" type="String">
-               <description>
-                  <para/>
-               </description>
-            </param>
-            <param name="listener" type="Function">
-               <description>
-                  <para/>
-               </description>
-            </param>
+            <param name="channel" type="String"/>
+            <param name="listener" type="Function"/>
             <description>
                <para>Adds a one time listener function for the event. This listener is invoked only the next time a message is sent to channel, after which it is removed.</para>
             </description>
          </method>
          <method name="removeListener">
-            <param name="channel" type="String">
-               <description>
-                  <para/>
-               </description>
-            </param>
-            <param name="listener" type="Function">
-               <description>
-                  <para/>
-               </description>
-            </param>
+            <param name="channel" type="String"/>
+            <param name="listener" type="Function"/>
             <description>
                <para>Removes the specified listener from the listener array for the specified channel.</para>
             </description>
          </method>
          <method name="removeAllListeners">
-            <param optional="true" name="channel" type="String">
-               <description>
-                  <para/>
-               </description>
-            </param>
+            <param optional="true" name="channel" type="String"/>
             <description>
                <para>Removes all listeners, or those of the specified channel.</para>
             </description>

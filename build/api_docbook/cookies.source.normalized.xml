@@ -35,24 +35,10 @@
                      <para>Filters out session or persistent cookies.</para>
                   </description>
                </property>
-               <description>
-                  <para/>
-               </description>
             </param>
             <param name="callback" type="Function">
-               <param name="error" type="Error">
-                  <description>
-                     <para/>
-                  </description>
-               </param>
-               <param name="cookies" type="Cookies" isArray="true">
-                  <description>
-                     <para/>
-                  </description>
-               </param>
-               <description>
-                  <para/>
-               </description>
+               <param name="error" type="Error"/>
+               <param name="cookies" type="Cookies" isArray="true"/>
             </param>
             <description>
                <para>Sends a request to get all cookies matching details, callback will be called with callback(error, cookies) on complete.</para>
@@ -101,19 +87,9 @@
                      <para>The expiration date of the cookie as the number of seconds since the UNIX epoch. If omitted then the cookie becomes a session cookie and will not be retained between sessions.</para>
                   </description>
                </property>
-               <description>
-                  <para/>
-               </description>
             </param>
             <param name="callback" type="Function">
-               <param name="error" type="Error">
-                  <description>
-                     <para/>
-                  </description>
-               </param>
-               <description>
-                  <para/>
-               </description>
+               <param name="error" type="Error"/>
             </param>
             <description>
                <para>Sets a cookie with details, callback will be called with callback(error) on complete.</para>
@@ -130,11 +106,7 @@
                   <para>The name of cookie to remove.</para>
                </description>
             </param>
-            <param name="callback" type="Function">
-               <description>
-                  <para/>
-               </description>
-            </param>
+            <param name="callback" type="Function"/>
             <description>
                <para>Removes the cookies matching url and name, callback will called with callback() on complete.</para>
             </description>

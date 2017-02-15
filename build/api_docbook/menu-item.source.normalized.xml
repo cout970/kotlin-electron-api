@@ -4,21 +4,9 @@
       <constructor>
          <param name="options" type="Object">
             <property optional="true" name="click" type="Function">
-               <param name="menuItem" type="MenuItem">
-                  <description>
-                     <para/>
-                  </description>
-               </param>
-               <param name="browserWindow" type="BrowserWindow">
-                  <description>
-                     <para/>
-                  </description>
-               </param>
-               <param name="event" type="Event">
-                  <description>
-                     <para/>
-                  </description>
-               </param>
+               <param name="menuItem" type="MenuItem"/>
+               <param name="browserWindow" type="BrowserWindow"/>
+               <param name="event" type="Event"/>
                <description>
                   <para>Will be called with click(menuItem, browserWindow, event) when the menu item is clicked.</para>
                </description>
@@ -43,17 +31,10 @@
                   <para>(optional)</para>
                </description>
             </property>
-            <property optional="true" name="accelerator" type="Accelerator">
-               <description>
-                  <para/>
-               </description>
-            </property>
+            <property optional="true" name="accelerator" type="Accelerator"/>
             <property optional="true" name="icon" type="union">
                <option type="NativeImage"/>
                <option type="String"/>
-               <description>
-                  <para/>
-               </description>
             </property>
             <property optional="true" name="enabled" type="Boolean">
                <description>
@@ -87,9 +68,6 @@
                   <para>This field allows fine-grained definition of the specific location within a given menu.</para>
                </description>
             </property>
-            <description>
-               <para/>
-            </description>
          </param>
       </constructor>
       <properties type="instance">

@@ -6,11 +6,7 @@
             <para>The icon showing in thumbnail toolbar.</para>
          </description>
       </property>
-      <property name="click" type="Function">
-         <description>
-            <para/>
-         </description>
-      </property>
+      <property name="click" type="Function"/>
       <property optional="true" name="tooltip" type="String">
          <description>
             <para>The text of the button's tooltip.</para>
