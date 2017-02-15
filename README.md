@@ -1,10 +1,13 @@
 # Kotlin bindings for electron
 
-Some `xsl` transformatiosn to generate Kotlin API from the electron docs. Output is found here: [generated-api/jsapi/electron/](https://github.com/fab1an/kotlin-electron-api/tree/master/generated-api/jsapi/electron)
+XSL transformations to generate Kotlin API from the electron docs. 
+
+### Usage 
+Output is found here: [generated-api/jsapi/electron/](https://github.com/fab1an/kotlin-electron-api/tree/master/generated-api/jsapi/electron)
 
 The markdown is first converted to an [intermediate format](https://github.com/fab1an/kotlin-electron-api/tree/master/build/api_docbook) and then to Kotlin. This intermediate format could be used to generate API for other docs.
 
-#### Building:
+### Building
 * pandoc must be installed and on the path
 * put electron api docs somewhere and adjust path in `gradle.properties`
 * ```./gradlew electronAPI```
