@@ -612,7 +612,7 @@ class WebContents constructor(val instance: dynamic, z: Unit) {
      *  | </html>
      *  | 
      */
-    fun send(channel: String, args: Array<dynamic>): Unit = 
+    fun send(channel: String, vararg args: dynamic): Unit = 
         instance.send(channel, args)
 
     /**

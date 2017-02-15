@@ -186,22 +186,17 @@
 
     <!-- method -->
     <xsl:template match="method">
-        <xsl:variable name="indent">
-            <xsl:if test="parent::methods[@type='static']">
-                <xsl:text>    </xsl:text>
-            </xsl:if>
-        </xsl:variable>
-
         <xsl:if test="position() = 1">
-            <xsl:value-of select="$indent" />
-            <xsl:text>    // ~ Methods -------------------------------------------------------------------------------&#10;&#10;</xsl:text>
+            <xsl:apply-templates mode="indent" select="." />
+            <xsl:text>// ~ Methods -------------------------------------------------------------------------------&#10;&#10;</xsl:text>
         </xsl:if>
 
         <!-- description -->
-        <xsl:apply-templates select="." mode="description" />
+        <xsl:apply-templates mode="description" select="." />
 
         <!-- fun <name>(params)-->
-        <xsl:value-of select="concat($indent, '    fun ', @name, '(')" />
+        <xsl:apply-templates mode="indent" select="." />
+        <xsl:value-of select="concat('fun ', @name, '(')" />
         <xsl:apply-templates mode="signature" select="param" />
         <xsl:text>): </xsl:text>
 
@@ -213,13 +208,13 @@
         <xsl:text> = &#10;</xsl:text>
 
         <!-- delegate call -->
-        <xsl:value-of select="$indent" />
+        <xsl:apply-templates mode="indent" select="." />
         <xsl:choose>
             <xsl:when test="../@type = 'instance'">
-                <xsl:text>        instance.</xsl:text>
+                <xsl:text>    instance.</xsl:text>
             </xsl:when>
             <xsl:otherwise>
-                <xsl:text>        module.</xsl:text>
+                <xsl:text>    module.</xsl:text>
             </xsl:otherwise>
         </xsl:choose>
         <xsl:value-of select="@name" />
@@ -237,6 +232,9 @@
 
     <!-- param: method/constructor signature -->
     <xsl:template match="param" mode="signature">
+        <xsl:if test="@vararg = true()">
+            <xsl:text>vararg </xsl:text>
+        </xsl:if>
         <xsl:value-of select="@name" />
         <xsl:text>: </xsl:text>
         <xsl:apply-templates mode="type" select="." />
@@ -297,10 +295,11 @@
         </xsl:variable>
 
         <xsl:choose>
-            <xsl:when test="@isArray = true()">
+            <xsl:when test="@isArray = true() and not(@vararg=true())">
                 <xsl:text>Array&lt;</xsl:text>
             </xsl:when>
             <xsl:when test="@optional = true() and $isFunction = true()">
+                <!-- wrap optional lambdas with parentheses -->
                 <xsl:text>(</xsl:text>
             </xsl:when>
         </xsl:choose>
@@ -329,7 +328,7 @@
         </xsl:choose>
 
         <xsl:choose>
-            <xsl:when test="@isArray = true()">
+            <xsl:when test="@isArray = true() and not(@vararg=true())">
                 <xsl:text>&gt;</xsl:text>
             </xsl:when>
             <xsl:when test="@optional = true() and $isFunction = true()">
@@ -408,7 +407,7 @@
         </xsl:if>
 
         <!-- description -->
-        <xsl:apply-templates select="." mode="description"/>
+        <xsl:apply-templates mode="description" select="." />
 
         <!-- val name: type -->
         <xsl:text>    val </xsl:text>
@@ -418,7 +417,8 @@
 
         <xsl:choose>
             <xsl:when test="@isArray= true() and my:useWrappedInstance(@type) = true()">
-                <xsl:value-of select="concat(' get() = (instance.', @name, ' as Array&lt;dynamic&gt;).map { ', @type, '(it, Unit) }.toTypedArray()')" />
+                <xsl:value-of
+                    select="concat(' get() = (instance.', @name, ' as Array&lt;dynamic&gt;).map { ', @type, '(it, Unit) }.toTypedArray()')" />
             </xsl:when>
             <xsl:when test="my:useWrappedInstance(@type) = true()">
                 <xsl:value-of select="concat(' get() = ', @type, '(instance.', @name, ', Unit)')" />
@@ -466,8 +466,8 @@
             <xsl:apply-templates mode="indent" select="." />
             <xsl:text> *&#10;</xsl:text>
         </xsl:if>
-        <xsl:apply-templates select="description"/>
-        <xsl:apply-templates select="returns/description"/>
+        <xsl:apply-templates select="description" />
+        <xsl:apply-templates select="returns/description" />
         <xsl:apply-templates mode="indent" select="." />
         <xsl:text> */&#10;</xsl:text>
     </xsl:template>
@@ -476,7 +476,7 @@
     <xsl:template match="property" mode="description">
         <xsl:apply-templates mode="indent" select="." />
         <xsl:text>/**&#10;</xsl:text>
-        <xsl:apply-templates select="description"/>
+        <xsl:apply-templates select="description" />
         <xsl:apply-templates mode="indent" select="." />
         <xsl:text> */&#10;</xsl:text>
     </xsl:template>
@@ -485,7 +485,7 @@
     <xsl:template match="method/description">
         <xsl:apply-templates />
         <xsl:if test="parent::method/returns/description">
-            <xsl:apply-templates mode="indent" select="."/>
+            <xsl:apply-templates mode="indent" select="." />
             <xsl:text> * &#10;</xsl:text>
         </xsl:if>
     </xsl:template>

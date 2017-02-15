@@ -46,7 +46,7 @@ object ipcRenderer {
      *
      * The main process handles it by listening for channel with ipcMain module.
      */
-    fun send(channel: String, args: Array<dynamic>): Unit = 
+    fun send(channel: String, vararg args: dynamic): Unit = 
         module.send(channel, args)
 
     /**
@@ -60,14 +60,14 @@ object ipcRenderer {
      * Note: Sending a synchronous message will block the whole renderer process, 
      * unless you know what you are doing you should never use it.
      */
-    fun sendSync(channel: String, args: Array<dynamic>): Unit = 
+    fun sendSync(channel: String, vararg args: dynamic): Unit = 
         module.sendSync(channel, args)
 
     /**
      * Like ipcRenderer.send but the event will be sent to the <webview> element in 
      * the host page instead of the main process.
      */
-    fun sendToHost(channel: String, args: Array<dynamic>): Unit = 
+    fun sendToHost(channel: String, vararg args: dynamic): Unit = 
         module.sendToHost(channel, args)
 
     // ~ Builders ------------------------------------------------------------------------------
