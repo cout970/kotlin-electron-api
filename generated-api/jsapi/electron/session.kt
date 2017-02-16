@@ -108,7 +108,7 @@ class Session constructor(val instance: dynamic, @Suppress("UNUSED_PARAMETER") i
      * 
      * @param callback Called when operation is done
      */
-    fun clearCache(callback: () -> Unit): Unit = 
+    fun clearCache(callback: (dynamic) -> Unit): Unit = 
         instance.clearCache(callback)
 
     /**
@@ -117,7 +117,7 @@ class Session constructor(val instance: dynamic, @Suppress("UNUSED_PARAMETER") i
          * @param options 
      * @param callback Called when operation is done.
      */
-    fun clearStorageData(options: ClearStorageDataOptions? = null, callback: (() -> Unit)? = null): Unit = 
+    fun clearStorageData(options: ClearStorageDataOptions? = null, callback: ((dynamic) -> Unit)? = null): Unit = 
         instance.clearStorageData(options, callback)
 
     /**
@@ -193,7 +193,7 @@ class Session constructor(val instance: dynamic, @Suppress("UNUSED_PARAMETER") i
          * @param config 
      * @param callback Called when operation is done.
      */
-    fun setProxy(config: SetProxyConfig, callback: () -> Unit): Unit = 
+    fun setProxy(config: SetProxyConfig, callback: (dynamic) -> Unit): Unit = 
         instance.setProxy(config, callback)
 
     /**
@@ -291,7 +291,7 @@ class Session constructor(val instance: dynamic, @Suppress("UNUSED_PARAMETER") i
      * 
      * @param callback Called when operation is done.
      */
-    fun clearHostResolverCache(callback: (() -> Unit)? = null): Unit = 
+    fun clearHostResolverCache(callback: ((dynamic) -> Unit)? = null): Unit = 
         instance.clearHostResolverCache(callback)
 
     /**
@@ -362,7 +362,7 @@ class Session constructor(val instance: dynamic, @Suppress("UNUSED_PARAMETER") i
      * @param options 
      * @param callback Called when operation is done
      */
-    fun clearAuthCache(options: dynamic, callback: (() -> Unit)? = null): Unit = 
+    fun clearAuthCache(options: dynamic, callback: ((dynamic) -> Unit)? = null): Unit = 
         instance.clearAuthCache(options, callback)
 
     // ~ Companion -----------------------------------------------------------------------------

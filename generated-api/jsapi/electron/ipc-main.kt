@@ -20,7 +20,7 @@ object ipcMain {
      * @param channel 
      * @param listener 
      */
-    fun on(channel: String, listener: () -> Unit): Unit = 
+    fun on(channel: String, listener: (dynamic) -> Unit): Unit = 
         module.on(channel, listener)
 
     /**
@@ -30,7 +30,7 @@ object ipcMain {
      * @param channel 
      * @param listener 
      */
-    fun once(channel: String, listener: () -> Unit): Unit = 
+    fun once(channel: String, listener: (dynamic) -> Unit): Unit = 
         module.once(channel, listener)
 
     /**
@@ -40,7 +40,7 @@ object ipcMain {
      * @param channel 
      * @param listener 
      */
-    fun removeListener(channel: String, listener: () -> Unit): Unit = 
+    fun removeListener(channel: String, listener: (dynamic) -> Unit): Unit = 
         module.removeListener(channel, listener)
 
     /**

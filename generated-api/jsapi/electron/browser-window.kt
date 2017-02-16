@@ -509,7 +509,7 @@ class BrowserWindow constructor(val instance: dynamic, @Suppress("UNUSED_PARAMET
      * @param message 
      * @param callback 
      */
-    fun hookWindowMessage(message: Int, callback: () -> Unit): Unit = 
+    fun hookWindowMessage(message: Int, callback: (dynamic) -> Unit): Unit = 
         instance.hookWindowMessage(message, callback)
 
     /**

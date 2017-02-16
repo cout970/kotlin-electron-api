@@ -24,7 +24,7 @@ object globalShortcut {
      * @param accelerator 
      * @param callback 
      */
-    fun register(accelerator: String, callback: () -> Unit): Unit = 
+    fun register(accelerator: String, callback: (dynamic) -> Unit): Unit = 
         module.register(accelerator, callback)
 
     /**

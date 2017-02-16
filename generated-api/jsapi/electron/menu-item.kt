@@ -51,7 +51,7 @@ class MenuItem constructor(val instance: dynamic, @Suppress("UNUSED_PARAMETER") 
     /**
      * A Function that is fired when the MenuItem recieves a click event
      */
-    val click: () -> Unit get() = instance.click
+    val click: (dynamic) -> Unit get() = instance.click
 
 
 

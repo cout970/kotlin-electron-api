@@ -47,7 +47,7 @@ class Cookies constructor(val instance: dynamic, @Suppress("UNUSED_PARAMETER") i
      * @param name The name of cookie to remove.
      * @param callback 
      */
-    fun remove(url: String, name: String, callback: () -> Unit): Unit = 
+    fun remove(url: String, name: String, callback: (dynamic) -> Unit): Unit = 
         instance.remove(url, name, callback)
 
     // ~ Companion -----------------------------------------------------------------------------

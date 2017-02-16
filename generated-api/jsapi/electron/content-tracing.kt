@@ -64,7 +64,7 @@ object contentTracing {
          * @param options 
      * @param callback 
      */
-    fun startRecording(options: StartRecordingOptions, callback: () -> Unit): Unit = 
+    fun startRecording(options: StartRecordingOptions, callback: (dynamic) -> Unit): Unit = 
         module.startRecording(options, callback)
 
     /**
@@ -101,7 +101,7 @@ object contentTracing {
          * @param options 
      * @param callback 
      */
-    fun startMonitoring(options: StartMonitoringOptions, callback: () -> Unit): Unit = 
+    fun startMonitoring(options: StartMonitoringOptions, callback: (dynamic) -> Unit): Unit = 
         module.startMonitoring(options, callback)
 
     /**
@@ -112,7 +112,7 @@ object contentTracing {
      * 
      * @param callback 
      */
-    fun stopMonitoring(callback: () -> Unit): Unit = 
+    fun stopMonitoring(callback: (dynamic) -> Unit): Unit = 
         module.stopMonitoring(callback)
 
     /**

@@ -79,7 +79,7 @@ class ClientRequest constructor(val instance: dynamic, @Suppress("UNUSED_PARAMET
      * @param encoding Used to convert string chunks into Buffer objects. Defaults to 'utf-8'.
      * @param callback Called after the write operation ends.
      */
-    fun write(chunk: dynamic, encoding: String? = null, callback: (() -> Unit)? = null): Unit = 
+    fun write(chunk: dynamic, encoding: String? = null, callback: ((dynamic) -> Unit)? = null): Unit = 
         instance.write(chunk, encoding, callback)
 
     /**
@@ -90,7 +90,7 @@ class ClientRequest constructor(val instance: dynamic, @Suppress("UNUSED_PARAMET
      * @param encoding 
      * @param callback 
      */
-    fun end(chunk: dynamic? = null, encoding: String? = null, callback: (() -> Unit)? = null): Unit = 
+    fun end(chunk: dynamic? = null, encoding: String? = null, callback: ((dynamic) -> Unit)? = null): Unit = 
         instance.end(chunk, encoding, callback)
 
     /**

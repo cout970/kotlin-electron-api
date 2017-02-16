@@ -93,7 +93,7 @@
         <xsl:value-of select="concat('class ', @title)" />
 
         <!-- constructor -->
-        <xsl:apply-templates mode="signature" select="constructor" />
+        <xsl:apply-templates select="constructor" />
         <xsl:text> {&#10;&#10;</xsl:text>
         <xsl:apply-templates mode="delegate_call" select="constructor" />
 
@@ -139,7 +139,7 @@
     </xsl:template>
 
     <!-- constructor -->
-    <xsl:template match="constructor" mode="signature">
+    <xsl:template match="constructor">
         <xsl:text> constructor(val instance: dynamic, @Suppress("UNUSED_PARAMETER") ignoreMe: Unit)</xsl:text>
     </xsl:template>
 
@@ -149,7 +149,7 @@
         <!-- delegate / init -->
         <xsl:text>    @Suppress("UNUSED_VARIABLE")&#10;</xsl:text>
         <xsl:text>    constructor(</xsl:text>
-        <xsl:apply-templates mode="signature" />
+        <xsl:apply-templates  />
         <xsl:text>) : this(Unit.let {&#10;</xsl:text>
         <xsl:text>        val _constructor = js("require('electron').</xsl:text>
         <xsl:value-of select="../@title" />
@@ -201,7 +201,7 @@
         <!-- fun <name>(params)-->
         <xsl:apply-templates mode="indent" select="." />
         <xsl:value-of select="concat('fun ', @name, '(')" />
-        <xsl:apply-templates mode="signature" select="param" />
+        <xsl:apply-templates  select="param" />
         <xsl:text>): </xsl:text>
 
         <!-- : returns -->
@@ -235,7 +235,7 @@
 
 
     <!-- param: method/constructor signature -->
-    <xsl:template match="*[self::method|self::constructor]/param" mode="signature">
+    <xsl:template match="*[self::method|self::constructor]/param">
         <xsl:if test="@vararg = true()">
             <xsl:text>vararg </xsl:text>
         </xsl:if>
@@ -251,7 +251,7 @@
     </xsl:template>
 
     <!-- param: method/constructor signature -->
-    <xsl:template match="*[@type = 'Function']/param" mode="signature">
+    <xsl:template match="*[@type = 'Function']/param">
         <xsl:value-of select="@name" />
         <xsl:text>: </xsl:text>
         <xsl:apply-templates mode="type" select="." />
@@ -326,11 +326,15 @@
                 <!-- Integer is called Int -->
                 <xsl:text>Int</xsl:text>
             </xsl:when>
-            <xsl:when test="@type = 'Function'">
-                <!-- function -->
+            <xsl:when test="@type = 'Function' and param">
+                <!-- function with parameters -->
                 <xsl:text>(</xsl:text>
-                <xsl:apply-templates mode="signature" select="param" />
+                <xsl:apply-templates select="param" />
                 <xsl:text>) -> Unit</xsl:text>
+            </xsl:when>
+            <xsl:when test="@type = 'Function'">
+                <!-- function without parameters -->
+                <xsl:text>(dynamic) -> Unit</xsl:text>
             </xsl:when>
             <xsl:when test="@type = 'Object'">
                 <!-- object -->

@@ -57,7 +57,7 @@ class WebRequest constructor(val instance: dynamic, @Suppress("UNUSED_PARAMETER"
          * @param filter 
      * @param listener 
      */
-    fun onBeforeSendHeaders(filter: OnBeforeSendHeadersFilter.() -> Unit, listener: () -> Unit): Unit = 
+    fun onBeforeSendHeaders(filter: OnBeforeSendHeadersFilter.() -> Unit, listener: (dynamic) -> Unit): Unit = 
         instance.onBeforeSendHeaders(filter.let { OnBeforeSendHeadersFilter().apply(it) }, listener)
 
     /**
@@ -101,7 +101,7 @@ class WebRequest constructor(val instance: dynamic, @Suppress("UNUSED_PARAMETER"
          * @param filter 
      * @param listener 
      */
-    fun onHeadersReceived(filter: OnHeadersReceivedFilter.() -> Unit, listener: () -> Unit): Unit = 
+    fun onHeadersReceived(filter: OnHeadersReceivedFilter.() -> Unit, listener: (dynamic) -> Unit): Unit = 
         instance.onHeadersReceived(filter.let { OnHeadersReceivedFilter().apply(it) }, listener)
 
     /**

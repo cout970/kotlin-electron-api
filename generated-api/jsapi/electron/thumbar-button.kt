@@ -11,7 +11,7 @@ class ThumbarButton(
     /**
      * 
      */
-        var click: () -> Unit,
+        var click: (dynamic) -> Unit,
 
     /**
      * The text of the button's tooltip.
