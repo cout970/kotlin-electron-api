@@ -8,6 +8,7 @@
                   <para>Whether the system is in Dark Mode.</para>
                </description>
             </returns>
+            <description/>
          </method>
          <method name="isSwipeTrackingFromScrollEventsEnabled">
             <returns type="Boolean">
@@ -15,26 +16,58 @@
                   <para>Whether the Swipe between pages setting is on.</para>
                </description>
             </returns>
+            <description/>
          </method>
          <method name="postNotification">
-            <param name="event" type="String"/>
-            <param name="userInfo" type="Object"/>
+            <param name="event" type="String">
+               <description>
+                  <para/>
+               </description>
+            </param>
+            <param name="userInfo" type="Object">
+               <description>
+                  <para/>
+               </description>
+            </param>
             <description>
                <para>Posts event as native notifications of macOS. The userInfo is an Object that contains the user information dictionary sent along with the notification.</para>
             </description>
          </method>
          <method name="postLocalNotification">
-            <param name="event" type="String"/>
-            <param name="userInfo" type="Object"/>
+            <param name="event" type="String">
+               <description>
+                  <para/>
+               </description>
+            </param>
+            <param name="userInfo" type="Object">
+               <description>
+                  <para/>
+               </description>
+            </param>
             <description>
                <para>Posts event as native notifications of macOS. The userInfo is an Object that contains the user information dictionary sent along with the notification.</para>
             </description>
          </method>
          <method name="subscribeNotification">
-            <param name="event" type="String"/>
+            <param name="event" type="String">
+               <description>
+                  <para/>
+               </description>
+            </param>
             <param name="callback" type="Function">
-               <param name="event" type="String"/>
-               <param name="userInfo" type="Object"/>
+               <param name="event" type="String">
+                  <description>
+                     <para/>
+                  </description>
+               </param>
+               <param name="userInfo" type="Object">
+                  <description>
+                     <para/>
+                  </description>
+               </param>
+               <description>
+                  <para/>
+               </description>
             </param>
             <description>
                <para>Subscribes to native notifications of macOS, callback will be called with callback(event, userInfo) when the corresponding event happens. The userInfo is an Object that contains the user information dictionary sent along with the notification.</para>
@@ -57,29 +90,56 @@
             </description>
          </method>
          <method name="unsubscribeNotification">
-            <param name="id" type="Integer"/>
+            <param name="id" type="Integer">
+               <description>
+                  <para/>
+               </description>
+            </param>
             <description>
                <para>Removes the subscriber with id.</para>
             </description>
          </method>
          <method name="subscribeLocalNotification">
-            <param name="event" type="String"/>
+            <param name="event" type="String">
+               <description>
+                  <para/>
+               </description>
+            </param>
             <param name="callback" type="Function">
-               <param name="event" type="String"/>
-               <param name="userInfo" type="Object"/>
+               <param name="event" type="String">
+                  <description>
+                     <para/>
+                  </description>
+               </param>
+               <param name="userInfo" type="Object">
+                  <description>
+                     <para/>
+                  </description>
+               </param>
+               <description>
+                  <para/>
+               </description>
             </param>
             <description>
                <para>Same as subscribeNotification, but uses NSNotificationCenter for local defaults. This is necessary for events such as NSUserDefaultsDidChangeNotification</para>
             </description>
          </method>
          <method name="unsubscribeLocalNotification">
-            <param name="id" type="Integer"/>
+            <param name="id" type="Integer">
+               <description>
+                  <para/>
+               </description>
+            </param>
             <description>
                <para>Same as unsubscribeNotification, but removes the subscriber from NSNotificationCenter.</para>
             </description>
          </method>
          <method name="getUserDefault">
-            <param name="key" type="String"/>
+            <param name="key" type="String">
+               <description>
+                  <para/>
+               </description>
+            </param>
             <param name="type" type="String">
                <description>
                   <para>Can be string, boolean, integer, float, double, url, array, dictionary</para>
@@ -114,13 +174,21 @@
             </description>
          </method>
          <method name="setUserDefault">
-            <param name="key" type="String"/>
+            <param name="key" type="String">
+               <description>
+                  <para/>
+               </description>
+            </param>
             <param name="type" type="String">
                <description>
                   <para>See [getUserDefault][#systempreferencesgetuserdefaultkey-type-macos]</para>
                </description>
             </param>
-            <param name="value" type="String"/>
+            <param name="value" type="String">
+               <description>
+                  <para/>
+               </description>
+            </param>
             <description>
                <para>Set the value of key in system preferences.</para>
                <para>Note that type should match actual type of value. An exception is thrown if they don't.</para>
@@ -336,6 +404,7 @@ const alpha = color.substr(6, 2) // "dd"
                   <para>The system color setting in RGB hexadecimal form (#ABCDEF). See the Windows docs for more details.</para>
                </description>
             </returns>
+            <description/>
          </method>
          <method name="isInvertedColorScheme">
             <returns type="Boolean">
@@ -343,6 +412,7 @@ const alpha = color.substr(6, 2) // "dd"
                   <para>true if an inverted color scheme, such as a high contrast theme, is active, false otherwise.</para>
                </description>
             </returns>
+            <description/>
          </method>
       </methods>
    </object>

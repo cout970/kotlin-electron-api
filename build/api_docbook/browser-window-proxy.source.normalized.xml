@@ -14,7 +14,11 @@
             </description>
          </method>
          <method name="eval">
-            <param name="code" type="String"/>
+            <param name="code" type="String">
+               <description>
+                  <para/>
+               </description>
+            </param>
             <description>
                <para>Evaluates the code in the child window.</para>
             </description>
@@ -30,8 +34,16 @@
             </description>
          </method>
          <method name="postMessage">
-            <param name="message" type="String"/>
-            <param name="targetOrigin" type="String"/>
+            <param name="message" type="String">
+               <description>
+                  <para/>
+               </description>
+            </param>
+            <param name="targetOrigin" type="String">
+               <description>
+                  <para/>
+               </description>
+            </param>
             <description>
                <para>Sends a message to the child window with the specified origin or * for no origin preference.</para>
                <para>In addition to these methods, the child window implements window.opener object with no properties and a single method.</para>

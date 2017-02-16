@@ -1,13 +1,14 @@
 @file:Suppress("UnsafeCastFromDynamic")
 package jsapi.electron
 
+@Suppress("REDUNDANT_NULLABLE")
 object webFrame {
 
     private val module: dynamic = js("require('electron').webFrame")
 
     // ~ Events --------------------------------------------------------------------------------
 
-    fun onEvent(event: String, callback: () -> Unit) = 
+    fun onEvent(event: String, callback: () -> Unit): Unit = 
         module.on(event, callback)
 
     // ~ Methods -------------------------------------------------------------------------------
@@ -15,12 +16,14 @@ object webFrame {
     /**
      * Changes the zoom factor to the specified factor. Zoom factor is zoom percent 
      * divided by 100, so 300% = 3.0.
+     * 
+     * @param factor Zoom factor.
      */
     fun setZoomFactor(factor: Number): Unit = 
         module.setZoomFactor(factor)
 
     /**
-     * @return The current zoom factor.
+     * @returns The current zoom factor.
      */
     fun getZoomFactor(): Number = 
         module.getZoomFactor()
@@ -29,12 +32,14 @@ object webFrame {
      * Changes the zoom level to the specified level. The original size is 0 and each 
      * increment above or below represents zooming 20% larger or smaller to default 
      * limits of 300% and 50% of original size, respectively.
+     * 
+     * @param level Zoom level
      */
     fun setZoomLevel(level: Number): Unit = 
         module.setZoomLevel(level)
 
     /**
-     * @return The current zoom level.
+     * @returns The current zoom level.
      */
     fun getZoomLevel(): Number = 
         module.getZoomLevel()
@@ -42,18 +47,27 @@ object webFrame {
     /**
      * Deprecated: Call setVisualZoomLevelLimits instead to set the visual zoom level 
      * limits. This method will be removed in Electron 2.0.
+     * 
+     * @param minimumLevel 
+     * @param maximumLevel 
      */
     fun setZoomLevelLimits(minimumLevel: Number, maximumLevel: Number): Unit = 
         module.setZoomLevelLimits(minimumLevel, maximumLevel)
 
     /**
      * Sets the maximum and minimum pinch-to-zoom level.
+     * 
+     * @param minimumLevel 
+     * @param maximumLevel 
      */
     fun setVisualZoomLevelLimits(minimumLevel: Number, maximumLevel: Number): Unit = 
         module.setVisualZoomLevelLimits(minimumLevel, maximumLevel)
 
     /**
      * Sets the maximum and minimum layout-based (i.e. non-visual) zoom level.
+     * 
+     * @param minimumLevel 
+     * @param maximumLevel 
      */
     fun setLayoutZoomLevelLimits(minimumLevel: Number, maximumLevel: Number): Unit = 
         module.setLayoutZoomLevelLimits(minimumLevel, maximumLevel)
@@ -74,6 +88,10 @@ object webFrame {
      *  |   }
      *  | })
      *  | 
+     * 
+     * @param language 
+     * @param autoCorrectWord 
+         * @param provider 
      */
     fun setSpellCheckProvider(language: String, autoCorrectWord: Boolean, provider: SetSpellCheckProviderProvider): Unit = 
         module.setSpellCheckProvider(language, autoCorrectWord, provider)
@@ -84,6 +102,8 @@ object webFrame {
      * Secure schemes do not trigger mixed content warnings. For example, https and 
      * data are secure schemes because they cannot be corrupted by active network 
      * attackers.
+     * 
+     * @param scheme 
      */
     fun registerURLSchemeAsSecure(scheme: String): Unit = 
         module.registerURLSchemeAsSecure(scheme)
@@ -91,6 +111,8 @@ object webFrame {
     /**
      * Resources will be loaded from this scheme regardless of the current page's 
      * Content Security Policy.
+     * 
+     * @param scheme 
      */
     fun registerURLSchemeAsBypassingCSP(scheme: String): Unit = 
         module.registerURLSchemeAsBypassingCSP(scheme)
@@ -107,12 +129,17 @@ object webFrame {
      *  | const {webFrame} = require('electron')
      *  | webFrame.registerURLSchemeAsPrivileged('foo', { bypassCSP: false })
      *  | 
+     * 
+     * @param scheme 
+         * @param options 
      */
-    fun registerURLSchemeAsPrivileged(scheme: String, options: (RegisterURLSchemeAsPrivilegedOptions.() -> Unit)?): Unit = 
+    fun registerURLSchemeAsPrivileged(scheme: String, options: (RegisterURLSchemeAsPrivilegedOptions.() -> Unit)? = null): Unit = 
         module.registerURLSchemeAsPrivileged(scheme, options?.let { RegisterURLSchemeAsPrivilegedOptions().apply(it) })
 
     /**
      * Inserts text to the focused element.
+     * 
+     * @param text 
      */
     fun insertText(text: String): Unit = 
         module.insertText(text)
@@ -123,8 +150,12 @@ object webFrame {
      * In the browser window some HTML APIs like requestFullScreen can only be 
      * invoked by a gesture from the user. Setting userGesture to true will remove 
      * this limitation.
+     * 
+     * @param code 
+     * @param userGesture Default is false.
+     * @param callback Called after script has been executed.
      */
-    fun executeJavaScript(code: String, userGesture: Boolean?, callback: ((result: Any) -> Unit)?): Unit = 
+    fun executeJavaScript(code: String, userGesture: Boolean? = null, callback: ((result: Any) -> Unit)? = null): Unit = 
         module.executeJavaScript(code, userGesture, callback)
 
     /**
@@ -154,6 +185,14 @@ object webFrame {
      *  |   other: { /* same with "images" */ }
      *  | }
      *  | 
+     * 
+     * @param images 
+     * @param cssStyleSheets 
+     * @param xslStyleSheets 
+     * @param fonts 
+     * @param other 
+     *
+     * @returns 
      */
     fun getResourceUsage(images: MemoryUsageDetails, cssStyleSheets: MemoryUsageDetails, xslStyleSheets: MemoryUsageDetails, fonts: MemoryUsageDetails, other: MemoryUsageDetails): dynamic = 
         module.getResourceUsage(images.instance, cssStyleSheets.instance, xslStyleSheets.instance, fonts.instance, other.instance)
@@ -174,15 +213,39 @@ object webFrame {
     // ~ Builders ------------------------------------------------------------------------------
 
     class SetSpellCheckProviderProvider(
+        /**
+         * Returns Boolean
+         */
         var spellCheck: (text: String) -> Unit
+
     )
 
     class RegisterURLSchemeAsPrivilegedOptions(
+        /**
+         * (optional) Default true.
+         */
         var secure: Boolean? = null,
+
+        /**
+         * (optional) Default true.
+         */
         var bypassCSP: Boolean? = null,
+
+        /**
+         * (optional) Default true.
+         */
         var allowServiceWorkers: Boolean? = null,
+
+        /**
+         * (optional) Default true.
+         */
         var supportFetchAPI: Boolean? = null,
+
+        /**
+         * (optional) Default true.
+         */
         var corsEnabled: Boolean? = null
+
     )
 }
 

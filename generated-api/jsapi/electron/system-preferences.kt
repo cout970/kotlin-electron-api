@@ -1,25 +1,26 @@
 @file:Suppress("UnsafeCastFromDynamic")
 package jsapi.electron
 
+@Suppress("REDUNDANT_NULLABLE")
 object systemPreferences {
 
     private val module: dynamic = js("require('electron').systemPreferences")
 
     // ~ Events --------------------------------------------------------------------------------
 
-    fun onEvent(event: String, callback: () -> Unit) = 
+    fun onEvent(event: String, callback: () -> Unit): Unit = 
         module.on(event, callback)
 
     // ~ Methods -------------------------------------------------------------------------------
 
     /**
-     * @return Whether the system is in Dark Mode.
+     * @returns Whether the system is in Dark Mode.
      */
     fun isDarkMode(): Boolean = 
         module.isDarkMode()
 
     /**
-     * @return Whether the Swipe between pages setting is on.
+     * @returns Whether the Swipe between pages setting is on.
      */
     fun isSwipeTrackingFromScrollEventsEnabled(): Boolean = 
         module.isSwipeTrackingFromScrollEventsEnabled()
@@ -27,6 +28,9 @@ object systemPreferences {
     /**
      * Posts event as native notifications of macOS. The userInfo is an Object that 
      * contains the user information dictionary sent along with the notification.
+     * 
+     * @param event 
+         * @param userInfo 
      */
     fun postNotification(event: String, userInfo: PostNotificationUserInfo.() -> Unit): Unit = 
         module.postNotification(event, userInfo.let { PostNotificationUserInfo().apply(it) })
@@ -34,6 +38,9 @@ object systemPreferences {
     /**
      * Posts event as native notifications of macOS. The userInfo is an Object that 
      * contains the user information dictionary sent along with the notification.
+     * 
+     * @param event 
+         * @param userInfo 
      */
     fun postLocalNotification(event: String, userInfo: PostLocalNotificationUserInfo.() -> Unit): Unit = 
         module.postLocalNotification(event, userInfo.let { PostLocalNotificationUserInfo().apply(it) })
@@ -55,12 +62,17 @@ object systemPreferences {
      *  . AppleColorPreferencesChangedNotification
      *  . AppleShowScrollBarsSettingChanged
      *
+     * 
+     * @param event 
+     * @param callback 
      */
     fun subscribeNotification(event: String, callback: (event: String, userInfo: SubscribeNotificationUserInfo.() -> Unit) -> Unit): Unit = 
         module.subscribeNotification(event, callback)
 
     /**
      * Removes the subscriber with id.
+     * 
+     * @param id 
      */
     fun unsubscribeNotification(id: Int): Unit = 
         module.unsubscribeNotification(id)
@@ -69,6 +81,9 @@ object systemPreferences {
      * Same as subscribeNotification, but uses NSNotificationCenter for local 
      * defaults. This is necessary for events such as 
      * NSUserDefaultsDidChangeNotification
+     * 
+     * @param event 
+     * @param callback 
      */
     fun subscribeLocalNotification(event: String, callback: (event: String, userInfo: SubscribeLocalNotificationUserInfo.() -> Unit) -> Unit): Unit = 
         module.subscribeLocalNotification(event, callback)
@@ -76,6 +91,8 @@ object systemPreferences {
     /**
      * Same as unsubscribeNotification, but removes the subscriber from 
      * NSNotificationCenter.
+     * 
+     * @param id 
      */
     fun unsubscribeLocalNotification(id: Int): Unit = 
         module.unsubscribeLocalNotification(id)
@@ -93,6 +110,9 @@ object systemPreferences {
      *  . NSPreferredWebServices: dictionary
      *  . NSUserDictionaryReplacementItems: array
      *
+     * 
+     * @param key 
+     * @param type Can be string, boolean, integer, float, double, url, array, dictionary
      */
     fun getUserDefault(key: String, type: String): Unit = 
         module.getUserDefault(key, type)
@@ -107,6 +127,10 @@ object systemPreferences {
      *
      *  . ApplePressAndHoldEnabled: boolean
      *
+     * 
+     * @param key 
+     * @param type See [getUserDefault][#systempreferencesgetuserdefaultkey-type-macos]
+     * @param value 
      */
     fun setUserDefault(key: String, type: String, value: String): Unit = 
         module.setUserDefault(key, type, value)
@@ -153,21 +177,23 @@ object systemPreferences {
      *  | const alpha = color.substr(6, 2) // "dd"
      *  | 
      * 
-     * @return The users current system wide accent color preference in RGBA hexadecimal form.
+     * @returns The users current system wide accent color preference in RGBA hexadecimal form.
      */
     fun getAccentColor(): String = 
         module.getAccentColor()
 
     /**
-     * @return The system color setting in RGB hexadecimal form (#ABCDEF). See the Windows 
-     * docs for more details.
+     * @param color One of the following values:
+     *
+     * @returns The system color setting in RGB hexadecimal form (#ABCDEF). See the Windows 
+     *          docs for more details.
      */
     fun getColor(color: String): String = 
         module.getColor(color)
 
     /**
-     * @return true if an inverted color scheme, such as a high contrast theme, is active, 
-     * false otherwise.
+     * @returns true if an inverted color scheme, such as a high contrast theme, is active, 
+     *          false otherwise.
      */
     fun isInvertedColorScheme(): Boolean = 
         module.isInvertedColorScheme()

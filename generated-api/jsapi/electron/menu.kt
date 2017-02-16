@@ -1,16 +1,18 @@
 @file:Suppress("UnsafeCastFromDynamic")
 package jsapi.electron
 
-class Menu constructor(val instance: dynamic, z: Unit) {
+@Suppress("REDUNDANT_NULLABLE")
+class Menu constructor(val instance: dynamic, @Suppress("UNUSED_PARAMETER") ignoreMe: Unit) {
 
+    @Suppress("UNUSED_VARIABLE")
     constructor() : this(Unit.let {
         val _constructor = js("require('electron').Menu")
         js("new _constructor()")
-    }, z = Unit)
+    }, Unit)
 
     // ~ Events --------------------------------------------------------------------------------
 
-    fun onEvent(event: String, callback: () -> Unit) = 
+    fun onEvent(event: String, callback: () -> Unit): Unit = 
         module.on(event, callback)
 
     // ~ Properties ----------------------------------------------------------------------------
@@ -27,18 +29,29 @@ class Menu constructor(val instance: dynamic, z: Unit) {
 
     /**
      * Pops up this menu as a context menu in the browserWindow.
+     * 
+     * @param browserWindow Default is BrowserWindow.getFocusedWindow().
+     * @param x Default is the current mouse cursor position.
+     * @param y Default is the current mouse cursor position.
+     * @param positioningItem The index of the menu item to be positioned under the mouse cursor at the 
+     *                        specified coordinates. Default is -1.
      */
-    fun popup(browserWindow: BrowserWindow?, x: Number?, y: Number, positioningItem: Number?): Unit = 
+    fun popup(browserWindow: BrowserWindow? = null, x: Number? = null, y: Number, positioningItem: Number? = null): Unit = 
         instance.popup(browserWindow?.instance, x, y, positioningItem)
 
     /**
      * Appends the menuItem to the menu.
+     * 
+     * @param menuItem 
      */
     fun append(menuItem: MenuItem): Unit = 
         instance.append(menuItem.instance)
 
     /**
      * Inserts the menuItem to the pos position of the menu.
+     * 
+     * @param pos 
+     * @param menuItem 
      */
     fun insert(pos: Int, menuItem: MenuItem): Unit = 
         instance.insert(pos, menuItem.instance)
@@ -56,12 +69,14 @@ class Menu constructor(val instance: dynamic, z: Unit) {
          * will be set as each window's top menu.
          *
          * Note: This API has to be called after the ready event of app module.
+         * 
+         * @param menu 
          */
         fun setApplicationMenu(menu: Menu): Unit = 
             module.setApplicationMenu(menu.instance)
 
         /**
-         * @return The application menu, if set, or null, if not set.
+         * @returns The application menu, if set, or null, if not set.
          */
         fun getApplicationMenu(): Menu = 
             module.getApplicationMenu()
@@ -73,6 +88,8 @@ class Menu constructor(val instance: dynamic, z: Unit) {
          *
          * See the macOS Cocoa Event Handling Guide for more information on macOS' native 
          * actions.
+         * 
+         * @param action 
          */
         fun sendActionToFirstResponder(action: String): Unit = 
             module.sendActionToFirstResponder(action)
@@ -83,6 +100,10 @@ class Menu constructor(val instance: dynamic, z: Unit) {
          *
          * You can also attach other fields to the element of the template and they will 
          * become properties of the constructed menu items.
+         * 
+         * @param template 
+         *
+         * @returns 
          */
         fun buildFromTemplate(template: Array<MenuItem.Options>): Menu = 
             module.buildFromTemplate(template)

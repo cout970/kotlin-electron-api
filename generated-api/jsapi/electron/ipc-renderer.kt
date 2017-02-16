@@ -1,13 +1,14 @@
 @file:Suppress("UnsafeCastFromDynamic")
 package jsapi.electron
 
+@Suppress("REDUNDANT_NULLABLE")
 object ipcRenderer {
 
     private val module: dynamic = js("require('electron').ipcRenderer")
 
     // ~ Events --------------------------------------------------------------------------------
 
-    fun onEvent(event: String, callback: () -> Unit) = 
+    fun onEvent(event: String, callback: () -> Unit): Unit = 
         module.on(event, callback)
 
     // ~ Methods -------------------------------------------------------------------------------
@@ -15,6 +16,9 @@ object ipcRenderer {
     /**
      * Listens to channel, when a new message arrives listener would be called with 
      * listener(event, args...).
+     * 
+     * @param channel 
+     * @param listener 
      */
     fun on(channel: String, listener: () -> Unit): Unit = 
         module.on(channel, listener)
@@ -22,6 +26,9 @@ object ipcRenderer {
     /**
      * Adds a one time listener function for the event. This listener is invoked only 
      * the next time a message is sent to channel, after which it is removed.
+     * 
+     * @param channel 
+     * @param listener 
      */
     fun once(channel: String, listener: () -> Unit): Unit = 
         module.once(channel, listener)
@@ -29,14 +36,19 @@ object ipcRenderer {
     /**
      * Removes the specified listener from the listener array for the specified 
      * channel.
+     * 
+     * @param channel 
+     * @param listener 
      */
     fun removeListener(channel: String, listener: () -> Unit): Unit = 
         module.removeListener(channel, listener)
 
     /**
      * Removes all listeners, or those of the specified channel.
+     * 
+     * @param channel 
      */
-    fun removeAllListeners(channel: String?): Unit = 
+    fun removeAllListeners(channel: String? = null): Unit = 
         module.removeAllListeners(channel)
 
     /**
@@ -45,6 +57,9 @@ object ipcRenderer {
      * hence no functions or prototype chain will be included.
      *
      * The main process handles it by listening for channel with ipcMain module.
+     * 
+     * @param channel 
+     * @param args 
      */
     fun send(channel: String, vararg args: dynamic): Unit = 
         module.send(channel, args)
@@ -59,6 +74,9 @@ object ipcRenderer {
      *
      * Note: Sending a synchronous message will block the whole renderer process, 
      * unless you know what you are doing you should never use it.
+     * 
+     * @param channel 
+     * @param args 
      */
     fun sendSync(channel: String, vararg args: dynamic): Unit = 
         module.sendSync(channel, args)
@@ -66,6 +84,9 @@ object ipcRenderer {
     /**
      * Like ipcRenderer.send but the event will be sent to the <webview> element in 
      * the host page instead of the main process.
+     * 
+     * @param channel 
+     * @param args 
      */
     fun sendToHost(channel: String, vararg args: dynamic): Unit = 
         module.sendToHost(channel, args)

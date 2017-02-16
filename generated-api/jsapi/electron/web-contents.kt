@@ -3,32 +3,35 @@ package jsapi.electron
 
 import kotlin.js.Promise
 
+@Suppress("REDUNDANT_NULLABLE")
 object webContents {
 
     private val module: dynamic = js("require('electron').webContents")
 
     // ~ Events --------------------------------------------------------------------------------
 
-    fun onEvent(event: String, callback: () -> Unit) = 
+    fun onEvent(event: String, callback: () -> Unit): Unit = 
         module.on(event, callback)
 
     // ~ Methods -------------------------------------------------------------------------------
 
     /**
-     * @return An array of all WebContents instances. This will contain web contents for all 
-     * windows, webviews, opened devtools, and devtools extension background pages.
+     * @returns An array of all WebContents instances. This will contain web contents for all 
+     *          windows, webviews, opened devtools, and devtools extension background pages.
      */
     fun getAllWebContents(): Array<WebContents> = 
         module.getAllWebContents()
 
     /**
-     * @return The web contents that is focused in this application, otherwise returns null.
+     * @returns The web contents that is focused in this application, otherwise returns null.
      */
     fun getFocusedWebContents(): WebContents = 
         module.getFocusedWebContents()
 
     /**
-     * @return A WebContents instance with the given ID.
+     * @param id 
+     *
+     * @returns A WebContents instance with the given ID.
      */
     fun fromId(id: Int): WebContents = 
         module.fromId(id)
@@ -36,16 +39,18 @@ object webContents {
     // ~ Builders ------------------------------------------------------------------------------
 }
 
-class WebContents constructor(val instance: dynamic, z: Unit) {
+@Suppress("REDUNDANT_NULLABLE")
+class WebContents constructor(val instance: dynamic, @Suppress("UNUSED_PARAMETER") ignoreMe: Unit) {
 
+    @Suppress("UNUSED_VARIABLE")
     constructor() : this(Unit.let {
         val _constructor = js("require('electron').WebContents")
         js("new _constructor()")
-    }, z = Unit)
+    }, Unit)
 
     // ~ Events --------------------------------------------------------------------------------
 
-    fun onEvent(event: String, callback: () -> Unit) = 
+    fun onEvent(event: String, callback: () -> Unit): Unit = 
         module.on(event, callback)
 
     // ~ Properties ----------------------------------------------------------------------------
@@ -91,13 +96,18 @@ class WebContents constructor(val instance: dynamic, z: Unit) {
      *  | const options = {extraHeaders: 'pragma: no-cache\n'}
      *  | webContents.loadURL('https://github.com', options)
      *  | 
+     * 
+     * @param url 
+         * @param options 
      */
-    fun loadURL(url: String, options: (LoadURLOptions.() -> Unit)?): Unit = 
+    fun loadURL(url: String, options: (LoadURLOptions.() -> Unit)? = null): Unit = 
         instance.loadURL(url, options?.let { LoadURLOptions().apply(it) })
 
     /**
      * Initiates a download of the resource at url without navigating. The 
      * will-download event of session will be triggered.
+     * 
+     * @param url 
      */
     fun downloadURL(url: String): Unit = 
         instance.downloadURL(url)
@@ -112,45 +122,45 @@ class WebContents constructor(val instance: dynamic, z: Unit) {
      *  | console.log(currentURL)
      *  | 
      * 
-     * @return The URL of the current web page.
+     * @returns The URL of the current web page.
      */
     fun getURL(): String = 
         instance.getURL()
 
     /**
-     * @return The title of the current web page.
+     * @returns The title of the current web page.
      */
     fun getTitle(): String = 
         instance.getTitle()
 
     /**
-     * @return Whether the web page is destroyed.
+     * @returns Whether the web page is destroyed.
      */
     fun isDestroyed(): Boolean = 
         instance.isDestroyed()
 
     /**
-     * @return Whether the web page is focused.
+     * @returns Whether the web page is focused.
      */
     fun isFocused(): Boolean = 
         instance.isFocused()
 
     /**
-     * @return Whether web page is still loading resources.
+     * @returns Whether web page is still loading resources.
      */
     fun isLoading(): Boolean = 
         instance.isLoading()
 
     /**
-     * @return Whether the main frame (and not just iframes or frames within it) is still 
-     * loading.
+     * @returns Whether the main frame (and not just iframes or frames within it) is still 
+     *          loading.
      */
     fun isLoadingMainFrame(): Boolean = 
         instance.isLoadingMainFrame()
 
     /**
-     * @return Whether the web page is waiting for a first-response from the main resource of 
-     * the page.
+     * @returns Whether the web page is waiting for a first-response from the main resource of 
+     *          the page.
      */
     fun isWaitingForResponse(): Boolean = 
         instance.isWaitingForResponse()
@@ -174,19 +184,21 @@ class WebContents constructor(val instance: dynamic, z: Unit) {
         instance.reloadIgnoringCache()
 
     /**
-     * @return Whether the browser can go back to previous web page.
+     * @returns Whether the browser can go back to previous web page.
      */
     fun canGoBack(): Boolean = 
         instance.canGoBack()
 
     /**
-     * @return Whether the browser can go forward to next web page.
+     * @returns Whether the browser can go forward to next web page.
      */
     fun canGoForward(): Boolean = 
         instance.canGoForward()
 
     /**
-     * @return Whether the web page can go to offset.
+     * @param offset 
+     *
+     * @returns Whether the web page can go to offset.
      */
     fun canGoToOffset(offset: Int): Boolean = 
         instance.canGoToOffset(offset)
@@ -211,36 +223,44 @@ class WebContents constructor(val instance: dynamic, z: Unit) {
 
     /**
      * Navigates browser to the specified absolute web page index.
+     * 
+     * @param index 
      */
     fun goToIndex(index: Int): Unit = 
         instance.goToIndex(index)
 
     /**
      * Navigates to the specified offset from the "current entry".
+     * 
+     * @param offset 
      */
     fun goToOffset(offset: Int): Unit = 
         instance.goToOffset(offset)
 
     /**
-     * @return Whether the renderer process has crashed.
+     * @returns Whether the renderer process has crashed.
      */
     fun isCrashed(): Boolean = 
         instance.isCrashed()
 
     /**
      * Overrides the user agent for this web page.
+     * 
+     * @param userAgent 
      */
     fun setUserAgent(userAgent: String): Unit = 
         instance.setUserAgent(userAgent)
 
     /**
-     * @return The user agent for this web page.
+     * @returns The user agent for this web page.
      */
     fun getUserAgent(): String = 
         instance.getUserAgent()
 
     /**
      * Injects CSS into the current web page.
+     * 
+     * @param css 
      */
     fun insertCSS(css: String): Unit = 
         instance.insertCSS(css)
@@ -263,20 +283,26 @@ class WebContents constructor(val instance: dynamic, z: Unit) {
      *  |   })
      *  | 
      * 
-     * @return A promise that resolves with the result of the executed code or is rejected if 
-     * the result of the code is a rejected promise.
+     * @param code 
+     * @param userGesture 
+     * @param callback Called after script has been executed.
+     *
+     * @returns A promise that resolves with the result of the executed code or is rejected if 
+     *          the result of the code is a rejected promise.
      */
-    fun executeJavaScript(code: String, userGesture: Boolean?, callback: ((result: Any) -> Unit)?): Promise<dynamic> = 
+    fun executeJavaScript(code: String, userGesture: Boolean? = null, callback: ((result: Any) -> Unit)? = null): Promise<dynamic> = 
         instance.executeJavaScript(code, userGesture, callback)
 
     /**
      * Mute the audio on the current web page.
+     * 
+     * @param muted 
      */
     fun setAudioMuted(muted: Boolean): Unit = 
         instance.setAudioMuted(muted)
 
     /**
-     * @return Whether this page has been muted.
+     * @returns Whether this page has been muted.
      */
     fun isAudioMuted(): Boolean = 
         instance.isAudioMuted()
@@ -284,6 +310,8 @@ class WebContents constructor(val instance: dynamic, z: Unit) {
     /**
      * Changes the zoom factor to the specified factor. Zoom factor is zoom percent 
      * divided by 100, so 300% = 3.0.
+     * 
+     * @param factor Zoom factor.
      */
     fun setZoomFactor(factor: Number): Unit = 
         instance.setZoomFactor(factor)
@@ -291,6 +319,8 @@ class WebContents constructor(val instance: dynamic, z: Unit) {
     /**
      * Sends a request to get current zoom factor, the callback will be called with 
      * callback(zoomFactor).
+     * 
+     * @param callback 
      */
     fun getZoomFactor(callback: (zoomFactor: Number) -> Unit): Unit = 
         instance.getZoomFactor(callback)
@@ -299,6 +329,8 @@ class WebContents constructor(val instance: dynamic, z: Unit) {
      * Changes the zoom level to the specified level. The original size is 0 and each 
      * increment above or below represents zooming 20% larger or smaller to default 
      * limits of 300% and 50% of original size, respectively.
+     * 
+     * @param level Zoom level
      */
     fun setZoomLevel(level: Number): Unit = 
         instance.setZoomLevel(level)
@@ -306,6 +338,8 @@ class WebContents constructor(val instance: dynamic, z: Unit) {
     /**
      * Sends a request to get current zoom level, the callback will be called with 
      * callback(zoomLevel).
+     * 
+     * @param callback 
      */
     fun getZoomLevel(callback: (zoomLevel: Number) -> Unit): Unit = 
         instance.getZoomLevel(callback)
@@ -313,18 +347,27 @@ class WebContents constructor(val instance: dynamic, z: Unit) {
     /**
      * Deprecated: Call setVisualZoomLevelLimits instead to set the visual zoom level 
      * limits. This method will be removed in Electron 2.0.
+     * 
+     * @param minimumLevel 
+     * @param maximumLevel 
      */
     fun setZoomLevelLimits(minimumLevel: Number, maximumLevel: Number): Unit = 
         instance.setZoomLevelLimits(minimumLevel, maximumLevel)
 
     /**
      * Sets the maximum and minimum pinch-to-zoom level.
+     * 
+     * @param minimumLevel 
+     * @param maximumLevel 
      */
     fun setVisualZoomLevelLimits(minimumLevel: Number, maximumLevel: Number): Unit = 
         instance.setVisualZoomLevelLimits(minimumLevel, maximumLevel)
 
     /**
      * Sets the maximum and minimum layout-based (i.e. non-visual) zoom level.
+     * 
+     * @param minimumLevel 
+     * @param maximumLevel 
      */
     fun setLayoutZoomLevelLimits(minimumLevel: Number, maximumLevel: Number): Unit = 
         instance.setLayoutZoomLevelLimits(minimumLevel, maximumLevel)
@@ -355,6 +398,9 @@ class WebContents constructor(val instance: dynamic, z: Unit) {
 
     /**
      * Copy the image at the given position to the clipboard.
+     * 
+     * @param x 
+     * @param y 
      */
     fun copyImageAt(x: Int, y: Int): Unit = 
         instance.copyImageAt(x, y)
@@ -391,18 +437,24 @@ class WebContents constructor(val instance: dynamic, z: Unit) {
 
     /**
      * Executes the editing command replace in web page.
+     * 
+     * @param text 
      */
     fun replace(text: String): Unit = 
         instance.replace(text)
 
     /**
      * Executes the editing command replaceMisspelling in web page.
+     * 
+     * @param text 
      */
     fun replaceMisspelling(text: String): Unit = 
         instance.replaceMisspelling(text)
 
     /**
      * Inserts text to the focused element.
+     * 
+     * @param text 
      */
     fun insertText(text: String): Unit = 
         instance.insertText(text)
@@ -411,8 +463,11 @@ class WebContents constructor(val instance: dynamic, z: Unit) {
      * Starts a request to find all matches for the text in the web page and returns 
      * an Integer representing the request id used for the request. The result of the 
      * request can be obtained by subscribing to found-in-page event.
+     * 
+     * @param text Content to be searched, must not be empty.
+         * @param options 
      */
-    fun findInPage(text: String, options: (FindInPageOptions.() -> Unit)?): Unit = 
+    fun findInPage(text: String, options: (FindInPageOptions.() -> Unit)? = null): Unit = 
         instance.findInPage(text, options?.let { FindInPageOptions().apply(it) })
 
     /**
@@ -427,6 +482,9 @@ class WebContents constructor(val instance: dynamic, z: Unit) {
      *  | const requestId = webContents.findInPage('api')
      *  | console.log(requestId)
      *  | 
+     * 
+     * @param action Specifies the action to take place when ending [webContents.findInPage] 
+     *               request.
      */
     fun stopFindInPage(action: String): Unit = 
         instance.stopFindInPage(action)
@@ -435,13 +493,18 @@ class WebContents constructor(val instance: dynamic, z: Unit) {
      * Captures a snapshot of the page within rect. Upon completion callback will be 
      * called with callback(image). The image is an instance of NativeImage that 
      * stores data of the snapshot. Omitting rect will capture the whole visible page.
+     * 
+     * @param rect The area of the page to be captured
+     * @param callback 
      */
-    fun capturePage(rect: Rectangle?, callback: (image: NativeImage) -> Unit): Unit = 
+    fun capturePage(rect: Rectangle? = null, callback: (image: NativeImage) -> Unit): Unit = 
         instance.capturePage(rect?.instance, callback)
 
     /**
      * Checks if any ServiceWorker is registered and returns a boolean as response to 
      * callback.
+     * 
+     * @param callback 
      */
     fun hasServiceWorker(callback: (hasWorker: Boolean) -> Unit): Unit = 
         instance.hasServiceWorker(callback)
@@ -450,6 +513,8 @@ class WebContents constructor(val instance: dynamic, z: Unit) {
      * Unregisters any ServiceWorker if present and returns a boolean as response to 
      * callback when the JS promise is fulfilled or false when the JS promise is 
      * rejected.
+     * 
+     * @param callback 
      */
     fun unregisterServiceWorker(callback: (success: Boolean) -> Unit): Unit = 
         instance.unregisterServiceWorker(callback)
@@ -462,8 +527,10 @@ class WebContents constructor(val instance: dynamic, z: Unit) {
      * webContents.print({silent: false, printBackground: false}).
      *
      * Use page-break-before: always; CSS style to force to print to a new page.
+     * 
+         * @param options 
      */
-    fun print(options: PrintOptions?): Unit = 
+    fun print(options: PrintOptions? = null): Unit = 
         instance.print(options)
 
     /**
@@ -508,6 +575,9 @@ class WebContents constructor(val instance: dynamic, z: Unit) {
      *  |   })
      *  | })
      *  | 
+     * 
+         * @param options 
+     * @param callback 
      */
     fun printToPDF(options: PrintToPDFOptions.() -> Unit, callback: (error: Error, data: dynamic) -> Unit): Unit = 
         instance.printToPDF(options.let { PrintToPDFOptions().apply(it) }, callback)
@@ -523,20 +593,26 @@ class WebContents constructor(val instance: dynamic, z: Unit) {
      *  |   win.webContents.addWorkSpace(__dirname)
      *  | })
      *  | 
+     * 
+     * @param path 
      */
     fun addWorkSpace(path: String): Unit = 
         instance.addWorkSpace(path)
 
     /**
      * Removes the specified path from DevTools workspace.
+     * 
+     * @param path 
      */
     fun removeWorkSpace(path: String): Unit = 
         instance.removeWorkSpace(path)
 
     /**
      * Opens the devtools.
+     * 
+         * @param options 
      */
-    fun openDevTools(options: OpenDevToolsOptions?): Unit = 
+    fun openDevTools(options: OpenDevToolsOptions? = null): Unit = 
         instance.openDevTools(options)
 
     /**
@@ -546,13 +622,13 @@ class WebContents constructor(val instance: dynamic, z: Unit) {
         instance.closeDevTools()
 
     /**
-     * @return Whether the devtools is opened.
+     * @returns Whether the devtools is opened.
      */
     fun isDevToolsOpened(): Boolean = 
         instance.isDevToolsOpened()
 
     /**
-     * @return Whether the devtools view is focused .
+     * @returns Whether the devtools view is focused .
      */
     fun isDevToolsFocused(): Boolean = 
         instance.isDevToolsFocused()
@@ -565,6 +641,9 @@ class WebContents constructor(val instance: dynamic, z: Unit) {
 
     /**
      * Starts inspecting element at position (x, y).
+     * 
+     * @param x 
+     * @param y 
      */
     fun inspectElement(x: Int, y: Int): Unit = 
         instance.inspectElement(x, y)
@@ -611,12 +690,17 @@ class WebContents constructor(val instance: dynamic, z: Unit) {
      *  | </body>
      *  | </html>
      *  | 
+     * 
+     * @param channel 
+     * @param args 
      */
     fun send(channel: String, vararg args: dynamic): Unit = 
         instance.send(channel, args)
 
     /**
      * Enable device emulation with the given parameters.
+     * 
+         * @param parameters 
      */
     fun enableDeviceEmulation(parameters: EnableDeviceEmulationParameters): Unit = 
         instance.enableDeviceEmulation(parameters)
@@ -657,6 +741,8 @@ class WebContents constructor(val instance: dynamic, z: Unit) {
      *  . hasPreciseScrollingDeltas Boolean
      *  . canScroll Boolean
      *
+     * 
+         * @param event 
      */
     fun sendInputEvent(event: SendInputEventEvent): Unit = 
         instance.sendInputEvent(event)
@@ -675,8 +761,11 @@ class WebContents constructor(val instance: dynamic, z: Unit) {
      * The dirtyRect is an object with x, y, width, height properties that describes 
      * which part of the page was repainted. If onlyDirty is set to true, frameBuffer 
      * will only contain the repainted area. onlyDirty defaults to false.
+     * 
+     * @param onlyDirty Defaults to false
+     * @param callback 
      */
-    fun beginFrameSubscription(onlyDirty: Boolean?, callback: (frameBuffer: dynamic, dirtyRect: Rectangle) -> Unit): Unit = 
+    fun beginFrameSubscription(onlyDirty: Boolean? = null, callback: (frameBuffer: dynamic, dirtyRect: Rectangle) -> Unit): Unit = 
         instance.beginFrameSubscription(onlyDirty, callback)
 
     /**
@@ -689,6 +778,8 @@ class WebContents constructor(val instance: dynamic, z: Unit) {
      * Sets the item as dragging item for current drag-drop operation, file is the 
      * absolute path of the file to be dragged, and icon is the image showing under 
      * the cursor when dragging.
+     * 
+         * @param item 
      */
     fun startDrag(item: StartDragItem): Unit = 
         instance.startDrag(item)
@@ -707,7 +798,11 @@ class WebContents constructor(val instance: dynamic, z: Unit) {
      *  | })
      *  | 
      * 
-     * @return true if the process of saving page has been initiated successfully.
+     * @param fullPath The full file path.
+     * @param saveType Specify the save type.
+     * @param callback (error) => {}.
+     *
+     * @returns true if the process of saving page has been initiated successfully.
      */
     fun savePage(fullPath: String, saveType: String, callback: (error: Error) -> Unit): Boolean = 
         instance.savePage(fullPath, saveType, callback)
@@ -730,12 +825,14 @@ class WebContents constructor(val instance: dynamic, z: Unit) {
      *        . width Integer
      *        . height Integer
      *
+     * 
+         * @param options 
      */
     fun setSize(options: SetSizeOptions.() -> Unit): Unit = 
         instance.setSize(options.let { SetSizeOptions().apply(it) })
 
     /**
-     * @return Indicates whether offscreen rendering is enabled.
+     * @returns Indicates whether offscreen rendering is enabled.
      */
     fun isOffscreen(): Boolean = 
         instance.isOffscreen()
@@ -753,7 +850,7 @@ class WebContents constructor(val instance: dynamic, z: Unit) {
         instance.stopPainting()
 
     /**
-     * @return If offscreen rendering is enabled returns whether it is currently painting.
+     * @returns If offscreen rendering is enabled returns whether it is currently painting.
      */
     fun isPainting(): Boolean = 
         instance.isPainting()
@@ -761,12 +858,14 @@ class WebContents constructor(val instance: dynamic, z: Unit) {
     /**
      * If offscreen rendering is enabled sets the frame rate to the specified number. 
      * Only values between 1 and 60 are accepted.
+     * 
+     * @param fps 
      */
     fun setFrameRate(fps: Int): Unit = 
         instance.setFrameRate(fps)
 
     /**
-     * @return If offscreen rendering is enabled returns the current frame rate.
+     * @returns If offscreen rendering is enabled returns the current frame rate.
      */
     fun getFrameRate(): Int = 
         instance.getFrameRate()
@@ -789,84 +888,260 @@ class WebContents constructor(val instance: dynamic, z: Unit) {
     // ~ Builders ------------------------------------------------------------------------------
 
     class LoadURLOptions(
+        /**
+         * A HTTP Referrer url.
+         */
         var httpReferrer: String? = null,
+
+        /**
+         * A user agent originating the request.
+         */
         var userAgent: String? = null,
+
+        /**
+         * Extra headers separated by ""
+         */
         var extraHeaders: String? = null,
+
+        /**
+         * (optional)
+         */
         var postData: Array<dynamic>? = null
+
     )
 
     class FindInPageOptions(
+        /**
+         * (optional) Whether to search forward or backward, defaults to true.
+         */
         var forward: Boolean? = null,
+
+        /**
+         * (optional) Whether the operation is first request or a follow up, defaults to 
+         * false.
+         */
         var findNext: Boolean? = null,
+
+        /**
+         * (optional) Whether search should be case-sensitive, defaults to false.
+         */
         var matchCase: Boolean? = null,
+
+        /**
+         * (optional) Whether to look only at the start of words. defaults to false.
+         */
         var wordStart: Boolean? = null,
+
+        /**
+         * (optional) When combined with wordStart, accepts a match in the middle of a 
+         * word if the match begins with an uppercase letter followed by a lowercase or 
+         * non-letter. Accepts several other intra-word matches, defaults to false.
+         */
         var medialCapitalAsWordStart: Boolean? = null
+
     )
 
     class PrintOptions(
+        /**
+         * Don't ask user for print settings. Default is false.
+         */
         var silent: Boolean,
+
+        /**
+         * Also prints the background color and image of the web page. Default is false.
+         */
         var printBackground: Boolean
+
     )
 
     class PrintToPDFOptions(
+        /**
+         * (optional) Specifies the type of margins to use. Uses 0 for default margin, 1 
+         * for no margin, and 2 for minimum margin.
+         */
         var marginsType: Int? = null,
+
+        /**
+         * (optional) Specify page size of the generated PDF. Can be A3, A4, A5, Legal, 
+         * Letter, Tabloid or an Object containing height and width in microns.
+         */
         var pageSize: String? = null,
+
+        /**
+         * (optional) Whether to print CSS backgrounds.
+         */
         var printBackground: Boolean? = null,
+
+        /**
+         * (optional) Whether to print selection only.
+         */
         var printSelectionOnly: Boolean? = null,
+
+        /**
+         * (optional) true for landscape, false for portrait.
+         */
         var landscape: Boolean? = null
+
     )
 
     class OpenDevToolsOptions(
+        /**
+         * Opens the devtools with specified dock state, can be right, bottom, undocked, 
+         * detach. Defaults to last used dock state. In undocked mode it's possible to 
+         * dock back. In detach mode it's not.
+         */
         var mode: String
+
     )
 
     class EnableDeviceEmulationParameters(
+        /**
+         * Specify the screen type to emulate (default: desktop)
+         */
         var screenPosition: String,
+
+        /**
+         * Set the emulated screen size (screenPosition == mobile)
+         */
         var screenSize: EnableDeviceEmulationScreenSize,
+
+        /**
+         * Position the view on the screen (screenPosition == mobile) (default: {x: 0, y: 
+         * 0})
+         */
         var viewPosition: EnableDeviceEmulationViewPosition,
+
+        /**
+         * Set the device scale factor (if zero defaults to original device scale factor) 
+         * (default: 0)
+         */
         var deviceScaleFactor: Int,
+
+        /**
+         * Set the emulated view size (empty means no override)
+         */
         var viewSize: EnableDeviceEmulationViewSize,
+
+        /**
+         * Whether emulated view should be scaled down if necessary to fit into available 
+         * space (default: false)
+         */
         var fitToView: Boolean,
+
+        /**
+         * Offset of the emulated view inside available space (not in fit to view mode) 
+         * (default: {x: 0, y: 0})
+         */
         var offset: EnableDeviceEmulationOffset,
+
+        /**
+         * Scale of emulated view inside available space (not in fit to view mode) 
+         * (default: 1)
+         */
         var scale: Float
+
     )
     class EnableDeviceEmulationScreenSize(
+        /**
+         * Set the emulated screen width
+         */
         var width: Int,
+
+        /**
+         * Set the emulated screen height
+         */
         var height: Int
+
     )
 
     class EnableDeviceEmulationViewPosition(
+        /**
+         * Set the x axis offset from top left corner
+         */
         var x: Int,
+
+        /**
+         * Set the y axis offset from top left corner
+         */
         var y: Int
+
     )
 
     class EnableDeviceEmulationViewSize(
+        /**
+         * Set the emulated view width
+         */
         var width: Int,
+
+        /**
+         * Set the emulated view height
+         */
         var height: Int
+
     )
 
     class EnableDeviceEmulationOffset(
+        /**
+         * Set the x axis offset from top left corner
+         */
         var x: Float,
+
+        /**
+         * Set the y axis offset from top left corner
+         */
         var y: Float
+
     )
 
 
     class SendInputEventEvent(
+        /**
+         * The type of the event, can be mouseDown, mouseUp, mouseEnter, mouseLeave, 
+         * contextMenu, mouseWheel, mouseMove, keyDown, keyUp, char.
+         */
         var type: String,
+
+        /**
+         * An array of modifiers of the event, can include shift, control, alt, meta, 
+         * isKeypad, isAutoRepeat, leftButtonDown, middleButtonDown, rightButtonDown, 
+         * capsLock, numLock, left, right.
+         */
         var modifiers: Array<String>
+
     )
 
     class StartDragItem(
+        /**
+         * The path to the file being dragged.
+         */
         var file: String,
+
+        /**
+         * The image must be non-empty on macOS.
+         */
         var icon: NativeImage
+
     )
 
     class SetSizeOptions(
+        /**
+         * Normal size of the page. This can be used in combination with the 
+         * disableguestresize attribute to manually resize the webview guest contents.
+         */
         var normal: SetSizeNormal? = null
+
     )
     class SetSizeNormal(
+        /**
+         * 
+         */
         var width: Int,
+
+        /**
+         * 
+         */
         var height: Int
+
     )
 
 }

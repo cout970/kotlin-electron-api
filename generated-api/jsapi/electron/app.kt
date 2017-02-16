@@ -1,13 +1,14 @@
 @file:Suppress("UnsafeCastFromDynamic")
 package jsapi.electron
 
+@Suppress("REDUNDANT_NULLABLE")
 object app {
 
     private val module: dynamic = js("require('electron').app")
 
     // ~ Events --------------------------------------------------------------------------------
 
-    fun onEvent(event: String, callback: () -> Unit) = 
+    fun onEvent(event: String, callback: () -> Unit): Unit = 
         module.on(event, callback)
 
     // ~ Methods -------------------------------------------------------------------------------
@@ -29,8 +30,10 @@ object app {
      *
      * All windows will be closed immediately without asking user and the before-quit 
      * and will-quit events will not be emitted.
+     * 
+     * @param exitCode 
      */
-    fun exit(exitCode: Int?): Unit = 
+    fun exit(exitCode: Int? = null): Unit = 
         module.exit(exitCode)
 
     /**
@@ -56,12 +59,14 @@ object app {
      *  | app.relaunch({args: process.argv.slice(1).concat(['--relaunch'])})
      *  | app.exit(0)
      *  | 
+     * 
+         * @param options 
      */
-    fun relaunch(options: (RelaunchOptions.() -> Unit)?): Unit = 
+    fun relaunch(options: (RelaunchOptions.() -> Unit)? = null): Unit = 
         module.relaunch(options?.let { RelaunchOptions().apply(it) })
 
     /**
-     * @return true if Electron has finished initializing, false otherwise.
+     * @returns true if Electron has finished initializing, false otherwise.
      */
     fun isReady(): Boolean = 
         module.isReady()
@@ -87,7 +92,7 @@ object app {
         module.show()
 
     /**
-     * @return The current application directory.
+     * @returns The current application directory.
      */
     fun getAppPath(): String = 
         module.getAppPath()
@@ -116,8 +121,10 @@ object app {
      *    plugin.
      *
      * 
-     * @return A path to a special directory or file associated with name. On failure an 
-     * Error is thrown.
+     * @param name 
+     *
+     * @returns A path to a special directory or file associated with name. On failure an 
+     *          Error is thrown.
      */
     fun getPath(name: String): String = 
         module.getPath(name)
@@ -132,8 +139,12 @@ object app {
      *
      * On Linux and macOS, icons depend on the application associated with file mime 
      * type.
+     * 
+     * @param path 
+         * @param options 
+     * @param callback 
      */
-    fun getFileIcon(path: String, options: GetFileIconOptions?, callback: (error: Error, icon: NativeImage) -> Unit): Unit = 
+    fun getFileIcon(path: String, options: GetFileIconOptions? = null, callback: (error: Error, icon: NativeImage) -> Unit): Unit = 
         module.getFileIcon(path, options, callback)
 
     /**
@@ -146,14 +157,17 @@ object app {
      * By default, web pages' cookies and caches will be stored under the userData 
      * directory. If you want to change this location, you have to override the 
      * userData path before the ready event of the app module is emitted.
+     * 
+     * @param name 
+     * @param path 
      */
     fun setPath(name: String, path: String): Unit = 
         module.setPath(name, path)
 
     /**
-     * @return The version of the loaded application. If no version is found in the 
-     * application's package.json file, the version of the current bundle or 
-     * executable is returned.
+     * @returns The version of the loaded application. If no version is found in the 
+     *          application's package.json file, the version of the current bundle or 
+     *          executable is returned.
      */
     fun getVersion(): String = 
         module.getVersion()
@@ -164,14 +178,16 @@ object app {
      * which is your application's full capitalized name, and which will be preferred 
      * over name by Electron.
      * 
-     * @return The current application's name, which is the name in the application's 
-     * package.json file.
+     * @returns The current application's name, which is the name in the application's 
+     *          package.json file.
      */
     fun getName(): String = 
         module.getName()
 
     /**
      * Overrides the current application's name.
+     * 
+     * @param name 
      */
     fun setName(name: String): Unit = 
         module.setName(name)
@@ -182,7 +198,7 @@ object app {
      *
      * Note: On Windows you have to call it after the ready events gets emitted.
      * 
-     * @return The current application locale. Possible return values are documented here.
+     * @returns The current application locale. Possible return values are documented here.
      */
     fun getLocale(): String = 
         module.getLocale()
@@ -192,6 +208,8 @@ object app {
      *
      * This list is managed by the OS. On Windows you can visit the list from the 
      * task bar, and on macOS you can visit it from dock menu.
+     * 
+     * @param path 
      */
     fun addRecentDocument(path: String): Unit = 
         module.addRecentDocument(path)
@@ -221,9 +239,14 @@ object app {
      * The API uses the Windows Registry and LSSetDefaultHandlerForURLScheme 
      * internally.
      * 
-     * @return Whether the call succeeded.
+     * @param protocol The name of your protocol, without ://. If you want your app to handle 
+     *                 electron:// links, call this method with electron as the parameter.
+     * @param path Defaults to process.execPath
+     * @param args Defaults to an empty array
+     *
+     * @returns Whether the call succeeded.
      */
-    fun setAsDefaultProtocolClient(protocol: String, path: String?, args: Array<String>?): Boolean = 
+    fun setAsDefaultProtocolClient(protocol: String, path: String? = null, args: Array<String>? = null): Boolean = 
         module.setAsDefaultProtocolClient(protocol, path, args)
 
     /**
@@ -231,9 +254,13 @@ object app {
      * protocol (aka URI scheme). If so, it will remove the app as the default 
      * handler.
      * 
-     * @return Whether the call succeeded.
+     * @param protocol The name of your protocol, without ://.
+     * @param path Defaults to process.execPath
+     * @param args Defaults to an empty array
+     *
+     * @returns Whether the call succeeded.
      */
-    fun removeAsDefaultProtocolClient(protocol: String, path: String?, args: Array<String>?): Boolean = 
+    fun removeAsDefaultProtocolClient(protocol: String, path: String? = null, args: Array<String>? = null): Boolean = 
         module.removeAsDefaultProtocolClient(protocol, path, args)
 
     /**
@@ -248,8 +275,14 @@ object app {
      *
      * The API uses the Windows Registry and LSCopyDefaultHandlerForURLScheme 
      * internally.
+     * 
+     * @param protocol The name of your protocol, without ://.
+     * @param path Defaults to process.execPath
+     * @param args Defaults to an empty array
+     *
+     * @returns 
      */
-    fun isDefaultProtocolClient(protocol: String, path: String?, args: Array<String>?): Boolean = 
+    fun isDefaultProtocolClient(protocol: String, path: String? = null, args: Array<String>? = null): Boolean = 
         module.isDefaultProtocolClient(protocol, path, args)
 
     /**
@@ -260,7 +293,9 @@ object app {
      * Note: If you'd like to customize the Jump List even more use 
      * app.setJumpList(categories) instead.
      * 
-     * @return Whether the call succeeded.
+     * @param tasks Array of Task objects
+     *
+     * @returns Whether the call succeeded.
      */
     fun setUserTasks(tasks: Array<Task>): Boolean = 
         module.setUserTasks(tasks.map { it.instance })
@@ -274,6 +309,16 @@ object app {
      *    app.setJumpList(), Windows will not display any custom category that contains 
      *    any of the removed items.
      *
+     * 
+     * @param minItems The minimum number of items that will be shown in the Jump List (for a more 
+     *                 detailed description of this value see the MSDN docs).
+     * @param removedItems Array of JumpListItem objects that correspond to items that the user has 
+     *                     explicitly removed from custom categories in the Jump List. These items must 
+     *                     not be re-added to the Jump List in the next call to app.setJumpList(), 
+     *                     Windows will not display any custom category that contains any of the removed 
+     *                     items.
+     *
+     * @returns 
      */
     fun getJumpListSettings(minItems: Int, removedItems: Array<JumpListItem>): dynamic = 
         module.getJumpListSettings(minItems, removedItems.map { it.instance })
@@ -366,6 +411,8 @@ object app {
      *  |   }
      *  | ])
      *  | 
+     * 
+     * @param categories Array of JumpListCategory objects.
      */
     fun setJumpList(categories: Array<JumpListCategory>): Unit = 
         module.setJumpList(categories.map { it.instance })
@@ -419,6 +466,8 @@ object app {
      *  | app.on('ready', () => {
      *  | })
      *  | 
+     * 
+     * @param callback 
      */
     fun makeSingleInstance(callback: (argv: Array<String>, workingDirectory: String) -> Unit): Unit = 
         module.makeSingleInstance(callback)
@@ -433,18 +482,25 @@ object app {
     /**
      * Creates an NSUserActivity and sets it as the current activity. The activity is 
      * eligible for Handoff to another device afterward.
+     * 
+     * @param type Uniquely identifies the activity. Maps to NSUserActivity.activityType.
+         * @param userInfo App-specific state to store for use by another device.
+     * @param webpageURL The webpage to load in a browser if no suitable app is installed on the 
+     *                   resuming device. The scheme must be http or https.
      */
-    fun setUserActivity(type: String, userInfo: SetUserActivityUserInfo.() -> Unit, webpageURL: String?): Unit = 
+    fun setUserActivity(type: String, userInfo: SetUserActivityUserInfo.() -> Unit, webpageURL: String? = null): Unit = 
         module.setUserActivity(type, userInfo.let { SetUserActivityUserInfo().apply(it) }, webpageURL)
 
     /**
-     * @return The type of the currently running activity.
+     * @returns The type of the currently running activity.
      */
     fun getCurrentActivityType(): String = 
         module.getCurrentActivityType()
 
     /**
      * Changes the Application User Model ID to id.
+     * 
+     * @param id 
      */
     fun setAppUserModelId(id: String): Unit = 
         module.setAppUserModelId(id)
@@ -454,6 +510,9 @@ object app {
      * callback is called with the result of import operation, a value of 0 indicates 
      * success while any other value indicates failure according to chromium 
      * net_error_list.
+     * 
+         * @param options 
+     * @param callback 
      */
     fun importCertificate(options: ImportCertificateOptions, callback: (result: Int) -> Unit): Unit = 
         module.importCertificate(options, callback)
@@ -475,19 +534,21 @@ object app {
      * Note: Unity launcher requires the existence of a .desktop file to work, for 
      * more information please read Desktop Environment Integration.
      * 
-     * @return Whether the call succeeded.
+     * @param count 
+     *
+     * @returns Whether the call succeeded.
      */
     fun setBadgeCount(count: Int): Boolean = 
         module.setBadgeCount(count)
 
     /**
-     * @return The current value displayed in the counter badge.
+     * @returns The current value displayed in the counter badge.
      */
     fun getBadgeCount(): Int = 
         module.getBadgeCount()
 
     /**
-     * @return Whether the current desktop environment is Unity launcher.
+     * @returns Whether the current desktop environment is Unity launcher.
      */
     fun isUnityRunning(): Boolean = 
         module.isUnityRunning()
@@ -510,8 +571,12 @@ object app {
      *    This setting is only supported on macOS.
      *
      * Note: This API has no effect on MAS builds.
+     * 
+         * @param options 
+         *
+     * @returns 
      */
-    fun getLoginItemSettings(options: (GetLoginItemSettingsOptions.() -> Unit)?): dynamic = 
+    fun getLoginItemSettings(options: (GetLoginItemSettingsOptions.() -> Unit)? = null): dynamic = 
         module.getLoginItemSettings(options?.let { GetLoginItemSettingsOptions().apply(it) })
 
     /**
@@ -537,16 +602,18 @@ object app {
      *  | 
      *
      * Note: This API has no effect on MAS builds.
+     * 
+         * @param settings 
      */
     fun setLoginItemSettings(settings: SetLoginItemSettingsSettings.() -> Unit): Unit = 
         module.setLoginItemSettings(settings.let { SetLoginItemSettingsSettings().apply(it) })
 
     /**
-     * @return true if Chrome's accessibility support is enabled, false otherwise. This API 
-     * will return true if the use of assistive technologies, such as screen readers, 
-     * has been detected. See 
-     * https://www.chromium.org/developers/design-documents/accessibility for more 
-     * details.
+     * @returns true if Chrome's accessibility support is enabled, false otherwise. This API 
+     *          will return true if the use of assistive technologies, such as screen readers, 
+     *          has been detected. See 
+     *          https://www.chromium.org/developers/design-documents/accessibility for more 
+     *          details.
      */
     fun isAccessibilitySupportEnabled(): Boolean = 
         module.isAccessibilitySupportEnabled()
@@ -554,6 +621,8 @@ object app {
     /**
      * Set the about panel options. This will override the values defined in the 
      * app's .plist file. See the Apple docs for more details.
+     * 
+         * @param options 
      */
     fun setAboutPanelOptions(options: SetAboutPanelOptionsOptions.() -> Unit): Unit = 
         module.setAboutPanelOptions(options.let { SetAboutPanelOptionsOptions().apply(it) })
@@ -561,40 +630,109 @@ object app {
     // ~ Builders ------------------------------------------------------------------------------
 
     class RelaunchOptions(
+        /**
+         * (optional)
+         */
         var args: Array<String>? = null,
+
+        /**
+         * 
+         */
         var execPath: String? = null
+
     )
 
     class GetFileIconOptions(
+        /**
+         * 
+         */
         var size: String
+
     )
 
     class SetUserActivityUserInfo(
     )
 
     class ImportCertificateOptions(
+        /**
+         * Path for the pkcs12 file.
+         */
         var certificate: String,
+
+        /**
+         * Passphrase for the certificate.
+         */
         var password: String
+
     )
 
     class GetLoginItemSettingsOptions(
+        /**
+         * The executable path to compare against. Defaults to process.execPath.
+         */
         var path: String? = null,
+
+        /**
+         * The command-line arguments to compare against. Defaults to an empty array.
+         */
         var args: Array<String>? = null
+
     )
 
     class SetLoginItemSettingsSettings(
+        /**
+         * true to open the app at login, false to remove the app as a login item. 
+         * Defaults to false.
+         */
         var openAtLogin: Boolean? = null,
+
+        /**
+         * true to open the app as hidden. Defaults to false. The user can edit this 
+         * setting from the System Preferences so 
+         * app.getLoginItemStatus().wasOpenedAsHidden should be checked when the app is 
+         * opened to know the current value. This setting is only supported on macOS.
+         */
         var openAsHidden: Boolean? = null,
+
+        /**
+         * The executable to launch at login. Defaults to process.execPath.
+         */
         var path: String? = null,
+
+        /**
+         * The command-line arguments to pass to the executable. Defaults to an empty 
+         * array. Take care to wrap paths in quotes.
+         */
         var args: Array<String>? = null
+
     )
 
     class SetAboutPanelOptionsOptions(
+        /**
+         * The app's name.
+         */
         var applicationName: String? = null,
+
+        /**
+         * The app's version.
+         */
         var applicationVersion: String? = null,
+
+        /**
+         * Copyright information.
+         */
         var copyright: String? = null,
+
+        /**
+         * Credit information.
+         */
         var credits: String? = null,
+
+        /**
+         * The app's build version number.
+         */
         var version: String? = null
+
     )
 }
 

@@ -3,13 +3,14 @@ package jsapi.electron
 
 import org.w3c.files.Blob
 
+@Suppress("REDUNDANT_NULLABLE")
 object session {
 
     private val module: dynamic = js("require('electron').session")
 
     // ~ Events --------------------------------------------------------------------------------
 
-    fun onEvent(event: String, callback: () -> Unit) = 
+    fun onEvent(event: String, callback: () -> Unit): Unit = 
         module.on(event, callback)
 
     // ~ Methods -------------------------------------------------------------------------------
@@ -24,9 +25,12 @@ object session {
      * partition has never been used before. There is no way to change the options of 
      * an existing Session object.
      * 
-     * @return A session instance from partition string. When there is an existing Session 
-     * with the same partition, it will be returned; otherwise a new Session instance 
-     * will be created with options.
+     * @param partition 
+         * @param options 
+         *
+     * @returns A session instance from partition string. When there is an existing Session 
+     *          with the same partition, it will be returned; otherwise a new Session instance 
+     *          will be created with options.
      */
     fun fromPartition(partition: String, options: FromPartitionOptions): Session = 
         module.fromPartition(partition, options)
@@ -34,20 +38,26 @@ object session {
     // ~ Builders ------------------------------------------------------------------------------
 
     class FromPartitionOptions(
+        /**
+         * Whether to enable cache.
+         */
         var cache: Boolean
+
     )
 }
 
-class Session constructor(val instance: dynamic, z: Unit) {
+@Suppress("REDUNDANT_NULLABLE")
+class Session constructor(val instance: dynamic, @Suppress("UNUSED_PARAMETER") ignoreMe: Unit) {
 
+    @Suppress("UNUSED_VARIABLE")
     constructor() : this(Unit.let {
         val _constructor = js("require('electron').Session")
         js("new _constructor()")
-    }, z = Unit)
+    }, Unit)
 
     // ~ Events --------------------------------------------------------------------------------
 
-    fun onEvent(event: String, callback: () -> Unit) = 
+    fun onEvent(event: String, callback: () -> Unit): Unit = 
         module.on(event, callback)
 
     // ~ Properties ----------------------------------------------------------------------------
@@ -87,20 +97,27 @@ class Session constructor(val instance: dynamic, z: Unit) {
 
     /**
      * Callback is invoked with the session's current cache size.
+     * 
+     * @param callback 
      */
     fun getCacheSize(callback: (size: Int) -> Unit): Unit = 
         instance.getCacheSize(callback)
 
     /**
      * Clears the session’s HTTP cache.
+     * 
+     * @param callback Called when operation is done
      */
     fun clearCache(callback: () -> Unit): Unit = 
         instance.clearCache(callback)
 
     /**
      * Clears the data of web storages.
+     * 
+         * @param options 
+     * @param callback Called when operation is done.
      */
-    fun clearStorageData(options: ClearStorageDataOptions?, callback: (() -> Unit)?): Unit = 
+    fun clearStorageData(options: ClearStorageDataOptions? = null, callback: (() -> Unit)? = null): Unit = 
         instance.clearStorageData(options, callback)
 
     /**
@@ -172,6 +189,9 @@ class Session constructor(val instance: dynamic, z: Unit) {
      *
      * Match local addresses. The meaning of <local> is whether the host matches one 
      * of: "127.0.0.1", "::1", "localhost".
+     * 
+         * @param config 
+     * @param callback Called when operation is done.
      */
     fun setProxy(config: SetProxyConfig, callback: () -> Unit): Unit = 
         instance.setProxy(config, callback)
@@ -179,6 +199,9 @@ class Session constructor(val instance: dynamic, z: Unit) {
     /**
      * Resolves the proxy information for url. The callback will be called with 
      * callback(proxy) when the request is performed.
+     * 
+     * @param url URL
+     * @param callback 
      */
     fun resolveProxy(url: String, callback: (proxy: ResolveProxyProxy.() -> Unit) -> Unit): Unit = 
         instance.resolveProxy(url, callback)
@@ -186,6 +209,8 @@ class Session constructor(val instance: dynamic, z: Unit) {
     /**
      * Sets download saving directory. By default, the download directory will be the 
      * Downloads under the respective app folder.
+     * 
+     * @param path The download location
      */
     fun setDownloadPath(path: String): Unit = 
         instance.setDownloadPath(path)
@@ -204,6 +229,8 @@ class Session constructor(val instance: dynamic, z: Unit) {
      *  | // To emulate a network outage.
      *  | window.webContents.session.enableNetworkEmulation({offline: true})
      *  | 
+     * 
+         * @param options 
      */
     fun enableNetworkEmulation(options: EnableNetworkEmulationOptions.() -> Unit): Unit = 
         instance.enableNetworkEmulation(options.let { EnableNetworkEmulationOptions().apply(it) })
@@ -232,6 +259,8 @@ class Session constructor(val instance: dynamic, z: Unit) {
      *  |   callback(hostname === 'github.com')
      *  | })
      *  | 
+     * 
+     * @param proc 
      */
     fun setCertificateVerifyProc(proc: (request: SetCertificateVerifyProcRequest, callback: (verificationResult: Int) -> Unit) -> Unit): Unit = 
         instance.setCertificateVerifyProc(proc)
@@ -251,14 +280,18 @@ class Session constructor(val instance: dynamic, z: Unit) {
      *  |   callback(true)
      *  | })
      *  | 
+     * 
+     * @param handler 
      */
     fun setPermissionRequestHandler(handler: (webContents: SetPermissionRequestHandlerWebContents.() -> Unit, permission: String, callback: (permissionGranted: Boolean) -> Unit) -> Unit): Unit = 
         instance.setPermissionRequestHandler(handler)
 
     /**
      * Clears the host resolver cache.
+     * 
+     * @param callback Called when operation is done.
      */
-    fun clearHostResolverCache(callback: (() -> Unit)?): Unit = 
+    fun clearHostResolverCache(callback: (() -> Unit)? = null): Unit = 
         instance.clearHostResolverCache(callback)
 
     /**
@@ -274,6 +307,9 @@ class Session constructor(val instance: dynamic, z: Unit) {
      *  | // consider all urls for integrated authentication.
      *  | session.defaultSession.allowNTLMCredentialsForDomains('*')
      *  | 
+     * 
+     * @param domains A comma-seperated list of servers for which integrated authentication is 
+     *                enabled.
      */
     fun allowNTLMCredentialsForDomains(domains: String): Unit = 
         instance.allowNTLMCredentialsForDomains(domains)
@@ -286,18 +322,24 @@ class Session constructor(val instance: dynamic, z: Unit) {
      *
      * This doesn't affect existing WebContents, and each WebContents can use 
      * webContents.setUserAgent to override the session-wide user agent.
+     * 
+     * @param userAgent 
+     * @param acceptLanguages 
      */
-    fun setUserAgent(userAgent: String, acceptLanguages: String?): Unit = 
+    fun setUserAgent(userAgent: String, acceptLanguages: String? = null): Unit = 
         instance.setUserAgent(userAgent, acceptLanguages)
 
     /**
-     * @return The user agent for this session.
+     * @returns The user agent for this session.
      */
     fun getUserAgent(): String = 
         instance.getUserAgent()
 
     /**
-     * @return The blob data associated with the identifier.
+     * @param identifier Valid UUID.
+     * @param callback 
+     *
+     * @returns The blob data associated with the identifier.
      */
     fun getBlobData(identifier: String, callback: (result: dynamic) -> Unit): Blob = 
         instance.getBlobData(identifier, callback)
@@ -308,14 +350,19 @@ class Session constructor(val instance: dynamic, z: Unit) {
      * event. The DownloadItem will not have any WebContents associated with it and 
      * the initial state will be interrupted. The download will start only when the 
      * resume API is called on the DownloadItem.
+     * 
+         * @param options 
      */
     fun createInterruptedDownload(options: CreateInterruptedDownloadOptions): Unit = 
         instance.createInterruptedDownload(options)
 
     /**
      * Clears the session’s HTTP authentication cache.
+     * 
+     * @param options 
+     * @param callback Called when operation is done
      */
-    fun clearAuthCache(options: dynamic, callback: (() -> Unit)?): Unit = 
+    fun clearAuthCache(options: dynamic, callback: (() -> Unit)? = null): Unit = 
         instance.clearAuthCache(options, callback)
 
     // ~ Companion -----------------------------------------------------------------------------
@@ -329,45 +376,130 @@ class Session constructor(val instance: dynamic, z: Unit) {
     // ~ Builders ------------------------------------------------------------------------------
 
     class ClearStorageDataOptions(
+        /**
+         * Should follow window.location.origin’s representation scheme://host:port.
+         */
         var origin: String,
+
+        /**
+         * The types of storages to clear, can contain: appcache, cookies, filesystem, 
+         * indexdb, localstorage, shadercache, websql, serviceworkers
+         */
         var storages: Array<String>,
+
+        /**
+         * The types of quotas to clear, can contain: temporary, persistent, syncable.
+         */
         var quotas: Array<String>
+
     )
 
     class SetProxyConfig(
+        /**
+         * The URL associated with the PAC file.
+         */
         var pacScript: String,
+
+        /**
+         * Rules indicating which proxies to use.
+         */
         var proxyRules: String,
+
+        /**
+         * Rules indicating which URLs should bypass the proxy settings.
+         */
         var proxyBypassRules: String
+
     )
 
     class ResolveProxyProxy(
     )
 
     class EnableNetworkEmulationOptions(
+        /**
+         * Whether to emulate network outage. Defaults to false.
+         */
         var offline: Boolean? = null,
+
+        /**
+         * RTT in ms. Defaults to 0 which will disable latency throttling.
+         */
         var latency: Double? = null,
+
+        /**
+         * Download rate in Bps. Defaults to 0 which will disable download throttling.
+         */
         var downloadThroughput: Double? = null,
+
+        /**
+         * Upload rate in Bps. Defaults to 0 which will disable upload throttling.
+         */
         var uploadThroughput: Double? = null
+
     )
 
     class SetCertificateVerifyProcRequest(
+        /**
+         * 
+         */
         var hostname: String,
+
+        /**
+         * 
+         */
         var certificate: Certificate,
+
+        /**
+         * Verification result from chromium.
+         */
         var error: String
+
     )
 
     class SetPermissionRequestHandlerWebContents(
     )
 
     class CreateInterruptedDownloadOptions(
+        /**
+         * Absolute path of the download.
+         */
         var path: String,
+
+        /**
+         * Complete URL chain for the download.
+         */
         var urlChain: Array<String>,
+
+        /**
+         * 
+         */
         var mimeType: String? = null,
+
+        /**
+         * Start range for the download.
+         */
         var offset: Int,
+
+        /**
+         * Total length of the download.
+         */
         var length: Int,
+
+        /**
+         * Last-Modified header value.
+         */
         var lastModified: String,
+
+        /**
+         * ETag header value.
+         */
         var eTag: String,
+
+        /**
+         * Time when download was started in number of seconds since UNIX epoch.
+         */
         var startTime: Double? = null
+
     )
 }
 

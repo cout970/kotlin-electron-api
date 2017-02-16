@@ -1,28 +1,32 @@
 @file:Suppress("UnsafeCastFromDynamic")
 package jsapi.electron
 
-class Debugger constructor(val instance: dynamic, z: Unit) {
+@Suppress("REDUNDANT_NULLABLE")
+class Debugger constructor(val instance: dynamic, @Suppress("UNUSED_PARAMETER") ignoreMe: Unit) {
 
+    @Suppress("UNUSED_VARIABLE")
     constructor() : this(Unit.let {
         val _constructor = js("require('electron').Debugger")
         js("new _constructor()")
-    }, z = Unit)
+    }, Unit)
 
     // ~ Events --------------------------------------------------------------------------------
 
-    fun onEvent(event: String, callback: () -> Unit) = 
+    fun onEvent(event: String, callback: () -> Unit): Unit = 
         module.on(event, callback)
 
     // ~ Methods -------------------------------------------------------------------------------
 
     /**
      * Attaches the debugger to the webContents.
+     * 
+     * @param protocolVersion Requested debugging protocol version.
      */
-    fun attach(protocolVersion: String?): Unit = 
+    fun attach(protocolVersion: String? = null): Unit = 
         instance.attach(protocolVersion)
 
     /**
-     * @return Whether a debugger is attached to the webContents.
+     * @returns Whether a debugger is attached to the webContents.
      */
     fun isAttached(): Boolean = 
         instance.isAttached()
@@ -35,8 +39,13 @@ class Debugger constructor(val instance: dynamic, z: Unit) {
 
     /**
      * Send given command to the debugging target.
+     * 
+     * @param method Method name, should be one of the methods defined by the remote debugging 
+     *               protocol.
+         * @param commandParams JSON object with request parameters.
+     * @param callback Response
      */
-    fun sendCommand(method: String, commandParams: (SendCommandCommandParams.() -> Unit)?, callback: ((error: SendCommandError.() -> Unit, result: Any) -> Unit)?): Unit = 
+    fun sendCommand(method: String, commandParams: (SendCommandCommandParams.() -> Unit)? = null, callback: ((error: SendCommandError.() -> Unit, result: Any) -> Unit)? = null): Unit = 
         instance.sendCommand(method, commandParams?.let { SendCommandCommandParams().apply(it) }, callback)
 
     // ~ Companion -----------------------------------------------------------------------------

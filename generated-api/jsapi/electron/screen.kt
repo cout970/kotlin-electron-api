@@ -1,13 +1,14 @@
 @file:Suppress("UnsafeCastFromDynamic")
 package jsapi.electron
 
+@Suppress("REDUNDANT_NULLABLE")
 object screen {
 
     private val module: dynamic = js("require('electron').screen")
 
     // ~ Events --------------------------------------------------------------------------------
 
-    fun onEvent(event: String, callback: () -> Unit) = 
+    fun onEvent(event: String, callback: () -> Unit): Unit = 
         module.on(event, callback)
 
     // ~ Methods -------------------------------------------------------------------------------
@@ -17,30 +18,39 @@ object screen {
      *  . y Integer
      *
      * The current absolute position of the mouse pointer.
+     * 
+     * @param x 
+     * @param y 
+     *
+     * @returns 
      */
     fun getCursorScreenPoint(x: Int, y: Int): dynamic = 
         module.getCursorScreenPoint(x, y)
 
     /**
-     * @return The primary display.
+     * @returns The primary display.
      */
     fun getPrimaryDisplay(): Display = 
         module.getPrimaryDisplay()
 
     /**
-     * @return An array of displays that are currently available.
+     * @returns An array of displays that are currently available.
      */
     fun getAllDisplays(): Array<Display> = 
         module.getAllDisplays()
 
     /**
-     * @return The display nearest the specified point.
+         * @param point 
+         *
+     * @returns The display nearest the specified point.
      */
     fun getDisplayNearestPoint(point: GetDisplayNearestPointPoint): Display = 
         module.getDisplayNearestPoint(point)
 
     /**
-     * @return The display that most closely intersects the provided bounds.
+     * @param rect 
+     *
+     * @returns The display that most closely intersects the provided bounds.
      */
     fun getDisplayMatching(rect: Rectangle): Display = 
         module.getDisplayMatching(rect.instance)
@@ -48,8 +58,16 @@ object screen {
     // ~ Builders ------------------------------------------------------------------------------
 
     class GetDisplayNearestPointPoint(
+        /**
+         * 
+         */
         var x: Int,
+
+        /**
+         * 
+         */
         var y: Int
+
     )
 }
 

@@ -1,13 +1,14 @@
 @file:Suppress("UnsafeCastFromDynamic")
 package jsapi.electron
 
+@Suppress("REDUNDANT_NULLABLE")
 object contentTracing {
 
     private val module: dynamic = js("require('electron').contentTracing")
 
     // ~ Events --------------------------------------------------------------------------------
 
-    fun onEvent(event: String, callback: () -> Unit) = 
+    fun onEvent(event: String, callback: () -> Unit): Unit = 
         module.on(event, callback)
 
     // ~ Methods -------------------------------------------------------------------------------
@@ -18,6 +19,8 @@ object contentTracing {
      *
      * Once all child processes have acknowledged the getCategories request the 
      * callback is invoked with an array of category groups.
+     * 
+     * @param callback 
      */
     fun getCategories(callback: (categories: Array<String>) -> Unit): Unit = 
         module.getCategories(callback)
@@ -57,6 +60,9 @@ object contentTracing {
      * The trace option will first be reset to the default option (record_mode set to 
      * record-until-full, enable_sampling and enable_systrace set to false) before 
      * options parsed from traceOptions are applied on it.
+     * 
+         * @param options 
+     * @param callback 
      */
     fun startRecording(options: StartRecordingOptions, callback: () -> Unit): Unit = 
         module.startRecording(options, callback)
@@ -76,6 +82,9 @@ object contentTracing {
      * Trace data will be written into resultFilePath if it is not empty or into a 
      * temporary file. The actual file path will be passed to callback if it's not 
      * null.
+     * 
+     * @param resultFilePath 
+     * @param callback 
      */
     fun stopRecording(resultFilePath: String, callback: (resultFilePath: String) -> Unit): Unit = 
         module.stopRecording(resultFilePath, callback)
@@ -88,6 +97,9 @@ object contentTracing {
      *
      * Once all child processes have acknowledged the startMonitoring request the 
      * callback will be called.
+     * 
+         * @param options 
+     * @param callback 
      */
     fun startMonitoring(options: StartMonitoringOptions, callback: () -> Unit): Unit = 
         module.startMonitoring(options, callback)
@@ -97,6 +109,8 @@ object contentTracing {
      *
      * Once all child processes have acknowledged the stopMonitoring request the 
      * callback is called.
+     * 
+     * @param callback 
      */
     fun stopMonitoring(callback: () -> Unit): Unit = 
         module.stopMonitoring(callback)
@@ -112,6 +126,9 @@ object contentTracing {
      *
      * Once all child processes have acknowledged the captureMonitoringSnapshot 
      * request the callback will be called with a file that contains the traced data.
+     * 
+     * @param resultFilePath 
+     * @param callback 
      */
     fun captureMonitoringSnapshot(resultFilePath: String, callback: (resultFilePath: String) -> Unit): Unit = 
         module.captureMonitoringSnapshot(resultFilePath, callback)
@@ -120,6 +137,8 @@ object contentTracing {
      * Get the maximum usage across processes of trace buffer as a percentage of the 
      * full state. When the TraceBufferUsage value is determined the callback is 
      * called.
+     * 
+     * @param callback 
      */
     fun getTraceBufferUsage(callback: (value: Number, percentage: Number) -> Unit): Unit = 
         module.getTraceBufferUsage(callback)
@@ -127,13 +146,29 @@ object contentTracing {
     // ~ Builders ------------------------------------------------------------------------------
 
     class StartRecordingOptions(
+        /**
+         * 
+         */
         var categoryFilter: String,
+
+        /**
+         * 
+         */
         var traceOptions: String
+
     )
 
     class StartMonitoringOptions(
+        /**
+         * 
+         */
         var categoryFilter: String,
+
+        /**
+         * 
+         */
         var traceOptions: String
+
     )
 }
 

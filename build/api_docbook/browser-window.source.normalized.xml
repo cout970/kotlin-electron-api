@@ -395,6 +395,9 @@
                   <para>Settings of web page's features.</para>
                </description>
             </property>
+            <description>
+               <para/>
+            </description>
          </param>
       </constructor>
       <methods type="static">
@@ -404,6 +407,7 @@
                   <para>An array of all opened browser windows.</para>
                </description>
             </returns>
+            <description/>
          </method>
          <method name="getFocusedWindow">
             <returns type="BrowserWindow">
@@ -411,25 +415,40 @@
                   <para>The window that is focused in this application, otherwise returns null.</para>
                </description>
             </returns>
+            <description/>
          </method>
          <method name="fromWebContents">
-            <param name="webContents" type="WebContents"/>
+            <param name="webContents" type="WebContents">
+               <description>
+                  <para/>
+               </description>
+            </param>
             <returns type="BrowserWindow">
                <description>
                   <para>The window that owns the given webContents.</para>
                </description>
             </returns>
+            <description/>
          </method>
          <method name="fromId">
-            <param name="id" type="Integer"/>
+            <param name="id" type="Integer">
+               <description>
+                  <para/>
+               </description>
+            </param>
             <returns type="BrowserWindow">
                <description>
                   <para>The window with the given id.</para>
                </description>
             </returns>
+            <description/>
          </method>
          <method name="addDevToolsExtension">
-            <param name="path" type="String"/>
+            <param name="path" type="String">
+               <description>
+                  <para/>
+               </description>
+            </param>
             <description>
                <para>Adds DevTools extension located at path, and returns extension's name.</para>
                <para>The extension will be remembered so you only need to call this API once, this API is not for programming use. If you try to add an extension that has already been loaded, this method will not return and instead log a warning to the console.</para>
@@ -438,7 +457,11 @@
             </description>
          </method>
          <method name="removeDevToolsExtension">
-            <param name="name" type="String"/>
+            <param name="name" type="String">
+               <description>
+                  <para/>
+               </description>
+            </param>
             <description>
                <para>Remove a DevTools extension by name.</para>
                <para>Note: This API cannot be called before the ready event of the app module is emitted.</para>
@@ -502,6 +525,7 @@ console.log(installed)
                   <para>Whether the window is focused.</para>
                </description>
             </returns>
+            <description/>
          </method>
          <method name="isDestroyed">
             <returns type="Boolean">
@@ -509,6 +533,7 @@ console.log(installed)
                   <para>Whether the window is destroyed.</para>
                </description>
             </returns>
+            <description/>
          </method>
          <method name="show">
             <description>
@@ -531,6 +556,7 @@ console.log(installed)
                   <para>Whether the window is visible to the user.</para>
                </description>
             </returns>
+            <description/>
          </method>
          <method name="isModal">
             <returns type="Boolean">
@@ -538,6 +564,7 @@ console.log(installed)
                   <para>Whether current window is a modal window.</para>
                </description>
             </returns>
+            <description/>
          </method>
          <method name="maximize">
             <description>
@@ -555,6 +582,7 @@ console.log(installed)
                   <para>Whether the window is maximized.</para>
                </description>
             </returns>
+            <description/>
          </method>
          <method name="minimize">
             <description>
@@ -572,9 +600,14 @@ console.log(installed)
                   <para>Whether the window is minimized.</para>
                </description>
             </returns>
+            <description/>
          </method>
          <method name="setFullScreen">
-            <param name="flag" type="Boolean"/>
+            <param name="flag" type="Boolean">
+               <description>
+                  <para/>
+               </description>
+            </param>
             <description>
                <para>Sets whether the window should be in fullscreen mode.</para>
             </description>
@@ -585,6 +618,7 @@ console.log(installed)
                   <para>Whether the window is in fullscreen mode.</para>
                </description>
             </returns>
+            <description/>
          </method>
          <method name="setAspectRatio">
             <param name="aspectRatio" type="Float">
@@ -593,8 +627,16 @@ console.log(installed)
                </description>
             </param>
             <param optional="true" name="extraSize" type="Object">
-               <property name="width" type="Integer"/>
-               <property name="height" type="Integer"/>
+               <property name="width" type="Integer">
+                  <description>
+                     <para/>
+                  </description>
+               </property>
+               <property name="height" type="Integer">
+                  <description>
+                     <para/>
+                  </description>
+               </property>
                <description>
                   <para>The extra size not to be included while maintaining the aspect ratio.</para>
                </description>
@@ -625,29 +667,67 @@ console.log(installed)
             </description>
          </method>
          <method name="setBounds">
-            <param name="bounds" type="Rectangle"/>
-            <param optional="true" name="animate" type="Boolean"/>
+            <param name="bounds" type="Rectangle">
+               <description>
+                  <para/>
+               </description>
+            </param>
+            <param optional="true" name="animate" type="Boolean">
+               <description>
+                  <para/>
+               </description>
+            </param>
             <description>
                <para>Resizes and moves the window to the supplied bounds</para>
             </description>
          </method>
          <method name="getBounds">
-            <returns type="Rectangle"/>
+            <returns type="Rectangle">
+               <description>
+                  <para/>
+               </description>
+            </returns>
+            <description/>
          </method>
          <method name="setContentBounds">
-            <param name="bounds" type="Rectangle"/>
-            <param optional="true" name="animate" type="Boolean"/>
+            <param name="bounds" type="Rectangle">
+               <description>
+                  <para/>
+               </description>
+            </param>
+            <param optional="true" name="animate" type="Boolean">
+               <description>
+                  <para/>
+               </description>
+            </param>
             <description>
                <para>Resizes and moves the window's client area (e.g. the web page) to the supplied bounds.</para>
             </description>
          </method>
          <method name="getContentBounds">
-            <returns type="Rectangle"/>
+            <returns type="Rectangle">
+               <description>
+                  <para/>
+               </description>
+            </returns>
+            <description/>
          </method>
          <method name="setSize">
-            <param name="width" type="Integer"/>
-            <param name="height" type="Integer"/>
-            <param optional="true" name="animate" type="Boolean"/>
+            <param name="width" type="Integer">
+               <description>
+                  <para/>
+               </description>
+            </param>
+            <param name="height" type="Integer">
+               <description>
+                  <para/>
+               </description>
+            </param>
+            <param optional="true" name="animate" type="Boolean">
+               <description>
+                  <para/>
+               </description>
+            </param>
             <description>
                <para>Resizes the window to width and height.</para>
             </description>
@@ -658,11 +738,24 @@ console.log(installed)
                   <para>Contains the window's width and height.</para>
                </description>
             </returns>
+            <description/>
          </method>
          <method name="setContentSize">
-            <param name="width" type="Integer"/>
-            <param name="height" type="Integer"/>
-            <param optional="true" name="animate" type="Boolean"/>
+            <param name="width" type="Integer">
+               <description>
+                  <para/>
+               </description>
+            </param>
+            <param name="height" type="Integer">
+               <description>
+                  <para/>
+               </description>
+            </param>
+            <param optional="true" name="animate" type="Boolean">
+               <description>
+                  <para/>
+               </description>
+            </param>
             <description>
                <para>Resizes the window's client area (e.g. the web page) to width and height.</para>
             </description>
@@ -673,10 +766,19 @@ console.log(installed)
                   <para>Contains the window's client area's width and height.</para>
                </description>
             </returns>
+            <description/>
          </method>
          <method name="setMinimumSize">
-            <param name="width" type="Integer"/>
-            <param name="height" type="Integer"/>
+            <param name="width" type="Integer">
+               <description>
+                  <para/>
+               </description>
+            </param>
+            <param name="height" type="Integer">
+               <description>
+                  <para/>
+               </description>
+            </param>
             <description>
                <para>Sets the minimum size of window to width and height.</para>
             </description>
@@ -687,10 +789,19 @@ console.log(installed)
                   <para>Contains the window's minimum width and height.</para>
                </description>
             </returns>
+            <description/>
          </method>
          <method name="setMaximumSize">
-            <param name="width" type="Integer"/>
-            <param name="height" type="Integer"/>
+            <param name="width" type="Integer">
+               <description>
+                  <para/>
+               </description>
+            </param>
+            <param name="height" type="Integer">
+               <description>
+                  <para/>
+               </description>
+            </param>
             <description>
                <para>Sets the maximum size of window to width and height.</para>
             </description>
@@ -701,9 +812,14 @@ console.log(installed)
                   <para>Contains the window's maximum width and height.</para>
                </description>
             </returns>
+            <description/>
          </method>
          <method name="setResizable">
-            <param name="resizable" type="Boolean"/>
+            <param name="resizable" type="Boolean">
+               <description>
+                  <para/>
+               </description>
+            </param>
             <description>
                <para>Sets whether the window can be manually resized by user.</para>
             </description>
@@ -714,9 +830,14 @@ console.log(installed)
                   <para>Whether the window can be manually resized by user.</para>
                </description>
             </returns>
+            <description/>
          </method>
          <method name="setMovable">
-            <param name="movable" type="Boolean"/>
+            <param name="movable" type="Boolean">
+               <description>
+                  <para/>
+               </description>
+            </param>
             <description>
                <para>Sets whether the window can be moved by user. On Linux does nothing.</para>
             </description>
@@ -732,7 +853,11 @@ console.log(installed)
             </description>
          </method>
          <method name="setMinimizable">
-            <param name="minimizable" type="Boolean"/>
+            <param name="minimizable" type="Boolean">
+               <description>
+                  <para/>
+               </description>
+            </param>
             <description>
                <para>Sets whether the window can be manually minimized by user. On Linux does nothing.</para>
             </description>
@@ -748,7 +873,11 @@ console.log(installed)
             </description>
          </method>
          <method name="setMaximizable">
-            <param name="maximizable" type="Boolean"/>
+            <param name="maximizable" type="Boolean">
+               <description>
+                  <para/>
+               </description>
+            </param>
             <description>
                <para>Sets whether the window can be manually maximized by user. On Linux does nothing.</para>
             </description>
@@ -764,7 +893,11 @@ console.log(installed)
             </description>
          </method>
          <method name="setFullScreenable">
-            <param name="fullscreenable" type="Boolean"/>
+            <param name="fullscreenable" type="Boolean">
+               <description>
+                  <para/>
+               </description>
+            </param>
             <description>
                <para>Sets whether the maximize/zoom window button toggles fullscreen mode or maximizes the window.</para>
             </description>
@@ -775,9 +908,14 @@ console.log(installed)
                   <para>Whether the maximize/zoom window button toggles fullscreen mode or maximizes the window.</para>
                </description>
             </returns>
+            <description/>
          </method>
          <method name="setClosable">
-            <param name="closable" type="Boolean"/>
+            <param name="closable" type="Boolean">
+               <description>
+                  <para/>
+               </description>
+            </param>
             <description>
                <para>Sets whether the window can be manually closed by user. On Linux does nothing.</para>
             </description>
@@ -793,7 +931,11 @@ console.log(installed)
             </description>
          </method>
          <method name="setAlwaysOnTop">
-            <param name="flag" type="Boolean"/>
+            <param name="flag" type="Boolean">
+               <description>
+                  <para/>
+               </description>
+            </param>
             <param optional="true" name="level" type="String">
                <description>
                   <para>Values include normal, floating, torn-off-menu, modal-panel, main-menu, status, pop-up-menu, screen-saver, and dock (Deprecated). The default is floating. See the macOS docs for more details.</para>
@@ -814,6 +956,7 @@ console.log(installed)
                   <para>Whether the window is always on top of other windows.</para>
                </description>
             </returns>
+            <description/>
          </method>
          <method name="center">
             <description>
@@ -821,9 +964,21 @@ console.log(installed)
             </description>
          </method>
          <method name="setPosition">
-            <param name="x" type="Integer"/>
-            <param name="y" type="Integer"/>
-            <param optional="true" name="animate" type="Boolean"/>
+            <param name="x" type="Integer">
+               <description>
+                  <para/>
+               </description>
+            </param>
+            <param name="y" type="Integer">
+               <description>
+                  <para/>
+               </description>
+            </param>
+            <param optional="true" name="animate" type="Boolean">
+               <description>
+                  <para/>
+               </description>
+            </param>
             <description>
                <para>Moves window to x and y.</para>
             </description>
@@ -834,9 +989,14 @@ console.log(installed)
                   <para>Contains the window's current position.</para>
                </description>
             </returns>
+            <description/>
          </method>
          <method name="setTitle">
-            <param name="title" type="String"/>
+            <param name="title" type="String">
+               <description>
+                  <para/>
+               </description>
+            </param>
             <description>
                <para>Changes the title of native window to title.</para>
             </description>
@@ -852,8 +1012,16 @@ console.log(installed)
             </description>
          </method>
          <method name="setSheetOffset">
-            <param name="offsetY" type="Float"/>
-            <param optional="true" name="offsetX" type="Float"/>
+            <param name="offsetY" type="Float">
+               <description>
+                  <para/>
+               </description>
+            </param>
+            <param optional="true" name="offsetX" type="Float">
+               <description>
+                  <para/>
+               </description>
+            </param>
             <description>
                <para>Changes the attachment point for sheets on macOS. By default, sheets are attached just below the window frame, but you may want to display them beneath a HTML-rendered toolbar. For example:</para>
                <programlisting>
@@ -866,19 +1034,31 @@ win.setSheetOffset(toolbarRect.height)
             </description>
          </method>
          <method name="flashFrame">
-            <param name="flag" type="Boolean"/>
+            <param name="flag" type="Boolean">
+               <description>
+                  <para/>
+               </description>
+            </param>
             <description>
                <para>Starts or stops flashing the window to attract user's attention.</para>
             </description>
          </method>
          <method name="setSkipTaskbar">
-            <param name="skip" type="Boolean"/>
+            <param name="skip" type="Boolean">
+               <description>
+                  <para/>
+               </description>
+            </param>
             <description>
                <para>Makes the window not show in the taskbar.</para>
             </description>
          </method>
          <method name="setKiosk">
-            <param name="flag" type="Boolean"/>
+            <param name="flag" type="Boolean">
+               <description>
+                  <para/>
+               </description>
+            </param>
             <description>
                <para>Enters or leaves the kiosk mode.</para>
             </description>
@@ -889,6 +1069,7 @@ win.setSheetOffset(toolbarRect.height)
                   <para>Whether the window is in kiosk mode.</para>
                </description>
             </returns>
+            <description/>
          </method>
          <method name="getNativeWindowHandle">
             <returns type="Buffer">
@@ -901,22 +1082,39 @@ win.setSheetOffset(toolbarRect.height)
             </description>
          </method>
          <method name="hookWindowMessage">
-            <param name="message" type="Integer"/>
-            <param name="callback" type="Function"/>
+            <param name="message" type="Integer">
+               <description>
+                  <para/>
+               </description>
+            </param>
+            <param name="callback" type="Function">
+               <description>
+                  <para/>
+               </description>
+            </param>
             <description>
                <para>Hooks a windows message. The callback is called when the message is received in the WndProc.</para>
             </description>
          </method>
          <method name="isWindowMessageHooked">
-            <param name="message" type="Integer"/>
+            <param name="message" type="Integer">
+               <description>
+                  <para/>
+               </description>
+            </param>
             <returns type="Boolean">
                <description>
                   <para>true or false depending on whether the message is hooked.</para>
                </description>
             </returns>
+            <description/>
          </method>
          <method name="unhookWindowMessage">
-            <param name="message" type="Integer"/>
+            <param name="message" type="Integer">
+               <description>
+                  <para/>
+               </description>
+            </param>
             <description>
                <para>Unhook the window message.</para>
             </description>
@@ -927,7 +1125,11 @@ win.setSheetOffset(toolbarRect.height)
             </description>
          </method>
          <method name="setRepresentedFilename">
-            <param name="filename" type="String"/>
+            <param name="filename" type="String">
+               <description>
+                  <para/>
+               </description>
+            </param>
             <description>
                <para>Sets the pathname of the file the window represents, and the icon of the file will show in window's title bar.</para>
             </description>
@@ -938,9 +1140,14 @@ win.setSheetOffset(toolbarRect.height)
                   <para>The pathname of the file the window represents.</para>
                </description>
             </returns>
+            <description/>
          </method>
          <method name="setDocumentEdited">
-            <param name="edited" type="Boolean"/>
+            <param name="edited" type="Boolean">
+               <description>
+                  <para/>
+               </description>
+            </param>
             <description>
                <para>Specifies whether the window’s document has been edited, and the icon in title bar will become gray when set to true.</para>
             </description>
@@ -951,9 +1158,18 @@ win.setSheetOffset(toolbarRect.height)
                   <para>Whether the window's document has been edited.</para>
                </description>
             </returns>
+            <description/>
          </method>
-         <method name="focusOnWebView"/>
-         <method name="blurWebView"/>
+         <method name="focusOnWebView">
+            <description>
+               <para/>
+            </description>
+         </method>
+         <method name="blurWebView">
+            <description>
+               <para/>
+            </description>
+         </method>
          <method name="capturePage">
             <param optional="true" name="rect" type="Rectangle">
                <description>
@@ -961,14 +1177,25 @@ win.setSheetOffset(toolbarRect.height)
                </description>
             </param>
             <param name="callback" type="Function">
-               <param name="image" type="NativeImage"/>
+               <param name="image" type="NativeImage">
+                  <description>
+                     <para/>
+                  </description>
+               </param>
+               <description>
+                  <para/>
+               </description>
             </param>
             <description>
                <para>Same as webContents.capturePage([rect, ]callback).</para>
             </description>
          </method>
          <method name="loadURL">
-            <param name="url" type="String"/>
+            <param name="url" type="String">
+               <description>
+                  <para/>
+               </description>
+            </param>
             <param optional="true" name="options" type="Object">
                <property optional="true" name="httpReferrer" type="String">
                   <description>
@@ -994,6 +1221,9 @@ win.setSheetOffset(toolbarRect.height)
                      <para>(optional)</para>
                   </description>
                </property>
+               <description>
+                  <para/>
+               </description>
             </param>
             <description>
                <para>Same as webContents.loadURL(url[, options]).</para>
@@ -1026,19 +1256,30 @@ win.loadURL('http://localhost:8000/post', {
             </description>
          </method>
          <method name="setMenu">
-            <param name="menu" type="Menu"/>
+            <param name="menu" type="Menu">
+               <description>
+                  <para/>
+               </description>
+            </param>
             <description>
                <para>Sets the menu as the window's menu bar, setting it to null will remove the menu bar.</para>
             </description>
          </method>
          <method name="setProgressBar">
-            <param name="progress" type="Double"/>
+            <param name="progress" type="Double">
+               <description>
+                  <para/>
+               </description>
+            </param>
             <param optional="true" name="options" type="Object">
                <property name="mode" type="String">
                   <description>
                      <para>Mode for the progress bar. Can be none, normal, indeterminate, error, or paused.</para>
                   </description>
                </property>
+               <description>
+                  <para/>
+               </description>
             </param>
             <description>
                <para>Sets progress value in progress bar. Valid range is [0, 1.0].</para>
@@ -1063,7 +1304,11 @@ win.loadURL('http://localhost:8000/post', {
             </description>
          </method>
          <method name="setHasShadow">
-            <param name="hasShadow" type="Boolean"/>
+            <param name="hasShadow" type="Boolean">
+               <description>
+                  <para/>
+               </description>
+            </param>
             <description>
                <para>Sets whether the window should have a shadow. On Windows and Linux does nothing.</para>
             </description>
@@ -1079,7 +1324,11 @@ win.loadURL('http://localhost:8000/post', {
             </description>
          </method>
          <method name="setThumbarButtons">
-            <param name="buttons" type="ThumbarButton" isArray="true"/>
+            <param name="buttons" type="ThumbarButton" isArray="true">
+               <description>
+                  <para/>
+               </description>
+            </param>
             <returns type="Boolean">
                <description>
                   <para>Whether the buttons were added successfully</para>
@@ -1142,7 +1391,11 @@ win.loadURL('http://localhost:8000/post', {
             </description>
          </method>
          <method name="setThumbnailToolTip">
-            <param name="toolTip" type="String"/>
+            <param name="toolTip" type="String">
+               <description>
+                  <para/>
+               </description>
+            </param>
             <description>
                <para>Sets the toolTip that is displayed when hovering over the window thumbnail in the taskbar.</para>
             </description>
@@ -1174,6 +1427,9 @@ win.loadURL('http://localhost:8000/post', {
                      <para>Window's Relaunch Display Name.</para>
                   </description>
                </property>
+               <description>
+                  <para/>
+               </description>
             </param>
             <description>
                <para>Sets the properties for the window's taskbar button.</para>
@@ -1186,13 +1442,21 @@ win.loadURL('http://localhost:8000/post', {
             </description>
          </method>
          <method name="setIcon">
-            <param name="icon" type="NativeImage"/>
+            <param name="icon" type="NativeImage">
+               <description>
+                  <para/>
+               </description>
+            </param>
             <description>
                <para>Changes window icon.</para>
             </description>
          </method>
          <method name="setAutoHideMenuBar">
-            <param name="hide" type="Boolean"/>
+            <param name="hide" type="Boolean">
+               <description>
+                  <para/>
+               </description>
+            </param>
             <description>
                <para>Sets whether the window menu bar should hide itself automatically. Once set the menu bar will only show when users press the single Alt key.</para>
                <para>If the menu bar is already visible, calling setAutoHideMenuBar(true) won't hide it immediately.</para>
@@ -1204,9 +1468,14 @@ win.loadURL('http://localhost:8000/post', {
                   <para>Whether menu bar automatically hides itself.</para>
                </description>
             </returns>
+            <description/>
          </method>
          <method name="setMenuBarVisibility">
-            <param name="visible" type="Boolean"/>
+            <param name="visible" type="Boolean">
+               <description>
+                  <para/>
+               </description>
+            </param>
             <description>
                <para>Sets whether the menu bar should be visible. If the menu bar is auto-hide, users can still bring up the menu bar by pressing the single Alt key.</para>
             </description>
@@ -1217,9 +1486,14 @@ win.loadURL('http://localhost:8000/post', {
                   <para>Whether the menu bar is visible.</para>
                </description>
             </returns>
+            <description/>
          </method>
          <method name="setVisibleOnAllWorkspaces">
-            <param name="visible" type="Boolean"/>
+            <param name="visible" type="Boolean">
+               <description>
+                  <para/>
+               </description>
+            </param>
             <description>
                <para>Sets whether the window should be visible on all workspaces.</para>
                <para>Note: This API does nothing on Windows.</para>
@@ -1236,27 +1510,43 @@ win.loadURL('http://localhost:8000/post', {
             </description>
          </method>
          <method name="setIgnoreMouseEvents">
-            <param name="ignore" type="Boolean"/>
+            <param name="ignore" type="Boolean">
+               <description>
+                  <para/>
+               </description>
+            </param>
             <description>
                <para>Makes the window ignore all mouse events.</para>
                <para>All mouse events happened in this window will be passed to the window below this window, but if this window has focus, it will still receive keyboard events.</para>
             </description>
          </method>
          <method name="setContentProtection">
-            <param name="enable" type="Boolean"/>
+            <param name="enable" type="Boolean">
+               <description>
+                  <para/>
+               </description>
+            </param>
             <description>
                <para>Prevents the window contents from being captured by other apps.</para>
                <para>On macOS it sets the NSWindow's sharingType to NSWindowSharingNone. On Windows it calls SetWindowDisplayAffinity with WDA_MONITOR.</para>
             </description>
          </method>
          <method name="setFocusable">
-            <param name="focusable" type="Boolean"/>
+            <param name="focusable" type="Boolean">
+               <description>
+                  <para/>
+               </description>
+            </param>
             <description>
                <para>Changes whether the window can be focused.</para>
             </description>
          </method>
          <method name="setParentWindow">
-            <param name="parent" type="BrowserWindow"/>
+            <param name="parent" type="BrowserWindow">
+               <description>
+                  <para/>
+               </description>
+            </param>
             <description>
                <para>Sets parent as current window's parent window, passing null will turn current window into a top-level window.</para>
             </description>
@@ -1267,6 +1557,7 @@ win.loadURL('http://localhost:8000/post', {
                   <para>The parent window.</para>
                </description>
             </returns>
+            <description/>
          </method>
          <method name="getChildWindows">
             <returns type="BrowserWindow" isArray="true">
@@ -1274,9 +1565,14 @@ win.loadURL('http://localhost:8000/post', {
                   <para>All child windows.</para>
                </description>
             </returns>
+            <description/>
          </method>
          <method name="setAutoHideCursor">
-            <param name="autoHide" type="Boolean"/>
+            <param name="autoHide" type="Boolean">
+               <description>
+                  <para/>
+               </description>
+            </param>
             <description>
                <para>Controls whether to hide cursor when typing.</para>
             </description>

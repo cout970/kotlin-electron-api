@@ -3,13 +3,20 @@
    <object title="session">
       <methods>
          <method name="fromPartition">
-            <param name="partition" type="String"/>
+            <param name="partition" type="String">
+               <description>
+                  <para/>
+               </description>
+            </param>
             <param name="options" type="Object">
                <property name="cache" type="Boolean">
                   <description>
                      <para>Whether to enable cache.</para>
                   </description>
                </property>
+               <description>
+                  <para/>
+               </description>
             </param>
             <returns type="Session">
                <description>
@@ -32,6 +39,9 @@
                         <para>Cache size used in bytes.</para>
                      </description>
                   </param>
+                  <description>
+                     <para/>
+                  </description>
                </param>
                <description>
                   <para>Callback is invoked with the session's current cache size.</para>
@@ -64,6 +74,9 @@
                         <para>The types of quotas to clear, can contain: temporary, persistent, syncable.</para>
                      </description>
                   </property>
+                  <description>
+                     <para/>
+                  </description>
                </param>
                <param optional="true" name="callback" type="Function">
                   <description>
@@ -96,6 +109,9 @@
                         <para>Rules indicating which URLs should bypass the proxy settings.</para>
                      </description>
                   </property>
+                  <description>
+                     <para/>
+                  </description>
                </param>
                <param name="callback" type="Function">
                   <description>
@@ -181,7 +197,14 @@ proxyURL = [&lt;proxyScheme&gt;"://"]&lt;proxyHost&gt;[":"&lt;proxyPort&gt;]
                   </description>
                </param>
                <param name="callback" type="Function">
-                  <param name="proxy" type="Object"/>
+                  <param name="proxy" type="Object">
+                     <description>
+                        <para/>
+                     </description>
+                  </param>
+                  <description>
+                     <para/>
+                  </description>
                </param>
                <description>
                   <para>Resolves the proxy information for url. The callback will be called with callback(proxy) when the request is performed.</para>
@@ -219,6 +242,9 @@ proxyURL = [&lt;proxyScheme&gt;"://"]&lt;proxyHost&gt;[":"&lt;proxyPort&gt;]
                         <para>Upload rate in Bps. Defaults to 0 which will disable upload throttling.</para>
                      </description>
                   </property>
+                  <description>
+                     <para/>
+                  </description>
                </param>
                <description>
                   <para>Emulates network with the given configuration for the session.</para>
@@ -243,13 +269,24 @@ window.webContents.session.enableNetworkEmulation({offline: true})
             <method name="setCertificateVerifyProc">
                <param name="proc" type="Function">
                   <param name="request" type="Object">
-                     <property name="hostname" type="String"/>
-                     <property name="certificate" type="Certificate"/>
+                     <property name="hostname" type="String">
+                        <description>
+                           <para/>
+                        </description>
+                     </property>
+                     <property name="certificate" type="Certificate">
+                        <description>
+                           <para/>
+                        </description>
+                     </property>
                      <property name="error" type="String">
                         <description>
                            <para>Verification result from chromium.</para>
                         </description>
                      </property>
+                     <description>
+                        <para/>
+                     </description>
                   </param>
                   <param name="callback" type="Function">
                      <param name="verificationResult" type="Integer">
@@ -272,7 +309,13 @@ window.webContents.session.enableNetworkEmulation({offline: true})
                            <para>Value can be one of certificate error codes from here. Apart from the certificate error codes, the following special codes can be used.</para>
                         </description>
                      </param>
+                     <description>
+                        <para/>
+                     </description>
                   </param>
+                  <description>
+                     <para/>
+                  </description>
                </param>
                <description>
                   <para>Sets the certificate verify proc for session, the proc will be called with proc(request, callback) whenever a server certificate verification is requested. Calling callback(0) accepts the certificate, calling callback(-2) rejects it.</para>
@@ -305,7 +348,13 @@ win.webContents.session.setCertificateVerifyProc((hostname, cert, callback) =&gt
                            <para>Allow or deny the permission</para>
                         </description>
                      </param>
+                     <description>
+                        <para/>
+                     </description>
                   </param>
+                  <description>
+                     <para/>
+                  </description>
                </param>
                <description>
                   <para>Sets the handler which can be used to respond to permission requests for the session. Calling callback(true) will allow the permission and callback(false) will reject it.</para>
@@ -351,8 +400,16 @@ session.defaultSession.allowNTLMCredentialsForDomains('*')
                </description>
             </method>
             <method name="setUserAgent">
-               <param name="userAgent" type="String"/>
-               <param optional="true" name="acceptLanguages" type="String"/>
+               <param name="userAgent" type="String">
+                  <description>
+                     <para/>
+                  </description>
+               </param>
+               <param optional="true" name="acceptLanguages" type="String">
+                  <description>
+                     <para/>
+                  </description>
+               </param>
                <description>
                   <para>Overrides the userAgent and acceptLanguages for this session.</para>
                   <para>The acceptLanguages must a comma separated ordered list of language codes, for example "en-US,fr,de,ko,zh-CN,ja".</para>
@@ -365,6 +422,7 @@ session.defaultSession.allowNTLMCredentialsForDomains('*')
                      <para>The user agent for this session.</para>
                   </description>
                </returns>
+               <description/>
             </method>
             <method name="getBlobData">
                <param name="identifier" type="String">
@@ -378,12 +436,16 @@ session.defaultSession.allowNTLMCredentialsForDomains('*')
                         <para>Blob data.</para>
                      </description>
                   </param>
+                  <description>
+                     <para/>
+                  </description>
                </param>
                <returns type="Blob">
                   <description>
                      <para>The blob data associated with the identifier.</para>
                   </description>
                </returns>
+               <description/>
             </method>
             <method name="createInterruptedDownload">
                <param name="options" type="Object">
@@ -397,7 +459,11 @@ session.defaultSession.allowNTLMCredentialsForDomains('*')
                         <para>Complete URL chain for the download.</para>
                      </description>
                   </property>
-                  <property optional="true" name="mimeType" type="String"/>
+                  <property optional="true" name="mimeType" type="String">
+                     <description>
+                        <para/>
+                     </description>
+                  </property>
                   <property name="offset" type="Integer">
                      <description>
                         <para>Start range for the download.</para>
@@ -423,6 +489,9 @@ session.defaultSession.allowNTLMCredentialsForDomains('*')
                         <para>Time when download was started in number of seconds since UNIX epoch.</para>
                      </description>
                   </property>
+                  <description>
+                     <para/>
+                  </description>
                </param>
                <description>
                   <para>Allows resuming cancelled or interrupted downloads from previous Session. The API will generate a DownloadItem that can be accessed with the will-download event. The DownloadItem will not have any WebContents associated with it and the initial state will be interrupted. The download will start only when the resume API is called on the DownloadItem.</para>
@@ -432,6 +501,9 @@ session.defaultSession.allowNTLMCredentialsForDomains('*')
                <param name="options" type="union">
                   <option type="RemovePassword"/>
                   <option type="RemoveClientCertificate"/>
+                  <description>
+                     <para/>
+                  </description>
                </param>
                <param optional="true" name="callback" type="Function">
                   <description>
@@ -486,6 +558,9 @@ app.on('ready', function () {
                      <para>Cache size used in bytes.</para>
                   </description>
                </param>
+               <description>
+                  <para/>
+               </description>
             </param>
             <description>
                <para>Callback is invoked with the session's current cache size.</para>
@@ -518,6 +593,9 @@ app.on('ready', function () {
                      <para>The types of quotas to clear, can contain: temporary, persistent, syncable.</para>
                   </description>
                </property>
+               <description>
+                  <para/>
+               </description>
             </param>
             <param optional="true" name="callback" type="Function">
                <description>
@@ -550,6 +628,9 @@ app.on('ready', function () {
                      <para>Rules indicating which URLs should bypass the proxy settings.</para>
                   </description>
                </property>
+               <description>
+                  <para/>
+               </description>
             </param>
             <param name="callback" type="Function">
                <description>
@@ -635,7 +716,14 @@ proxyURL = [&lt;proxyScheme&gt;"://"]&lt;proxyHost&gt;[":"&lt;proxyPort&gt;]
                </description>
             </param>
             <param name="callback" type="Function">
-               <param name="proxy" type="Object"/>
+               <param name="proxy" type="Object">
+                  <description>
+                     <para/>
+                  </description>
+               </param>
+               <description>
+                  <para/>
+               </description>
             </param>
             <description>
                <para>Resolves the proxy information for url. The callback will be called with callback(proxy) when the request is performed.</para>
@@ -673,6 +761,9 @@ proxyURL = [&lt;proxyScheme&gt;"://"]&lt;proxyHost&gt;[":"&lt;proxyPort&gt;]
                      <para>Upload rate in Bps. Defaults to 0 which will disable upload throttling.</para>
                   </description>
                </property>
+               <description>
+                  <para/>
+               </description>
             </param>
             <description>
                <para>Emulates network with the given configuration for the session.</para>
@@ -697,13 +788,24 @@ window.webContents.session.enableNetworkEmulation({offline: true})
          <method name="setCertificateVerifyProc">
             <param name="proc" type="Function">
                <param name="request" type="Object">
-                  <property name="hostname" type="String"/>
-                  <property name="certificate" type="Certificate"/>
+                  <property name="hostname" type="String">
+                     <description>
+                        <para/>
+                     </description>
+                  </property>
+                  <property name="certificate" type="Certificate">
+                     <description>
+                        <para/>
+                     </description>
+                  </property>
                   <property name="error" type="String">
                      <description>
                         <para>Verification result from chromium.</para>
                      </description>
                   </property>
+                  <description>
+                     <para/>
+                  </description>
                </param>
                <param name="callback" type="Function">
                   <param name="verificationResult" type="Integer">
@@ -726,7 +828,13 @@ window.webContents.session.enableNetworkEmulation({offline: true})
                         <para>Value can be one of certificate error codes from here. Apart from the certificate error codes, the following special codes can be used.</para>
                      </description>
                   </param>
+                  <description>
+                     <para/>
+                  </description>
                </param>
+               <description>
+                  <para/>
+               </description>
             </param>
             <description>
                <para>Sets the certificate verify proc for session, the proc will be called with proc(request, callback) whenever a server certificate verification is requested. Calling callback(0) accepts the certificate, calling callback(-2) rejects it.</para>
@@ -759,7 +867,13 @@ win.webContents.session.setCertificateVerifyProc((hostname, cert, callback) =&gt
                         <para>Allow or deny the permission</para>
                      </description>
                   </param>
+                  <description>
+                     <para/>
+                  </description>
                </param>
+               <description>
+                  <para/>
+               </description>
             </param>
             <description>
                <para>Sets the handler which can be used to respond to permission requests for the session. Calling callback(true) will allow the permission and callback(false) will reject it.</para>
@@ -805,8 +919,16 @@ session.defaultSession.allowNTLMCredentialsForDomains('*')
             </description>
          </method>
          <method name="setUserAgent">
-            <param name="userAgent" type="String"/>
-            <param optional="true" name="acceptLanguages" type="String"/>
+            <param name="userAgent" type="String">
+               <description>
+                  <para/>
+               </description>
+            </param>
+            <param optional="true" name="acceptLanguages" type="String">
+               <description>
+                  <para/>
+               </description>
+            </param>
             <description>
                <para>Overrides the userAgent and acceptLanguages for this session.</para>
                <para>The acceptLanguages must a comma separated ordered list of language codes, for example "en-US,fr,de,ko,zh-CN,ja".</para>
@@ -819,6 +941,7 @@ session.defaultSession.allowNTLMCredentialsForDomains('*')
                   <para>The user agent for this session.</para>
                </description>
             </returns>
+            <description/>
          </method>
          <method name="getBlobData">
             <param name="identifier" type="String">
@@ -832,12 +955,16 @@ session.defaultSession.allowNTLMCredentialsForDomains('*')
                      <para>Blob data.</para>
                   </description>
                </param>
+               <description>
+                  <para/>
+               </description>
             </param>
             <returns type="Blob">
                <description>
                   <para>The blob data associated with the identifier.</para>
                </description>
             </returns>
+            <description/>
          </method>
          <method name="createInterruptedDownload">
             <param name="options" type="Object">
@@ -851,7 +978,11 @@ session.defaultSession.allowNTLMCredentialsForDomains('*')
                      <para>Complete URL chain for the download.</para>
                   </description>
                </property>
-               <property optional="true" name="mimeType" type="String"/>
+               <property optional="true" name="mimeType" type="String">
+                  <description>
+                     <para/>
+                  </description>
+               </property>
                <property name="offset" type="Integer">
                   <description>
                      <para>Start range for the download.</para>
@@ -877,6 +1008,9 @@ session.defaultSession.allowNTLMCredentialsForDomains('*')
                      <para>Time when download was started in number of seconds since UNIX epoch.</para>
                   </description>
                </property>
+               <description>
+                  <para/>
+               </description>
             </param>
             <description>
                <para>Allows resuming cancelled or interrupted downloads from previous Session. The API will generate a DownloadItem that can be accessed with the will-download event. The DownloadItem will not have any WebContents associated with it and the initial state will be interrupted. The download will start only when the resume API is called on the DownloadItem.</para>
@@ -886,6 +1020,9 @@ session.defaultSession.allowNTLMCredentialsForDomains('*')
             <param name="options" type="union">
                <option type="RemovePassword"/>
                <option type="RemoveClientCertificate"/>
+               <description>
+                  <para/>
+               </description>
             </param>
             <param optional="true" name="callback" type="Function">
                <description>

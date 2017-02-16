@@ -1,16 +1,18 @@
 @file:Suppress("UnsafeCastFromDynamic")
 package jsapi.electron
 
-class DownloadItem constructor(val instance: dynamic, z: Unit) {
+@Suppress("REDUNDANT_NULLABLE")
+class DownloadItem constructor(val instance: dynamic, @Suppress("UNUSED_PARAMETER") ignoreMe: Unit) {
 
+    @Suppress("UNUSED_VARIABLE")
     constructor() : this(Unit.let {
         val _constructor = js("require('electron').DownloadItem")
         js("new _constructor()")
-    }, z = Unit)
+    }, Unit)
 
     // ~ Events --------------------------------------------------------------------------------
 
-    fun onEvent(event: String, callback: () -> Unit) = 
+    fun onEvent(event: String, callback: () -> Unit): Unit = 
         module.on(event, callback)
 
     // ~ Methods -------------------------------------------------------------------------------
@@ -19,13 +21,15 @@ class DownloadItem constructor(val instance: dynamic, z: Unit) {
      * The API is only available in session's will-download callback function. If 
      * user doesn't set the save path via the API, Electron will use the original 
      * routine to determine the save path(Usually prompts a save dialog).
+     * 
+     * @param path Set the save file path of the download item.
      */
     fun setSavePath(path: String): Unit = 
         instance.setSavePath(path)
 
     /**
-     * @return The save path of the download item. This will be either the path set via 
-     * downloadItem.setSavePath(path) or the path selected from the shown save dialog.
+     * @returns The save path of the download item. This will be either the path set via 
+     *          downloadItem.setSavePath(path) or the path selected from the shown save dialog.
      */
     fun getSavePath(): String = 
         instance.getSavePath()
@@ -37,7 +41,7 @@ class DownloadItem constructor(val instance: dynamic, z: Unit) {
         instance.pause()
 
     /**
-     * @return Whether the download is paused.
+     * @returns Whether the download is paused.
      */
     fun isPaused(): Boolean = 
         instance.isPaused()
@@ -61,19 +65,19 @@ class DownloadItem constructor(val instance: dynamic, z: Unit) {
         instance.cancel()
 
     /**
-     * @return The origin url where the item is downloaded from.
+     * @returns The origin url where the item is downloaded from.
      */
     fun getURL(): String = 
         instance.getURL()
 
     /**
-     * @return The files mime type.
+     * @returns The files mime type.
      */
     fun getMimeType(): String = 
         instance.getMimeType()
 
     /**
-     * @return Whether the download has user gesture.
+     * @returns Whether the download has user gesture.
      */
     fun hasUserGesture(): Boolean = 
         instance.hasUserGesture()
@@ -83,7 +87,7 @@ class DownloadItem constructor(val instance: dynamic, z: Unit) {
      * disk. If user changes the file name in a prompted download saving dialog, the 
      * actual name of saved file will be different.
      * 
-     * @return The file name of the download item.
+     * @returns The file name of the download item.
      */
     fun getFilename(): String = 
         instance.getFilename()
@@ -91,19 +95,19 @@ class DownloadItem constructor(val instance: dynamic, z: Unit) {
     /**
      * If the size is unknown, it returns 0.
      * 
-     * @return The total size in bytes of the download item.
+     * @returns The total size in bytes of the download item.
      */
     fun getTotalBytes(): Int = 
         instance.getTotalBytes()
 
     /**
-     * @return The received bytes of the download item.
+     * @returns The received bytes of the download item.
      */
     fun getReceivedBytes(): Int = 
         instance.getReceivedBytes()
 
     /**
-     * @return The Content-Disposition field from the response header.
+     * @returns The Content-Disposition field from the response header.
      */
     fun getContentDisposition(): String = 
         instance.getContentDisposition()
@@ -112,31 +116,31 @@ class DownloadItem constructor(val instance: dynamic, z: Unit) {
      * Note: The following methods are useful specifically to resume a cancelled item 
      * when session is restarted.
      * 
-     * @return The current state. Can be progressing, completed, cancelled or interrupted.
+     * @returns The current state. Can be progressing, completed, cancelled or interrupted.
      */
     fun getState(): String = 
         instance.getState()
 
     /**
-     * @return The complete url chain of the item including any redirects.
+     * @returns The complete url chain of the item including any redirects.
      */
     fun getURLChain(): Array<String> = 
         instance.getURLChain()
 
     /**
-     * @return Last-Modified header value.
+     * @returns Last-Modified header value.
      */
     fun getLastModifiedTime(): String = 
         instance.getLastModifiedTime()
 
     /**
-     * @return ETag header value.
+     * @returns ETag header value.
      */
     fun getETag(): String = 
         instance.getETag()
 
     /**
-     * @return Number of seconds since the UNIX epoch when the download was started.
+     * @returns Number of seconds since the UNIX epoch when the download was started.
      */
     fun getStartTime(): Double = 
         instance.getStartTime()

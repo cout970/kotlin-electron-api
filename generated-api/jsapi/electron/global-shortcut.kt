@@ -1,13 +1,14 @@
 @file:Suppress("UnsafeCastFromDynamic")
 package jsapi.electron
 
+@Suppress("REDUNDANT_NULLABLE")
 object globalShortcut {
 
     private val module: dynamic = js("require('electron').globalShortcut")
 
     // ~ Events --------------------------------------------------------------------------------
 
-    fun onEvent(event: String, callback: () -> Unit) = 
+    fun onEvent(event: String, callback: () -> Unit): Unit = 
         module.on(event, callback)
 
     // ~ Methods -------------------------------------------------------------------------------
@@ -19,6 +20,9 @@ object globalShortcut {
      * When the accelerator is already taken by other applications, this call will 
      * silently fail. This behavior is intended by operating systems, since they 
      * don't want applications to fight for global shortcuts.
+     * 
+     * @param accelerator 
+     * @param callback 
      */
     fun register(accelerator: String, callback: () -> Unit): Unit = 
         module.register(accelerator, callback)
@@ -28,13 +32,17 @@ object globalShortcut {
      * still return false. This behavior is intended by operating systems, since they 
      * don't want applications to fight for global shortcuts.
      * 
-     * @return Whether this application has registered accelerator.
+     * @param accelerator 
+     *
+     * @returns Whether this application has registered accelerator.
      */
     fun isRegistered(accelerator: String): Boolean = 
         module.isRegistered(accelerator)
 
     /**
      * Unregisters the global shortcut of accelerator.
+     * 
+     * @param accelerator 
      */
     fun unregister(accelerator: String): Unit = 
         module.unregister(accelerator)

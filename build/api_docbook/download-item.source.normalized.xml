@@ -19,6 +19,7 @@
                   <para>The save path of the download item. This will be either the path set via downloadItem.setSavePath(path) or the path selected from the shown save dialog.</para>
                </description>
             </returns>
+            <description/>
          </method>
          <method name="pause">
             <description>
@@ -31,6 +32,7 @@
                   <para>Whether the download is paused.</para>
                </description>
             </returns>
+            <description/>
          </method>
          <method name="resume">
             <description>
@@ -53,6 +55,7 @@
                   <para>The origin url where the item is downloaded from.</para>
                </description>
             </returns>
+            <description/>
          </method>
          <method name="getMimeType">
             <returns type="String">
@@ -60,6 +63,7 @@
                   <para>The files mime type.</para>
                </description>
             </returns>
+            <description/>
          </method>
          <method name="hasUserGesture">
             <returns type="Boolean">
@@ -67,6 +71,7 @@
                   <para>Whether the download has user gesture.</para>
                </description>
             </returns>
+            <description/>
          </method>
          <method name="getFilename">
             <returns type="String">
@@ -94,6 +99,7 @@
                   <para>The received bytes of the download item.</para>
                </description>
             </returns>
+            <description/>
          </method>
          <method name="getContentDisposition">
             <returns type="String">
@@ -101,6 +107,7 @@
                   <para>The Content-Disposition field from the response header.</para>
                </description>
             </returns>
+            <description/>
          </method>
          <method name="getState">
             <returns type="String">
@@ -118,6 +125,7 @@
                   <para>The complete url chain of the item including any redirects.</para>
                </description>
             </returns>
+            <description/>
          </method>
          <method name="getLastModifiedTime">
             <returns type="String">
@@ -125,6 +133,7 @@
                   <para>Last-Modified header value.</para>
                </description>
             </returns>
+            <description/>
          </method>
          <method name="getETag">
             <returns type="String">
@@ -132,6 +141,7 @@
                   <para>ETag header value.</para>
                </description>
             </returns>
+            <description/>
          </method>
          <method name="getStartTime">
             <returns type="Double">
@@ -139,6 +149,7 @@
                   <para>Number of seconds since the UNIX epoch when the download was started.</para>
                </description>
             </returns>
+            <description/>
          </method>
       </methods>
    </class>

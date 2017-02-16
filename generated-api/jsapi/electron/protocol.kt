@@ -1,13 +1,14 @@
 @file:Suppress("UnsafeCastFromDynamic")
 package jsapi.electron
 
+@Suppress("REDUNDANT_NULLABLE")
 object protocol {
 
     private val module: dynamic = js("require('electron').protocol")
 
     // ~ Events --------------------------------------------------------------------------------
 
-    fun onEvent(event: String, callback: () -> Unit) = 
+    fun onEvent(event: String, callback: () -> Unit): Unit = 
         module.on(event, callback)
 
     // ~ Methods -------------------------------------------------------------------------------
@@ -50,12 +51,15 @@ object protocol {
      *
      * Note: This method can only be used before the ready event of the app module 
      * gets emitted.
+     * 
+     * @param schemes Custom schemes to be registered as standard schemes.
+         * @param options 
      */
-    fun registerStandardSchemes(schemes: Array<String>, options: (RegisterStandardSchemesOptions.() -> Unit)?): Unit = 
+    fun registerStandardSchemes(schemes: Array<String>, options: (RegisterStandardSchemesOptions.() -> Unit)? = null): Unit = 
         module.registerStandardSchemes(schemes, options?.let { RegisterStandardSchemesOptions().apply(it) })
 
     /**
-     *
+     * @param schemes Custom schemes to be registered to handle service workers.
      */
     fun registerServiceWorkerSchemes(schemes: Array<String>): Unit = 
         module.registerServiceWorkerSchemes(schemes)
@@ -78,8 +82,12 @@ object protocol {
      * protocols that follow the "generic URI syntax" like file:, so you probably 
      * want to call protocol.registerStandardSchemes to have your scheme treated as a 
      * standard scheme.
+     * 
+     * @param scheme 
+     * @param handler 
+     * @param completion 
      */
-    fun registerFileProtocol(scheme: String, handler: (request: RegisterFileProtocolRequest, callback: (filePath: String?) -> Unit) -> Unit, completion: ((error: Error) -> Unit)?): Unit = 
+    fun registerFileProtocol(scheme: String, handler: (request: RegisterFileProtocolRequest, callback: (filePath: String?) -> Unit) -> Unit, completion: ((error: Error) -> Unit)? = null): Unit = 
         module.registerFileProtocol(scheme, handler, completion)
 
     /**
@@ -100,8 +108,12 @@ object protocol {
      *  |   if (error) console.error('Failed to register protocol')
      *  | })
      *  | 
+     * 
+     * @param scheme 
+     * @param handler 
+     * @param completion 
      */
-    fun registerBufferProtocol(scheme: String, handler: (request: RegisterBufferProtocolRequest, callback: (buffer: dynamic?) -> Unit) -> Unit, completion: ((error: Error) -> Unit)?): Unit = 
+    fun registerBufferProtocol(scheme: String, handler: (request: RegisterBufferProtocolRequest, callback: (buffer: dynamic?) -> Unit) -> Unit, completion: ((error: Error) -> Unit)? = null): Unit = 
         module.registerBufferProtocol(scheme, handler, completion)
 
     /**
@@ -110,8 +122,12 @@ object protocol {
      * The usage is the same with registerFileProtocol, except that the callback 
      * should be called with either a String or an object that has the data, 
      * mimeType, and charset properties.
+     * 
+     * @param scheme 
+     * @param handler 
+     * @param completion 
      */
-    fun registerStringProtocol(scheme: String, handler: (request: RegisterStringProtocolRequest, callback: (data: String?) -> Unit) -> Unit, completion: ((error: Error) -> Unit)?): Unit = 
+    fun registerStringProtocol(scheme: String, handler: (request: RegisterStringProtocolRequest, callback: (data: String?) -> Unit) -> Unit, completion: ((error: Error) -> Unit)? = null): Unit = 
         module.registerStringProtocol(scheme, handler, completion)
 
     /**
@@ -125,19 +141,29 @@ object protocol {
      * request to have a different session you should set session to null.
      *
      * For POST requests the uploadData object must be provided.
+     * 
+     * @param scheme 
+     * @param handler 
+     * @param completion 
      */
-    fun registerHttpProtocol(scheme: String, handler: (request: RegisterHttpProtocolRequest, callback: (redirectRequest: RegisterHttpProtocolRedirectRequest) -> Unit) -> Unit, completion: ((error: Error) -> Unit)?): Unit = 
+    fun registerHttpProtocol(scheme: String, handler: (request: RegisterHttpProtocolRequest, callback: (redirectRequest: RegisterHttpProtocolRedirectRequest) -> Unit) -> Unit, completion: ((error: Error) -> Unit)? = null): Unit = 
         module.registerHttpProtocol(scheme, handler, completion)
 
     /**
      * Unregisters the custom protocol of scheme.
+     * 
+     * @param scheme 
+     * @param completion 
      */
-    fun unregisterProtocol(scheme: String, completion: ((error: Error) -> Unit)?): Unit = 
+    fun unregisterProtocol(scheme: String, completion: ((error: Error) -> Unit)? = null): Unit = 
         module.unregisterProtocol(scheme, completion)
 
     /**
      * The callback will be called with a boolean that indicates whether there is 
      * already a handler for scheme.
+     * 
+     * @param scheme 
+     * @param callback 
      */
     fun isProtocolHandled(scheme: String, callback: (error: Error) -> Unit): Unit = 
         module.isProtocolHandled(scheme, callback)
@@ -145,126 +171,325 @@ object protocol {
     /**
      * Intercepts scheme protocol and uses handler as the protocol's new handler 
      * which sends a file as a response.
+     * 
+     * @param scheme 
+     * @param handler 
+     * @param completion 
      */
-    fun interceptFileProtocol(scheme: String, handler: (request: InterceptFileProtocolRequest, callback: (filePath: String) -> Unit) -> Unit, completion: ((error: Error) -> Unit)?): Unit = 
+    fun interceptFileProtocol(scheme: String, handler: (request: InterceptFileProtocolRequest, callback: (filePath: String) -> Unit) -> Unit, completion: ((error: Error) -> Unit)? = null): Unit = 
         module.interceptFileProtocol(scheme, handler, completion)
 
     /**
      * Intercepts scheme protocol and uses handler as the protocol's new handler 
      * which sends a String as a response.
+     * 
+     * @param scheme 
+     * @param handler 
+     * @param completion 
      */
-    fun interceptStringProtocol(scheme: String, handler: (request: InterceptStringProtocolRequest, callback: (data: String?) -> Unit) -> Unit, completion: ((error: Error) -> Unit)?): Unit = 
+    fun interceptStringProtocol(scheme: String, handler: (request: InterceptStringProtocolRequest, callback: (data: String?) -> Unit) -> Unit, completion: ((error: Error) -> Unit)? = null): Unit = 
         module.interceptStringProtocol(scheme, handler, completion)
 
     /**
      * Intercepts scheme protocol and uses handler as the protocol's new handler 
      * which sends a Buffer as a response.
+     * 
+     * @param scheme 
+     * @param handler 
+     * @param completion 
      */
-    fun interceptBufferProtocol(scheme: String, handler: (request: InterceptBufferProtocolRequest, callback: (buffer: dynamic?) -> Unit) -> Unit, completion: ((error: Error) -> Unit)?): Unit = 
+    fun interceptBufferProtocol(scheme: String, handler: (request: InterceptBufferProtocolRequest, callback: (buffer: dynamic?) -> Unit) -> Unit, completion: ((error: Error) -> Unit)? = null): Unit = 
         module.interceptBufferProtocol(scheme, handler, completion)
 
     /**
      * Intercepts scheme protocol and uses handler as the protocol's new handler 
      * which sends a new HTTP request as a response.
+     * 
+     * @param scheme 
+     * @param handler 
+     * @param completion 
      */
-    fun interceptHttpProtocol(scheme: String, handler: (request: InterceptHttpProtocolRequest, callback: (redirectRequest: InterceptHttpProtocolRedirectRequest) -> Unit) -> Unit, completion: ((error: Error) -> Unit)?): Unit = 
+    fun interceptHttpProtocol(scheme: String, handler: (request: InterceptHttpProtocolRequest, callback: (redirectRequest: InterceptHttpProtocolRedirectRequest) -> Unit) -> Unit, completion: ((error: Error) -> Unit)? = null): Unit = 
         module.interceptHttpProtocol(scheme, handler, completion)
 
     /**
      * Remove the interceptor installed for scheme and restore its original handler.
+     * 
+     * @param scheme 
+     * @param completion 
      */
-    fun uninterceptProtocol(scheme: String, completion: ((error: Error) -> Unit)?): Unit = 
+    fun uninterceptProtocol(scheme: String, completion: ((error: Error) -> Unit)? = null): Unit = 
         module.uninterceptProtocol(scheme, completion)
 
     // ~ Builders ------------------------------------------------------------------------------
 
     class RegisterStandardSchemesOptions(
+        /**
+         * true to register the scheme as secure. Default false.
+         */
         var secure: Boolean? = null
+
     )
 
     class RegisterFileProtocolRequest(
+        /**
+         * 
+         */
         var url: String,
+
+        /**
+         * 
+         */
         var referrer: String,
+
+        /**
+         * 
+         */
         var method: String,
+
+        /**
+         * 
+         */
         var uploadData: Array<UploadData>
+
     )
 
     class RegisterBufferProtocolRequest(
+        /**
+         * 
+         */
         var url: String,
+
+        /**
+         * 
+         */
         var referrer: String,
+
+        /**
+         * 
+         */
         var method: String,
+
+        /**
+         * 
+         */
         var uploadData: Array<UploadData>
+
     )
 
     class RegisterStringProtocolRequest(
+        /**
+         * 
+         */
         var url: String,
+
+        /**
+         * 
+         */
         var referrer: String,
+
+        /**
+         * 
+         */
         var method: String,
+
+        /**
+         * 
+         */
         var uploadData: Array<UploadData>
+
     )
 
     class RegisterHttpProtocolRequest(
+        /**
+         * 
+         */
         var url: String,
+
+        /**
+         * 
+         */
         var referrer: String,
+
+        /**
+         * 
+         */
         var method: String,
+
+        /**
+         * 
+         */
         var uploadData: Array<UploadData>
+
     )
 
     class RegisterHttpProtocolRedirectRequest(
+        /**
+         * 
+         */
         var url: String,
+
+        /**
+         * 
+         */
         var method: String,
+
+        /**
+         * 
+         */
         var session: RegisterHttpProtocolSession? = null,
+
+        /**
+         * 
+         */
         var uploadData: RegisterHttpProtocolUploadData? = null
+
     )
     class RegisterHttpProtocolSession(
     )
 
     class RegisterHttpProtocolUploadData(
+        /**
+         * MIME type of the content.
+         */
         var contentType: String,
+
+        /**
+         * Content to be sent.
+         */
         var data: String
+
     )
 
 
     class InterceptFileProtocolRequest(
+        /**
+         * 
+         */
         var url: String,
+
+        /**
+         * 
+         */
         var referrer: String,
+
+        /**
+         * 
+         */
         var method: String,
+
+        /**
+         * 
+         */
         var uploadData: Array<UploadData>
+
     )
 
     class InterceptStringProtocolRequest(
+        /**
+         * 
+         */
         var url: String,
+
+        /**
+         * 
+         */
         var referrer: String,
+
+        /**
+         * 
+         */
         var method: String,
+
+        /**
+         * 
+         */
         var uploadData: Array<UploadData>
+
     )
 
     class InterceptBufferProtocolRequest(
+        /**
+         * 
+         */
         var url: String,
+
+        /**
+         * 
+         */
         var referrer: String,
+
+        /**
+         * 
+         */
         var method: String,
+
+        /**
+         * 
+         */
         var uploadData: Array<UploadData>
+
     )
 
     class InterceptHttpProtocolRequest(
+        /**
+         * 
+         */
         var url: String,
+
+        /**
+         * 
+         */
         var referrer: String,
+
+        /**
+         * 
+         */
         var method: String,
+
+        /**
+         * 
+         */
         var uploadData: Array<UploadData>
+
     )
 
     class InterceptHttpProtocolRedirectRequest(
+        /**
+         * 
+         */
         var url: String,
+
+        /**
+         * 
+         */
         var method: String,
+
+        /**
+         * 
+         */
         var session: InterceptHttpProtocolSession? = null,
+
+        /**
+         * 
+         */
         var uploadData: InterceptHttpProtocolUploadData? = null
+
     )
     class InterceptHttpProtocolSession(
     )
 
     class InterceptHttpProtocolUploadData(
+        /**
+         * MIME type of the content.
+         */
         var contentType: String,
+
+        /**
+         * Content to be sent.
+         */
         var data: String
+
     )
 
 }

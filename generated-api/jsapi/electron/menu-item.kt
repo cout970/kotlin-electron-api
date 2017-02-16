@@ -1,17 +1,19 @@
 @file:Suppress("UnsafeCastFromDynamic")
 package jsapi.electron
 
-class MenuItem constructor(val instance: dynamic, z: Unit) {
+@Suppress("REDUNDANT_NULLABLE")
+class MenuItem constructor(val instance: dynamic, @Suppress("UNUSED_PARAMETER") ignoreMe: Unit) {
 
+    @Suppress("UNUSED_VARIABLE")
     constructor(options: Options.() -> Unit) : this(Unit.let {
         val _constructor = js("require('electron').MenuItem")
         val _options = options.let { Options().apply(it) }
         js("new _constructor(_options)")
-    }, z = Unit)
+    }, Unit)
 
     // ~ Events --------------------------------------------------------------------------------
 
-    fun onEvent(event: String, callback: () -> Unit) = 
+    fun onEvent(event: String, callback: () -> Unit): Unit = 
         module.on(event, callback)
 
     // ~ Properties ----------------------------------------------------------------------------
@@ -64,19 +66,77 @@ class MenuItem constructor(val instance: dynamic, z: Unit) {
     // ~ Builders ------------------------------------------------------------------------------
 
     class Options(
+        /**
+         * Will be called with click(menuItem, browserWindow, event) when the menu item 
+         * is clicked.
+         */
         var click: ((menuItem: MenuItem, browserWindow: BrowserWindow, event: dynamic) -> Unit)? = null,
+
+        /**
+         * Define the action of the menu item, when specified the click property will be 
+         * ignored.
+         */
         var role: String? = null,
+
+        /**
+         * Can be normal, separator, submenu, checkbox or radio.
+         */
         var type: String? = null,
+
+        /**
+         * (optional)
+         */
         var label: String? = null,
+
+        /**
+         * (optional)
+         */
         var sublabel: String? = null,
+
+        /**
+         * 
+         */
         var accelerator: String? = null,
+
+        /**
+         * 
+         */
         var icon: dynamic? = null,
+
+        /**
+         * If false, the menu item will be greyed out and unclickable.
+         */
         var enabled: Boolean? = null,
+
+        /**
+         * If false, the menu item will be entirely hidden.
+         */
         var visible: Boolean? = null,
+
+        /**
+         * Should only be specified for checkbox or radio type menu items.
+         */
         var checked: Boolean? = null,
+
+        /**
+         * Should be specified for submenu type menu items. If submenu is specified, the 
+         * type: 'submenu' can be omitted. If the value is not a Menu then it will be 
+         * automatically converted to one using Menu.buildFromTemplate.
+         */
         var submenu: dynamic? = null,
+
+        /**
+         * Unique within a single menu. If defined then it can be used as a reference to 
+         * this item by the position attribute.
+         */
         var id: String? = null,
+
+        /**
+         * This field allows fine-grained definition of the specific location within a 
+         * given menu.
+         */
         var position: String? = null
+
     )
 }
 

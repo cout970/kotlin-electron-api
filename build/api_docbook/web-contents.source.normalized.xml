@@ -8,6 +8,7 @@
                   <para>An array of all WebContents instances. This will contain web contents for all windows, webviews, opened devtools, and devtools extension background pages.</para>
                </description>
             </returns>
+            <description/>
          </method>
          <method name="getFocusedWebContents">
             <returns type="WebContents">
@@ -15,21 +16,31 @@
                   <para>The web contents that is focused in this application, otherwise returns null.</para>
                </description>
             </returns>
+            <description/>
          </method>
          <method name="fromId">
-            <param name="id" type="Integer"/>
+            <param name="id" type="Integer">
+               <description>
+                  <para/>
+               </description>
+            </param>
             <returns type="WebContents">
                <description>
                   <para>A WebContents instance with the given ID.</para>
                </description>
             </returns>
+            <description/>
          </method>
       </methods>
       <class title="WebContents">
          <constructor/>
          <methods type="instance">
             <method name="loadURL">
-               <param name="url" type="String"/>
+               <param name="url" type="String">
+                  <description>
+                     <para/>
+                  </description>
+               </param>
                <param optional="true" name="options" type="Object">
                   <property optional="true" name="httpReferrer" type="String">
                      <description>
@@ -55,6 +66,9 @@
                         <para>(optional)</para>
                      </description>
                   </property>
+                  <description>
+                     <para/>
+                  </description>
                </param>
                <description>
                   <para>Loads the url in the window. The url must contain the protocol prefix, e.g. the http:// or file://. If the load should bypass http cache then use the pragma header to achieve it.</para>
@@ -66,7 +80,11 @@ webContents.loadURL('https://github.com', options)
                </description>
             </method>
             <method name="downloadURL">
-               <param name="url" type="String"/>
+               <param name="url" type="String">
+                  <description>
+                     <para/>
+                  </description>
+               </param>
                <description>
                   <para>Initiates a download of the resource at url without navigating. The will-download event of session will be triggered.</para>
                </description>
@@ -94,6 +112,7 @@ console.log(currentURL)
                      <para>The title of the current web page.</para>
                   </description>
                </returns>
+               <description/>
             </method>
             <method name="isDestroyed">
                <returns type="Boolean">
@@ -101,6 +120,7 @@ console.log(currentURL)
                      <para>Whether the web page is destroyed.</para>
                   </description>
                </returns>
+               <description/>
             </method>
             <method name="isFocused">
                <returns type="Boolean">
@@ -108,6 +128,7 @@ console.log(currentURL)
                      <para>Whether the web page is focused.</para>
                   </description>
                </returns>
+               <description/>
             </method>
             <method name="isLoading">
                <returns type="Boolean">
@@ -115,6 +136,7 @@ console.log(currentURL)
                      <para>Whether web page is still loading resources.</para>
                   </description>
                </returns>
+               <description/>
             </method>
             <method name="isLoadingMainFrame">
                <returns type="Boolean">
@@ -122,6 +144,7 @@ console.log(currentURL)
                      <para>Whether the main frame (and not just iframes or frames within it) is still loading.</para>
                   </description>
                </returns>
+               <description/>
             </method>
             <method name="isWaitingForResponse">
                <returns type="Boolean">
@@ -129,6 +152,7 @@ console.log(currentURL)
                      <para>Whether the web page is waiting for a first-response from the main resource of the page.</para>
                   </description>
                </returns>
+               <description/>
             </method>
             <method name="stop">
                <description>
@@ -151,6 +175,7 @@ console.log(currentURL)
                      <para>Whether the browser can go back to previous web page.</para>
                   </description>
                </returns>
+               <description/>
             </method>
             <method name="canGoForward">
                <returns type="Boolean">
@@ -158,14 +183,20 @@ console.log(currentURL)
                      <para>Whether the browser can go forward to next web page.</para>
                   </description>
                </returns>
+               <description/>
             </method>
             <method name="canGoToOffset">
-               <param name="offset" type="Integer"/>
+               <param name="offset" type="Integer">
+                  <description>
+                     <para/>
+                  </description>
+               </param>
                <returns type="Boolean">
                   <description>
                      <para>Whether the web page can go to offset.</para>
                   </description>
                </returns>
+               <description/>
             </method>
             <method name="clearHistory">
                <description>
@@ -183,13 +214,21 @@ console.log(currentURL)
                </description>
             </method>
             <method name="goToIndex">
-               <param name="index" type="Integer"/>
+               <param name="index" type="Integer">
+                  <description>
+                     <para/>
+                  </description>
+               </param>
                <description>
                   <para>Navigates browser to the specified absolute web page index.</para>
                </description>
             </method>
             <method name="goToOffset">
-               <param name="offset" type="Integer"/>
+               <param name="offset" type="Integer">
+                  <description>
+                     <para/>
+                  </description>
+               </param>
                <description>
                   <para>Navigates to the specified offset from the "current entry".</para>
                </description>
@@ -200,9 +239,14 @@ console.log(currentURL)
                      <para>Whether the renderer process has crashed.</para>
                   </description>
                </returns>
+               <description/>
             </method>
             <method name="setUserAgent">
-               <param name="userAgent" type="String"/>
+               <param name="userAgent" type="String">
+                  <description>
+                     <para/>
+                  </description>
+               </param>
                <description>
                   <para>Overrides the user agent for this web page.</para>
                </description>
@@ -213,18 +257,35 @@ console.log(currentURL)
                      <para>The user agent for this web page.</para>
                   </description>
                </returns>
+               <description/>
             </method>
             <method name="insertCSS">
-               <param name="css" type="String"/>
+               <param name="css" type="String">
+                  <description>
+                     <para/>
+                  </description>
+               </param>
                <description>
                   <para>Injects CSS into the current web page.</para>
                </description>
             </method>
             <method name="executeJavaScript">
-               <param name="code" type="String"/>
-               <param optional="true" name="userGesture" type="Boolean"/>
+               <param name="code" type="String">
+                  <description>
+                     <para/>
+                  </description>
+               </param>
+               <param optional="true" name="userGesture" type="Boolean">
+                  <description>
+                     <para/>
+                  </description>
+               </param>
                <param optional="true" name="callback" type="Function">
-                  <param name="result" type="Any"/>
+                  <param name="result" type="Any">
+                     <description>
+                        <para/>
+                     </description>
+                  </param>
                   <description>
                      <para>Called after script has been executed.</para>
                   </description>
@@ -247,7 +308,11 @@ contents.executeJavaScript('fetch("https://jsonplaceholder.typicode.com/users/1"
                </description>
             </method>
             <method name="setAudioMuted">
-               <param name="muted" type="Boolean"/>
+               <param name="muted" type="Boolean">
+                  <description>
+                     <para/>
+                  </description>
+               </param>
                <description>
                   <para>Mute the audio on the current web page.</para>
                </description>
@@ -258,6 +323,7 @@ contents.executeJavaScript('fetch("https://jsonplaceholder.typicode.com/users/1"
                      <para>Whether this page has been muted.</para>
                   </description>
                </returns>
+               <description/>
             </method>
             <method name="setZoomFactor">
                <param name="factor" type="Number">
@@ -271,7 +337,14 @@ contents.executeJavaScript('fetch("https://jsonplaceholder.typicode.com/users/1"
             </method>
             <method name="getZoomFactor">
                <param name="callback" type="Function">
-                  <param name="zoomFactor" type="Number"/>
+                  <param name="zoomFactor" type="Number">
+                     <description>
+                        <para/>
+                     </description>
+                  </param>
+                  <description>
+                     <para/>
+                  </description>
                </param>
                <description>
                   <para>Sends a request to get current zoom factor, the callback will be called with callback(zoomFactor).</para>
@@ -289,29 +362,60 @@ contents.executeJavaScript('fetch("https://jsonplaceholder.typicode.com/users/1"
             </method>
             <method name="getZoomLevel">
                <param name="callback" type="Function">
-                  <param name="zoomLevel" type="Number"/>
+                  <param name="zoomLevel" type="Number">
+                     <description>
+                        <para/>
+                     </description>
+                  </param>
+                  <description>
+                     <para/>
+                  </description>
                </param>
                <description>
                   <para>Sends a request to get current zoom level, the callback will be called with callback(zoomLevel).</para>
                </description>
             </method>
             <method name="setZoomLevelLimits">
-               <param name="minimumLevel" type="Number"/>
-               <param name="maximumLevel" type="Number"/>
+               <param name="minimumLevel" type="Number">
+                  <description>
+                     <para/>
+                  </description>
+               </param>
+               <param name="maximumLevel" type="Number">
+                  <description>
+                     <para/>
+                  </description>
+               </param>
                <description>
                   <para>Deprecated: Call setVisualZoomLevelLimits instead to set the visual zoom level limits. This method will be removed in Electron 2.0.</para>
                </description>
             </method>
             <method name="setVisualZoomLevelLimits">
-               <param name="minimumLevel" type="Number"/>
-               <param name="maximumLevel" type="Number"/>
+               <param name="minimumLevel" type="Number">
+                  <description>
+                     <para/>
+                  </description>
+               </param>
+               <param name="maximumLevel" type="Number">
+                  <description>
+                     <para/>
+                  </description>
+               </param>
                <description>
                   <para>Sets the maximum and minimum pinch-to-zoom level.</para>
                </description>
             </method>
             <method name="setLayoutZoomLevelLimits">
-               <param name="minimumLevel" type="Number"/>
-               <param name="maximumLevel" type="Number"/>
+               <param name="minimumLevel" type="Number">
+                  <description>
+                     <para/>
+                  </description>
+               </param>
+               <param name="maximumLevel" type="Number">
+                  <description>
+                     <para/>
+                  </description>
+               </param>
                <description>
                   <para>Sets the maximum and minimum layout-based (i.e. non-visual) zoom level.</para>
                </description>
@@ -337,8 +441,16 @@ contents.executeJavaScript('fetch("https://jsonplaceholder.typicode.com/users/1"
                </description>
             </method>
             <method name="copyImageAt">
-               <param name="x" type="Integer"/>
-               <param name="y" type="Integer"/>
+               <param name="x" type="Integer">
+                  <description>
+                     <para/>
+                  </description>
+               </param>
+               <param name="y" type="Integer">
+                  <description>
+                     <para/>
+                  </description>
+               </param>
                <description>
                   <para>Copy the image at the given position to the clipboard.</para>
                </description>
@@ -369,19 +481,31 @@ contents.executeJavaScript('fetch("https://jsonplaceholder.typicode.com/users/1"
                </description>
             </method>
             <method name="replace">
-               <param name="text" type="String"/>
+               <param name="text" type="String">
+                  <description>
+                     <para/>
+                  </description>
+               </param>
                <description>
                   <para>Executes the editing command replace in web page.</para>
                </description>
             </method>
             <method name="replaceMisspelling">
-               <param name="text" type="String"/>
+               <param name="text" type="String">
+                  <description>
+                     <para/>
+                  </description>
+               </param>
                <description>
                   <para>Executes the editing command replaceMisspelling in web page.</para>
                </description>
             </method>
             <method name="insertText">
-               <param name="text" type="String"/>
+               <param name="text" type="String">
+                  <description>
+                     <para/>
+                  </description>
+               </param>
                <description>
                   <para>Inserts text to the focused element.</para>
                </description>
@@ -418,6 +542,9 @@ contents.executeJavaScript('fetch("https://jsonplaceholder.typicode.com/users/1"
                         <para>(optional) When combined with wordStart, accepts a match in the middle of a word if the match begins with an uppercase letter followed by a lowercase or non-letter. Accepts several other intra-word matches, defaults to false.</para>
                      </description>
                   </property>
+                  <description>
+                     <para/>
+                  </description>
                </param>
                <description>
                   <para>Starts a request to find all matches for the text in the web page and returns an Integer representing the request id used for the request. The result of the request can be obtained by subscribing to found-in-page event.</para>
@@ -464,7 +591,14 @@ console.log(requestId)
                   </description>
                </param>
                <param name="callback" type="Function">
-                  <param name="image" type="NativeImage"/>
+                  <param name="image" type="NativeImage">
+                     <description>
+                        <para/>
+                     </description>
+                  </param>
+                  <description>
+                     <para/>
+                  </description>
                </param>
                <description>
                   <para>Captures a snapshot of the page within rect. Upon completion callback will be called with callback(image). The image is an instance of NativeImage that stores data of the snapshot. Omitting rect will capture the whole visible page.</para>
@@ -472,7 +606,14 @@ console.log(requestId)
             </method>
             <method name="hasServiceWorker">
                <param name="callback" type="Function">
-                  <param name="hasWorker" type="Boolean"/>
+                  <param name="hasWorker" type="Boolean">
+                     <description>
+                        <para/>
+                     </description>
+                  </param>
+                  <description>
+                     <para/>
+                  </description>
                </param>
                <description>
                   <para>Checks if any ServiceWorker is registered and returns a boolean as response to callback.</para>
@@ -480,7 +621,14 @@ console.log(requestId)
             </method>
             <method name="unregisterServiceWorker">
                <param name="callback" type="Function">
-                  <param name="success" type="Boolean"/>
+                  <param name="success" type="Boolean">
+                     <description>
+                        <para/>
+                     </description>
+                  </param>
+                  <description>
+                     <para/>
+                  </description>
                </param>
                <description>
                   <para>Unregisters any ServiceWorker if present and returns a boolean as response to callback when the JS promise is fulfilled or false when the JS promise is rejected.</para>
@@ -498,6 +646,9 @@ console.log(requestId)
                         <para>Also prints the background color and image of the web page. Default is false.</para>
                      </description>
                   </property>
+                  <description>
+                     <para/>
+                  </description>
                </param>
                <description>
                   <para>Prints window's web page. When silent is set to true, Electron will pick up system's default printer and default settings for printing.</para>
@@ -532,10 +683,24 @@ console.log(requestId)
                         <para>(optional) true for landscape, false for portrait.</para>
                      </description>
                   </property>
+                  <description>
+                     <para/>
+                  </description>
                </param>
                <param name="callback" type="Function">
-                  <param name="error" type="Error"/>
-                  <param name="data" type="Buffer"/>
+                  <param name="error" type="Error">
+                     <description>
+                        <para/>
+                     </description>
+                  </param>
+                  <param name="data" type="Buffer">
+                     <description>
+                        <para/>
+                     </description>
+                  </param>
+                  <description>
+                     <para/>
+                  </description>
                </param>
                <description>
                   <para>Prints window's web page as PDF with Chromium's preview printing custom settings.</para>
@@ -573,7 +738,11 @@ win.webContents.on('did-finish-load', () =&gt; {
                </description>
             </method>
             <method name="addWorkSpace">
-               <param name="path" type="String"/>
+               <param name="path" type="String">
+                  <description>
+                     <para/>
+                  </description>
+               </param>
                <description>
                   <para>Adds the specified path to DevTools workspace. Must be used after DevTools creation:</para>
                   <programlisting>
@@ -586,7 +755,11 @@ win.webContents.on('devtools-opened', () =&gt; {
                </description>
             </method>
             <method name="removeWorkSpace">
-               <param name="path" type="String"/>
+               <param name="path" type="String">
+                  <description>
+                     <para/>
+                  </description>
+               </param>
                <description>
                   <para>Removes the specified path from DevTools workspace.</para>
                </description>
@@ -598,6 +771,9 @@ win.webContents.on('devtools-opened', () =&gt; {
                         <para>Opens the devtools with specified dock state, can be right, bottom, undocked, detach. Defaults to last used dock state. In undocked mode it's possible to dock back. In detach mode it's not.</para>
                      </description>
                   </property>
+                  <description>
+                     <para/>
+                  </description>
                </param>
                <description>
                   <para>Opens the devtools.</para>
@@ -614,6 +790,7 @@ win.webContents.on('devtools-opened', () =&gt; {
                      <para>Whether the devtools is opened.</para>
                   </description>
                </returns>
+               <description/>
             </method>
             <method name="isDevToolsFocused">
                <returns type="Boolean">
@@ -621,6 +798,7 @@ win.webContents.on('devtools-opened', () =&gt; {
                      <para>Whether the devtools view is focused .</para>
                   </description>
                </returns>
+               <description/>
             </method>
             <method name="toggleDevTools">
                <description>
@@ -628,8 +806,16 @@ win.webContents.on('devtools-opened', () =&gt; {
                </description>
             </method>
             <method name="inspectElement">
-               <param name="x" type="Integer"/>
-               <param name="y" type="Integer"/>
+               <param name="x" type="Integer">
+                  <description>
+                     <para/>
+                  </description>
+               </param>
+               <param name="y" type="Integer">
+                  <description>
+                     <para/>
+                  </description>
+               </param>
                <description>
                   <para>Starts inspecting element at position (x, y).</para>
                </description>
@@ -640,8 +826,16 @@ win.webContents.on('devtools-opened', () =&gt; {
                </description>
             </method>
             <method name="send">
-               <param name="channel" type="String"/>
-               <param name="args" vararg="true" type="any" isArray="true"/>
+               <param name="channel" type="String">
+                  <description>
+                     <para/>
+                  </description>
+               </param>
+               <param name="args" vararg="true" type="any" isArray="true">
+                  <description>
+                     <para/>
+                  </description>
+               </param>
                <description>
                   <para>Send an asynchronous message to renderer process via channel, you can also send arbitrary arguments. Arguments will be serialized in JSON internally and hence no functions or prototype chain will be included.</para>
                   <para>The renderer process can handle the message by listening to channel with the ipcRenderer module.</para>
@@ -765,6 +959,9 @@ app.on('ready', () =&gt; {
                         <para>Scale of emulated view inside available space (not in fit to view mode) (default: 1)</para>
                      </description>
                   </property>
+                  <description>
+                     <para/>
+                  </description>
                </param>
                <description>
                   <para>Enable device emulation with the given parameters.</para>
@@ -787,6 +984,9 @@ app.on('ready', () =&gt; {
                         <para>An array of modifiers of the event, can include shift, control, alt, meta, isKeypad, isAutoRepeat, leftButtonDown, middleButtonDown, rightButtonDown, capsLock, numLock, left, right.</para>
                      </description>
                   </property>
+                  <description>
+                     <para/>
+                  </description>
                </param>
                <description>
                   <para>Sends an input event to the page.</para>
@@ -859,8 +1059,19 @@ app.on('ready', () =&gt; {
                   </description>
                </param>
                <param name="callback" type="Function">
-                  <param name="frameBuffer" type="Buffer"/>
-                  <param name="dirtyRect" type="Rectangle"/>
+                  <param name="frameBuffer" type="Buffer">
+                     <description>
+                        <para/>
+                     </description>
+                  </param>
+                  <param name="dirtyRect" type="Rectangle">
+                     <description>
+                        <para/>
+                     </description>
+                  </param>
+                  <description>
+                     <para/>
+                  </description>
                </param>
                <description>
                   <para>Begin subscribing for presentation events and captured frames, the callback will be called with callback(frameBuffer, dirtyRect) when there is a presentation event.</para>
@@ -885,6 +1096,9 @@ app.on('ready', () =&gt; {
                         <para>The image must be non-empty on macOS.</para>
                      </description>
                   </property>
+                  <description>
+                     <para/>
+                  </description>
                </param>
                <description>
                   <para>Sets the item as dragging item for current drag-drop operation, file is the absolute path of the file to be dragged, and icon is the image showing under the cursor when dragging.</para>
@@ -917,7 +1131,11 @@ app.on('ready', () =&gt; {
                   </description>
                </param>
                <param name="callback" type="Function">
-                  <param name="error" type="Error"/>
+                  <param name="error" type="Error">
+                     <description>
+                        <para/>
+                     </description>
+                  </param>
                   <description>
                      <para>(error) =&gt; {}.</para>
                   </description>
@@ -950,12 +1168,23 @@ win.webContents.on('did-finish-load', () =&gt; {
             <method name="setSize">
                <param name="options" type="Object">
                   <property optional="true" name="normal" type="Object">
-                     <property name="width" type="Integer"/>
-                     <property name="height" type="Integer"/>
+                     <property name="width" type="Integer">
+                        <description>
+                           <para/>
+                        </description>
+                     </property>
+                     <property name="height" type="Integer">
+                        <description>
+                           <para/>
+                        </description>
+                     </property>
                      <description>
                         <para>Normal size of the page. This can be used in combination with the disableguestresize attribute to manually resize the webview guest contents.</para>
                      </description>
                   </property>
+                  <description>
+                     <para/>
+                  </description>
                </param>
                <description>
                   <para>Set the size of the page. This is only supported for &lt;webview&gt; guest contents.</para>
@@ -985,6 +1214,7 @@ win.webContents.on('did-finish-load', () =&gt; {
                      <para>Indicates whether offscreen rendering is enabled.</para>
                   </description>
                </returns>
+               <description/>
             </method>
             <method name="startPainting">
                <description>
@@ -1002,9 +1232,14 @@ win.webContents.on('did-finish-load', () =&gt; {
                      <para>If offscreen rendering is enabled returns whether it is currently painting.</para>
                   </description>
                </returns>
+               <description/>
             </method>
             <method name="setFrameRate">
-               <param name="fps" type="Integer"/>
+               <param name="fps" type="Integer">
+                  <description>
+                     <para/>
+                  </description>
+               </param>
                <description>
                   <para>If offscreen rendering is enabled sets the frame rate to the specified number. Only values between 1 and 60 are accepted.</para>
                </description>
@@ -1015,6 +1250,7 @@ win.webContents.on('did-finish-load', () =&gt; {
                      <para>If offscreen rendering is enabled returns the current frame rate.</para>
                   </description>
                </returns>
+               <description/>
             </method>
             <method name="invalidate">
                <description>
@@ -1056,7 +1292,11 @@ win.webContents.on('did-finish-load', () =&gt; {
       <constructor/>
       <methods type="instance">
          <method name="loadURL">
-            <param name="url" type="String"/>
+            <param name="url" type="String">
+               <description>
+                  <para/>
+               </description>
+            </param>
             <param optional="true" name="options" type="Object">
                <property optional="true" name="httpReferrer" type="String">
                   <description>
@@ -1082,6 +1322,9 @@ win.webContents.on('did-finish-load', () =&gt; {
                      <para>(optional)</para>
                   </description>
                </property>
+               <description>
+                  <para/>
+               </description>
             </param>
             <description>
                <para>Loads the url in the window. The url must contain the protocol prefix, e.g. the http:// or file://. If the load should bypass http cache then use the pragma header to achieve it.</para>
@@ -1093,7 +1336,11 @@ webContents.loadURL('https://github.com', options)
             </description>
          </method>
          <method name="downloadURL">
-            <param name="url" type="String"/>
+            <param name="url" type="String">
+               <description>
+                  <para/>
+               </description>
+            </param>
             <description>
                <para>Initiates a download of the resource at url without navigating. The will-download event of session will be triggered.</para>
             </description>
@@ -1121,6 +1368,7 @@ console.log(currentURL)
                   <para>The title of the current web page.</para>
                </description>
             </returns>
+            <description/>
          </method>
          <method name="isDestroyed">
             <returns type="Boolean">
@@ -1128,6 +1376,7 @@ console.log(currentURL)
                   <para>Whether the web page is destroyed.</para>
                </description>
             </returns>
+            <description/>
          </method>
          <method name="isFocused">
             <returns type="Boolean">
@@ -1135,6 +1384,7 @@ console.log(currentURL)
                   <para>Whether the web page is focused.</para>
                </description>
             </returns>
+            <description/>
          </method>
          <method name="isLoading">
             <returns type="Boolean">
@@ -1142,6 +1392,7 @@ console.log(currentURL)
                   <para>Whether web page is still loading resources.</para>
                </description>
             </returns>
+            <description/>
          </method>
          <method name="isLoadingMainFrame">
             <returns type="Boolean">
@@ -1149,6 +1400,7 @@ console.log(currentURL)
                   <para>Whether the main frame (and not just iframes or frames within it) is still loading.</para>
                </description>
             </returns>
+            <description/>
          </method>
          <method name="isWaitingForResponse">
             <returns type="Boolean">
@@ -1156,6 +1408,7 @@ console.log(currentURL)
                   <para>Whether the web page is waiting for a first-response from the main resource of the page.</para>
                </description>
             </returns>
+            <description/>
          </method>
          <method name="stop">
             <description>
@@ -1178,6 +1431,7 @@ console.log(currentURL)
                   <para>Whether the browser can go back to previous web page.</para>
                </description>
             </returns>
+            <description/>
          </method>
          <method name="canGoForward">
             <returns type="Boolean">
@@ -1185,14 +1439,20 @@ console.log(currentURL)
                   <para>Whether the browser can go forward to next web page.</para>
                </description>
             </returns>
+            <description/>
          </method>
          <method name="canGoToOffset">
-            <param name="offset" type="Integer"/>
+            <param name="offset" type="Integer">
+               <description>
+                  <para/>
+               </description>
+            </param>
             <returns type="Boolean">
                <description>
                   <para>Whether the web page can go to offset.</para>
                </description>
             </returns>
+            <description/>
          </method>
          <method name="clearHistory">
             <description>
@@ -1210,13 +1470,21 @@ console.log(currentURL)
             </description>
          </method>
          <method name="goToIndex">
-            <param name="index" type="Integer"/>
+            <param name="index" type="Integer">
+               <description>
+                  <para/>
+               </description>
+            </param>
             <description>
                <para>Navigates browser to the specified absolute web page index.</para>
             </description>
          </method>
          <method name="goToOffset">
-            <param name="offset" type="Integer"/>
+            <param name="offset" type="Integer">
+               <description>
+                  <para/>
+               </description>
+            </param>
             <description>
                <para>Navigates to the specified offset from the "current entry".</para>
             </description>
@@ -1227,9 +1495,14 @@ console.log(currentURL)
                   <para>Whether the renderer process has crashed.</para>
                </description>
             </returns>
+            <description/>
          </method>
          <method name="setUserAgent">
-            <param name="userAgent" type="String"/>
+            <param name="userAgent" type="String">
+               <description>
+                  <para/>
+               </description>
+            </param>
             <description>
                <para>Overrides the user agent for this web page.</para>
             </description>
@@ -1240,18 +1513,35 @@ console.log(currentURL)
                   <para>The user agent for this web page.</para>
                </description>
             </returns>
+            <description/>
          </method>
          <method name="insertCSS">
-            <param name="css" type="String"/>
+            <param name="css" type="String">
+               <description>
+                  <para/>
+               </description>
+            </param>
             <description>
                <para>Injects CSS into the current web page.</para>
             </description>
          </method>
          <method name="executeJavaScript">
-            <param name="code" type="String"/>
-            <param optional="true" name="userGesture" type="Boolean"/>
+            <param name="code" type="String">
+               <description>
+                  <para/>
+               </description>
+            </param>
+            <param optional="true" name="userGesture" type="Boolean">
+               <description>
+                  <para/>
+               </description>
+            </param>
             <param optional="true" name="callback" type="Function">
-               <param name="result" type="Any"/>
+               <param name="result" type="Any">
+                  <description>
+                     <para/>
+                  </description>
+               </param>
                <description>
                   <para>Called after script has been executed.</para>
                </description>
@@ -1274,7 +1564,11 @@ contents.executeJavaScript('fetch("https://jsonplaceholder.typicode.com/users/1"
             </description>
          </method>
          <method name="setAudioMuted">
-            <param name="muted" type="Boolean"/>
+            <param name="muted" type="Boolean">
+               <description>
+                  <para/>
+               </description>
+            </param>
             <description>
                <para>Mute the audio on the current web page.</para>
             </description>
@@ -1285,6 +1579,7 @@ contents.executeJavaScript('fetch("https://jsonplaceholder.typicode.com/users/1"
                   <para>Whether this page has been muted.</para>
                </description>
             </returns>
+            <description/>
          </method>
          <method name="setZoomFactor">
             <param name="factor" type="Number">
@@ -1298,7 +1593,14 @@ contents.executeJavaScript('fetch("https://jsonplaceholder.typicode.com/users/1"
          </method>
          <method name="getZoomFactor">
             <param name="callback" type="Function">
-               <param name="zoomFactor" type="Number"/>
+               <param name="zoomFactor" type="Number">
+                  <description>
+                     <para/>
+                  </description>
+               </param>
+               <description>
+                  <para/>
+               </description>
             </param>
             <description>
                <para>Sends a request to get current zoom factor, the callback will be called with callback(zoomFactor).</para>
@@ -1316,29 +1618,60 @@ contents.executeJavaScript('fetch("https://jsonplaceholder.typicode.com/users/1"
          </method>
          <method name="getZoomLevel">
             <param name="callback" type="Function">
-               <param name="zoomLevel" type="Number"/>
+               <param name="zoomLevel" type="Number">
+                  <description>
+                     <para/>
+                  </description>
+               </param>
+               <description>
+                  <para/>
+               </description>
             </param>
             <description>
                <para>Sends a request to get current zoom level, the callback will be called with callback(zoomLevel).</para>
             </description>
          </method>
          <method name="setZoomLevelLimits">
-            <param name="minimumLevel" type="Number"/>
-            <param name="maximumLevel" type="Number"/>
+            <param name="minimumLevel" type="Number">
+               <description>
+                  <para/>
+               </description>
+            </param>
+            <param name="maximumLevel" type="Number">
+               <description>
+                  <para/>
+               </description>
+            </param>
             <description>
                <para>Deprecated: Call setVisualZoomLevelLimits instead to set the visual zoom level limits. This method will be removed in Electron 2.0.</para>
             </description>
          </method>
          <method name="setVisualZoomLevelLimits">
-            <param name="minimumLevel" type="Number"/>
-            <param name="maximumLevel" type="Number"/>
+            <param name="minimumLevel" type="Number">
+               <description>
+                  <para/>
+               </description>
+            </param>
+            <param name="maximumLevel" type="Number">
+               <description>
+                  <para/>
+               </description>
+            </param>
             <description>
                <para>Sets the maximum and minimum pinch-to-zoom level.</para>
             </description>
          </method>
          <method name="setLayoutZoomLevelLimits">
-            <param name="minimumLevel" type="Number"/>
-            <param name="maximumLevel" type="Number"/>
+            <param name="minimumLevel" type="Number">
+               <description>
+                  <para/>
+               </description>
+            </param>
+            <param name="maximumLevel" type="Number">
+               <description>
+                  <para/>
+               </description>
+            </param>
             <description>
                <para>Sets the maximum and minimum layout-based (i.e. non-visual) zoom level.</para>
             </description>
@@ -1364,8 +1697,16 @@ contents.executeJavaScript('fetch("https://jsonplaceholder.typicode.com/users/1"
             </description>
          </method>
          <method name="copyImageAt">
-            <param name="x" type="Integer"/>
-            <param name="y" type="Integer"/>
+            <param name="x" type="Integer">
+               <description>
+                  <para/>
+               </description>
+            </param>
+            <param name="y" type="Integer">
+               <description>
+                  <para/>
+               </description>
+            </param>
             <description>
                <para>Copy the image at the given position to the clipboard.</para>
             </description>
@@ -1396,19 +1737,31 @@ contents.executeJavaScript('fetch("https://jsonplaceholder.typicode.com/users/1"
             </description>
          </method>
          <method name="replace">
-            <param name="text" type="String"/>
+            <param name="text" type="String">
+               <description>
+                  <para/>
+               </description>
+            </param>
             <description>
                <para>Executes the editing command replace in web page.</para>
             </description>
          </method>
          <method name="replaceMisspelling">
-            <param name="text" type="String"/>
+            <param name="text" type="String">
+               <description>
+                  <para/>
+               </description>
+            </param>
             <description>
                <para>Executes the editing command replaceMisspelling in web page.</para>
             </description>
          </method>
          <method name="insertText">
-            <param name="text" type="String"/>
+            <param name="text" type="String">
+               <description>
+                  <para/>
+               </description>
+            </param>
             <description>
                <para>Inserts text to the focused element.</para>
             </description>
@@ -1445,6 +1798,9 @@ contents.executeJavaScript('fetch("https://jsonplaceholder.typicode.com/users/1"
                      <para>(optional) When combined with wordStart, accepts a match in the middle of a word if the match begins with an uppercase letter followed by a lowercase or non-letter. Accepts several other intra-word matches, defaults to false.</para>
                   </description>
                </property>
+               <description>
+                  <para/>
+               </description>
             </param>
             <description>
                <para>Starts a request to find all matches for the text in the web page and returns an Integer representing the request id used for the request. The result of the request can be obtained by subscribing to found-in-page event.</para>
@@ -1491,7 +1847,14 @@ console.log(requestId)
                </description>
             </param>
             <param name="callback" type="Function">
-               <param name="image" type="NativeImage"/>
+               <param name="image" type="NativeImage">
+                  <description>
+                     <para/>
+                  </description>
+               </param>
+               <description>
+                  <para/>
+               </description>
             </param>
             <description>
                <para>Captures a snapshot of the page within rect. Upon completion callback will be called with callback(image). The image is an instance of NativeImage that stores data of the snapshot. Omitting rect will capture the whole visible page.</para>
@@ -1499,7 +1862,14 @@ console.log(requestId)
          </method>
          <method name="hasServiceWorker">
             <param name="callback" type="Function">
-               <param name="hasWorker" type="Boolean"/>
+               <param name="hasWorker" type="Boolean">
+                  <description>
+                     <para/>
+                  </description>
+               </param>
+               <description>
+                  <para/>
+               </description>
             </param>
             <description>
                <para>Checks if any ServiceWorker is registered and returns a boolean as response to callback.</para>
@@ -1507,7 +1877,14 @@ console.log(requestId)
          </method>
          <method name="unregisterServiceWorker">
             <param name="callback" type="Function">
-               <param name="success" type="Boolean"/>
+               <param name="success" type="Boolean">
+                  <description>
+                     <para/>
+                  </description>
+               </param>
+               <description>
+                  <para/>
+               </description>
             </param>
             <description>
                <para>Unregisters any ServiceWorker if present and returns a boolean as response to callback when the JS promise is fulfilled or false when the JS promise is rejected.</para>
@@ -1525,6 +1902,9 @@ console.log(requestId)
                      <para>Also prints the background color and image of the web page. Default is false.</para>
                   </description>
                </property>
+               <description>
+                  <para/>
+               </description>
             </param>
             <description>
                <para>Prints window's web page. When silent is set to true, Electron will pick up system's default printer and default settings for printing.</para>
@@ -1559,10 +1939,24 @@ console.log(requestId)
                      <para>(optional) true for landscape, false for portrait.</para>
                   </description>
                </property>
+               <description>
+                  <para/>
+               </description>
             </param>
             <param name="callback" type="Function">
-               <param name="error" type="Error"/>
-               <param name="data" type="Buffer"/>
+               <param name="error" type="Error">
+                  <description>
+                     <para/>
+                  </description>
+               </param>
+               <param name="data" type="Buffer">
+                  <description>
+                     <para/>
+                  </description>
+               </param>
+               <description>
+                  <para/>
+               </description>
             </param>
             <description>
                <para>Prints window's web page as PDF with Chromium's preview printing custom settings.</para>
@@ -1600,7 +1994,11 @@ win.webContents.on('did-finish-load', () =&gt; {
             </description>
          </method>
          <method name="addWorkSpace">
-            <param name="path" type="String"/>
+            <param name="path" type="String">
+               <description>
+                  <para/>
+               </description>
+            </param>
             <description>
                <para>Adds the specified path to DevTools workspace. Must be used after DevTools creation:</para>
                <programlisting>
@@ -1613,7 +2011,11 @@ win.webContents.on('devtools-opened', () =&gt; {
             </description>
          </method>
          <method name="removeWorkSpace">
-            <param name="path" type="String"/>
+            <param name="path" type="String">
+               <description>
+                  <para/>
+               </description>
+            </param>
             <description>
                <para>Removes the specified path from DevTools workspace.</para>
             </description>
@@ -1625,6 +2027,9 @@ win.webContents.on('devtools-opened', () =&gt; {
                      <para>Opens the devtools with specified dock state, can be right, bottom, undocked, detach. Defaults to last used dock state. In undocked mode it's possible to dock back. In detach mode it's not.</para>
                   </description>
                </property>
+               <description>
+                  <para/>
+               </description>
             </param>
             <description>
                <para>Opens the devtools.</para>
@@ -1641,6 +2046,7 @@ win.webContents.on('devtools-opened', () =&gt; {
                   <para>Whether the devtools is opened.</para>
                </description>
             </returns>
+            <description/>
          </method>
          <method name="isDevToolsFocused">
             <returns type="Boolean">
@@ -1648,6 +2054,7 @@ win.webContents.on('devtools-opened', () =&gt; {
                   <para>Whether the devtools view is focused .</para>
                </description>
             </returns>
+            <description/>
          </method>
          <method name="toggleDevTools">
             <description>
@@ -1655,8 +2062,16 @@ win.webContents.on('devtools-opened', () =&gt; {
             </description>
          </method>
          <method name="inspectElement">
-            <param name="x" type="Integer"/>
-            <param name="y" type="Integer"/>
+            <param name="x" type="Integer">
+               <description>
+                  <para/>
+               </description>
+            </param>
+            <param name="y" type="Integer">
+               <description>
+                  <para/>
+               </description>
+            </param>
             <description>
                <para>Starts inspecting element at position (x, y).</para>
             </description>
@@ -1667,8 +2082,16 @@ win.webContents.on('devtools-opened', () =&gt; {
             </description>
          </method>
          <method name="send">
-            <param name="channel" type="String"/>
-            <param name="args" vararg="true" type="any" isArray="true"/>
+            <param name="channel" type="String">
+               <description>
+                  <para/>
+               </description>
+            </param>
+            <param name="args" vararg="true" type="any" isArray="true">
+               <description>
+                  <para/>
+               </description>
+            </param>
             <description>
                <para>Send an asynchronous message to renderer process via channel, you can also send arbitrary arguments. Arguments will be serialized in JSON internally and hence no functions or prototype chain will be included.</para>
                <para>The renderer process can handle the message by listening to channel with the ipcRenderer module.</para>
@@ -1792,6 +2215,9 @@ app.on('ready', () =&gt; {
                      <para>Scale of emulated view inside available space (not in fit to view mode) (default: 1)</para>
                   </description>
                </property>
+               <description>
+                  <para/>
+               </description>
             </param>
             <description>
                <para>Enable device emulation with the given parameters.</para>
@@ -1814,6 +2240,9 @@ app.on('ready', () =&gt; {
                      <para>An array of modifiers of the event, can include shift, control, alt, meta, isKeypad, isAutoRepeat, leftButtonDown, middleButtonDown, rightButtonDown, capsLock, numLock, left, right.</para>
                   </description>
                </property>
+               <description>
+                  <para/>
+               </description>
             </param>
             <description>
                <para>Sends an input event to the page.</para>
@@ -1886,8 +2315,19 @@ app.on('ready', () =&gt; {
                </description>
             </param>
             <param name="callback" type="Function">
-               <param name="frameBuffer" type="Buffer"/>
-               <param name="dirtyRect" type="Rectangle"/>
+               <param name="frameBuffer" type="Buffer">
+                  <description>
+                     <para/>
+                  </description>
+               </param>
+               <param name="dirtyRect" type="Rectangle">
+                  <description>
+                     <para/>
+                  </description>
+               </param>
+               <description>
+                  <para/>
+               </description>
             </param>
             <description>
                <para>Begin subscribing for presentation events and captured frames, the callback will be called with callback(frameBuffer, dirtyRect) when there is a presentation event.</para>
@@ -1912,6 +2352,9 @@ app.on('ready', () =&gt; {
                      <para>The image must be non-empty on macOS.</para>
                   </description>
                </property>
+               <description>
+                  <para/>
+               </description>
             </param>
             <description>
                <para>Sets the item as dragging item for current drag-drop operation, file is the absolute path of the file to be dragged, and icon is the image showing under the cursor when dragging.</para>
@@ -1944,7 +2387,11 @@ app.on('ready', () =&gt; {
                </description>
             </param>
             <param name="callback" type="Function">
-               <param name="error" type="Error"/>
+               <param name="error" type="Error">
+                  <description>
+                     <para/>
+                  </description>
+               </param>
                <description>
                   <para>(error) =&gt; {}.</para>
                </description>
@@ -1977,12 +2424,23 @@ win.webContents.on('did-finish-load', () =&gt; {
          <method name="setSize">
             <param name="options" type="Object">
                <property optional="true" name="normal" type="Object">
-                  <property name="width" type="Integer"/>
-                  <property name="height" type="Integer"/>
+                  <property name="width" type="Integer">
+                     <description>
+                        <para/>
+                     </description>
+                  </property>
+                  <property name="height" type="Integer">
+                     <description>
+                        <para/>
+                     </description>
+                  </property>
                   <description>
                      <para>Normal size of the page. This can be used in combination with the disableguestresize attribute to manually resize the webview guest contents.</para>
                   </description>
                </property>
+               <description>
+                  <para/>
+               </description>
             </param>
             <description>
                <para>Set the size of the page. This is only supported for &lt;webview&gt; guest contents.</para>
@@ -2012,6 +2470,7 @@ win.webContents.on('did-finish-load', () =&gt; {
                   <para>Indicates whether offscreen rendering is enabled.</para>
                </description>
             </returns>
+            <description/>
          </method>
          <method name="startPainting">
             <description>
@@ -2029,9 +2488,14 @@ win.webContents.on('did-finish-load', () =&gt; {
                   <para>If offscreen rendering is enabled returns whether it is currently painting.</para>
                </description>
             </returns>
+            <description/>
          </method>
          <method name="setFrameRate">
-            <param name="fps" type="Integer"/>
+            <param name="fps" type="Integer">
+               <description>
+                  <para/>
+               </description>
+            </param>
             <description>
                <para>If offscreen rendering is enabled sets the frame rate to the specified number. Only values between 1 and 60 are accepted.</para>
             </description>
@@ -2042,6 +2506,7 @@ win.webContents.on('did-finish-load', () =&gt; {
                   <para>If offscreen rendering is enabled returns the current frame rate.</para>
                </description>
             </returns>
+            <description/>
          </method>
          <method name="invalidate">
             <description>

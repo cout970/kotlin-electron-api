@@ -4,7 +4,11 @@
       <methods>
          <method name="start">
             <param name="options" type="Object">
-               <property optional="true" name="companyName" type="String"/>
+               <property optional="true" name="companyName" type="String">
+                  <description>
+                     <para/>
+                  </description>
+               </property>
                <property name="submitURL" type="String">
                   <description>
                      <para>URL that crash reports will be sent to as POST.</para>
@@ -30,6 +34,9 @@
                      <para>An object you can define that will be sent along with the report. Only string properties are sent correctly. Nested objects are not supported.</para>
                   </description>
                </property>
+               <description>
+                  <para/>
+               </description>
             </param>
             <description>
                <para>You are required to call this method before using any other crashReporter APIs and in each process (main/renderer) from which you want to collect crash reports. You can pass different options to crashReporter.start when calling from different processes.</para>
@@ -54,10 +61,20 @@
             </description>
          </method>
          <method name="getLastCrashReport">
-            <returns type="CrashReport"/>
+            <returns type="CrashReport">
+               <description>
+                  <para/>
+               </description>
+            </returns>
+            <description/>
          </method>
          <method name="getUploadedReports">
-            <returns type="CrashReport" isArray="true"/>
+            <returns type="CrashReport" isArray="true">
+               <description>
+                  <para/>
+               </description>
+            </returns>
+            <description/>
          </method>
          <method name="getUploadToServer">
             <returns type="Boolean">

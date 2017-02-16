@@ -1,17 +1,19 @@
 @file:Suppress("UnsafeCastFromDynamic")
 package jsapi.electron
 
-class BrowserWindow constructor(val instance: dynamic, z: Unit) {
+@Suppress("REDUNDANT_NULLABLE")
+class BrowserWindow constructor(val instance: dynamic, @Suppress("UNUSED_PARAMETER") ignoreMe: Unit) {
 
-    constructor(options: (Options.() -> Unit)?) : this(Unit.let {
+    @Suppress("UNUSED_VARIABLE")
+    constructor(options: (Options.() -> Unit)? = null) : this(Unit.let {
         val _constructor = js("require('electron').BrowserWindow")
         val _options = options?.let { Options().apply(it) }
         js("new _constructor(_options)")
-    }, z = Unit)
+    }, Unit)
 
     // ~ Events --------------------------------------------------------------------------------
 
-    fun onEvent(event: String, callback: () -> Unit) = 
+    fun onEvent(event: String, callback: () -> Unit): Unit = 
         module.on(event, callback)
 
     // ~ Properties ----------------------------------------------------------------------------
@@ -61,13 +63,13 @@ class BrowserWindow constructor(val instance: dynamic, z: Unit) {
         instance.blur()
 
     /**
-     * @return Whether the window is focused.
+     * @returns Whether the window is focused.
      */
     fun isFocused(): Boolean = 
         instance.isFocused()
 
     /**
-     * @return Whether the window is destroyed.
+     * @returns Whether the window is destroyed.
      */
     fun isDestroyed(): Boolean = 
         instance.isDestroyed()
@@ -91,13 +93,13 @@ class BrowserWindow constructor(val instance: dynamic, z: Unit) {
         instance.hide()
 
     /**
-     * @return Whether the window is visible to the user.
+     * @returns Whether the window is visible to the user.
      */
     fun isVisible(): Boolean = 
         instance.isVisible()
 
     /**
-     * @return Whether current window is a modal window.
+     * @returns Whether current window is a modal window.
      */
     fun isModal(): Boolean = 
         instance.isModal()
@@ -115,7 +117,7 @@ class BrowserWindow constructor(val instance: dynamic, z: Unit) {
         instance.unmaximize()
 
     /**
-     * @return Whether the window is maximized.
+     * @returns Whether the window is maximized.
      */
     fun isMaximized(): Boolean = 
         instance.isMaximized()
@@ -134,19 +136,21 @@ class BrowserWindow constructor(val instance: dynamic, z: Unit) {
         instance.restore()
 
     /**
-     * @return Whether the window is minimized.
+     * @returns Whether the window is minimized.
      */
     fun isMinimized(): Boolean = 
         instance.isMinimized()
 
     /**
      * Sets whether the window should be in fullscreen mode.
+     * 
+     * @param flag 
      */
     fun setFullScreen(flag: Boolean): Unit = 
         instance.setFullScreen(flag)
 
     /**
-     * @return Whether the window is in fullscreen mode.
+     * @returns Whether the window is in fullscreen mode.
      */
     fun isFullScreen(): Boolean = 
         instance.isFullScreen()
@@ -165,14 +169,23 @@ class BrowserWindow constructor(val instance: dynamic, z: Unit) {
      * arguments of 16/9 and [ 40, 50 ]. The second argument doesn't care where the 
      * extra width and height are within the content view--only that they exist. Just 
      * sum any extra width and height areas you have within the overall content view.
+     * 
+     * @param aspectRatio The aspect ratio to maintain for some portion of the content view.
+         * @param extraSize The extra size not to be included while maintaining the aspect ratio.
      */
-    fun setAspectRatio(aspectRatio: Float, extraSize: SetAspectRatioExtraSize?): Unit = 
+    fun setAspectRatio(aspectRatio: Float, extraSize: SetAspectRatioExtraSize? = null): Unit = 
         instance.setAspectRatio(aspectRatio, extraSize)
 
     /**
      * Uses Quick Look to preview a file at a given path.
+     * 
+     * @param path The absolute path to the file to preview with QuickLook. This is important as 
+     *             Quick Look uses the file name and file extension on the path to determine the 
+     *             content type of the file to open.
+     * @param displayName The name of the file to display on the Quick Look modal view. This is purely 
+     *                    visual and does not affect the content type of the file. Defaults to path.
      */
-    fun previewFile(path: String, displayName: String?): Unit = 
+    fun previewFile(path: String, displayName: String? = null): Unit = 
         instance.previewFile(path, displayName)
 
     /**
@@ -183,12 +196,15 @@ class BrowserWindow constructor(val instance: dynamic, z: Unit) {
 
     /**
      * Resizes and moves the window to the supplied bounds
+     * 
+     * @param bounds 
+     * @param animate 
      */
-    fun setBounds(bounds: Rectangle, animate: Boolean?): Unit = 
+    fun setBounds(bounds: Rectangle, animate: Boolean? = null): Unit = 
         instance.setBounds(bounds.instance, animate)
 
     /**
-     *
+     * @returns 
      */
     fun getBounds(): Rectangle = 
         instance.getBounds()
@@ -196,78 +212,99 @@ class BrowserWindow constructor(val instance: dynamic, z: Unit) {
     /**
      * Resizes and moves the window's client area (e.g. the web page) to the supplied 
      * bounds.
+     * 
+     * @param bounds 
+     * @param animate 
      */
-    fun setContentBounds(bounds: Rectangle, animate: Boolean?): Unit = 
+    fun setContentBounds(bounds: Rectangle, animate: Boolean? = null): Unit = 
         instance.setContentBounds(bounds.instance, animate)
 
     /**
-     *
+     * @returns 
      */
     fun getContentBounds(): Rectangle = 
         instance.getContentBounds()
 
     /**
      * Resizes the window to width and height.
+     * 
+     * @param width 
+     * @param height 
+     * @param animate 
      */
-    fun setSize(width: Int, height: Int, animate: Boolean?): Unit = 
+    fun setSize(width: Int, height: Int, animate: Boolean? = null): Unit = 
         instance.setSize(width, height, animate)
 
     /**
-     * @return Contains the window's width and height.
+     * @returns Contains the window's width and height.
      */
     fun getSize(): Array<Int> = 
         instance.getSize()
 
     /**
      * Resizes the window's client area (e.g. the web page) to width and height.
+     * 
+     * @param width 
+     * @param height 
+     * @param animate 
      */
-    fun setContentSize(width: Int, height: Int, animate: Boolean?): Unit = 
+    fun setContentSize(width: Int, height: Int, animate: Boolean? = null): Unit = 
         instance.setContentSize(width, height, animate)
 
     /**
-     * @return Contains the window's client area's width and height.
+     * @returns Contains the window's client area's width and height.
      */
     fun getContentSize(): Array<Int> = 
         instance.getContentSize()
 
     /**
      * Sets the minimum size of window to width and height.
+     * 
+     * @param width 
+     * @param height 
      */
     fun setMinimumSize(width: Int, height: Int): Unit = 
         instance.setMinimumSize(width, height)
 
     /**
-     * @return Contains the window's minimum width and height.
+     * @returns Contains the window's minimum width and height.
      */
     fun getMinimumSize(): Array<Int> = 
         instance.getMinimumSize()
 
     /**
      * Sets the maximum size of window to width and height.
+     * 
+     * @param width 
+     * @param height 
      */
     fun setMaximumSize(width: Int, height: Int): Unit = 
         instance.setMaximumSize(width, height)
 
     /**
-     * @return Contains the window's maximum width and height.
+     * @returns Contains the window's maximum width and height.
      */
     fun getMaximumSize(): Array<Int> = 
         instance.getMaximumSize()
 
     /**
      * Sets whether the window can be manually resized by user.
+     * 
+     * @param resizable 
      */
     fun setResizable(resizable: Boolean): Unit = 
         instance.setResizable(resizable)
 
     /**
-     * @return Whether the window can be manually resized by user.
+     * @returns Whether the window can be manually resized by user.
      */
     fun isResizable(): Boolean = 
         instance.isResizable()
 
     /**
      * Sets whether the window can be moved by user. On Linux does nothing.
+     * 
+     * @param movable 
      */
     fun setMovable(movable: Boolean): Unit = 
         instance.setMovable(movable)
@@ -275,7 +312,7 @@ class BrowserWindow constructor(val instance: dynamic, z: Unit) {
     /**
      * On Linux always returns true.
      * 
-     * @return Whether the window can be moved by user.
+     * @returns Whether the window can be moved by user.
      */
     fun isMovable(): Boolean = 
         instance.isMovable()
@@ -283,6 +320,8 @@ class BrowserWindow constructor(val instance: dynamic, z: Unit) {
     /**
      * Sets whether the window can be manually minimized by user. On Linux does 
      * nothing.
+     * 
+     * @param minimizable 
      */
     fun setMinimizable(minimizable: Boolean): Unit = 
         instance.setMinimizable(minimizable)
@@ -290,7 +329,7 @@ class BrowserWindow constructor(val instance: dynamic, z: Unit) {
     /**
      * On Linux always returns true.
      * 
-     * @return Whether the window can be manually minimized by user
+     * @returns Whether the window can be manually minimized by user
      */
     fun isMinimizable(): Boolean = 
         instance.isMinimizable()
@@ -298,6 +337,8 @@ class BrowserWindow constructor(val instance: dynamic, z: Unit) {
     /**
      * Sets whether the window can be manually maximized by user. On Linux does 
      * nothing.
+     * 
+     * @param maximizable 
      */
     fun setMaximizable(maximizable: Boolean): Unit = 
         instance.setMaximizable(maximizable)
@@ -305,7 +346,7 @@ class BrowserWindow constructor(val instance: dynamic, z: Unit) {
     /**
      * On Linux always returns true.
      * 
-     * @return Whether the window can be manually maximized by user.
+     * @returns Whether the window can be manually maximized by user.
      */
     fun isMaximizable(): Boolean = 
         instance.isMaximizable()
@@ -313,19 +354,23 @@ class BrowserWindow constructor(val instance: dynamic, z: Unit) {
     /**
      * Sets whether the maximize/zoom window button toggles fullscreen mode or 
      * maximizes the window.
+     * 
+     * @param fullscreenable 
      */
     fun setFullScreenable(fullscreenable: Boolean): Unit = 
         instance.setFullScreenable(fullscreenable)
 
     /**
-     * @return Whether the maximize/zoom window button toggles fullscreen mode or maximizes 
-     * the window.
+     * @returns Whether the maximize/zoom window button toggles fullscreen mode or maximizes 
+     *          the window.
      */
     fun isFullScreenable(): Boolean = 
         instance.isFullScreenable()
 
     /**
      * Sets whether the window can be manually closed by user. On Linux does nothing.
+     * 
+     * @param closable 
      */
     fun setClosable(closable: Boolean): Unit = 
         instance.setClosable(closable)
@@ -333,7 +378,7 @@ class BrowserWindow constructor(val instance: dynamic, z: Unit) {
     /**
      * On Linux always returns true.
      * 
-     * @return Whether the window can be manually closed by user.
+     * @returns Whether the window can be manually closed by user.
      */
     fun isClosable(): Boolean = 
         instance.isClosable()
@@ -342,12 +387,20 @@ class BrowserWindow constructor(val instance: dynamic, z: Unit) {
      * Sets whether the window should show always on top of other windows. After 
      * setting this, the window is still a normal window, not a toolbox window which 
      * can not be focused on.
+     * 
+     * @param flag 
+     * @param level Values include normal, floating, torn-off-menu, modal-panel, main-menu, 
+     *              status, pop-up-menu, screen-saver, and dock (Deprecated). The default is 
+     *              floating. See the macOS docs for more details.
+     * @param relativeLevel The number of layers higher to set this window relative to the given level. 
+     *                      The default is 0. Note that Apple discourages setting levels higher than 1 
+     *                      above screen-saver.
      */
-    fun setAlwaysOnTop(flag: Boolean, level: String?, relativeLevel: Int?): Unit = 
+    fun setAlwaysOnTop(flag: Boolean, level: String? = null, relativeLevel: Int? = null): Unit = 
         instance.setAlwaysOnTop(flag, level, relativeLevel)
 
     /**
-     * @return Whether the window is always on top of other windows.
+     * @returns Whether the window is always on top of other windows.
      */
     fun isAlwaysOnTop(): Boolean = 
         instance.isAlwaysOnTop()
@@ -360,18 +413,24 @@ class BrowserWindow constructor(val instance: dynamic, z: Unit) {
 
     /**
      * Moves window to x and y.
+     * 
+     * @param x 
+     * @param y 
+     * @param animate 
      */
-    fun setPosition(x: Int, y: Int, animate: Boolean?): Unit = 
+    fun setPosition(x: Int, y: Int, animate: Boolean? = null): Unit = 
         instance.setPosition(x, y, animate)
 
     /**
-     * @return Contains the window's current position.
+     * @returns Contains the window's current position.
      */
     fun getPosition(): Array<Int> = 
         instance.getPosition()
 
     /**
      * Changes the title of native window to title.
+     * 
+     * @param title 
      */
     fun setTitle(title: String): Unit = 
         instance.setTitle(title)
@@ -380,7 +439,7 @@ class BrowserWindow constructor(val instance: dynamic, z: Unit) {
      * Note: The title of web page can be different from the title of the native 
      * window.
      * 
-     * @return The title of the native window.
+     * @returns The title of the native window.
      */
     fun getTitle(): String = 
         instance.getTitle()
@@ -397,30 +456,39 @@ class BrowserWindow constructor(val instance: dynamic, z: Unit) {
      *  | let toolbarRect = document.getElementById('toolbar').getBoundingClientRect()
      *  | win.setSheetOffset(toolbarRect.height)
      *  | 
+     * 
+     * @param offsetY 
+     * @param offsetX 
      */
-    fun setSheetOffset(offsetY: Float, offsetX: Float?): Unit = 
+    fun setSheetOffset(offsetY: Float, offsetX: Float? = null): Unit = 
         instance.setSheetOffset(offsetY, offsetX)
 
     /**
      * Starts or stops flashing the window to attract user's attention.
+     * 
+     * @param flag 
      */
     fun flashFrame(flag: Boolean): Unit = 
         instance.flashFrame(flag)
 
     /**
      * Makes the window not show in the taskbar.
+     * 
+     * @param skip 
      */
     fun setSkipTaskbar(skip: Boolean): Unit = 
         instance.setSkipTaskbar(skip)
 
     /**
      * Enters or leaves the kiosk mode.
+     * 
+     * @param flag 
      */
     fun setKiosk(flag: Boolean): Unit = 
         instance.setKiosk(flag)
 
     /**
-     * @return Whether the window is in kiosk mode.
+     * @returns Whether the window is in kiosk mode.
      */
     fun isKiosk(): Boolean = 
         instance.isKiosk()
@@ -429,7 +497,7 @@ class BrowserWindow constructor(val instance: dynamic, z: Unit) {
      * The native type of the handle is HWND on Windows, NSView* on macOS, and Window 
      * (unsigned long) on Linux.
      * 
-     * @return The platform-specific handle of the window.
+     * @returns The platform-specific handle of the window.
      */
     fun getNativeWindowHandle(): dynamic = 
         instance.getNativeWindowHandle()
@@ -437,18 +505,25 @@ class BrowserWindow constructor(val instance: dynamic, z: Unit) {
     /**
      * Hooks a windows message. The callback is called when the message is received 
      * in the WndProc.
+     * 
+     * @param message 
+     * @param callback 
      */
     fun hookWindowMessage(message: Int, callback: () -> Unit): Unit = 
         instance.hookWindowMessage(message, callback)
 
     /**
-     * @return true or false depending on whether the message is hooked.
+     * @param message 
+     *
+     * @returns true or false depending on whether the message is hooked.
      */
     fun isWindowMessageHooked(message: Int): Boolean = 
         instance.isWindowMessageHooked(message)
 
     /**
      * Unhook the window message.
+     * 
+     * @param message 
      */
     fun unhookWindowMessage(message: Int): Unit = 
         instance.unhookWindowMessage(message)
@@ -462,12 +537,14 @@ class BrowserWindow constructor(val instance: dynamic, z: Unit) {
     /**
      * Sets the pathname of the file the window represents, and the icon of the file 
      * will show in window's title bar.
+     * 
+     * @param filename 
      */
     fun setRepresentedFilename(filename: String): Unit = 
         instance.setRepresentedFilename(filename)
 
     /**
-     * @return The pathname of the file the window represents.
+     * @returns The pathname of the file the window represents.
      */
     fun getRepresentedFilename(): String = 
         instance.getRepresentedFilename()
@@ -475,32 +552,37 @@ class BrowserWindow constructor(val instance: dynamic, z: Unit) {
     /**
      * Specifies whether the window’s document has been edited, and the icon in title 
      * bar will become gray when set to true.
+     * 
+     * @param edited 
      */
     fun setDocumentEdited(edited: Boolean): Unit = 
         instance.setDocumentEdited(edited)
 
     /**
-     * @return Whether the window's document has been edited.
+     * @returns Whether the window's document has been edited.
      */
     fun isDocumentEdited(): Boolean = 
         instance.isDocumentEdited()
 
     /**
-     *
+     * 
      */
     fun focusOnWebView(): Unit = 
         instance.focusOnWebView()
 
     /**
-     *
+     * 
      */
     fun blurWebView(): Unit = 
         instance.blurWebView()
 
     /**
      * Same as webContents.capturePage([rect, ]callback).
+     * 
+     * @param rect The bounds to capture
+     * @param callback 
      */
-    fun capturePage(rect: Rectangle?, callback: (image: NativeImage) -> Unit): Unit = 
+    fun capturePage(rect: Rectangle? = null, callback: (image: NativeImage) -> Unit): Unit = 
         instance.capturePage(rect?.instance, callback)
 
     /**
@@ -534,8 +616,11 @@ class BrowserWindow constructor(val instance: dynamic, z: Unit) {
      *  |   extraHeaders: 'Content-Type: application/x-www-form-urlencoded'
      *  | })
      *  | 
+     * 
+     * @param url 
+         * @param options 
      */
-    fun loadURL(url: String, options: (LoadURLOptions.() -> Unit)?): Unit = 
+    fun loadURL(url: String, options: (LoadURLOptions.() -> Unit)? = null): Unit = 
         instance.loadURL(url, options?.let { LoadURLOptions().apply(it) })
 
     /**
@@ -547,6 +632,8 @@ class BrowserWindow constructor(val instance: dynamic, z: Unit) {
     /**
      * Sets the menu as the window's menu bar, setting it to null will remove the 
      * menu bar.
+     * 
+     * @param menu 
      */
     fun setMenu(menu: Menu): Unit = 
         instance.setMenu(menu.instance)
@@ -564,13 +651,20 @@ class BrowserWindow constructor(val instance: dynamic, z: Unit) {
      * On Windows, a mode can be passed. Accepted values are none, normal, 
      * indeterminate, error, and paused. If you call setProgressBar without a mode 
      * set (but with a value within the valid range), normal will be assumed.
+     * 
+     * @param progress 
+         * @param options 
      */
-    fun setProgressBar(progress: Double, options: SetProgressBarOptions?): Unit = 
+    fun setProgressBar(progress: Double, options: SetProgressBarOptions? = null): Unit = 
         instance.setProgressBar(progress, options)
 
     /**
      * Sets a 16 x 16 pixel overlay onto the current taskbar icon, usually used to 
      * convey some sort of application status or to passively notify the user.
+     * 
+     * @param overlay the icon to display on the bottom right corner of the taskbar icon. If this 
+     *                parameter is null, the overlay is cleared
+     * @param description a description that will be provided to Accessibility screen readers
      */
     fun setOverlayIcon(overlay: NativeImage, description: String): Unit = 
         instance.setOverlayIcon(overlay.instance, description)
@@ -578,6 +672,8 @@ class BrowserWindow constructor(val instance: dynamic, z: Unit) {
     /**
      * Sets whether the window should have a shadow. On Windows and Linux does 
      * nothing.
+     * 
+     * @param hasShadow 
      */
     fun setHasShadow(hasShadow: Boolean): Unit = 
         instance.setHasShadow(hasShadow)
@@ -585,7 +681,7 @@ class BrowserWindow constructor(val instance: dynamic, z: Unit) {
     /**
      * On Windows and Linux always returns true.
      * 
-     * @return Whether the window has a shadow.
+     * @returns Whether the window has a shadow.
      */
     fun hasShadow(): Boolean = 
         instance.hasShadow()
@@ -624,7 +720,9 @@ class BrowserWindow constructor(val instance: dynamic, z: Unit) {
      *    in a notification.
      *
      * 
-     * @return Whether the buttons were added successfully
+     * @param buttons 
+     *
+     * @returns Whether the buttons were added successfully
      */
     fun setThumbarButtons(buttons: Array<ThumbarButton>): Boolean = 
         instance.setThumbarButtons(buttons.map { it.instance })
@@ -633,6 +731,8 @@ class BrowserWindow constructor(val instance: dynamic, z: Unit) {
      * Sets the region of the window to show as the thumbnail image displayed when 
      * hovering over the window in the taskbar. You can reset the thumbnail to be the 
      * entire window by specifying an empty region: {x: 0, y: 0, width: 0, height: 0}.
+     * 
+     * @param region Region of the window
      */
     fun setThumbnailClip(region: Rectangle): Unit = 
         instance.setThumbnailClip(region.instance)
@@ -640,6 +740,8 @@ class BrowserWindow constructor(val instance: dynamic, z: Unit) {
     /**
      * Sets the toolTip that is displayed when hovering over the window thumbnail in 
      * the taskbar.
+     * 
+     * @param toolTip 
      */
     fun setThumbnailToolTip(toolTip: String): Unit = 
         instance.setThumbnailToolTip(toolTip)
@@ -649,6 +751,8 @@ class BrowserWindow constructor(val instance: dynamic, z: Unit) {
      *
      * Note:relaunchCommand and relaunchDisplayName must always be set together. If 
      * one of those properties is not set, then neither will be used.
+     * 
+         * @param options 
      */
     fun setAppDetails(options: SetAppDetailsOptions.() -> Unit): Unit = 
         instance.setAppDetails(options.let { SetAppDetailsOptions().apply(it) })
@@ -661,6 +765,8 @@ class BrowserWindow constructor(val instance: dynamic, z: Unit) {
 
     /**
      * Changes window icon.
+     * 
+     * @param icon 
      */
     fun setIcon(icon: NativeImage): Unit = 
         instance.setIcon(icon.instance)
@@ -671,12 +777,14 @@ class BrowserWindow constructor(val instance: dynamic, z: Unit) {
      *
      * If the menu bar is already visible, calling setAutoHideMenuBar(true) won't 
      * hide it immediately.
+     * 
+     * @param hide 
      */
     fun setAutoHideMenuBar(hide: Boolean): Unit = 
         instance.setAutoHideMenuBar(hide)
 
     /**
-     * @return Whether menu bar automatically hides itself.
+     * @returns Whether menu bar automatically hides itself.
      */
     fun isMenuBarAutoHide(): Boolean = 
         instance.isMenuBarAutoHide()
@@ -684,12 +792,14 @@ class BrowserWindow constructor(val instance: dynamic, z: Unit) {
     /**
      * Sets whether the menu bar should be visible. If the menu bar is auto-hide, 
      * users can still bring up the menu bar by pressing the single Alt key.
+     * 
+     * @param visible 
      */
     fun setMenuBarVisibility(visible: Boolean): Unit = 
         instance.setMenuBarVisibility(visible)
 
     /**
-     * @return Whether the menu bar is visible.
+     * @returns Whether the menu bar is visible.
      */
     fun isMenuBarVisible(): Boolean = 
         instance.isMenuBarVisible()
@@ -698,6 +808,8 @@ class BrowserWindow constructor(val instance: dynamic, z: Unit) {
      * Sets whether the window should be visible on all workspaces.
      *
      * Note: This API does nothing on Windows.
+     * 
+     * @param visible 
      */
     fun setVisibleOnAllWorkspaces(visible: Boolean): Unit = 
         instance.setVisibleOnAllWorkspaces(visible)
@@ -705,7 +817,7 @@ class BrowserWindow constructor(val instance: dynamic, z: Unit) {
     /**
      * Note: This API always returns false on Windows.
      * 
-     * @return Whether the window is visible on all workspaces.
+     * @returns Whether the window is visible on all workspaces.
      */
     fun isVisibleOnAllWorkspaces(): Boolean = 
         instance.isVisibleOnAllWorkspaces()
@@ -716,6 +828,8 @@ class BrowserWindow constructor(val instance: dynamic, z: Unit) {
      * All mouse events happened in this window will be passed to the window below 
      * this window, but if this window has focus, it will still receive keyboard 
      * events.
+     * 
+     * @param ignore 
      */
     fun setIgnoreMouseEvents(ignore: Boolean): Unit = 
         instance.setIgnoreMouseEvents(ignore)
@@ -725,12 +839,16 @@ class BrowserWindow constructor(val instance: dynamic, z: Unit) {
      *
      * On macOS it sets the NSWindow's sharingType to NSWindowSharingNone. On Windows 
      * it calls SetWindowDisplayAffinity with WDA_MONITOR.
+     * 
+     * @param enable 
      */
     fun setContentProtection(enable: Boolean): Unit = 
         instance.setContentProtection(enable)
 
     /**
      * Changes whether the window can be focused.
+     * 
+     * @param focusable 
      */
     fun setFocusable(focusable: Boolean): Unit = 
         instance.setFocusable(focusable)
@@ -738,24 +856,28 @@ class BrowserWindow constructor(val instance: dynamic, z: Unit) {
     /**
      * Sets parent as current window's parent window, passing null will turn current 
      * window into a top-level window.
+     * 
+     * @param parent 
      */
     fun setParentWindow(parent: BrowserWindow): Unit = 
         instance.setParentWindow(parent.instance)
 
     /**
-     * @return The parent window.
+     * @returns The parent window.
      */
     fun getParentWindow(): BrowserWindow = 
         instance.getParentWindow()
 
     /**
-     * @return All child windows.
+     * @returns All child windows.
      */
     fun getChildWindows(): Array<BrowserWindow> = 
         instance.getChildWindows()
 
     /**
      * Controls whether to hide cursor when typing.
+     * 
+     * @param autoHide 
      */
     fun setAutoHideCursor(autoHide: Boolean): Unit = 
         instance.setAutoHideCursor(autoHide)
@@ -763,6 +885,10 @@ class BrowserWindow constructor(val instance: dynamic, z: Unit) {
     /**
      * Adds a vibrancy effect to the browser window. Passing null or an empty string 
      * will remove the vibrancy effect on the window.
+     * 
+     * @param type Can be appearance-based, light, dark, titlebar, selection, menu, popover, 
+     *             sidebar, medium-light or ultra-dark. See the macOS documentation for more 
+     *             details.
      */
     fun setVibrancy(type: String): Unit = 
         instance.setVibrancy(type)
@@ -776,25 +902,29 @@ class BrowserWindow constructor(val instance: dynamic, z: Unit) {
         // ~ Methods -------------------------------------------------------------------------------
 
         /**
-         * @return An array of all opened browser windows.
+         * @returns An array of all opened browser windows.
          */
         fun getAllWindows(): Array<BrowserWindow> = 
             module.getAllWindows()
 
         /**
-         * @return The window that is focused in this application, otherwise returns null.
+         * @returns The window that is focused in this application, otherwise returns null.
          */
         fun getFocusedWindow(): BrowserWindow = 
             module.getFocusedWindow()
 
         /**
-         * @return The window that owns the given webContents.
+         * @param webContents 
+         *
+         * @returns The window that owns the given webContents.
          */
         fun fromWebContents(webContents: WebContents): BrowserWindow = 
             module.fromWebContents(webContents.instance)
 
         /**
-         * @return The window with the given id.
+         * @param id 
+         *
+         * @returns The window with the given id.
          */
         fun fromId(id: Int): BrowserWindow = 
             module.fromId(id)
@@ -812,6 +942,8 @@ class BrowserWindow constructor(val instance: dynamic, z: Unit) {
          *
          * Note: This API cannot be called before the ready event of the app module is 
          * emitted.
+         * 
+         * @param path 
          */
         fun addDevToolsExtension(path: String): Unit = 
             module.addDevToolsExtension(path)
@@ -821,6 +953,8 @@ class BrowserWindow constructor(val instance: dynamic, z: Unit) {
          *
          * Note: This API cannot be called before the ready event of the app module is 
          * emitted.
+         * 
+         * @param name 
          */
         fun removeDevToolsExtension(name: String): Unit = 
             module.removeDevToolsExtension(name)
@@ -838,8 +972,8 @@ class BrowserWindow constructor(val instance: dynamic, z: Unit) {
          * Note: This API cannot be called before the ready event of the app module is 
          * emitted.
          * 
-         * @return The keys are the extension names and each value is an Object containing name 
-         * and version properties.
+         * @returns The keys are the extension names and each value is an Object containing name 
+         *          and version properties.
          */
         fun getDevToolsExtensions(): dynamic = 
             module.getDevToolsExtensions()
@@ -848,111 +982,522 @@ class BrowserWindow constructor(val instance: dynamic, z: Unit) {
     // ~ Builders ------------------------------------------------------------------------------
 
     class Options(
+        /**
+         * Window's width in pixels. Default is 800.
+         */
         var width: Int? = null,
+
+        /**
+         * Window's height in pixels. Default is 600.
+         */
         var height: Int? = null,
+
+        /**
+         * Window's left offset from screen. Default is to center the window.
+         */
         var x: Int? = null,
+
+        /**
+         * Window's top offset from screen. Default is to center the window.
+         */
         var y: Int? = null,
+
+        /**
+         * The width and height would be used as web page's size, which means the actual 
+         * window's size will include window frame's size and be slightly larger. Default 
+         * is false.
+         */
         var useContentSize: Boolean? = null,
+
+        /**
+         * Show window in the center of the screen.
+         */
         var center: Boolean? = null,
+
+        /**
+         * Window's minimum width. Default is 0.
+         */
         var minWidth: Int? = null,
+
+        /**
+         * Window's minimum height. Default is 0.
+         */
         var minHeight: Int? = null,
+
+        /**
+         * Window's maximum width. Default is no limit.
+         */
         var maxWidth: Int? = null,
+
+        /**
+         * Window's maximum height. Default is no limit.
+         */
         var maxHeight: Int? = null,
+
+        /**
+         * Whether window is resizable. Default is true.
+         */
         var resizable: Boolean? = null,
+
+        /**
+         * Whether window is movable. This is not implemented on Linux. Default is true.
+         */
         var movable: Boolean? = null,
+
+        /**
+         * Whether window is minimizable. This is not implemented on Linux. Default is 
+         * true.
+         */
         var minimizable: Boolean? = null,
+
+        /**
+         * Whether window is maximizable. This is not implemented on Linux. Default is 
+         * true.
+         */
         var maximizable: Boolean? = null,
+
+        /**
+         * Whether window is closable. This is not implemented on Linux. Default is true.
+         */
         var closable: Boolean? = null,
+
+        /**
+         * Whether the window can be focused. Default is true. On Windows setting 
+         * focusable: false also implies setting skipTaskbar: true. On Linux setting 
+         * focusable: false makes the window stop interacting with wm, so the window will 
+         * always stay on top in all workspaces.
+         */
         var focusable: Boolean? = null,
+
+        /**
+         * Whether the window should always stay on top of other windows. Default is 
+         * false.
+         */
         var alwaysOnTop: Boolean? = null,
+
+        /**
+         * Whether the window should show in fullscreen. When explicitly set to false the 
+         * fullscreen button will be hidden or disabled on macOS. Default is false.
+         */
         var fullscreen: Boolean? = null,
+
+        /**
+         * Whether the window can be put into fullscreen mode. On macOS, also whether the 
+         * maximize/zoom button should toggle full screen mode or maximize window. 
+         * Default is true.
+         */
         var fullscreenable: Boolean? = null,
+
+        /**
+         * Whether to show the window in taskbar. Default is false.
+         */
         var skipTaskbar: Boolean? = null,
+
+        /**
+         * The kiosk mode. Default is false.
+         */
         var kiosk: Boolean? = null,
+
+        /**
+         * Default window title. Default is "Electron".
+         */
         var title: String? = null,
+
+        /**
+         * The window icon. On Windows it is recommended to use ICO icons to get best 
+         * visual effects, you can also leave it undefined so the executable's icon will 
+         * be used.
+         */
         var icon: dynamic? = null,
+
+        /**
+         * Whether window should be shown when created. Default is true.
+         */
         var show: Boolean? = null,
+
+        /**
+         * Specify false to create a Frameless Window. Default is true.
+         */
         var frame: Boolean? = null,
+
+        /**
+         * Specify parent window. Default is null.
+         */
         var parent: BrowserWindow? = null,
+
+        /**
+         * Whether this is a modal window. This only works when the window is a child 
+         * window. Default is false.
+         */
         var modal: Boolean? = null,
+
+        /**
+         * Whether the web view accepts a single mouse-down event that simultaneously 
+         * activates the window. Default is false.
+         */
         var acceptFirstMouse: Boolean? = null,
+
+        /**
+         * Whether to hide cursor when typing. Default is false.
+         */
         var disableAutoHideCursor: Boolean? = null,
+
+        /**
+         * Auto hide the menu bar unless the Alt key is pressed. Default is false.
+         */
         var autoHideMenuBar: Boolean? = null,
+
+        /**
+         * Enable the window to be resized larger than screen. Default is false.
+         */
         var enableLargerThanScreen: Boolean? = null,
+
+        /**
+         * Window's background color as Hexadecimal value, like #66CD00 or #FFF or 
+         * #80FFFFFF (alpha is supported). Default is #FFF (white).
+         */
         var backgroundColor: String? = null,
+
+        /**
+         * Whether window should have a shadow. This is only implemented on macOS. 
+         * Default is true.
+         */
         var hasShadow: Boolean? = null,
+
+        /**
+         * Forces using dark theme for the window, only works on some GTK+3 desktop 
+         * environments. Default is false.
+         */
         var darkTheme: Boolean? = null,
+
+        /**
+         * Makes the window transparent. Default is false.
+         */
         var transparent: Boolean? = null,
+
+        /**
+         * The type of window, default is normal window. See more about this below.
+         */
         var type: String? = null,
+
+        /**
+         * The style of window title bar. Default is default. Possible values are:
+         */
         var titleBarStyle: String? = null,
+
+        /**
+         * Use WS_THICKFRAME style for frameless windows on Windows, which adds standard 
+         * window frame. Setting it to false will remove window shadow and window 
+         * animations. Default is true.
+         */
         var thickFrame: Boolean? = null,
+
+        /**
+         * Add a type of vibrancy effect to the window, only on macOS. Can be 
+         * appearance-based, light, dark, titlebar, selection, menu, popover, sidebar, 
+         * medium-light or ultra-dark.
+         */
         var vibrancy: String? = null,
+
+        /**
+         * Controls the behavior on macOS when option-clicking the green stoplight button 
+         * on the toolbar or by clicking the Window > Zoom menu item. If true, the window 
+         * will grow to the preferred width of the web page when zoomed, false will cause 
+         * it to zoom to the width of the screen. This will also affect the behavior when 
+         * calling maximize() directly. Default is false.
+         */
         var zoomToPageWidth: Boolean? = null,
+
+        /**
+         * Settings of web page's features.
+         */
         var webPreferences: WebPreferences? = null
+
     )
     class WebPreferences(
+        /**
+         * Whether to enable DevTools. If it is set to false, can not use 
+         * BrowserWindow.webContents.openDevTools() to open DevTools. Default is true.
+         */
         var devTools: Boolean? = null,
+
+        /**
+         * Whether node integration is enabled. Default is true.
+         */
         var nodeIntegration: Boolean? = null,
+
+        /**
+         * Specifies a script that will be loaded before other scripts run in the page. 
+         * This script will always have access to node APIs no matter whether node 
+         * integration is turned on or off. The value should be the absolute file path to 
+         * the script. When node integration is turned off, the preload script can 
+         * reintroduce Node global symbols back to the global scope. See example here.
+         */
         var preload: String? = null,
+
+        /**
+         * Sets the session used by the page. Instead of passing the Session object 
+         * directly, you can also choose to use the partition option instead, which 
+         * accepts a partition string. When both session and partition are provided, 
+         * session will be preferred. Default is the default session.
+         */
         var session: Session? = null,
+
+        /**
+         * Sets the session used by the page according to the session's partition string. 
+         * If partition starts with persist:, the page will use a persistent session 
+         * available to all pages in the app with the same partition. If there is no 
+         * persist: prefix, the page will use an in-memory session. By assigning the same 
+         * partition, multiple pages can share the same session. Default is the default 
+         * session.
+         */
         var partition: String? = null,
+
+        /**
+         * The default zoom factor of the page, 3.0 represents 300%. Default is 1.0.
+         */
         var zoomFactor: Number? = null,
+
+        /**
+         * Enables JavaScript support. Default is true.
+         */
         var javascript: Boolean? = null,
+
+        /**
+         * When false, it will disable the same-origin policy (usually using testing 
+         * websites by people), and set allowRunningInsecureContent to true if this 
+         * options has not been set by user. Default is true.
+         */
         var webSecurity: Boolean? = null,
+
+        /**
+         * Allow an https page to run JavaScript, CSS or plugins from http URLs. Default 
+         * is false.
+         */
         var allowRunningInsecureContent: Boolean? = null,
+
+        /**
+         * Enables image support. Default is true.
+         */
         var images: Boolean? = null,
+
+        /**
+         * Make TextArea elements resizable. Default is true.
+         */
         var textAreasAreResizable: Boolean? = null,
+
+        /**
+         * Enables WebGL support. Default is true.
+         */
         var webgl: Boolean? = null,
+
+        /**
+         * Enables WebAudio support. Default is true.
+         */
         var webaudio: Boolean? = null,
+
+        /**
+         * Whether plugins should be enabled. Default is false.
+         */
         var plugins: Boolean? = null,
+
+        /**
+         * Enables Chromium's experimental features. Default is false.
+         */
         var experimentalFeatures: Boolean? = null,
+
+        /**
+         * Enables Chromium's experimental canvas features. Default is false.
+         */
         var experimentalCanvasFeatures: Boolean? = null,
+
+        /**
+         * Enables scroll bounce (rubber banding) effect on macOS. Default is false.
+         */
         var scrollBounce: Boolean? = null,
+
+        /**
+         * A list of feature strings separated by ,, like CSSVariables,KeyboardEventKey 
+         * to enable. The full list of supported feature strings can be found in the 
+         * RuntimeEnabledFeatures.in file.
+         */
         var blinkFeatures: String? = null,
+
+        /**
+         * A list of feature strings separated by ,, like CSSVariables,KeyboardEventKey 
+         * to disable. The full list of supported feature strings can be found in the 
+         * RuntimeEnabledFeatures.in file.
+         */
         var disableBlinkFeatures: String? = null,
+
+        /**
+         * Sets the default font for the font-family.
+         */
         var defaultFontFamily: DefaultFontFamily? = null,
+
+        /**
+         * Defaults to 16.
+         */
         var defaultFontSize: Int? = null,
+
+        /**
+         * Defaults to 13.
+         */
         var defaultMonospaceFontSize: Int? = null,
+
+        /**
+         * Defaults to 0.
+         */
         var minimumFontSize: Int? = null,
+
+        /**
+         * Defaults to ISO-8859-1.
+         */
         var defaultEncoding: String? = null,
+
+        /**
+         * Whether to throttle animations and timers when the page becomes background. 
+         * Defaults to true.
+         */
         var backgroundThrottling: Boolean? = null,
+
+        /**
+         * Whether to enable offscreen rendering for the browser window. Defaults to 
+         * false. See the offscreen rendering tutorial for more details.
+         */
         var offscreen: Boolean? = null,
+
+        /**
+         * Whether to enable Chromium OS-level sandbox.
+         */
         var sandbox: Boolean? = null,
+
+        /**
+         * Whether to run Electron APIs and the specified preload script in a separate 
+         * JavaScript context. Defaults to false. The context that the preload script 
+         * runs in will still have full access to the document and window globals but it 
+         * will use its own set of JavaScript builtins (Array, Object, JSON, etc.) and 
+         * will be isolated from any changes made to the global environment by the loaded 
+         * page. The Electron API will only be available in the preload script and not 
+         * the loaded page. This option should be used when loading potentially untrusted 
+         * remote content to ensure the loaded content cannot tamper with the preload 
+         * script and any Electron APIs being used. This option uses the same technique 
+         * used by Chrome Content Scripts. You can access this context in the dev tools 
+         * by selecting the 'Electron Isolated Context' entry in the combo box at the top 
+         * of the Console tab. Note: This option is currently experimental and may change 
+         * or be removed in future Electron releases.
+         */
         var contextIsolation: Boolean? = null
+
     )
     class DefaultFontFamily(
+        /**
+         * Defaults to Times New Roman.
+         */
         var standard: String? = null,
+
+        /**
+         * Defaults to Times New Roman.
+         */
         var serif: String? = null,
+
+        /**
+         * Defaults to Arial.
+         */
         var sansSerif: String? = null,
+
+        /**
+         * Defaults to Courier New.
+         */
         var monospace: String? = null,
+
+        /**
+         * Defaults to Script.
+         */
         var cursive: String? = null,
+
+        /**
+         * Defaults to Impact.
+         */
         var fantasy: String? = null
+
     )
 
 
 
     class SetAspectRatioExtraSize(
+        /**
+         * 
+         */
         var width: Int,
+
+        /**
+         * 
+         */
         var height: Int
+
     )
 
     class LoadURLOptions(
+        /**
+         * A HTTP Referrer url.
+         */
         var httpReferrer: String? = null,
+
+        /**
+         * A user agent originating the request.
+         */
         var userAgent: String? = null,
+
+        /**
+         * Extra headers separated by ""
+         */
         var extraHeaders: String? = null,
+
+        /**
+         * (optional)
+         */
         var postData: Array<dynamic>? = null
+
     )
 
     class SetProgressBarOptions(
+        /**
+         * Mode for the progress bar. Can be none, normal, indeterminate, error, or 
+         * paused.
+         */
         var mode: String
+
     )
 
     class SetAppDetailsOptions(
+        /**
+         * Window's App User Model ID. It has to be set, otherwise the other options will 
+         * have no effect.
+         */
         var appId: String? = null,
+
+        /**
+         * Window's Relaunch Icon.
+         */
         var appIconPath: String? = null,
+
+        /**
+         * Index of the icon in appIconPath. Ignored when appIconPath is not set. Default 
+         * is 0.
+         */
         var appIconIndex: Int? = null,
+
+        /**
+         * Window's Relaunch Command.
+         */
         var relaunchCommand: String? = null,
+
+        /**
+         * Window's Relaunch Display Name.
+         */
         var relaunchDisplayName: String? = null
+
     )
 }
 

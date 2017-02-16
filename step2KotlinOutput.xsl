@@ -53,8 +53,9 @@
 
     <!-- STRUCT -->
     <xsl:template match="struct">
+        <xsl:text>@Suppress("REDUNDANT_NULLABLE")&#10;</xsl:text>
         <xsl:value-of select="concat('class ', @title, '(&#10;')" />
-        <xsl:apply-templates mode="constructor" />
+        <xsl:apply-templates />
         <xsl:text>) {&#10;&#10;</xsl:text>
         <xsl:text>    val instance: dynamic = this&#10;&#10;</xsl:text>
         <xsl:text>    // ~ Builders ------------------------------------------------------------------------------&#10;</xsl:text>
@@ -64,6 +65,7 @@
 
     <!-- OBJECT -->
     <xsl:template match="object">
+        <xsl:text>@Suppress("REDUNDANT_NULLABLE")&#10;</xsl:text>
         <xsl:value-of select="concat('object ', @title, ' {&#10;&#10;')" />
 
         <!-- import -->
@@ -87,6 +89,7 @@
 
     <!-- CLASS -->
     <xsl:template match="class">
+        <xsl:text>@Suppress("REDUNDANT_NULLABLE")&#10;</xsl:text>
         <xsl:value-of select="concat('class ', @title)" />
 
         <!-- constructor -->
@@ -137,13 +140,14 @@
 
     <!-- constructor -->
     <xsl:template match="constructor" mode="signature">
-        <xsl:text> constructor(val instance: dynamic, z: Unit)</xsl:text>
+        <xsl:text> constructor(val instance: dynamic, @Suppress("UNUSED_PARAMETER") ignoreMe: Unit)</xsl:text>
     </xsl:template>
 
-    <!-- constructor -->
+    <!-- constructor constructing instance  -->
     <xsl:template match="constructor" mode="delegate_call">
 
         <!-- delegate / init -->
+        <xsl:text>    @Suppress("UNUSED_VARIABLE")&#10;</xsl:text>
         <xsl:text>    constructor(</xsl:text>
         <xsl:apply-templates mode="signature" />
         <xsl:text>) : this(Unit.let {&#10;</xsl:text>
@@ -161,10 +165,10 @@
             </xsl:if>
         </xsl:for-each>
         <xsl:text>)")&#10;</xsl:text>
-        <xsl:text>    }, z = Unit)&#10;&#10;</xsl:text>
+        <xsl:text>    }, Unit)&#10;&#10;</xsl:text>
     </xsl:template>
 
-    <!-- delegate call -->
+    <!-- constructor parameter -->
     <xsl:template match="constructor/param" mode="delegate_call_vals">
         <xsl:value-of select="concat('        val _', @name, ' = ')" />
         <xsl:apply-templates mode="delegate_call" select="." />
@@ -174,7 +178,7 @@
     <!-- events -->
     <xsl:template match="class|object" mode="events">
         <xsl:text>    // ~ Events --------------------------------------------------------------------------------&#10;&#10;</xsl:text>
-        <xsl:text>    fun onEvent(event: String, callback: () -> Unit) = &#10;</xsl:text>
+        <xsl:text>    fun onEvent(event: String, callback: () -> Unit): Unit = &#10;</xsl:text>
         <xsl:text>        module.on(event, callback)&#10;&#10;</xsl:text>
     </xsl:template>
 
@@ -231,10 +235,23 @@
 
 
     <!-- param: method/constructor signature -->
-    <xsl:template match="param" mode="signature">
+    <xsl:template match="*[self::method|self::constructor]/param" mode="signature">
         <xsl:if test="@vararg = true()">
             <xsl:text>vararg </xsl:text>
         </xsl:if>
+        <xsl:value-of select="@name" />
+        <xsl:text>: </xsl:text>
+        <xsl:apply-templates mode="type" select="." />
+        <xsl:if test="@optional = true()">
+            <xsl:text> = null</xsl:text>
+        </xsl:if>
+        <xsl:if test="position() &lt; last()">
+            <xsl:text>, </xsl:text>
+        </xsl:if>
+    </xsl:template>
+
+    <!-- param: method/constructor signature -->
+    <xsl:template match="*[@type = 'Function']/param" mode="signature">
         <xsl:value-of select="@name" />
         <xsl:text>: </xsl:text>
         <xsl:apply-templates mode="type" select="." />
@@ -376,7 +393,7 @@
 
         <!-- properties -->
         <xsl:text>(&#10;</xsl:text>
-        <xsl:apply-templates mode="constructor" select="property" />
+        <xsl:apply-templates select="property" />
         <xsl:text>    )</xsl:text>
 
         <!-- inner builders -->
@@ -386,7 +403,11 @@
     </xsl:template>
 
     <!-- properties -->
-    <xsl:template match="property" mode="constructor">
+    <xsl:template match="property">
+
+        <!-- description -->
+        <xsl:apply-templates mode="description" select="." />
+
         <xsl:text>        var </xsl:text>
         <xsl:value-of select="@name" />
         <xsl:text>: </xsl:text>
@@ -397,6 +418,7 @@
         <xsl:if test="position() &lt; last()">
             <xsl:text>,</xsl:text>
         </xsl:if>
+        <xsl:text>&#10;</xsl:text>
         <xsl:text>&#10;</xsl:text>
     </xsl:template>
 
@@ -438,19 +460,12 @@
 
 
     <!-- indent -->
-    <xsl:template match="property" mode="indent" priority="-1">
+    <xsl:template match="//*" mode="indent" priority="-1">
         <xsl:text>    </xsl:text>
     </xsl:template>
-    <xsl:template match="property/description//*" mode="indent" priority="-1">
-        <xsl:text>    </xsl:text>
+    <xsl:template match="*[self::param|self::property and @type = 'Object']//*" mode="indent">
+        <xsl:text>        </xsl:text>
     </xsl:template>
-    <xsl:template match="method" mode="indent" priority="-1">
-        <xsl:text>    </xsl:text>
-    </xsl:template>
-    <xsl:template match="method//*" mode="indent" priority="-1">
-        <xsl:text>    </xsl:text>
-    </xsl:template>
-
     <xsl:template match="class/methods[@type='static']/method" mode="indent">
         <xsl:text>        </xsl:text>
     </xsl:template>
@@ -460,55 +475,141 @@
 
     <!-- method description -->
     <xsl:template match="method" mode="description">
-        <xsl:apply-templates mode="indent" select="." />
-        <xsl:text>/**&#10;</xsl:text>
-        <xsl:if test="not(description) and not(returns/description)">
+        <xsl:variable name="indent">
             <xsl:apply-templates mode="indent" select="." />
-            <xsl:text> *&#10;</xsl:text>
-        </xsl:if>
+        </xsl:variable>
+
+        <!-- start -->
+        <xsl:value-of select="concat($indent, '/**&#10;')"/>
+
+        <!-- description -->
         <xsl:apply-templates select="description" />
+
+        <!-- parameters -->
+        <xsl:apply-templates select="param/description" />
+
+        <!-- returns -->
         <xsl:apply-templates select="returns/description" />
-        <xsl:apply-templates mode="indent" select="." />
-        <xsl:text> */&#10;</xsl:text>
+
+        <!-- end -->
+        <xsl:value-of select="concat($indent, ' */&#10;')"/>
     </xsl:template>
 
     <!-- property description -->
     <xsl:template match="property" mode="description">
-        <xsl:apply-templates mode="indent" select="." />
-        <xsl:text>/**&#10;</xsl:text>
+        <xsl:variable name="indent">
+            <xsl:apply-templates mode="indent" select="." />
+        </xsl:variable>
+
+        <!-- start -->
+        <xsl:value-of select="concat($indent, '/**&#10;')"/>
+
+        <!-- description -->
         <xsl:apply-templates select="description" />
-        <xsl:apply-templates mode="indent" select="." />
-        <xsl:text> */&#10;</xsl:text>
+
+        <!-- end -->
+        <xsl:value-of select="concat($indent, ' */&#10;')"/>
     </xsl:template>
 
-    <!-- make newline between description and returns -->
+    <!-- make newline between method description and param/returns -->
     <xsl:template match="method/description">
         <xsl:apply-templates />
-        <xsl:if test="parent::method/returns/description">
+        <xsl:if test=". != '' and parent::method/(returns|param)">
             <xsl:apply-templates mode="indent" select="." />
             <xsl:text> * &#10;</xsl:text>
         </xsl:if>
     </xsl:template>
 
-    <!-- description -->
-    <xsl:template match="description/para">
+    <!-- make newline between last param and returns description -->
+    <xsl:template match="method/param/description">
+        <xsl:apply-templates />
+
+        <xsl:if test="position() = last() and ancestor::method/returns/description">
+            <xsl:apply-templates mode="indent" select="." />
+            <xsl:text> *&#10;</xsl:text>
+        </xsl:if>
+    </xsl:template>
+
+    <!-- method description paragraph -->
+    <xsl:template match="*[self::method|self::property]/description/para">
+        <!-- indent -->
         <xsl:variable name="indent">
             <xsl:apply-templates mode="indent" select="." />
         </xsl:variable>
 
-        <xsl:apply-templates mode="indent" select="." />
-        <xsl:text> * </xsl:text>
+        <!-- start -->
+        <xsl:value-of select="concat($indent, ' * ')"/>
 
-        <xsl:if test="ancestor::returns">
-            <xsl:text>@return </xsl:text>
-        </xsl:if>
-
+        <!-- wrap paragraph text -->
         <xsl:call-template name="wrap-string">
             <xsl:with-param name="str">
                 <xsl:value-of select="." />
             </xsl:with-param>
             <xsl:with-param name="break-mark">
                 <xsl:value-of select="concat('&#10;', $indent, ' * ')" />
+            </xsl:with-param>
+            <xsl:with-param name="wrap-col">80</xsl:with-param>
+        </xsl:call-template>
+
+        <xsl:text>&#10;</xsl:text>
+        <xsl:if test="position() &lt; last()">
+            <xsl:apply-templates mode="indent" select="." />
+            <xsl:text> *&#10;</xsl:text>
+        </xsl:if>
+    </xsl:template>
+
+    <!-- return description param -->
+    <xsl:template match="param/description/para">
+        <!-- indent -->
+        <xsl:variable name="indent">
+            <xsl:apply-templates mode="indent" select="." />
+        </xsl:variable>
+
+        <!-- start -->
+        <xsl:value-of select="concat($indent, ' * @param ', ancestor::param/@name, ' ')"/>
+
+        <!-- additional indent for param -->
+        <xsl:variable name="additionalIndent">
+            <xsl:for-each select="1 to string-length(ancestor::param/@name) + 8">
+                <xsl:text> </xsl:text>
+            </xsl:for-each>
+        </xsl:variable>
+
+        <!-- wrap paragraph text -->
+        <xsl:call-template name="wrap-string">
+            <xsl:with-param name="str">
+                <xsl:value-of select="." />
+            </xsl:with-param>
+            <xsl:with-param name="break-mark">
+                <xsl:value-of select="concat('&#10;', $indent, ' * ', $additionalIndent)" />
+            </xsl:with-param>
+            <xsl:with-param name="wrap-col">80</xsl:with-param>
+        </xsl:call-template>
+
+        <xsl:text>&#10;</xsl:text>
+        <xsl:if test="position() &lt; last()">
+            <xsl:apply-templates mode="indent" select="." />
+            <xsl:text> *&#10;</xsl:text>
+        </xsl:if>
+    </xsl:template>
+
+    <!-- description param -->
+    <xsl:template match="returns/description/para">
+        <!-- indent -->
+        <xsl:variable name="indent">
+            <xsl:apply-templates mode="indent" select="." />
+        </xsl:variable>
+
+        <!-- start -->
+        <xsl:value-of select="concat($indent, ' * @returns ')"/>
+
+        <!-- wrap paragraph text -->
+        <xsl:call-template name="wrap-string">
+            <xsl:with-param name="str">
+                <xsl:value-of select="." />
+            </xsl:with-param>
+            <xsl:with-param name="break-mark">
+                <xsl:value-of select="concat('&#10;', $indent, ' *          ')" />
             </xsl:with-param>
             <xsl:with-param name="wrap-col">80</xsl:with-param>
         </xsl:call-template>

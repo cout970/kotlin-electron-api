@@ -11,7 +11,15 @@
             <para>The y coordinate of the origin of the rectangle</para>
          </description>
       </property>
-      <property name="width" type="Number"/>
-      <property name="height" type="Number"/>
+      <property name="width" type="Number">
+         <description>
+            <para/>
+         </description>
+      </property>
+      <property name="height" type="Number">
+         <description>
+            <para/>
+         </description>
+      </property>
    </struct>
 </file>

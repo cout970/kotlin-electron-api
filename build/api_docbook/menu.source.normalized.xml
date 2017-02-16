@@ -4,7 +4,11 @@
       <constructor/>
       <methods type="static">
          <method name="setApplicationMenu">
-            <param name="menu" type="Menu"/>
+            <param name="menu" type="Menu">
+               <description>
+                  <para/>
+               </description>
+            </param>
             <description>
                <para>Sets menu as the application menu on macOS. On Windows and Linux, the menu will be set as each window's top menu.</para>
                <para>Note: This API has to be called after the ready event of app module.</para>
@@ -16,17 +20,30 @@
                   <para>The application menu, if set, or null, if not set.</para>
                </description>
             </returns>
+            <description/>
          </method>
          <method name="sendActionToFirstResponder">
-            <param name="action" type="String"/>
+            <param name="action" type="String">
+               <description>
+                  <para/>
+               </description>
+            </param>
             <description>
                <para>Sends the action to the first responder of application. This is used for emulating default Cocoa menu behaviors, usually you would just use the role property of MenuItem.</para>
                <para>See the macOS Cocoa Event Handling Guide for more information on macOS' native actions.</para>
             </description>
          </method>
          <method name="buildFromTemplate">
-            <param name="template" type="MenuItemConstructorOptions" isArray="true"/>
-            <returns type="Menu"/>
+            <param name="template" type="MenuItemConstructorOptions" isArray="true">
+               <description>
+                  <para/>
+               </description>
+            </param>
+            <returns type="Menu">
+               <description>
+                  <para/>
+               </description>
+            </returns>
             <description>
                <para>Generally, the template is just an array of options for constructing a MenuItem. The usage can be referenced above.</para>
                <para>You can also attach other fields to the element of the template and they will become properties of the constructed menu items.</para>
@@ -60,14 +77,26 @@
             </description>
          </method>
          <method name="append">
-            <param name="menuItem" type="MenuItem"/>
+            <param name="menuItem" type="MenuItem">
+               <description>
+                  <para/>
+               </description>
+            </param>
             <description>
                <para>Appends the menuItem to the menu.</para>
             </description>
          </method>
          <method name="insert">
-            <param name="pos" type="Integer"/>
-            <param name="menuItem" type="MenuItem"/>
+            <param name="pos" type="Integer">
+               <description>
+                  <para/>
+               </description>
+            </param>
+            <param name="menuItem" type="MenuItem">
+               <description>
+                  <para/>
+               </description>
+            </param>
             <description>
                <para>Inserts the menuItem to the pos position of the menu.</para>
             </description>

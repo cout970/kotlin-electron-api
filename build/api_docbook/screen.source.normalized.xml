@@ -4,11 +4,30 @@
       <methods>
          <method name="getCursorScreenPoint">
             <returns type="Object">
-               <param name="x" type="Integer"/>
-               <param name="y" type="Integer"/>
+               <param name="x" type="Integer">
+                  <description>
+                     <para/>
+                  </description>
+               </param>
+               <param name="y" type="Integer">
+                  <description>
+                     <para/>
+                  </description>
+               </param>
+               <description>
+                  <para/>
+               </description>
             </returns>
-            <param name="x" type="Integer"/>
-            <param name="y" type="Integer"/>
+            <param name="x" type="Integer">
+               <description>
+                  <para/>
+               </description>
+            </param>
+            <param name="y" type="Integer">
+               <description>
+                  <para/>
+               </description>
+            </param>
             <description>
                <list>
                   <item>
@@ -27,6 +46,7 @@
                   <para>The primary display.</para>
                </description>
             </returns>
+            <description/>
          </method>
          <method name="getAllDisplays">
             <returns type="Display" isArray="true">
@@ -34,25 +54,43 @@
                   <para>An array of displays that are currently available.</para>
                </description>
             </returns>
+            <description/>
          </method>
          <method name="getDisplayNearestPoint">
             <param name="point" type="Object">
-               <property name="x" type="Integer"/>
-               <property name="y" type="Integer"/>
+               <property name="x" type="Integer">
+                  <description>
+                     <para/>
+                  </description>
+               </property>
+               <property name="y" type="Integer">
+                  <description>
+                     <para/>
+                  </description>
+               </property>
+               <description>
+                  <para/>
+               </description>
             </param>
             <returns type="Display">
                <description>
                   <para>The display nearest the specified point.</para>
                </description>
             </returns>
+            <description/>
          </method>
          <method name="getDisplayMatching">
-            <param name="rect" type="Rectangle"/>
+            <param name="rect" type="Rectangle">
+               <description>
+                  <para/>
+               </description>
+            </param>
             <returns type="Display">
                <description>
                   <para>The display that most closely intersects the provided bounds.</para>
                </description>
             </returns>
+            <description/>
          </method>
       </methods>
    </object>

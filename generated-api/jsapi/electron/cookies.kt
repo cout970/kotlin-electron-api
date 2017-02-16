@@ -1,16 +1,18 @@
 @file:Suppress("UnsafeCastFromDynamic")
 package jsapi.electron
 
-class Cookies constructor(val instance: dynamic, z: Unit) {
+@Suppress("REDUNDANT_NULLABLE")
+class Cookies constructor(val instance: dynamic, @Suppress("UNUSED_PARAMETER") ignoreMe: Unit) {
 
+    @Suppress("UNUSED_VARIABLE")
     constructor() : this(Unit.let {
         val _constructor = js("require('electron').Cookies")
         js("new _constructor()")
-    }, z = Unit)
+    }, Unit)
 
     // ~ Events --------------------------------------------------------------------------------
 
-    fun onEvent(event: String, callback: () -> Unit) = 
+    fun onEvent(event: String, callback: () -> Unit): Unit = 
         module.on(event, callback)
 
     // ~ Methods -------------------------------------------------------------------------------
@@ -20,6 +22,9 @@ class Cookies constructor(val instance: dynamic, z: Unit) {
      * with callback(error, cookies) on complete.
      *
      * cookies is an Array of cookie objects.
+     * 
+         * @param filter 
+     * @param callback 
      */
     fun get(filter: GetFilter.() -> Unit, callback: (error: Error, cookies: Array<Cookies>) -> Unit): Unit = 
         instance.get(filter.let { GetFilter().apply(it) }, callback)
@@ -27,6 +32,9 @@ class Cookies constructor(val instance: dynamic, z: Unit) {
     /**
      * Sets a cookie with details, callback will be called with callback(error) on 
      * complete.
+     * 
+         * @param details 
+     * @param callback 
      */
     fun set(details: SetDetails, callback: (error: Error) -> Unit): Unit = 
         instance.set(details, callback)
@@ -34,6 +42,10 @@ class Cookies constructor(val instance: dynamic, z: Unit) {
     /**
      * Removes the cookies matching url and name, callback will called with 
      * callback() on complete.
+     * 
+     * @param url The URL associated with the cookie.
+     * @param name The name of cookie to remove.
+     * @param callback 
      */
     fun remove(url: String, name: String, callback: () -> Unit): Unit = 
         instance.remove(url, name, callback)
@@ -49,23 +61,82 @@ class Cookies constructor(val instance: dynamic, z: Unit) {
     // ~ Builders ------------------------------------------------------------------------------
 
     class GetFilter(
+        /**
+         * Retrieves cookies which are associated with url. Empty implies retrieving 
+         * cookies of all urls.
+         */
         var url: String? = null,
+
+        /**
+         * Filters cookies by name.
+         */
         var name: String? = null,
+
+        /**
+         * Retrieves cookies whose domains match or are subdomains of domains
+         */
         var domain: String? = null,
+
+        /**
+         * Retrieves cookies whose path matches path.
+         */
         var path: String? = null,
+
+        /**
+         * Filters cookies by their Secure property.
+         */
         var secure: Boolean? = null,
+
+        /**
+         * Filters out session or persistent cookies.
+         */
         var session: Boolean? = null
+
     )
 
     class SetDetails(
+        /**
+         * The url to associate the cookie with.
+         */
         var url: String,
+
+        /**
+         * The name of the cookie. Empty by default if omitted.
+         */
         var name: String? = null,
+
+        /**
+         * The value of the cookie. Empty by default if omitted.
+         */
         var value: String? = null,
+
+        /**
+         * The domain of the cookie. Empty by default if omitted.
+         */
         var domain: String? = null,
+
+        /**
+         * The path of the cookie. Empty by default if omitted.
+         */
         var path: String? = null,
+
+        /**
+         * Whether the cookie should be marked as Secure. Defaults to false.
+         */
         var secure: Boolean? = null,
+
+        /**
+         * Whether the cookie should be marked as HTTP only. Defaults to false.
+         */
         var httpOnly: Boolean? = null,
+
+        /**
+         * The expiration date of the cookie as the number of seconds since the UNIX 
+         * epoch. If omitted then the cookie becomes a session cookie and will not be 
+         * retained between sessions.
+         */
         var expirationDate: Double? = null
+
     )
 }
 

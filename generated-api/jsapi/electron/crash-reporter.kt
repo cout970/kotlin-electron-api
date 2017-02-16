@@ -1,13 +1,14 @@
 @file:Suppress("UnsafeCastFromDynamic")
 package jsapi.electron
 
+@Suppress("REDUNDANT_NULLABLE")
 object crashReporter {
 
     private val module: dynamic = js("require('electron').crashReporter")
 
     // ~ Events --------------------------------------------------------------------------------
 
-    fun onEvent(event: String, callback: () -> Unit) = 
+    fun onEvent(event: String, callback: () -> Unit): Unit = 
         module.on(event, callback)
 
     // ~ Methods -------------------------------------------------------------------------------
@@ -57,18 +58,20 @@ object crashReporter {
      * crashReporter.start from the renderer or child process, otherwise crashes from 
      * them will get reported without companyName, productName or any of the extra 
      * information.
+     * 
+         * @param options 
      */
     fun start(options: StartOptions): Unit = 
         module.start(options)
 
     /**
-     *
+     * @returns 
      */
     fun getLastCrashReport(): CrashReport = 
         module.getLastCrashReport()
 
     /**
-     *
+     * @returns 
      */
     fun getUploadedReports(): Array<CrashReport> = 
         module.getUploadedReports()
@@ -76,8 +79,8 @@ object crashReporter {
     /**
      * Note: This API can only be called from the main process.
      * 
-     * @return Whether reports should be submitted to the server. Set through the start 
-     * method or setUploadToServer.
+     * @returns Whether reports should be submitted to the server. Set through the start 
+     *          method or setUploadToServer.
      */
     fun getUploadToServer(): Boolean = 
         module.getUploadToServer()
@@ -87,6 +90,8 @@ object crashReporter {
      * called before start is called.
      *
      * Note: This API can only be called from the main process.
+     * 
+     * @param uploadToServer Whether reports should be submitted to the server
      */
     fun setUploadToServer(uploadToServer: Boolean): Unit = 
         module.setUploadToServer(uploadToServer)
@@ -97,6 +102,10 @@ object crashReporter {
      * when start was called. This API is only available on macOS, if you need to 
      * add/update extra parameters on Linux and Windows after your first call to 
      * start you can call start again with the updated extra options.
+     * 
+     * @param key Parameter key.
+     * @param value Parameter value. Specifying null or undefined will remove the key from the 
+     *              extra parameters.
      */
     fun setExtraParameter(key: String, value: String): Unit = 
         module.setExtraParameter(key, value)
@@ -104,12 +113,37 @@ object crashReporter {
     // ~ Builders ------------------------------------------------------------------------------
 
     class StartOptions(
+        /**
+         * 
+         */
         var companyName: String? = null,
+
+        /**
+         * URL that crash reports will be sent to as POST.
+         */
         var submitURL: String,
+
+        /**
+         * Defaults to app.getName().
+         */
         var productName: String? = null,
+
+        /**
+         * Whether crash reports should be sent to the server Default is true.
+         */
         var uploadToServer: Boolean? = null,
+
+        /**
+         * Default is false.
+         */
         var ignoreSystemCrashHandler: Boolean? = null,
+
+        /**
+         * An object you can define that will be sent along with the report. Only string 
+         * properties are sent correctly. Nested objects are not supported.
+         */
         var extra: StartExtra? = null
+
     )
     class StartExtra(
     )

@@ -3,14 +3,26 @@
    <object title="nativeImage">
       <methods>
          <method name="createEmpty">
-            <returns type="NativeImage"/>
+            <returns type="NativeImage">
+               <description>
+                  <para/>
+               </description>
+            </returns>
             <description>
                <para>Creates an empty NativeImage instance.</para>
             </description>
          </method>
          <method name="createFromPath">
-            <param name="path" type="String"/>
-            <returns type="NativeImage"/>
+            <param name="path" type="String">
+               <description>
+                  <para/>
+               </description>
+            </param>
+            <returns type="NativeImage">
+               <description>
+                  <para/>
+               </description>
+            </returns>
             <description>
                <para>Creates a new NativeImage instance from a file located at path. This method returns an empty image if the path does not exist, cannot be read, or is not a valid image.</para>
                <programlisting>
@@ -22,7 +34,11 @@ console.log(image)
             </description>
          </method>
          <method name="createFromBuffer">
-            <param name="buffer" type="Buffer"/>
+            <param name="buffer" type="Buffer">
+               <description>
+                  <para/>
+               </description>
+            </param>
             <param optional="true" name="options" type="Object">
                <property optional="true" name="width" type="Integer">
                   <description>
@@ -39,14 +55,25 @@ console.log(image)
                      <para>Defaults to 1.0.</para>
                   </description>
                </property>
+               <description>
+                  <para/>
+               </description>
             </param>
-            <returns type="NativeImage"/>
+            <returns type="NativeImage">
+               <description>
+                  <para/>
+               </description>
+            </returns>
             <description>
                <para>Creates a new NativeImage instance from buffer.</para>
             </description>
          </method>
          <method name="createFromDataURL">
-            <param name="dataURL" type="String"/>
+            <param name="dataURL" type="String">
+               <description>
+                  <para/>
+               </description>
+            </param>
             <description>
                <para>Creates a new NativeImage instance from dataURL.</para>
             </description>
@@ -61,6 +88,7 @@ console.log(image)
                      <para>A Buffer that contains the image's PNG encoded data.</para>
                   </description>
                </returns>
+               <description/>
             </method>
             <method name="toJPEG">
                <param name="quality" type="Integer">
@@ -73,6 +101,7 @@ console.log(image)
                      <para>A Buffer that contains the image's JPEG encoded data.</para>
                   </description>
                </returns>
+               <description/>
             </method>
             <method name="toBitmap">
                <returns type="Buffer">
@@ -80,6 +109,7 @@ console.log(image)
                      <para>A Buffer that contains a copy of the image's raw bitmap pixel data.</para>
                   </description>
                </returns>
+               <description/>
             </method>
             <method name="toDataURL">
                <returns type="String">
@@ -87,6 +117,7 @@ console.log(image)
                      <para>The data URL of the image.</para>
                   </description>
                </returns>
+               <description/>
             </method>
             <method name="getBitmap">
                <returns type="Buffer">
@@ -114,14 +145,34 @@ console.log(image)
                      <para>Whether the image is empty.</para>
                   </description>
                </returns>
+               <description/>
             </method>
             <method name="getSize">
                <returns type="Object">
-                  <param name="width" type="Integer"/>
-                  <param name="height" type="Integer"/>
+                  <param name="width" type="Integer">
+                     <description>
+                        <para/>
+                     </description>
+                  </param>
+                  <param name="height" type="Integer">
+                     <description>
+                        <para/>
+                     </description>
+                  </param>
+                  <description>
+                     <para/>
+                  </description>
                </returns>
-               <param name="width" type="Integer"/>
-               <param name="height" type="Integer"/>
+               <param name="width" type="Integer">
+                  <description>
+                     <para/>
+                  </description>
+               </param>
+               <param name="height" type="Integer">
+                  <description>
+                     <para/>
+                  </description>
+               </param>
                <description>
                   <list>
                      <item>
@@ -134,7 +185,11 @@ console.log(image)
                </description>
             </method>
             <method name="setTemplateImage">
-               <param name="option" type="Boolean"/>
+               <param name="option" type="Boolean">
+                  <description>
+                     <para/>
+                  </description>
+               </param>
                <description>
                   <para>Marks the image as a template image.</para>
                </description>
@@ -145,13 +200,30 @@ console.log(image)
                      <para>Whether the image is a template image.</para>
                   </description>
                </returns>
+               <description/>
             </method>
             <method name="crop">
                <param name="rect" type="Object">
-                  <property name="x" type="Integer"/>
-                  <property name="y" type="Integer"/>
-                  <property name="width" type="Integer"/>
-                  <property name="height" type="Integer"/>
+                  <property name="x" type="Integer">
+                     <description>
+                        <para/>
+                     </description>
+                  </property>
+                  <property name="y" type="Integer">
+                     <description>
+                        <para/>
+                     </description>
+                  </property>
+                  <property name="width" type="Integer">
+                     <description>
+                        <para/>
+                     </description>
+                  </property>
+                  <property name="height" type="Integer">
+                     <description>
+                        <para/>
+                     </description>
+                  </property>
                   <description>
                      <para>The area of the image to crop</para>
                   </description>
@@ -161,16 +233,28 @@ console.log(image)
                      <para>The cropped image.</para>
                   </description>
                </returns>
+               <description/>
             </method>
             <method name="resize">
                <param name="options" type="Object">
-                  <property optional="true" name="width" type="Integer"/>
-                  <property optional="true" name="height" type="Integer"/>
+                  <property optional="true" name="width" type="Integer">
+                     <description>
+                        <para/>
+                     </description>
+                  </property>
+                  <property optional="true" name="height" type="Integer">
+                     <description>
+                        <para/>
+                     </description>
+                  </property>
                   <property optional="true" name="quality" type="String">
                      <description>
                         <para>The desired quality of the resize image. Possible values are good, better or best. The default is best. These values express a desired quality/speed tradeoff. They are translated into an algorithm-specific method that depends on the capabilities (CPU, GPU) of the underlying platform. It is possible for all three methods to be mapped to the same algorithm on a given platform.</para>
                      </description>
                   </property>
+                  <description>
+                     <para/>
+                  </description>
                </param>
                <returns type="NativeImage">
                   <description>
@@ -187,6 +271,7 @@ console.log(image)
                      <para>The image's aspect ratio.</para>
                   </description>
                </returns>
+               <description/>
             </method>
          </methods>
       </class>
@@ -200,6 +285,7 @@ console.log(image)
                   <para>A Buffer that contains the image's PNG encoded data.</para>
                </description>
             </returns>
+            <description/>
          </method>
          <method name="toJPEG">
             <param name="quality" type="Integer">
@@ -212,6 +298,7 @@ console.log(image)
                   <para>A Buffer that contains the image's JPEG encoded data.</para>
                </description>
             </returns>
+            <description/>
          </method>
          <method name="toBitmap">
             <returns type="Buffer">
@@ -219,6 +306,7 @@ console.log(image)
                   <para>A Buffer that contains a copy of the image's raw bitmap pixel data.</para>
                </description>
             </returns>
+            <description/>
          </method>
          <method name="toDataURL">
             <returns type="String">
@@ -226,6 +314,7 @@ console.log(image)
                   <para>The data URL of the image.</para>
                </description>
             </returns>
+            <description/>
          </method>
          <method name="getBitmap">
             <returns type="Buffer">
@@ -253,14 +342,34 @@ console.log(image)
                   <para>Whether the image is empty.</para>
                </description>
             </returns>
+            <description/>
          </method>
          <method name="getSize">
             <returns type="Object">
-               <param name="width" type="Integer"/>
-               <param name="height" type="Integer"/>
+               <param name="width" type="Integer">
+                  <description>
+                     <para/>
+                  </description>
+               </param>
+               <param name="height" type="Integer">
+                  <description>
+                     <para/>
+                  </description>
+               </param>
+               <description>
+                  <para/>
+               </description>
             </returns>
-            <param name="width" type="Integer"/>
-            <param name="height" type="Integer"/>
+            <param name="width" type="Integer">
+               <description>
+                  <para/>
+               </description>
+            </param>
+            <param name="height" type="Integer">
+               <description>
+                  <para/>
+               </description>
+            </param>
             <description>
                <list>
                   <item>
@@ -273,7 +382,11 @@ console.log(image)
             </description>
          </method>
          <method name="setTemplateImage">
-            <param name="option" type="Boolean"/>
+            <param name="option" type="Boolean">
+               <description>
+                  <para/>
+               </description>
+            </param>
             <description>
                <para>Marks the image as a template image.</para>
             </description>
@@ -284,13 +397,30 @@ console.log(image)
                   <para>Whether the image is a template image.</para>
                </description>
             </returns>
+            <description/>
          </method>
          <method name="crop">
             <param name="rect" type="Object">
-               <property name="x" type="Integer"/>
-               <property name="y" type="Integer"/>
-               <property name="width" type="Integer"/>
-               <property name="height" type="Integer"/>
+               <property name="x" type="Integer">
+                  <description>
+                     <para/>
+                  </description>
+               </property>
+               <property name="y" type="Integer">
+                  <description>
+                     <para/>
+                  </description>
+               </property>
+               <property name="width" type="Integer">
+                  <description>
+                     <para/>
+                  </description>
+               </property>
+               <property name="height" type="Integer">
+                  <description>
+                     <para/>
+                  </description>
+               </property>
                <description>
                   <para>The area of the image to crop</para>
                </description>
@@ -300,16 +430,28 @@ console.log(image)
                   <para>The cropped image.</para>
                </description>
             </returns>
+            <description/>
          </method>
          <method name="resize">
             <param name="options" type="Object">
-               <property optional="true" name="width" type="Integer"/>
-               <property optional="true" name="height" type="Integer"/>
+               <property optional="true" name="width" type="Integer">
+                  <description>
+                     <para/>
+                  </description>
+               </property>
+               <property optional="true" name="height" type="Integer">
+                  <description>
+                     <para/>
+                  </description>
+               </property>
                <property optional="true" name="quality" type="String">
                   <description>
                      <para>The desired quality of the resize image. Possible values are good, better or best. The default is best. These values express a desired quality/speed tradeoff. They are translated into an algorithm-specific method that depends on the capabilities (CPU, GPU) of the underlying platform. It is possible for all three methods to be mapped to the same algorithm on a given platform.</para>
                   </description>
                </property>
+               <description>
+                  <para/>
+               </description>
             </param>
             <returns type="NativeImage">
                <description>
@@ -326,6 +468,7 @@ console.log(image)
                   <para>The image's aspect ratio.</para>
                </description>
             </returns>
+            <description/>
          </method>
       </methods>
    </class>

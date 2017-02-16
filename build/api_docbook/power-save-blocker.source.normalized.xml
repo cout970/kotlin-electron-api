@@ -50,6 +50,7 @@
                   <para>Whether the corresponding powerSaveBlocker has started.</para>
                </description>
             </returns>
+            <description/>
          </method>
       </methods>
    </object>

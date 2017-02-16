@@ -1,13 +1,14 @@
 @file:Suppress("UnsafeCastFromDynamic")
 package jsapi.electron
 
+@Suppress("REDUNDANT_NULLABLE")
 object powerSaveBlocker {
 
     private val module: dynamic = js("require('electron').powerSaveBlocker")
 
     // ~ Events --------------------------------------------------------------------------------
 
-    fun onEvent(event: String, callback: () -> Unit) = 
+    fun onEvent(event: String, callback: () -> Unit): Unit = 
         module.on(event, callback)
 
     // ~ Methods -------------------------------------------------------------------------------
@@ -24,19 +25,25 @@ object powerSaveBlocker {
      * calling B requests for prevent-display-sleep. prevent-display-sleep will be 
      * used until B stops its request. After that, prevent-app-suspension is used.
      * 
-     * @return The blocker ID that is assigned to this power blocker
+     * @param type Power save blocker type.
+     *
+     * @returns The blocker ID that is assigned to this power blocker
      */
     fun start(type: String): Int = 
         module.start(type)
 
     /**
      * Stops the specified power save blocker.
+     * 
+     * @param id The power save blocker id returned by powerSaveBlocker.start.
      */
     fun stop(id: Int): Unit = 
         module.stop(id)
 
     /**
-     * @return Whether the corresponding powerSaveBlocker has started.
+     * @param id The power save blocker id returned by powerSaveBlocker.start.
+     *
+     * @returns Whether the corresponding powerSaveBlocker has started.
      */
     fun isStarted(id: Int): Boolean = 
         module.isStarted(id)

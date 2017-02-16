@@ -1,17 +1,19 @@
 @file:Suppress("UnsafeCastFromDynamic")
 package jsapi.electron
 
-class ClientRequest constructor(val instance: dynamic, z: Unit) {
+@Suppress("REDUNDANT_NULLABLE")
+class ClientRequest constructor(val instance: dynamic, @Suppress("UNUSED_PARAMETER") ignoreMe: Unit) {
 
+    @Suppress("UNUSED_VARIABLE")
     constructor(options: dynamic) : this(Unit.let {
         val _constructor = js("require('electron').ClientRequest")
         val _options = options
         js("new _constructor(_options)")
-    }, z = Unit)
+    }, Unit)
 
     // ~ Events --------------------------------------------------------------------------------
 
-    fun onEvent(event: String, callback: () -> Unit) = 
+    fun onEvent(event: String, callback: () -> Unit): Unit = 
         module.on(event, callback)
 
     // ~ Properties ----------------------------------------------------------------------------
@@ -36,12 +38,17 @@ class ClientRequest constructor(val instance: dynamic, z: Unit) {
      * Adds an extra HTTP header. The header name will issued as it is without 
      * lowercasing. It can be called only before first write. Calling this method 
      * after the first write will throw an error.
+     * 
+     * @param name An extra HTTP header name.
+     * @param value An extra HTTP header value.
      */
     fun setHeader(name: String, value: String): Unit = 
         instance.setHeader(name, value)
 
     /**
-     * @return The value of a previously set extra header name.
+     * @param name Specify an extra header name.
+     *
+     * @returns The value of a previously set extra header name.
      */
     fun getHeader(name: String): String = 
         instance.getHeader(name)
@@ -50,6 +57,8 @@ class ClientRequest constructor(val instance: dynamic, z: Unit) {
      * Removes a previously set extra header name. This method can be called only 
      * before first write. Trying to call it after the first write will throw an 
      * error.
+     * 
+     * @param name Specify an extra header name.
      */
     fun removeHeader(name: String): Unit = 
         instance.removeHeader(name)
@@ -64,15 +73,24 @@ class ClientRequest constructor(val instance: dynamic, z: Unit) {
      * Adds a chunk of data to the request body. The first write operation may cause 
      * the request headers to be issued on the wire. After the first write operation, 
      * it is not allowed to add or remove a custom header.
+     * 
+     * @param chunk A chunk of the request body's data. If it is a string, it is converted into a 
+     *              Buffer using the specified encoding.
+     * @param encoding Used to convert string chunks into Buffer objects. Defaults to 'utf-8'.
+     * @param callback Called after the write operation ends.
      */
-    fun write(chunk: dynamic, encoding: String?, callback: (() -> Unit)?): Unit = 
+    fun write(chunk: dynamic, encoding: String? = null, callback: (() -> Unit)? = null): Unit = 
         instance.write(chunk, encoding, callback)
 
     /**
      * Sends the last chunk of the request data. Subsequent write or end operations 
      * will not be allowed. The finish event is emitted just after the end operation.
+     * 
+     * @param chunk 
+     * @param encoding 
+     * @param callback 
      */
-    fun end(chunk: dynamic?, encoding: String?, callback: (() -> Unit)?): Unit = 
+    fun end(chunk: dynamic? = null, encoding: String? = null, callback: (() -> Unit)? = null): Unit = 
         instance.end(chunk, encoding, callback)
 
     /**

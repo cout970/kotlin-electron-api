@@ -90,6 +90,7 @@
                   <para>The value of a previously set extra header name.</para>
                </description>
             </returns>
+            <description/>
          </method>
          <method name="removeHeader">
             <param name="name" type="String">
@@ -128,9 +129,20 @@
             <param optional="true" name="chunk" type="union">
                <option type="String"/>
                <option type="Buffer"/>
+               <description>
+                  <para/>
+               </description>
             </param>
-            <param optional="true" name="encoding" type="String"/>
-            <param optional="true" name="callback" type="Function"/>
+            <param optional="true" name="encoding" type="String">
+               <description>
+                  <para/>
+               </description>
+            </param>
+            <param optional="true" name="callback" type="Function">
+               <description>
+                  <para/>
+               </description>
+            </param>
             <description>
                <para>Sends the last chunk of the request data. Subsequent write or end operations will not be allowed. The finish event is emitted just after the end operation.</para>
             </description>

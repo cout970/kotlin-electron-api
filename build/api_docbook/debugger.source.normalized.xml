@@ -19,6 +19,7 @@
                   <para>Whether a debugger is attached to the webContents.</para>
                </description>
             </returns>
+            <description/>
          </method>
          <method name="detach">
             <description>

@@ -1,16 +1,18 @@
 @file:Suppress("UnsafeCastFromDynamic")
 package jsapi.electron
 
-class IncomingMessage constructor(val instance: dynamic, z: Unit) {
+@Suppress("REDUNDANT_NULLABLE")
+class IncomingMessage constructor(val instance: dynamic, @Suppress("UNUSED_PARAMETER") ignoreMe: Unit) {
 
+    @Suppress("UNUSED_VARIABLE")
     constructor() : this(Unit.let {
         val _constructor = js("require('electron').IncomingMessage")
         js("new _constructor()")
-    }, z = Unit)
+    }, Unit)
 
     // ~ Events --------------------------------------------------------------------------------
 
-    fun onEvent(event: String, callback: () -> Unit) = 
+    fun onEvent(event: String, callback: () -> Unit): Unit = 
         module.on(event, callback)
 
     // ~ Properties ----------------------------------------------------------------------------
@@ -26,13 +28,13 @@ class IncomingMessage constructor(val instance: dynamic, z: Unit) {
     val statusMessage: String get() = instance.statusMessage
 
     /**
-     * An Object representing the response HTTP headers. The headers object is 
-     * formatted as follows:
-     *
-     *  . All header names are lowercased.
-     *  . Each header name produces an array-valued property on the headers object.
-     *  . Each header value is pushed into the array associated with its header name.
-     *
+         * An Object representing the response HTTP headers. The headers object is 
+         * formatted as follows:
+         *
+         *  . All header names are lowercased.
+         *  . Each header name produces an array-valued property on the headers object.
+         *  . Each header value is pushed into the array associated with its header name.
+         *
      */
     val headers: dynamic get() = instance.headers
 

@@ -1,25 +1,29 @@
 @file:Suppress("UnsafeCastFromDynamic")
 package jsapi.electron
 
+@Suppress("REDUNDANT_NULLABLE")
 object autoUpdater {
 
     private val module: dynamic = js("require('electron').autoUpdater")
 
     // ~ Events --------------------------------------------------------------------------------
 
-    fun onEvent(event: String, callback: () -> Unit) = 
+    fun onEvent(event: String, callback: () -> Unit): Unit = 
         module.on(event, callback)
 
     // ~ Methods -------------------------------------------------------------------------------
 
     /**
      * Sets the url and initialize the auto updater.
+     * 
+     * @param url 
+         * @param requestHeaders HTTP request headers.
      */
-    fun setFeedURL(url: String, requestHeaders: (SetFeedURLRequestHeaders.() -> Unit)?): Unit = 
+    fun setFeedURL(url: String, requestHeaders: (SetFeedURLRequestHeaders.() -> Unit)? = null): Unit = 
         module.setFeedURL(url, requestHeaders?.let { SetFeedURLRequestHeaders().apply(it) })
 
     /**
-     * @return The current update feed URL.
+     * @returns The current update feed URL.
      */
     fun getFeedURL(): String = 
         module.getFeedURL()

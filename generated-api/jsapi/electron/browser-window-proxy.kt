@@ -1,16 +1,18 @@
 @file:Suppress("UnsafeCastFromDynamic")
 package jsapi.electron
 
-class BrowserWindowProxy constructor(val instance: dynamic, z: Unit) {
+@Suppress("REDUNDANT_NULLABLE")
+class BrowserWindowProxy constructor(val instance: dynamic, @Suppress("UNUSED_PARAMETER") ignoreMe: Unit) {
 
+    @Suppress("UNUSED_VARIABLE")
     constructor() : this(Unit.let {
         val _constructor = js("require('electron').BrowserWindowProxy")
         js("new _constructor()")
-    }, z = Unit)
+    }, Unit)
 
     // ~ Events --------------------------------------------------------------------------------
 
-    fun onEvent(event: String, callback: () -> Unit) = 
+    fun onEvent(event: String, callback: () -> Unit): Unit = 
         module.on(event, callback)
 
     // ~ Properties ----------------------------------------------------------------------------
@@ -37,6 +39,8 @@ class BrowserWindowProxy constructor(val instance: dynamic, z: Unit) {
 
     /**
      * Evaluates the code in the child window.
+     * 
+     * @param code 
      */
     fun eval(code: String): Unit = 
         instance.eval(code)
@@ -59,6 +63,9 @@ class BrowserWindowProxy constructor(val instance: dynamic, z: Unit) {
      *
      * In addition to these methods, the child window implements window.opener object 
      * with no properties and a single method.
+     * 
+     * @param message 
+     * @param targetOrigin 
      */
     fun postMessage(message: String, targetOrigin: String): Unit = 
         instance.postMessage(message, targetOrigin)
